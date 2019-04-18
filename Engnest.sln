@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engnest.Web", "Engnest\Engnest.Web.csproj", "{0EAB30A9-B99F-4BE0-B019-9B0E78A9CD71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engnest.Entities", "Engnest.Entities\Engnest.Entities.csproj", "{42E5D29F-4B90-4D91-A793-F529F0EE0EE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EAB30A9-B99F-4BE0-B019-9B0E78A9CD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EAB30A9-B99F-4BE0-B019-9B0E78A9CD71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EAB30A9-B99F-4BE0-B019-9B0E78A9CD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EAB30A9-B99F-4BE0-B019-9B0E78A9CD71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E5D29F-4B90-4D91-A793-F529F0EE0EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E5D29F-4B90-4D91-A793-F529F0EE0EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E5D29F-4B90-4D91-A793-F529F0EE0EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E5D29F-4B90-4D91-A793-F529F0EE0EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {115DE09D-2B03-4B69-8E3E-5D2B20D71EE5}
+	EndGlobalSection
+EndGlobal
