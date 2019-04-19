@@ -16,4 +16,24 @@ namespace Engnest.Entities.ViewModels
 
 		public bool RememberMe { get; set; }
 	}
+
+	public class SignInModel
+	{
+		[Required(ErrorMessage ="Enter your username")]
+		public string UserName { get; set; }
+
+		[Required(ErrorMessage ="Enter your password")]
+		public string Password { get; set; }
+
+		[Required(ErrorMessage ="Enter your email")]
+		public string Email { get; set; }
+
+		[Required(ErrorMessage ="Enter your first name")]
+		public string FirstName { get; set; }
+
+		[Required(ErrorMessage ="Enter your last name")]
+		public string LastName { get; set; }
+
+		public bool RememberMe { get; set; }
+	}
 }

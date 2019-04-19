@@ -1,6 +1,7 @@
 ﻿using Engnest.Entities.Common;
 using Engnest.Entities.Entity;
 using Engnest.Entities.IRepository;
+using Engnest.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -44,10 +45,10 @@ namespace Engnest.Entities.Repository
             context.Entry(User).State = EntityState.Modified;
         }
 
-		 public Byte Login(string UserName,string Password)
+		public Byte Login(string UserName,string Password, out User user)
         {
 			Byte result = 0;
-			var user = context.Users.SingleOrDefault(x => x.UserName == UserName);
+			user = context.Users.SingleOrDefault(x => x.UserName == UserName);
 			if(user == null)
 			{
 				result = LoginStatus.NOT_EXISTS_USER;
@@ -65,6 +66,34 @@ namespace Engnest.Entities.Repository
 				{
 					result = LoginStatus.SUCCESS;
 				}
+			}
+			return result;
+        }
+
+		public Byte SignIn(SignInModel model)
+        {
+			Byte result = 0;
+			var listuser = context.Users.Where(x => x.UserName == model.UserName || x.Email == model.Email).ToList();
+			if(listuser.Count > 0)
+			{
+				result = SignInStatus.EXISTS_USER;
+			}
+			else
+			{
+				try {
+				var user = new User();
+				user.UserName = model.UserName;
+				user.FirstName = model.FirstName;
+				user.LastName = model.LastName;
+				user.Email = model.Email;
+				user.Password = model.Password;
+				context.Users.Add(user);
+				}
+				catch(Exception ex)
+				{
+					result = SignInStatus.ERROR;
+				}
+				
 			}
 			return result;
         }

@@ -1,4 +1,5 @@
 ﻿using Engnest.Entities.Entity;
+using Engnest.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Engnest.Entities.IRepository
         void DeleteUser(int UserID);
         void UpdateUser(User User);
         void Save();
-		Byte Login(string UserName,string Password);
+		Byte Login(string UserName,string Password, out User user);
+		Byte SignIn(SignInModel model);
 	}
 }

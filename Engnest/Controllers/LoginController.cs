@@ -31,23 +31,21 @@ namespace Engnest.Controllers
 
 		public ActionResult Login(LoginModel model)
         {
+			User user = new User();
 			var Password = EncryptorMD5.MD5Hash(model.Password);
-			var result = userRepository.Login(model.UserName,Password);
+			var result = userRepository.Login(model.UserName,Password,out user);
+			if(result == LoginStatus.SUCCESS)
+				Session.Add(Constant.USER_SESSION,user.UserName);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult About()
+        public ActionResult SignIn(SignInModel model)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+			var Password = EncryptorMD5.MD5Hash(model.Password);
+			var result = userRepository.SignIn(model);
+			if(result == LoginStatus.SUCCESS)
+				Session.Add(Constant.USER_SESSION,model.UserName);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
