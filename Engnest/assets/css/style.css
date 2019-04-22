@@ -25,7 +25,6 @@ a{text-decoration:none;}
 .vertical-top{	vertical-align:top;}/* vertical align top */
 nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
-img{max-width:100%;}
 body {
 	padding: 0;
 	margin: 0;
@@ -615,4 +614,3 @@ h5 {
 .page-minimize .ajax-notification {
     left: 0;
 }
-

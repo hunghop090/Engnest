@@ -1,42 +1,1354 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/css/css")
+	<style type="text/css">
+		.pac-container {
+			background-color: #fff;
+			position: absolute !important;
+			z-index: 1000;
+			border-radius: 2px;
+			border-top: 1px solid #d9d9d9;
+			font-family: Arial,sans-serif;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			overflow: hidden
+		}
+
+		.pac-logo:after {
+			content: "";
+			padding: 1px 1px 1px 0;
+			height: 18px;
+			box-sizing: border-box;
+			text-align: right;
+			display: block;
+			background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png);
+			background-position: right;
+			background-repeat: no-repeat;
+			background-size: 120px 14px
+		}
+
+		.hdpi.pac-logo:after {
+			background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3_hdpi.png)
+		}
+
+		.pac-item {
+			cursor: default;
+			padding: 0 4px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			line-height: 30px;
+			text-align: left;
+			border-top: 1px solid #e6e6e6;
+			font-size: 11px;
+			color: #999
+		}
+
+			.pac-item:hover {
+				background-color: #fafafa
+			}
+
+		.pac-item-selected, .pac-item-selected:hover {
+			background-color: #ebf2fe
+		}
+
+		.pac-matched {
+			font-weight: 700
+		}
+
+		.pac-item-query {
+			font-size: 13px;
+			padding-right: 3px;
+			color: #000
+		}
+
+		.pac-icon {
+			width: 15px;
+			height: 20px;
+			margin-right: 7px;
+			margin-top: 6px;
+			display: inline-block;
+			vertical-align: top;
+			background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons.png);
+			background-size: 34px
+		}
+
+		.hdpi .pac-icon {
+			background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons_hdpi.png)
+		}
+
+		.pac-icon-search {
+			background-position: -1px -1px
+		}
+
+		.pac-item-selected .pac-icon-search {
+			background-position: -18px -1px
+		}
+
+		.pac-icon-marker {
+			background-position: -1px -161px
+		}
+
+		.pac-item-selected .pac-icon-marker {
+			background-position: -18px -161px
+		}
+
+		.pac-placeholder {
+			color: gray
+		}
+	</style>
+	<style>
+@@font-face {
+    font-family: OpenSansLight;
+    src: url("https://biztime.com.vn/themes/biztime-s/fonts/OpenSansLight/OpenSansLight.woff") format("woff");
+    font-weight: normal;
+}
+@@font-face {
+    font-family: OpenSansRegular;
+    src: url("https://biztime.com.vn/themes/biztime-s/fonts/OpenSansRegular/OpenSansRegular.woff") format("woff");
+    font-weight: normal;
+}
+@@font-face {
+    font-family: OpenSansSemiBold;
+    src: url("https://biztime.com.vn/themes/biztime-s/fonts/OpenSansSemiBold/OpenSansSemiBold.woff") format("woff");
+    font-weight: normal;
+}
+@@font-face {
+    font-family: OpenSansBold;
+    src: url("https://biztime.com.vn/themes/biztime-s/fonts/OpenSansBold/OpenSansBold.woff") format("woff");
+    font-weight: normal;
+}
+.navbar-default {
+    background: #4d91ea; border: none;
+    height:45px;box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.navbar-nav.left_part_header .search-container {
+	background: #4d91ea;
+}
+.round-check input[type="checkbox"]:checked + label:before {
+    background: #4d91ea !important;
+}
+.group-messages-wrapper a{
+    color: #4d91ea !important;
+}
+ul.profile-completion-bar li.completion-bar div.completion-bar-status {
+    background: #4d91ea !important;
+}
+.featured-users{
+    background: #fff !important;
+}
+.result-bar {
+    background: #4d91ea !important;
+}
+.avtive {
+    border-color: #4d91ea !important;
+}
+.left-sidebar ul li a i {
+    color: #4d91ea !important;
+}
+.cs-loader-inner, .main  {
+    color: #4d91ea;
+}
+.login input:focus, ul.profile-completion-bar li.completion-bar div.completion-bar-wrapper {
+    border-color: #4d91ea !important;
+}
+.login:not(.loading) button:hover {
+    background: #2e7be5 !important;
+    color: #ffffff;
+}
+
+#search-nearby-users .nearby-users-relationship-collapse li.active .friends_toggle{
+    border-color: #4d91ea;
+}
+#search-nearby-users .nearby-users-relationship-collapse li.active .friends_toggle:after{
+    background: #4d91ea;
+}
+.login button, .wo_search_page .nav-tabs li.active a {
+    background: #4d91ea !important;
+    color: #ffffff !important;
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-current, .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current, .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-current {
+    background-color: #4d91ea !important;
+    background: #4d91ea !important;
+    background-image: #4d91ea !important;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #e5e6e8 !important;
+    background-color: #2e7be5 !important;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover, .nav-names li:hover {
+    color: #e5e6e8 !important;
+    background-color: #333333 !important;
+}
+body {
+    background-color: #e9ebee;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #e5e6e8;
+    font-size: 13px;
+}
+a.unread-update, .head_clos_srch {
+    color: #e5e6e8 !important;
+}
+.btn-main {
+    color: #ffffff;
+    background-color: #4d91ea;
+    border-color: #4d91ea;
+}
+.btn-main:hover {
+    color: #222324;
+    background-color: #2e7be5;
+    border-color: #2e7be5;
+}
+.active-wonder {
+    color: #4d91ea;
+}
+.admin-panel .col-md-9 .list-group-item:first-child, .setting-panel .col-md-8 .list-group-item:first-child, .profile-lists .list-group-item:first-child, .col-md-8 .list-group-item:first-child, .col-md-3.custom .list-group-item:first-child, .col-sm-4 .list-group-item:first-child, .col-md-7 .list-group-item:first-child, .col-md-9 .list-group-item:first-child, .red-list .list-group-item:first-child, .active.list-group-item:first-child {
+     color: #444;
+     background-color: #fcfcfc;
+     border-bottom: 1px solid #f1f1f1;
+     padding: 18px;
+}
+.admin-panel .col-md-9 .list-group-item:first-child a, .setting-panel .col-md-8 .list-group-item:first-child a, .profile-lists .list-group-item:first-child a, .col-md-8 .list-group-item:first-child a, .col-md-7 .list-group-item:first-child a, .active.list-group-item:first-child a {
+    color: #444 !important;
+}
+.list-group-item.black-list.active-list, .red-list.active-list {
+    color: #ffffff;
+    background-color: #4d91ea;
+}
+.list-group-item.black-list {
+    background: #4d91ea;
+}
+.profile-top-line {
+    background-color: #4d91ea;
+}
+#bar {
+    background-color: #4d91ea;
+}
+.list-group-item.black-list a{
+    color: #ffffff;
+}
+.list-group-item.black-list.active-list a{
+    color: #4d91ea;
+}
+.main-color, .small-text a {
+    color: #4d91ea !important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #ffffff;
+    cursor: default;
+    color: #4d91ea;
+    border-bottom: 1px solid #4d91ea;
+    background-color: transparent
+}
+.btn-active {
+    color: #ffffff;
+    background: #4d91ea;
+    outline: none;
+    border: 1px solid #4d91ea
+}
+.btn-active:hover, .btn-active:focus {
+    border: 1px solid #2e7be5;
+    color: #222324;
+    background: #2e7be5;
+}
+.btn-active-color:hover {
+    background: #2e7be5;
+}
+.chat-tab .online-toggle {
+    background: #4d91ea;
+}
+.profile-style .user-follow-button button.btn-active, .btn-login, .btn-register {
+    background: #4d91ea;
+    color: #ffffff;
+}
+.profile-style .user-follow-button button.btn-active:hover, .btn-login:hover, .btn-login:focus, .btn-register:hover, .btn-register:focus {
+    color: #222324;
+    background: #2e7be5;
+}
+.panel-login>.panel-heading a.active {
+    color: #4d91ea;
+    font-size: 18px;
+}
+.hash {
+    color: #4d91ea;
+}
+.message-text .hash {
+    color: #fff !important;
+}
+.search-container .search-input {
+    color: #fff!important;
+    background: #0147a9 !important;
+}
+.chat-messages-wrapper .outgoing {
+    background: #4d91ea;
+}
+.message p {
+    color: #fff;
+}
+.text-sender-container .outgoing .message-model .message {
+    background: #4d91ea;
+}
+
+.incoming .message. p {
+    color: #555;
+}
+.incoming.message p {
+    color: #555;
+}
+.incoming .message p {
+    color: #555;
+}
+.normal-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 15px;
+}
+.active.fa-thumbs-up {
+    color: #4d91ea;
+}
+.api-ex-urls {
+    background-color: #4d91ea; color: #ffffff;
+}
+.user-username {
+    color: #4d91ea;
+}
+.upload-image {
+    border: 3px dashed #4d91ea;
+}
+.events-tab-list li { background-color: #4d91ea; }
+.events-tab-list li:hover { background-color: #4d91ea; }
+.active-e-tab { background-color: #4d91ea !important; }
+.main { color: #4d91ea !important; }
+.events-list-dropup-menu ul li a:hover { background: #4d91ea; }
+.usr-offline { color: #4d91ea; }
+.blog-dd-ul li span:hover, .blog-dd-ul li a:hover { background: #4d91ea !important; }
+.blog_publ {background: #4d91ea ; border: 1px solid #4d91ea ; }
+
+.slide-film-desc:hover, .movies-top-breadcrumb li:hover, .movies-top-breadcrumb li a:hover{
+    color: #4d91ea !important;
+}
+.movies h3.latest-movies, h3.recommended-movies {
+    border-left: 3px solid  #4d91ea;
+}
+
+.wo_user_profile .user-bottom-nav li .menuactive {
+    border-bottom: 2px solid #4d91ea;
+    color:#4d91ea;
+}
+
+
+body, .navbar-default, .wo_about_wrapper_parent{padding-right: 205px;}
+@@media (min-width: 1420px) {
+body, .navbar-default, .wo_about_wrapper_parent{padding-right: 240px;}.sun_blog_head {right: 240px;}
+}
+@@media (max-width:1140px){.wo_about_wrapper_parent{padding-right: 0px;}}
+.sun_blog_head {right: 205px;}
+
+
+.post .panel.active_shadow {
+    box-shadow: 0 0 0 1.5px #4d91ea !important;
+}
+
+.ui-widget-header .ui-state-default {
+    background-color: #4d91ea;
+}
+
+.reaction-like::before {
+    content: "Thích";
+}
+.reaction-love::before {
+    content: "Yêu";
+}
+.reaction-haha::before {
+    content: "HaHa";
+}
+.reaction-wow::before {
+    content: "WoW";
+}
+.reaction-sad::before {
+    content: "Buồn";
+}
+.reaction-angry::before {
+    content: "Giận";
+}
+
+.navbar-default .dropdown-menu.ani-acc-menu >li>a:hover {
+    color: #ffffff;background-color: #4d91ea;
+}
+
+@@media (min-width: 992px){
+#wo_msg_right_prt .text-sender-container .outgoing .message-model .message p {
+    color: #ffffff;background-color: #4d91ea;
+}
+
+#wo_nw_msg_page .messages-recipients-list .msg_ava_name {
+    color: #e5e6e8 !important;
+}
+#wo_nw_msg_page .messages-recipients-list.active .msg_ava_name {
+    color: #333 !important;
+}
+}
+
+
+.sun_input input:focus, .sun_input textarea:focus, .sun_input select:focus{border-color:#4d91ea}
+.loading::before {background-color: #4d91ea;}
+
+#wo_post_stat_button > .stat-item:nth-child(2) svg {
+	margin-right: 3px;
+}
+
+		i.fa-search {
+			left: 10px;
+			position: absolute;
+			top: 9px;
+			width: 14px;
+		}
+
+	</style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+	<header class="header-container">
+		<div class="navbar navbar-default navbar-fixed-top">
+			<nav class="header-fixed1000">
+				<div class="container-fluid">
+					<a class="brand header-brand" href="https://biztime.com.vn">
+						<img width="130" src="https://biztime.com.vn/themes/biztime-s/img/logo.png" alt="Mạng Xã Hội Việt Nam Logo">
+					</a>
+					<ul class="nav navbar-nav left_part_header">
+						<li class="head_name_links">
+							<a class="sixteen-font-size homelink_count" href="https://biztime.com.vn" data-ajax="?index.php?link1=home">
+								<i class="fa fa-home" aria-hidden="true" style="font-size:19px"></i>
+								<span>Timeline</span>
+							</a>
+						</li>
+						<li class="head_name_links">
+							<form class="navbar-form form-group" data-toggle="dropdown" role="button" id="navbar-searchbox">
+								<div class="form-group inner-addon left-addon ">
+									<i class="fa fa-search"></i>
+									<input type="text" class="form-control search-input" onkeyup="Wo_DetectSearchType(this.value), document.getElementById('wo_repeat_search').innerHTML = escapeHtml(this.value)" placeholder="Tìm ai đó, trang, chapter hay #gắnthẻ" dir="auto" onfocus="Wo_GetRecentSearchs()">
+								</div>
+							</form>
+						</li>
+						<li class="search-container">
+							<div class="dropdown head_srch_drop">
+								<div class="head_clos_srch" id="close_header_search"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path></svg></div>
+								<form class="navbar-form form-group" data-toggle="dropdown" role="button" id="navbar-searchbox">
+									<div class="form-group inner-addon left-addon ">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search glyphicon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+										<input type="text" class="form-control search-input" onkeyup="Wo_DetectSearchType(this.value), document.getElementById('wo_repeat_search').innerHTML = escapeHtml(this.value)" placeholder="Tìm ai đó, trang, chapter hay #gắnthẻ" dir="auto" onfocus="Wo_GetRecentSearchs()">
+									</div>
+								</form>
+								<ul class="dropdown-menu search-dropdown-container" style="margin-left:7px;" role="menu">
+									<div class="search-dropdown-result">
+									</div>
+									<li>
+										<span class="search-advanced-container">
+											<a href="https://biztime.com.vn/search" class="search-advanced-link" data-ajax="?link1=search">
+												<div class="feather-svg-parent">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+												</div>
+												<span style="vertical-align: middle;display: table-cell;padding-left: 10px;">
+													Tìm nâng cao
+													<span id="wo_repeat_search"></span>
+												</span>
+											</a>
+										</span>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+					<ul class="nav navbar-nav navbar-right pull-right" id="head_menu_rght">
+						<li class="dropdown requests-container" onclick="Wo_OpenRequestsMenu();">
+							<span class="new-update-alert">2</span>
+							<a href="#" class="dropdown-toggle unread-update sixteen-font-size" data-toggle="dropdown" role="button" aria-expanded="false">
+								<i class="fa fa-users" aria-hidden="true"></i>
+							</a>
+							<ul class="dropdown-menu request-list clearfix notifications-dropdown" role="menu" id="requests-list">
+								<li>
+									<h5 class="text-center"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></h5>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown messages-notification-container" onclick="Wo_OpenMessagesMenu();">
+							<span class="new-update-alert hidden" style="display: none;">
+								0
+							</span>
+							<a href="#" class="dropdown-toggle sixteen-font-size" data-toggle="dropdown" role="button" aria-expanded="false">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"></path></svg>
+							</a>
+							<ul class="dropdown-menu clearfix notifications-dropdown messages-dropdown" role="menu" id="messages-list">
+								<li>
+									<h5 class="text-center"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></h5>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown notification-container" onclick="Wo_OpenNotificationsMenu();">
+							<span class="new-update-alert hidden" style="display: none;">
+								0
+							</span>
+							<a href="#" class="dropdown-toggle sixteen-font-size" data-toggle="dropdown" role="button" aria-expanded="false">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"></path></svg>
+							</a>
+							<ul class="dropdown-menu clearfix notifications-dropdown" role="menu">
+								<li onclick="Wo_TurnOffSound();" class="turn-off-sound text-left">
+									<span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Tắt âm thanh thông báo
+									</span>
+								</li>
+								<li id="notification-list">
+									<h5 class="text-center"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></h5>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown sun_bd_hd_scrl_menu">
+							<a href="#" class="dropdown-toggle user-menu-combination" data-toggle="dropdown" role="button" aria-expanded="false">
+								<span id="user-full-name" class="User-Name hidden-xs">
+									Onl
+								</span>
+								<div class="user-avatar">
+									<img id="updateImage-1961" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0" alt="Onl Hero Profile Picture">
+								</div>
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="mobi_menu_hd"><path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+							</a>
+							<ul class="dropdown-menu ani-acc-menu" role="menu">
+								<li>
+									<a class="menu_firs_link" id="update-username" href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223"><b>Onl Hero</b></a>
+									<a class="menu_sec_link" href="https://biztime.com.vn/setting/my_points" data-ajax="?link1=setting&amp;page=my_points">
+										<p>Biz: 0</p>
+									</a>
+								</li>
+
+								<li><hr></li>
+								<li>
+									<a href="https://biztime.com.vn/go-pro" data-ajax="?link1=go-pro"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Nâng cấp thành Pro</a>
+								</li>
+
+								<li><hr></li>
+
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/pages" data-ajax="?link1=pages"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f79f58" d="M5,21 L5,1 L7,1 L7,2 L21.1247446,2 L18.1259893,7.99991055 L21.126034,14 L7,14 L7,21 L8,21 L8,23 L4,23 L4,21 L5,21 Z M7,12 L17.889966,12 L15.8900107,8.00008945 L17.8892554,4 L7,4 L7,12 Z"></path></svg> Trang</a>
+								</li>
+
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/my-products" data-ajax="?link1=my-products"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#6a7f9a" d="M17.118034,7 L20,7 C21.1045695,7 22,7.8954305 22,9 L22,11 C22,11.8400191 21.4821261,12.5590822 20.7482321,12.8553354 C20.7516471,12.9031122 20.7533839,12.9513533 20.7533839,13 C20.7533839,13.1459247 20.7374136,13.2914111 20.7057581,13.4338609 L19.1502025,20.4338609 C18.9468525,21.348936 18.1352257,22 17.1978284,22 L6.80217161,22 C5.86477431,22 5.05314751,21.348936 4.84979749,20.4338609 L3.29424193,13.4338609 C3.25094564,13.2390276 3.23766963,13.0445179 3.25133987,12.8551625 C2.51767261,12.5588026 2,11.8398557 2,11 L2,9 C2,7.8954305 2.8954305,7 4,7 L6.88196601,7 L9.10557281,2.5527864 C9.35256206,2.05880791 9.9532351,1.85858356 10.4472136,2.10557281 C10.9411921,2.35256206 11.1414164,2.9532351 10.8944272,3.4472136 L9.11803399,7 L14.881966,7 L13.1055728,3.4472136 C12.8585836,2.9532351 13.0588079,2.35256206 13.5527864,2.10557281 C14.0467649,1.85858356 14.6474379,2.05880791 14.8944272,2.5527864 L17.118034,7 Z M18.0002188,9 C17.9999331,9.36654113 17.7973775,9.71934526 17.4472136,9.89442719 C16.9532351,10.1414164 16.3525621,9.94119209 16.1055728,9.4472136 L15.881966,9 L8.11803399,9 L7.89442719,9.4472136 C7.64743794,9.94119209 7.0467649,10.1414164 6.5527864,9.89442719 C6.20262255,9.71934526 6.00006692,9.36654113 5.99978125,9 L4,9 L4,11 L20,11 L20,9 L18.0002188,9 Z M5.24661605,13 L6.80217161,20 L17.1978284,20 L18.7533839,13 L5.24661605,13 Z"></path></svg> Sản Phẩm</a>
+								</li>
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/products"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 30 30"><path fill="#7d8250" d="M23 14c-.7 0-1.4-.2-2-.6-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.4-1.3.6-2 .6s-1.4-.2-2-.5c-.6.3-1.3.5-2 .5v11c0 1.1.9 2 2 2h12V17h6v10h2c1.1 0 2-.9 2-2V14c-.7 0-1.4-.2-2-.5-.6.3-1.3.5-2 .5zm-10 9H7v-6h6v6zM26 6V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v1l-3 4c0 1.1.9 2 2 2s2-.9 2-2l2-4h3l-1 4c0 1.1.9 2 2 2s2-.9 2-2V6h4v4c0 1.1.9 2 2 2s2-.9 2-2l-1-4h3l2 4c0 1.1.9 2 2 2s2-.9 2-2l-3-4z"></path></svg> Mua Bán</a>
+								</li>
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/blogs" data-ajax="?link1=blogs"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f35d4d" d="M19,21 L5,21 C3.34314575,21 2,19.6568542 2,18 L2,3 L16,3 L18,3 L18,8 L22,8 L22,9 L22,18 C22,19.6568542 20.6568542,21 19,21 Z M16.1707057,19 C16.0601542,18.6872211 16,18.3506354 16,18 L16,5 L4,5 L4,18 C4,18.5522847 4.44771525,19 5,19 L16.1707057,19 Z M18,10 L18,18 C18,18.5522847 18.4477153,19 19,19 C19.5522847,19 20,18.5522847 20,18 L20,10 L18,10 Z M10,7 L10,11 L6,11 L6,7 L10,7 Z M14,8 L14,10 L11,10 L11,8 L14,8 Z M14,12 L14,14 L6,14 L6,12 L14,12 Z M14,15 L14,17 L6,17 L6,15 L14,15 Z"></path></svg> Bản Tin</a>
+								</li>
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/movies/"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#8d73cc" d="M23,19 C23,20.1045695 22.1045695,21 21,21 L9,21 C7.8954305,21 7,20.1045695 7,19 L7,5 C7,3.8954305 7.8954305,3 9,3 L21,3 C22.1045695,3 23,3.8954305 23,5 L23,19 Z M6,20 C4.8954305,20 4,19.1045695 4,18 L4,6 C4,4.8954305 4.8954305,4 6,4 L6,20 Z M3,19 C1.8954305,19 1,18.1045695 1,17 L1,7 C1,5.8954305 1.8954305,5 3,5 L3,19 Z M21,19 L21,5 L9,5 L9,19 L21,19 Z M13,9 L17,12 L13,15 L13,9 Z"></path></svg> Movies</a>
+								</li>
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/events/" data-ajax="?link1=events"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f25e4e" d="M20,8 L20,5 L18,5 L18,6 L16,6 L16,5 L8,5 L8,6 L6,6 L6,5 L4,5 L4,8 L20,8 Z M20,10 L4,10 L4,20 L20,20 L20,10 Z M18,3 L20,3 C21.1045695,3 22,3.8954305 22,5 L22,20 C22,21.1045695 21.1045695,22 20,22 L4,22 C2.8954305,22 2,21.1045695 2,20 L2,5 C2,3.8954305 2.8954305,3 4,3 L6,3 L6,2 L8,2 L8,3 L16,3 L16,2 L18,2 L18,3 Z M9,14 L7,14 L7,12 L9,12 L9,14 Z M13,14 L11,14 L11,12 L13,12 L13,14 Z M17,14 L15,14 L15,12 L17,12 L17,14 Z M9,18 L7,18 L7,16 L9,16 L9,18 Z M13,18 L11,18 L11,16 L13,16 L13,18 Z"></path></svg> Sự Kiện</a>
+								</li>
+
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/groups" data-ajax="?link1=groups"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#03A9F4" d="M6.5,22 C4.01471863,22 2,19.9852814 2,17.5 C2,15.0147186 4.01471863,13 6.5,13 C8.98528137,13 11,15.0147186 11,17.5 C11,19.9852814 8.98528137,22 6.5,22 Z M17.5,22 C15.0147186,22 13,19.9852814 13,17.5 C13,15.0147186 15.0147186,13 17.5,13 C19.9852814,13 22,15.0147186 22,17.5 C22,19.9852814 19.9852814,22 17.5,22 Z M6.5,11 C4.01471863,11 2,8.98528137 2,6.5 C2,4.01471863 4.01471863,2 6.5,2 C8.98528137,2 11,4.01471863 11,6.5 C11,8.98528137 8.98528137,11 6.5,11 Z M17.5,11 C15.0147186,11 13,8.98528137 13,6.5 C13,4.01471863 15.0147186,2 17.5,2 C19.9852814,2 22,4.01471863 22,6.5 C22,8.98528137 19.9852814,11 17.5,11 Z M17.5,9 C18.8807119,9 20,7.88071187 20,6.5 C20,5.11928813 18.8807119,4 17.5,4 C16.1192881,4 15,5.11928813 15,6.5 C15,7.88071187 16.1192881,9 17.5,9 Z M6.5,9 C7.88071187,9 9,7.88071187 9,6.5 C9,5.11928813 7.88071187,4 6.5,4 C5.11928813,4 4,5.11928813 4,6.5 C4,7.88071187 5.11928813,9 6.5,9 Z M17.5,20 C18.8807119,20 20,18.8807119 20,17.5 C20,16.1192881 18.8807119,15 17.5,15 C16.1192881,15 15,16.1192881 15,17.5 C15,18.8807119 16.1192881,20 17.5,20 Z M6.5,20 C7.88071187,20 9,18.8807119 9,17.5 C9,16.1192881 7.88071187,15 6.5,15 C5.11928813,15 4,16.1192881 4,17.5 C4,18.8807119 5.11928813,20 6.5,20 Z"></path></svg> Chapter</a>
+								</li>
+
+
+
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/albums" data-ajax="?link1=albums"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#8bc34a" d="M4,15.5857864 L8,11.5857864 L11.5,15.0857864 L18,8.58578644 L20,10.5857864 L20,4 L4,4 L4,15.5857864 Z M4,18.4142136 L4,20 L13.5857864,20 L8,14.4142136 L4,18.4142136 Z M16.4142136,20 L20,20 L20,13.4142136 L18,11.4142136 L12.9142136,16.5 L16.4142136,20 Z M4,2 L20,2 C21.1045695,2 22,2.8954305 22,4 L22,20 C22,21.1045695 21.1045695,22 20,22 L4,22 C2.8954305,22 2,21.1045695 2,20 L2,4 C2,2.8954305 2.8954305,2 4,2 Z M11,5 C12.6568542,5 14,6.34314575 14,8 C14,9.65685425 12.6568542,11 11,11 C9.34314575,11 8,9.65685425 8,8 C8,6.34314575 9.34314575,5 11,5 Z M11,7 C10.4477153,7 10,7.44771525 10,8 C10,8.55228475 10.4477153,9 11,9 C11.5522847,9 12,8.55228475 12,8 C12,7.44771525 11.5522847,7 11,7 Z"></path></svg> Album</a>
+								</li>
+
+								<li><hr></li>
+								<li class="dropdown-hidden-link">
+									<a href="https://biztime.com.vn/setting/profile-setting" data-ajax="?link1=setting&amp;page=profile-setting">Sửa</a>
+								</li>
+								<li class="dropdown-hidden-link">
+									<a href="https://biztime.com.vn/setting/general-setting" data-ajax="?link1=setting&amp;page=general-setting">Cài đặt tài khoản</a>
+								</li>
+								<li class="dropdown-search-link">
+									<a href="https://biztime.com.vn/setting" data-ajax="?link1=setting">Thiết Lập</a>
+								</li>
+								<li><hr></li>
+								<li>
+									<a href="https://biztime.com.vn/logout">Đăng Xuất</a>
+								</li>
+								<li><hr></li>
+								<li class="dropdown-search-link">
+									<a href="javascript:void(0);" data-toggle="modal" data-target="#keyboard_shortcuts_box" id="keyboard_shortcut">
+										Phím tắt					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-command"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" id="night_mode_toggle" data-mode="night">
+										<span id="night-mode-text">Chế độ ban đêm</span>
+										<svg class="feather feather-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+									</a>
+								</li>
+								<span class="headtoppoint"></span>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div class="loader" style="display: none;"></div>
+
+		<script type="text/javascript">
+
+			jQuery(document).ready(function ($) {
+				$(".search-input").keydown(function (event) {
+					if (event.keyCode == 13 && event.shiftKey == 0) {
+						event.preventDefault();
+						window.location = 'https://biztime.com.vn/search?query=' + $(this).val();
+					}
+				});
+			});
+			var Searchcontainer = $('.search-container');
+			var SearchBox = $('.search-container .search-input');
+			var SearchResult = $('.search-dropdown-result');
+
+			function Wo_ChangeHomeButtonIcon() {
+
+				$('.navbar-home #home-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+			}
+
+			function Wo_DetectSearchType(query) {
+				var Hash = smokeTheHash(query);
+				if (Hash) {
+					$('.search-advanced-container').hide(200);
+					Wo_SearchhashResult(query);
+				} else {
+					$('.search-advanced-container').fadeIn(200);
+					Wo_SearchResult(query);
+				}
+			}
+
+			function Wo_ClearSearches() {
+				$('.clear-searches').html('<i class="fa fa-spinner fa-spin"></i>');
+				$.get(Wo_Ajax_Requests_File(), { f: 'clearChat' }, function (data) {
+					if (data.status == 200) {
+						location.reload();
+					}
+				});
+			}
+
+			function Wo_GetRecentSearchs() {
+				$.get(Wo_Ajax_Requests_File(), { f: 'search', s: 'recent' }, function (data) {
+					if (data.status == 200) {
+						if (data.html.length > 0) {
+							SearchResult.html('<div class="recent"><div class="gray recent-searches pull-left"> Recent Searches</div><div onclick="Wo_ClearSearches();" class="gray recent-searches clear-searches pointer pull-right" style="color: #F44336;"><svg style="vertical-align: middle;margin-top: -3px;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Clear</div><div class="clear"></div></div>' + data.html);
+						}
+					}
+				});
+			}
+			function Wo_SearchResult(query) {
+				if (SearchBox.val() != '') {
+					Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+					Searchcontainer.addClass('open');
+					Searchcontainer.find('.search-advanced-link').attr('href', 'https://biztime.com.vn/search/' + query);
+					Searchcontainer.find('.search-advanced-link').attr('data-ajax', '?link1=search&query=' + query);
+					$.get(Wo_Ajax_Requests_File(), { f: 'search', s: 'normal', query: query }, function (data) {
+						if (data.status == 200) {
+							if (data.html.length == 0) {
+								SearchResult.html('<span class="center-text">' + " Không tìm thấy kết quả" + '<span>');
+							} else {
+								SearchResult.html(data.html);
+							}
+						}
+						Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+					});
+					$(document).click(function () {
+						Searchcontainer.removeClass('open');
+					});
+				} else {
+					Searchcontainer.removeClass('open');
+				}
+			}
+
+
+			function Wo_SearchhashResult(query) {
+				var Searchcontainer = $('.search-container');
+				var SearchBox = $('.search-container .search-input');
+				var SearchResult = $('.search-dropdown-result');
+				if (SearchBox.val() != '') {
+					Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+					Searchcontainer.addClass('open');
+					Searchcontainer.find('.search-advanced-link').attr('href', 'https://biztime.com.vn/search/' + query);
+					Searchcontainer.find('.search-advanced-link').attr('data-ajax', '?link1=search&query=' + query);
+					$.get(Wo_Ajax_Requests_File(), { f: 'search', s: 'hash', query: query }, function (data) {
+						if (data.status == 200) {
+							if (data.html.length == 0) {
+								SearchResult.html('<span class="center-text">' + " Không tìm thấy kết quả" + '<span>');
+							} else {
+								SearchResult.html(data.html);
+							}
+						}
+						Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+					});
+
+					$(document).click(function () {
+						Searchcontainer.removeClass('open');
+					});
+				} else {
+					Searchcontainer.removeClass('open');
+				}
+			}
+
+			function smokeTheHash(str) {
+				var n = str.search("#");
+				if (n != "-1") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		</script>
+	</header>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+		</footer>
+	</div>
+	<div class="extra">
+		<div class="chat-all-container">
+			<div class="chat-tab"></div>
+			<div class="chat-container full" style="">
+				<div class="online-toggle pointer" onclick="Wo_OpenChatUsersTab();">
+					Chat
+				</div>
+				<div class="chat-status">
+					<span class="pointer" style="margin-right: 5px;" onclick="Wo_CreateGChat(event)">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M13,13C11,13 7,14 7,16V18H19V16C19,14 15,13 13,13M19.62,13.16C20.45,13.88 21,14.82 21,16V18H24V16C24,14.46 21.63,13.5 19.62,13.16M13,11A3,3 0 0,0 16,8A3,3 0 0,0 13,5A3,3 0 0,0 10,8A3,3 0 0,0 13,11M18,11A3,3 0 0,0 21,8A3,3 0 0,0 18,5C17.68,5 17.37,5.05 17.08,5.14C17.65,5.95 18,6.94 18,8C18,9.06 17.65,10.04 17.08,10.85C17.37,10.95 17.68,11 18,11M8,10H5V7H3V10H0V12H3V15H5V12H8V10Z"></path></svg>
+					</span>
+					<div class="dropdown" style="display: inline;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg>
+						<ul class="dropdown-menu dropdown-menu-right" role="menu" style="min-width: 80px; font-size: 12px;">
+							<li><a href="#" onclick="Wo_UpdateStatus('online',event);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> Online</a></li>
+							<li><a href="#" onclick="Wo_UpdateStatus('offline',event);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg> Offline</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="search">
+					<input type="text" class="form-control search-users-chat" placeholder="Tìm một ai đó" onkeyup="Wo_ChatSearchUsers(this.value);">
+				</div>
+
+				<div class="online-content-toggler" style="display:block">
+					<div class="chat-opacity ">
+						<div class="text-center">
+							<h5 class="empty_state">
+								<span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+									Bạn đang offline
+								</span>
+							</h5>
+						</div>
+					</div>
+
+					<ul class="nav nav-tabs wo_chat_tabs">
+						<li class="active">
+							<a data-toggle="tab" data-target="#users-chat" href="#" data-placement="bottom" title="Thành viên">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"></path></svg>
+								<span class="count-online-users">0</span>
+							</a>
+						</li>
+
+						<li>
+							<a data-toggle="tab" data-target="#groups-chat" href="#" data-placement="bottom" title="Chapter">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,6A3,3 0 0,0 9,9A3,3 0 0,0 12,12A3,3 0 0,0 15,9A3,3 0 0,0 12,6M6,8.17A2.5,2.5 0 0,0 3.5,10.67A2.5,2.5 0 0,0 6,13.17C6.88,13.17 7.65,12.71 8.09,12.03C7.42,11.18 7,10.15 7,9C7,8.8 7,8.6 7.04,8.4C6.72,8.25 6.37,8.17 6,8.17M18,8.17C17.63,8.17 17.28,8.25 16.96,8.4C17,8.6 17,8.8 17,9C17,10.15 16.58,11.18 15.91,12.03C16.35,12.71 17.12,13.17 18,13.17A2.5,2.5 0 0,0 20.5,10.67A2.5,2.5 0 0,0 18,8.17M12,14C10,14 6,15 6,17V19H18V17C18,15 14,14 12,14M4.67,14.97C3,15.26 1,16.04 1,17.33V19H4V17C4,16.22 4.29,15.53 4.67,14.97M19.33,14.97C19.71,15.53 20,16.22 20,17V19H23V17.33C23,16.04 21,15.26 19.33,14.97Z"></path></svg>
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="users-chat" class="tab-pane fade in active">
+							<div class="online-users"></div>
+							<div class="offline-users">
+								<div class="recipient-chat-user" id="online_4">
+									<div class="user-info" onclick="Wo_OpenChatTab(4);" title="2 ngày trước">
+										<div class="pull-right" style="margin-top:8px;">
+
+											<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"><path fill="#CDCDCD" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg>
+											<span class="chat-loading-icon"></span>
+										</div>
+										<span class="chat-user-text" id="chat-tab-id">
+											<div class="avatar pull-left">
+												<span class="new-message-alert hidden">0</span>
+												<img src="https://biztime.com.vn/upload/photos/2018/03/TmBdnCebRgrnsaMQj7KL_08_9e1219b7732f811690304e81b113bda8_avatar.jpeg?cache=0" alt="https://biztime.com.vn/upload/photos/2018/03/TmBdnCebRgrnsaMQj7KL_08_9e1219b7732f811690304e81b113bda8_avatar.jpeg?cache=0 Profile Picture">
+											</div>
+											<span class="wo_cen_onuser">Xin Chào</span>
+										</span>
+									</div>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div id="groups-chat" class="tab-pane fade groups chat_groups">
+						</div>
+					</div>
+				</div>
+
+				<!--Activities -->
+				<div class="chat_acts">
+					<ul class="list-group activity-container sun_side_activities">
+						<li class="text-muted sidebar-title-back" contenteditable="false">
+							Hoạt động đang diễn ra											<p class="pull-right mb0">
+								<span onclick="Wo_GetMoreActivities();" title="Tải thêm hoạt động" class="pull-right refresh"><i class="fa fa-repeat progress-icon" data-icon="repeat"></i></span>
+							</p>
+						</li>
+						<li class="activities-wrapper" id="activities-wrapper">
+							<div class="wo_sidebar_activity activity " data-activity-id="51178">
+								<span class="sun_act_icon friend">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"></path></svg>
+								</span>
+								<span class="sun_act_msg">
+									<a class="first_usr_nm" href="https://biztime.com.vn/xinchao " data-ajax="?link1=timeline&amp;u=xinchao">
+										Xin Chào
+									</a>
+									trở thành bạn với <a class="second-user-color" data-ajax="?link1=timeline&amp;u=khuyenle" href="https://biztime.com.vn/khuyenle">Thuỷ Hương</a>		<time class="ajax-time" style="color: #8c8a8a; font-size: 11px;" title="2019-04-20T05:09:19+00:00">2 ngày trước</time>
+								</span>
+								<div class="clear"></div>
+							</div>
+						</li>
+						<div class="no-activities center-text"></div>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="modal fade" id="create_group_chat" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						<h4 class="modal-title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+							Tạo Chapter Mới
+						</h4>
+					</div>
+					<form id="insert-caht-parts" class="wo_create_chat_group">
+						<div class="modal-body">
+							<div id="insert-caht-alert"></div>
+							<div class="form-group input-group">
+								<span class="input-group-addon pointer" onclick="$('#group_chat_avatar').trigger('click');">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+								</span>
+								<input type="text" class="form-control" name="group_name" placeholder="Tiêu đề">
+							</div>
+							<div class="w100">
+								<div class="group_chat_avatar"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="form-group input-group">
+								<span class="input-group-addon" id="group_chat_mbrs">0</span>
+								<input type="text" class="form-control" placeholder="Nhập tên người bạn mời tham gia" onkeydown="Wo_GetGChatParticipants(this.value)">
+							</div>
+							<div class="form-group">
+								<div class="group_chat_mbr_list"></div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="ball-pulse"><div></div><div></div><div></div></div>
+							<button id="delete-all-post" type="submit" class="btn btn-main">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+								Tạo
+							</button>
+						</div>
+						<input type="hidden" name="parts" id="chat_group_users">
+						<input type="reset" id="reset" class="hidden">
+						<input type="file" name="avatar" class="hidden" id="group_chat_avatar" onchange="$('.group_chat_avatar').html('<img src=\'' + window.URL.createObjectURL(this.files[0]) + '\' alt=\'Picture\'>');" accept="image/jpeg,image/png,image/gif">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="manage_group_chat" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						<h4 class="modal-title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+							Các thành viên của Chapter					(<span id="group_chat_mbrs">0</span>)
+							<div class="clear"></div>
+						</h4>
+					</div>
+					<form id="insert-caht-parts">
+						<div id="insert-caht-alert"></div>
+						<div class="modal-body"></div>
+						<input type="hidden" name="parts" id="chat_group_users">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade sun_modal" id="edit_group_chat" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<form id="edit_chat_group_form" class="wo_edit_chat_group">
+						<div class="modal-body">
+							<div class="edit_grp_info_modal">
+								<div class="group_chat_avatar__container" onclick="$('#edit_group_chat_avatar_').trigger('click');">
+									<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"></path></svg></span>
+								</div>
+								<input type="text" class="form-control" name="group_name" placeholder="Tiêu đề" id="edit_group_name">
+								<div class="clear"></div>
+							</div>
+							<div id="edit_chat_group_alert"></div>
+						</div>
+						<div class="modal-footer">
+							<div class="ball-pulse"><div></div><div></div><div></div></div>
+							<button id="delete-all-post" type="submit" class="btn btn-main">Cập nhật</button>
+						</div>
+						<input type="hidden" id="edit_group_id" class="hidden" name="group_id">
+						<input type="file" name="avatar" class="hidden" id="edit_group_chat_avatar_" onchange="change_avatar(this);" accept="image/jpeg,image/png,image/gif">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			function change_avatar(self) {
+				$('.group_chat_avatar__container').css('background-image', "url('" + window.URL.createObjectURL(self.files[0]) + "')");
+			}
+			function Wo_GetGChatParticipants(name) {
+				if (!name) {
+					return false;
+				}
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'chat', s: 'get_parts', name: name },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$('.group_chat_mbr_list').html(data.html);
+						}
+						else {
+							$('.group_chat_mbr_list').html('<p class="no_participant">Không tìm thấy kết quả</p>');
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+
+			function Wo_CreateGChat(e) {
+				e.preventDefault();
+				$('#create_group_chat').modal('show');
+			}
+			function Wo_EditGChat(e, group_id) {
+				e.preventDefault();
+				$.get(Wo_Ajax_Requests_File(), { f: 'chat', s: 'get_group_info', group_id: group_id }, function (data) {
+					if (data.status == 200) {
+						//$('#edit_group_chat_avatar').attr('src', data.group.avatar);
+						$('.group_chat_avatar__container').css('background-image', "url('" + data.group.avatar + "')");
+						$('#edit_group_name').val(data.group.group_name);
+						$('#edit_group_id').val(data.group.group_id);
+						$('#edit_group_chat').modal('show');
+					}
+				});
+			}
+
+			function Wo_ChatSide(id) {
+				if (current_width < 700) {
+					return false;
+				}
+				if ($('.search-users-chat').val().length > 0) {
+					return false;
+				}
+				if ($('body').attr('sending-' + id) == 'true') {
+					return false;
+				}
+				var chat_container = $('.chat-tab').find('.chat_main_' + id);
+				var offline_users_container = $('.offline-users');
+				var user_id = chat_container.find('.chat-user-id').val();
+				var message_id = chat_container.find('.chat-messages-wrapper').find('.messages-wrapper:last').attr('data-message-id');
+				var chat_user_tab = chat_container.find('.chat-wrapper').find('.chat-status');
+				var online_users_container = $('.online-users');
+				var last_id = chat_container.find('.messages-text:last').attr('data-message-id');
+				var is_empty_seen = 1;
+				var chat_groups = $(".chat_groups");
+				var last_group = ($(".groups-list").length > 0) ? $(".groups-list").last().attr('data-chat-group') : 0;
+				if (!$('.messages-text:last').find('.message-seen').is(':empty')) {
+					is_empty_seen = 0;
+				}
+				if (typeof user_id === 'undefined') {
+					user_id = 0;
+				}
+				if (typeof message_id === 'undefined') {
+					message_id = 0;
+				}
+				if (typeof last_id === 'undefined') {
+					last_id = 0;
+				}
+				var count_span = $('.count-online-users');
+				$.get(Wo_Ajax_Requests_File(), { f: 'chat', s: 'chat_side', user_id: user_id, message_id: message_id, last_id: last_id, last_group: last_group }, function (data) {
+					if (data.status == 200 && data.chat_groups.length > 0) {
+						chat_groups.append(data.chat_groups);
+					}
+					if (data.status == 200) {
+						count_span.html(data.count_chat);
+					}
+					if (data.update_group_status.length > 0) {
+						if ('home' != 'messages') {
+							for (var i = 0; i < data.update_group_status.length; i++) {
+								if ($(".chat_group_" + data.update_group_status[i]).length == 0) {
+									$("[data-chat-group='" + data.update_group_status[i] + "']").find('.group-lastseen').html('<i class="fa fa-circle main" style="font-size:10px;"></i>');
+								}
+							}
+						}
+						else if ('home' == 'messages') { } {
+							for (var i = 0; i < data.update_group_status.length; i++) {
+								if ($(".chat_group_" + data.update_group_status[i]).length == 0 && $("#messages-group-id").val() != data.update_group_status[i]) {
+									$("#messages-group-" + data.update_group_status[i]).find('.group-lastseen').html('<i class="fa fa-circle main" style="font-size:10px;"></i>');
+								}
+							}
+						}
+					}
+					if (data.online_users.length == 0) {
+						online_users_container.html('');
+					} else {
+						online_users_container.html(data.online_users);
+					}
+					if (data.offline_users.length == 0) {
+						offline_users_container.html('');
+					} else {
+						offline_users_container.html(data.offline_users);
+					}
+					if (data.chat_user_tab == 200) {
+						chat_user_tab.html('active');
+					} else {
+						chat_user_tab.removeClass('active');
+					}
+					if (data.messages == 200) {
+						chat_container.find('.chat-messages-wrapper').find("div[class*='message-seen']").empty();
+						chat_container.find('.chat-messages-wrapper').find("div[class*='message-typing']").empty();
+						chat_container.find('.chat-messages-wrapper').append(data.messages_html);
+						chat_container.find('.chat-messages-wrapper').scrollTop(chat_container.find('.chat-messages-wrapper')[0].scrollHeight);
+						if (data.sender == data.receiver) {
+							document.getElementById('message-sound').play();
+						}
+						if (!$('#sendMessage').is(':focus')) {
+							document.title = 'New Message | ' + document_title;
+						}
+					}
+					if (is_empty_seen == 1 && data.can_seen == 1) {
+						chat_container.find('.messages-text:last').find('.message-seen').hide().html('<i class="fa fa-check"></i> Đã xem (<span class="ajax-time" title="' + data.time + '">' + data.seen + '</span>)').fadeIn(300);
+						chat_container.find('.chat-messages-wrapper').scrollTop(chat_container.find('.chat-messages-wrapper')[0].scrollHeight);
+					}
+					if (data.is_typing == 200) {
+						chat_container.find('.messages-text:last').find('.message-typing').html('<img class="user-avatar-left" src="' + data.img + '" alt="Profile Picture"><div id="loading"> <img class="typing" src="' + data.typing + '"></div>').fadeIn(300);
+
+						chat_container.find('.chat-messages-wrapper').scrollTop(chat_container.find('.chat-messages-wrapper')[0].scrollHeight);
+
+					} else {
+						chat_container.find('.messages-text:last').find('.message-typing').empty();
+					}
+					if (data.chat_color) {
+						$(".chat_" + user_id).find('.online-toggle, .outgoing').css('background', data.chat_color);
+						$(".chat_" + user_id).find('.outgoing p').css('color', '#fff');
+						$(".chat_" + user_id).find('#color').val(data.chat_color);
+						$(".chat_" + user_id).find('.select-color').css('color', data.chat_color);
+					}
+				});
+			}
+
+			var chat_part_array = [];
+
+			$(function () {
+				setTimeout(function () {
+					Timeout();
+				}, 7000);
+
+				$(document).on('click', '.group_chat_mbr_part', function (event) {
+					event.preventDefault();
+					var self_id = $(this).attr('id');
+					if ($.inArray(self_id, chat_part_array) == -1) {
+						chat_part_array.push(self_id);
+						$("#group_chat_mbrs").text(chat_part_array.length);
+
+						$(this).fadeOut(100, function () {
+							$("#chat_group_users").val(chat_part_array.join());
+							$(this).remove();
+						})
+					}
+					else {
+						$(this).addClass('disabled').removeAttr('title');
+					}
+				});
+
+				$('#insert-caht-parts').ajaxForm({
+					url: Wo_Ajax_Requests_File() + '?f=chat&s=create_group',
+					type: 'POST',
+					dataType: 'json',
+
+					beforeSend: function () {
+						Wo_progressIconLoader($('#insert-caht-parts').find('button'));
+						$('#insert-caht-parts').find('.modal-footer .ball-pulse').fadeIn(100);
+					},
+					success: function (data) {
+						if (data['status'] == 200) {
+							$("#create_group_chat").modal('hide');
+							Wo_OpenChatTab(0, data.group_id);
+							$("#insert-caht-parts").find('#reset').trigger('click');
+							$(".group_chat_mbr_list").empty();
+							$(".group_chat_avatar").empty();
+							chat_part_array = [];
+						}
+						else if (data.status == 500) {
+							$("#insert-caht-alert").html('<div class="alert alert-danger">' + data['message'] + '</div>');
+						}
+						$('#insert-caht-parts').find('.modal-footer .ball-pulse').fadeOut(100);
+					}
+				});
+
+
+				$('#edit_chat_group_form').ajaxForm({
+					url: Wo_Ajax_Requests_File() + '?f=chat&s=edit_group',
+					type: 'POST',
+					dataType: 'json',
+					beforeSend: function () {
+						Wo_progressIconLoader($('#edit_chat_group_form').find('button'));
+						$('#edit_chat_group_form').find('.modal-footer .ball-pulse').fadeIn(100);
+					},
+					success: function (data) {
+						if (data['status'] == 200) {
+							$("#edit_group_chat").modal('hide');
+							location.reload();
+						}
+						else {
+							$("#edit_chat_group_alert").html('<div class="alert alert-danger">' + data['message'] + '</div>');
+						}
+						$('#edit_chat_group_form').find('.modal-footer .ball-pulse').fadeOut(100);
+					}
+				});
+			});
+
+			function Timeout() {
+				var inputs = $("input.chat-user-id");
+				if (inputs.length > 0) {
+					for (var i = 0; i < inputs.length; i++) {
+						Wo_ChatSide($(inputs[i]).val());
+					}
+				} else {
+					Wo_ChatSide(0);
+				}
+				setTimeout(function () {
+					Timeout();
+				}, 7000);
+			}
+
+			function Wo_ChatSearchUsers(search_query) {
+				var input = $($('.search-users-chat'));
+				var offline_users_container = $('.online-users');
+				if (input.val() == "") {
+					Wo_ChatSide(0);
+				}
+				$.post(Wo_Ajax_Requests_File() + '?f=chat&s=search_for_recipients', {
+					search_query: search_query
+				}, function (data) {
+					if (data.status == 200) {
+						if (data.html.length == 0) {
+							offline_users_container.html('<span class="no-online-users center-text">Chưa có ai.</span>');
+						} else {
+							offline_users_container.html(data.html);
+						}
+						$('.chat-container').scrollTop($('.chat-container')[0].scrollHeight);
+					}
+				});
+			}
+
+			function Wo_UpdateStatus(status, event) {
+				event.preventDefault();
+				var status_container = $('.online-content-toggler');
+				var offline_status = status_container.find('.chat-opacity');
+				$.post(Wo_Ajax_Requests_File() + '?f=chat&s=update_chat_status', {
+					status: status
+				}, function (data) {
+					if (data.status == 0) {
+						offline_status.removeClass('active').fadeOut(200);
+					} else {
+						offline_status.addClass('active').fadeIn(200);
+					}
+				});
+			}
+
+			function Wo_RegisterTyping(id) {
+				recipient_id = $('.chat_main_' + id).find('#user-id').val();
+				if (typeof recipient_id === 'undefined') {
+					return false;
+				}
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'chat',
+					s: 'recipient_is_typing',
+					recipient_id: recipient_id
+				});
+			}
+
+			function Wo_DeleteTyping(id) {
+				chat_container = $('.chat_main_' + id);
+				recipient_id = chat_container.find('#user-id').val();
+				if (typeof recipient_id === 'undefined') {
+					return false;
+				}
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'chat',
+					s: 'remove_typing',
+					recipient_id: recipient_id
+				});
+			}
+
+			function Wo_CloseChat(id, type) {
+				var tab_type = {};
+				if (!type) {
+					Wo_CleanRecordNodes();
+					Wo_StopLocalStream();
+
+					$('.chat_main_' + id).fadeOut(200, function () {
+						$(this).remove();
+					});
+
+					$(document.body).removeAttr('data-chat-recipient');
+					tab_type = { f: 'chat', s: 'close_chat', id: id };
+				}
+				else if (type == 'group') {
+					$('.chat_main_0').toggle(100, function () { $(this).remove(); });
+					tab_type = { f: 'chat', s: 'close_group', id: id };
+				}
+				$.get(Wo_Ajax_Requests_File(), tab_type);
+			}
+
+			function Wo_ShareChatFile(id) {
+				document.title = document_title;
+				$("form.chat-sending-form-" + id + " #sendMessage").focus();
+				$("form.chat-sending-form-" + id).submit();
+			}
+
+			function Wo_AddEmoToChat(code, id) {
+				inputTag = $('.chat-sending-form-' + id + ' textarea');
+				inputVal = inputTag.val();
+				//$('.emo-container').hide();
+				if (typeof (inputTag.attr('placeholder')) != "undefined") {
+					inputPlaceholder = inputTag.attr('placeholder');
+					if (inputPlaceholder == inputVal) {
+						inputTag.val('');
+						inputVal = inputTag.val();
+					}
+				}
+				if (inputVal.length == 0) {
+					inputTag.val(code + ' ');
+				} else {
+					inputTag.val(inputVal + ' ' + code);
+				}
+				inputTag.keyup().focus();
+			}
+
+			function Wo_AddEmoToGroup(code, id) {
+				inputTag = $('.group-chat-sending-' + id + ' textarea');
+				inputVal = inputTag.val();
+				$('.emo-container').hide();
+				if (typeof (inputTag.attr('placeholder')) != "undefined") {
+					inputPlaceholder = inputTag.attr('placeholder');
+					if (inputPlaceholder == inputVal) {
+						inputTag.val('');
+						inputVal = inputTag.val();
+					}
+				}
+				if (inputVal.length == 0) {
+					inputTag.val(code + ' ');
+				} else {
+					inputTag.val(inputVal + ' ' + code);
+				}
+				inputTag.keyup().focus();
+			}
+
+			function Wo_SubmitChatForm(e, id) {
+				document.title = document_title;
+				chat_tab_container = $('.chat_main_' + id);
+				if (e.keyCode == 13 && e.shiftKey == 0) {
+					Wo_DeleteTyping(id);
+					e.preventDefault();
+					Wo_RegisterTabMessage(id);
+					typing_chat_con.find('.messages-text:last').find('.message-seen').empty();
+				}
+			}
+
+			function Wo_SearchGChatParticipants(name, group_id) {
+				if (!name || !group_id) { return false; }
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'chat', s: 'search_parts', name: name, group_id: group_id },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$('.group_chat_mbr_list_' + group_id).html(data.html);
+						}
+						else {
+							$('.group_chat_mbr_list_' + group_id).html('<p class="search-filter-center-text">Không tìm thấy kết quả</p>');
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+
+			function Wo_AddGChatPart(group_id, user_id) {
+				if (!user_id || !group_id) { return false; }
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'chat', s: 'add_gchat_user', user_id: user_id, group_id: group_id },
+				})
+					.done(function (data) {
+						if (data.status == 200 && data.code == 1) {
+							$("[data-group-chat-part='" + user_id + "']").find('span.status').html('<i class="fa fa-times main"></i>');
+						}
+						else if (data.status == 200 && data.code == 0) {
+							$("[data-group-chat-part='" + user_id + "']").find('span.status').html('<i class="fa fa-plus-square-o main"></i');
+						}
+						else {
+							return false;
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+		</script>
+		<div class="modal fade sun_modal" id="logged-out-modal" role="dialog" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title"><i class="fa fa-exclamation-circle"></i> Session Expired</h4>
+					</div>
+					<div class="modal-body">
+						<p>Your Session has been expired, please login again.</p>
+					</div>
+					<div class="modal-footer">
+						<a href="https://biztime.com.vn/welcome" type="button" class="btn btn-default">Đăng nhập</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
 </body>
 </html>

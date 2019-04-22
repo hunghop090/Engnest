@@ -1,0 +1,2609 @@
+﻿<div class="content-container container-fluid" style="transform: none; margin-top: 25px;">
+	<div class="ad-placement-header-footer">
+	</div>
+	<div id="contnet" style="transform: none;">
+		<input type="hidden" id="json-data" value="{&quot;url&quot;:&quot;https:\/\/biztime.com.vn\/0dc53e223&quot;,&quot;title&quot;:&quot;Onl Hero&quot;,&quot;page&quot;:&quot;timeline&quot;,&quot;welcome_page&quot;:0,&quot;is_css_file&quot;:0,&quot;css_file_header&quot;:&quot;&quot;,&quot;welcome_url&quot;:&quot;https:\/\/biztime.com.vn\/welcome&quot;,&quot;is_footer&quot;:0,&quot;redirect&quot;:0}">
+		<style>
+			.post-youtube iframe {
+				overflow: hidden !important;
+				height: 360px !important;
+			}
+		</style>
+		<div class="row page-margin profile wo_user_profile" data-page="timeline" data-id="1961">
+			<div class="sun_profile_header_area">
+				<div class="cardheader user-cover">
+					<form action="#" method="post" class="profile-cover-changer" style="display: none;">
+						<div class="input-group when-notedit">
+							<span class="input-group-btn">
+								<span class="btn btn-upload-image btn-file">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+									<input type="file" name="cover" accept="image/*" onchange="Wo_UpdateProfileCover();">
+								</span>
+							</span>
+						</div>
+						<div class="input-group">
+							<span class="input-group-btn when-notedit">
+								<span class="btn btn-upload-image btn-file" onclick="Wo_StartRepositioner();">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crop"><path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path><path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path></svg>
+								</span>
+							</span>
+						</div>
+						<div class="input-group when-edit" style="display: none;">
+							<span class="input-group-btn">
+								<span class="btn btn-upload-image btn-file" onclick="Wo_SubmitRepositioner();">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+								</span>
+							</span>
+						</div>
+						<div class="input-group when-edit" style="display: none;">
+							<span class="input-group-btn">
+								<span class="btn btn-upload-image btn-file" onclick="Wo_StopRepositioner();">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+								</span>
+							</span>
+						</div>
+						<input type="hidden" name="user_id" value="1961">
+					</form>
+					<form class="cover-position-form hidden" method="post">
+						<input class="cover-position" name="pos" value="0" type="hidden">
+						<input class="image_type" name="image_type" value="0" type="hidden">
+						<input name="cover_image" id="cover-input-image" value="upload/photos/d-cover.jpg" type="hidden">
+						<input name="real_image" id="full-input-image" value="https://biztime.com.vn/upload/photos/d-cover.jpg" type="hidden">
+					</form>
+					<div class="user-cover-uploading-container"></div>
+					<div class="user-cover-uploading-progress">
+						<div class="pace-activity-parent"><div class="pace-activity"></div></div>
+					</div>
+					<div class="user-cover-reposition-container">
+						<div class="user-cover-reposition-w">
+							<img id="cover-image" src="https://biztime.com.vn/upload/photos/d-cover.jpg?cache=0" alt="Onl Hero Cover Image" onclick="Wo_OpenProfileCover('upload/photos/d-cover.jpg');" class="pointer">
+						</div>
+						<div class="user-reposition-container">
+							<img id="full-image" src="https://biztime.com.vn/upload/photos/d-cover.jpg" alt="User Image">
+							<div class="user-reposition-dragable-container" align="center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-move"><polyline points="5 9 2 12 5 15"></polyline><polyline points="9 5 12 2 15 5"></polyline><polyline points="15 19 12 22 9 19"></polyline><polyline points="19 9 22 12 19 15"></polyline><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line></svg> Kéo để thay đổi vị trí ảnh bìa
+							</div>
+							<div class="user-cover-uploading-container user-repositioning-icons-container1"></div>
+							<div class="user-cover-uploading-progress user-repositioning-icons-container"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row sun_profile_container">
+				<div class="col-md-3 sun_col-md-3 no-padding-right">
+					<div class="sun_side_widget">
+						<div class="sun_pic_info text-center">
+							<div class="user-avatar flip ">
+								<div class="user-avatar-uploading-container">
+									<div class="user-avatar-uploading-progress">
+										<div class="ball-pulse"><div></div><div></div><div></div></div>
+									</div>
+								</div>
+								<img id="updateImage-1961" class="pointer " alt="Onl Hero Profile Picture" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0" onclick="Wo_OpenProfilePicture('upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg');">
+								<form action="#" method="post" class="profile-avatar-changer">
+									<div class="input-group">
+										<span class="input-group-btn">
+											<span class="btn btn-upload-image btn-file">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+												<input type="file" name="avatar" accept="image/x-png, image/jpeg" onchange="Wo_UpdateProfileAvatar();">
+											</span>
+											<span class="btn btn-upload-image btn-file" onclick="OpenCropModal()">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crop"><path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path><path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path></svg>
+											</span>
+										</span>
+									</div>
+									<input type="hidden" name="user_id" id="user-id" value="1961">
+								</form>
+
+								<!--Online/Offline-->
+								<span class="sun_status online " title="Online"></span>
+							</div>
+							<div class="info">
+								<div class="title">
+									<a href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223">Onl Hero</a>
+								</div>
+								<div class="opt_buttons">
+									<span class="user-follow-button">
+									</span>
+									<span class="profile-message-btn">
+									</span>
+									<a class="btn btn-link" href="https://biztime.com.vn/0dc53e223/activities" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=activities">Hoạt động</a>
+
+
+									<!--Mobile Buttons-->
+									<div class="sun_user_actions mobi_show">
+										<div class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="mobi_menu_hd"><path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg></a>
+											<ul class="dropdown-menu dropdown-menu-right" role="menu">
+												<span class="sun_user_actions_item" title="Sửa">
+													<a href="https://biztime.com.vn/setting/0dc53e223/general-setting" data-ajax="?link1=setting&amp;user=0dc53e223&amp;page=general-setting"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"></path></svg> Sửa</a>
+												</span>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<p class="sun_user_desc">
+						</p>
+
+						<ul class="list-unstyled right_user_info">
+							<li class="list-group-item text-muted hidden" contenteditable="false">Details</li>
+							<!--<li class="list-group-item">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="feather"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" ></path></svg> <span class="online-text"> Online </span>
+							</li>-->
+							<li class="list-group-item">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="feather"><path fill="currentColor" d="M21,6V8H3V6H21M3,18H12V16H3V18M3,13H21V11H3V13Z"></path></svg> <span id="user_post_count">1</span> bài đăng
+							</li>
+							<li class="list-group-item">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="feather"><path fill="currentColor" d="M17.58,4H14V2H21V9H19V5.41L15.17,9.24C15.69,10.03 16,11 16,12C16,14.42 14.28,16.44 12,16.9V19H14V21H12V23H10V21H8V19H10V16.9C7.72,16.44 6,14.42 6,12A5,5 0 0,1 11,7C12,7 12.96,7.3 13.75,7.83L17.58,4M11,9A3,3 0 0,0 8,12A3,3 0 0,0 11,15A3,3 0 0,0 14,12A3,3 0 0,0 11,9Z"></path></svg>
+								Nam
+							</li>
+						</ul>
+					</div>
+
+					<!-- Profile Percentage System -->
+					<ul class="profile-completion-bar sun_side_widget" data-profile-completion="40">
+						<li class="completion-bar">
+							<div class="completion-bar-wrapper">
+								<div class="completion-bar-status" style="width: 40%;">
+								</div>
+							</div>
+						</li>
+						<h3 class="sun_side_widget_title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#9c27b0" d="M3,5H9V11H3V5M5,7V9H7V7H5M11,7H21V9H11V7M11,15H21V17H11V15M5,20L1.5,16.5L2.91,15.09L5,17.17L9.59,12.59L11,14L5,20Z"></path></svg> Hồ Sơ Đã Hoàn Thành		<span class="completion-bar-percentage">40%</span>
+						</h3>
+						<hr>
+						<li class="completion-step">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="green" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg>
+							<span class="completed"> Thêm ảnh hồ sơ của bạn</span>
+						</li>
+						<li class="completion-step">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="green" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg>
+							<span class="completed"> Thêm tên của bạn </span>
+						</li>
+						<li class="completion-step">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"></path></svg>
+							<a href="https://biztime.com.vn/setting/profile-setting" data-ajax="?link1=setting&amp;page=profile-setting"> Thêm nơi làm việc của bạn </a>
+						</li>
+						<li class="completion-step">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"></path></svg>
+							<a href="https://biztime.com.vn/setting/general-setting" data-ajax="?link1=setting&amp;page=general-setting">Thêm quốc gia của bạn</a>
+						</li>
+						<li class="completion-step">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"></path></svg>
+							<a href="https://biztime.com.vn/setting/profile-setting" data-ajax="?link1=setting&amp;page=profile-setting">Thêm địa chỉ của bạn</a>
+						</li>
+					</ul>
+
+					<script>
+						jQuery(document).ready(function ($) {
+							$("#add-profile-avatar").click(function (event) {
+								$('.profile-avatar-changer').find('input').trigger('click');
+							});
+						});
+					</script>
+					<div class="sun_side_widget mini">
+						<h3 class="sun_side_widget_title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#8bc34a" d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"></path></svg> <a href="https://biztime.com.vn/0dc53e223/photos" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=photos">Ảnh</a></h3>
+						<div id="photos-list" class="user_media_list_section">
+							<h5 class="search-filter-center-text empty_state" style="margin: 80px auto;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> Chưa đăng bài nào</h5>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 sun_col-md-6 no-padding-right">
+					<div class="sun_side_widget">
+						<div class="sun_user_nav">
+							<ul class="list-unstyled mb0">
+								<li>
+									<a href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223" class="active">
+										<span class="split-link"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"></path></svg></span>
+										<span>Timeline</span>
+									</a>
+								</li>
+								<li>
+									<a href="https://biztime.com.vn/0dc53e223/photos" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=photos">
+										<span class="split-link"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"></path></svg></span>
+										<span>Ảnh</span>
+									</a>
+								</li>
+								<li>
+									<a href="https://biztime.com.vn/0dc53e223/videos" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=videos">
+										<span class="split-link"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"></path></svg></span>
+										<span>Video</span>
+									</a>
+								</li>
+								<li>
+									<a href="https://biztime.com.vn/0dc53e223/likes" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=likes">
+										<span class="split-link"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><path fill="currentColor" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z"></path></svg></span>
+										<span>Thích</span>
+									</a>
+								</li>
+								<li class="dropdown-submenu">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
+										<span class="split-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"></path></svg></span>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-right" role="menu">
+										<li>
+											<a href="https://biztime.com.vn/0dc53e223/groups" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=groups">Chapter</a>
+										</li>
+										<li>
+											<a href="https://biztime.com.vn/0dc53e223/followers" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=followers">Bạn bè</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
+						<div class="panel post panel-shadow sun_pub_box">
+							<div id="post-textarea" onclick="Wo_ShowPosInfo();">
+								<img class="post-avatar" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0">
+								<div class="sun_pub_name">
+									<span>Onl Hero</span>
+								</div>
+								<i class="fa fa-spinner fa-spin" id="loading_indicator"></i>
+								<textarea onkeyup="textAreaAdjust(this, 70)" name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Bạn đang nghĩ gì? #Gắnthẻ.. Đềcập.. Link.." dir="auto" style="height: 112px;" autocomplete="off"></textarea>
+								<!--Add Emojis-->
+								<div class="dropdown add-emoticons">
+									<a href="#" class="dropdown-toggle" type="button" id="dropdownEmo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24" class="feather feather-emoticons"><path d="M12,23 C5.92486775,23 1,18.0751322 1,12 C1,5.92486775 5.92486775,1 12,1 C18.0751322,1 23,5.92486775 23,12 C23,18.0751322 18.0751322,23 12,23 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z M15.2746538,14.2978292 L16.9105622,15.4483958 C15.7945475,17.0351773 13.9775544,18 12,18 C10.0224456,18 8.20545254,17.0351773 7.08943782,15.4483958 L8.72534624,14.2978292 C9.4707028,15.3575983 10.6804996,16 12,16 C13.3195004,16 14.5292972,15.3575983 15.2746538,14.2978292 Z M14,11 L14,9 L16,9 L16,11 L14,11 Z M8,11 L8,9 L10,9 L10,11 L8,11 Z"></path></svg>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownEmo">
+										<div>
+											<span onclick="Wo_AddEmo(':)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smile"></i></span><span onclick="Wo_AddEmo('(<','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-joy"></i></span><span onclick="Wo_AddEmo('**)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-relaxed"></i></span><span onclick="Wo_AddEmo(':p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue-winking-eye"></i></span><span onclick="Wo_AddEmo(':_p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue"></i></span><span onclick="Wo_AddEmo('B)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunglasses"></i></span><span onclick="Wo_AddEmo(';)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-wink"></i></span><span onclick="Wo_AddEmo(':D','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-grin"></i></span><span onclick="Wo_AddEmo('/_)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smirk"></i></span><span onclick="Wo_AddEmo('0)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-innocent"></i></span><span onclick="Wo_AddEmo(':_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cry"></i></span><span onclick="Wo_AddEmo(':__(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sob"></i></span><span onclick="Wo_AddEmo(':(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-disappointed"></i></span><span onclick="Wo_AddEmo(':*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-kissing-heart"></i></span><span onclick="Wo_AddEmo('<3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart"></i></span><span onclick="Wo_AddEmo('</3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-broken-heart"></i></span><span onclick="Wo_AddEmo('*_*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart-eyes"></i></span><span onclick="Wo_AddEmo('<5','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-star"></i></span><span onclick="Wo_AddEmo(':o','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-open-mouth"></i></span><span onclick="Wo_AddEmo(':0','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream"></i></span><span onclick="Wo_AddEmo('o(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-anguished"></i></span><span onclick="Wo_AddEmo('-_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-unamused"></i></span><span onclick="Wo_AddEmo('x(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-angry"></i></span><span onclick="Wo_AddEmo('X(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rage"></i></span><span onclick="Wo_AddEmo('-_-','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-expressionless"></i></span><span onclick="Wo_AddEmo(':-/','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-confused"></i></span><span onclick="Wo_AddEmo(':|','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-neutral-face"></i></span><span onclick="Wo_AddEmo('!_','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-exclamation"></i></span><span onclick="Wo_AddEmo(':yum:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yum"></i></span><span onclick="Wo_AddEmo(':triumph:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-triumph"></i></span><span onclick="Wo_AddEmo(':imp:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-imp"></i></span><span onclick="Wo_AddEmo(':hear_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hear-no-evil"></i></span><span onclick="Wo_AddEmo(':alien:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-alien"></i></span><span onclick="Wo_AddEmo(':yellow_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yellow-heart"></i></span><span onclick="Wo_AddEmo(':sleeping:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sleeping"></i></span><span onclick="Wo_AddEmo(':mask:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mask"></i></span><span onclick="Wo_AddEmo(':no_mouth:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-no-mouth"></i></span><span onclick="Wo_AddEmo(':weary:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-weary"></i></span><span onclick="Wo_AddEmo(':dizzy_face:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dizzy-face"></i></span><span onclick="Wo_AddEmo(':man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-man"></i></span><span onclick="Wo_AddEmo(':woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-woman"></i></span><span onclick="Wo_AddEmo(':boy:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-boy"></i></span><span onclick="Wo_AddEmo(':girl:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-girl"></i></span><span onclick="Wo_AddEmo(':оlder_man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-man"></i></span><span onclick="Wo_AddEmo(':оlder_woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-woman"></i></span><span onclick="Wo_AddEmo(':cop:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cop"></i></span><span onclick="Wo_AddEmo(':dancers:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dancers"></i></span><span onclick="Wo_AddEmo(':speak_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-speak-no-evil"></i></span><span onclick="Wo_AddEmo(':lips:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-lips"></i></span><span onclick="Wo_AddEmo(':see_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-see-no-evil"></i></span><span onclick="Wo_AddEmo(':dog:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dog"></i></span><span onclick="Wo_AddEmo(':bear:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bear"></i></span><span onclick="Wo_AddEmo(':rose:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rose"></i></span><span onclick="Wo_AddEmo(':gift_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gift-heart"></i></span><span onclick="Wo_AddEmo(':ghost:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ghost"></i></span><span onclick="Wo_AddEmo(':bell:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bell"></i></span><span onclick="Wo_AddEmo(':video_game:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-video-game"></i></span><span onclick="Wo_AddEmo(':soccer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-soccer"></i></span><span onclick="Wo_AddEmo(':books:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-books"></i></span><span onclick="Wo_AddEmo(':moneybag:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-moneybag"></i></span><span onclick="Wo_AddEmo(':mortar_board:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mortar-board"></i></span><span onclick="Wo_AddEmo(':hand:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hand"></i></span><span onclick="Wo_AddEmo(':tiger:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tiger"></i></span><span onclick="Wo_AddEmo(':elephant:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-elephant"></i></span><span onclick="Wo_AddEmo(':scream_cat:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream-cat"></i></span><span onclick="Wo_AddEmo(':monkey:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-monkey"></i></span><span onclick="Wo_AddEmo(':bird:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bird"></i></span><span onclick="Wo_AddEmo(':snowflake:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-snowflake"></i></span><span onclick="Wo_AddEmo(':sunny:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunny"></i></span><span onclick="Wo_AddEmo(':оcean:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ocean"></i></span><span onclick="Wo_AddEmo(':umbrella:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-umbrella"></i></span><span onclick="Wo_AddEmo(':hibiscus:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hibiscus"></i></span><span onclick="Wo_AddEmo(':tulip:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tulip"></i></span><span onclick="Wo_AddEmo(':computer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-computer"></i></span><span onclick="Wo_AddEmo(':bomb:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bomb"></i></span><span onclick="Wo_AddEmo(':gem:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gem"></i></span><span onclick="Wo_AddEmo(':ring:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ring"></i></span>
+										</div>
+									</ul>
+								</div>
+							</div>
+
+							<!--Uploaded Video-->
+							<div class="publisher-hidden-option" id="video-form">
+								<div class="inner-addon left-addon">
+									<span class="pull-left">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+										<input name="videocount" type="text" class="form-control bg_read_input" readonly="">
+									</span>
+									<span class="pull-right pointer video-custom-thumb">
+										Custom Thumbnail&nbsp;<i class="fa fa-caret-down"></i>
+									</span>
+								</div>
+								<div class="video-poster-image">
+									<div class="thumb-renderer pointer" onclick="$('#custom-video-thumb').trigger('click');">
+										<div id="post_vthumb_droparea">
+											<div class="preview">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload-cloud" color="#384047"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+												<div class="error-text-renderer"></div>
+												<div>
+													<p>Kéo / Thả Hình Vào OR Tải Hình Từ Máy</p>
+												</div>
+											</div>
+											<div class="image"></div>
+										</div>
+									</div>
+								</div>
+								<input type="file" class="hidden" name="video_thumb" id="custom-video-thumb" accept="image/*">
+							</div>
+							<!--Uploaded Audio-->
+							<div class="publisher-hidden-option" id="music-form">
+								<div class="inner-addon left-addon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-music"><path d="M9 17H5a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm12-2h-4a2 2 0 0 0-2 2 2 2 0 0 0 2 2h2a2 2 0 0 0 2-2z"></path><polyline points="9 17 9 5 21 3 21 15"></polyline></svg>
+									<input name="musiccount" type="text" class="form-control bg_read_input" readonly="">
+								</div>
+							</div>
+							<!--Poll Options-->
+							<div id="poll-form">
+								<div class="publisher-hidden-option answers">
+									<input name="answer[]" type="text" class="form-control" placeholder="Đáp án 1">
+									<input name="answer[]" type="text" class="form-control" placeholder="Đáp án 2">
+								</div>
+								<div class="create-poll" onclick="Wo_AddAnswer();" id="add_answer">
+									<div class="create-text">Thêm đáp án</div>
+								</div>
+							</div>
+							<!--Create Album-->
+							<div style="position:relative;">
+								<div id="album-form">
+									<div class="publisher-hidden-option">
+										<input name="album_name" type="text" class="form-control" placeholder="Album name">
+									</div>
+								</div>
+								<div class="publisher-hidden-option" id="photo-form">
+									<div class="inner-addon left-addon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+										<input name="phtoscount" type="text" class="form-control bg_read_input" readonly="">
+									</div>
+									<div class="create-album pull-right" onclick="Wo_OpenAlbum();">
+										<div class="create-text">Tạo album</div>
+									</div>
+									<div class="clear"></div>
+									<div style="overflow-x: auto;"><div id="image-holder"></div></div>
+								</div>
+							</div>
+							<!--Uploaded File-->
+							<div class="publisher-hidden-option" id="file-form">
+								<div class="inner-addon left-addon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+									<input name="filename" type="text" class="form-control bg_read_input" readonly="">
+								</div>
+							</div>
+							<!--Set Location-->
+							<div class="publisher-hidden-option" id="map-form">
+								<div class="inner-addon left-addon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+									<input name="postMap" id="searchTextField" type="text" class="form-control" placeholder="Bạn đang ở đâu ?" autocomplete="off">
+								</div>
+							</div>
+							<!--Add Emojis-->
+							<div id="emo-form">
+								<div class="publisher-hidden-option" style="border-top: 1px dashed #ededed;">
+									<div class="feelings-type-to pull-left pointer" onclick="Wo_RestFeelings();"></div>
+									<span class="feelings-value"></span>
+									<input name="feeling" id="feelings-text" type="text" class="form-control bg_read_input" placeholder="Bạn đang làm gì ?" onclick="Wo_ShowFeelings();" autocomplete="no">
+									<input name="feeling_type" type="hidden" id="feeling-type" value="">
+									<div class="clear"></div>
+								</div>
+								<div class="feeling-type feeling-types">
+									<ul>
+										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;feelings&quot;, &quot;Cảm thấy&quot;, &quot;Bạn đang cảm thấy thế nào ?&quot;);">
+											<svg fill="#009da0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="feather feather-user-plus"><path d="M0 0h24v24H0z" fill="none"></path><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path></svg> <span>Cảm thấy</span>
+										</li>
+										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;traveling&quot;, &quot;Du lịch đến&quot; , &quot;Bạn đang đi đâu ?&quot;);">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase" color="#3F51B5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> <span>Du lịch đến</span>
+										</li>
+										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;watching&quot;, &quot;Đang xem&quot;, &quot;Bạn đang xem gì ?&quot;);">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tv" color="#E91E63"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg> <span>Đang xem</span>
+										</li>
+										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;playing&quot;, &quot;Đang chơi&quot;, &quot;Bạn đang chơi gì ?&quot;);">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target" color="#FF9800"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>Đang chơi</span>
+										</li>
+										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;listening&quot;, &quot;Đang nghe&quot;, &quot;Bạn đang nghe gì ?&quot;);">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-headphones" color="#03A9F4"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg> <span>Đang nghe</span>
+										</li>
+									</ul>
+								</div>
+								<div class="feeling-type feelings">
+									<ul>
+										<li class="pointer" onclick="Wo_AddFeeling('happy', 'Hạnh phúc', 'smile');"><i class="twa-lg twa twa-smile"></i> Hạnh phúc</li>
+										<li class="pointer" onclick="Wo_AddFeeling('loved', 'Được yêu', 'heart-eyes');"><i class="twa-lg twa twa-heart-eyes"></i> Được yêu</li>
+										<li class="pointer" onclick="Wo_AddFeeling('sad', 'Buồn', 'disappointed');"><i class="twa-lg twa twa-disappointed"></i> Buồn</li>
+										<li class="pointer" onclick="Wo_AddFeeling('so_sad', 'Rất buồn', 'sob');"><i class="twa-lg twa twa-sob"></i> Rất buồn</li>
+										<li class="pointer" onclick="Wo_AddFeeling('angry', 'Giận', 'angry');"><i class="twa-lg twa twa-angry"></i> Giận</li>
+										<li class="pointer" onclick="Wo_AddFeeling('confused', 'Bối rối', 'confused');"><i class="twa-lg twa twa-confused"></i> Bối rối</li>
+										<li class="pointer" onclick="Wo_AddFeeling('smirk', 'Hot', 'smirk');"><i class="twa-lg twa twa-smirk"></i> Hot</li>
+										<li class="pointer" onclick="Wo_AddFeeling('broke', 'Đổ vỡ', 'broken-heart');"><i class="twa-lg twa twa-broken-heart"></i> Đổ vỡ</li>
+										<li class="pointer" onclick="Wo_AddFeeling('expressionless', 'Vô cảm', 'expressionless');"><i class="twa-lg twa twa-expressionless"></i> Vô cảm</li>
+										<li class="pointer" onclick="Wo_AddFeeling('cool', 'Cool', 'sunglasses');"><i class="twa-lg twa twa-sunglasses"></i> Cool</li>
+										<li class="pointer" onclick="Wo_AddFeeling('funny', 'Buồn cười', 'joy');"><i class="twa-lg twa twa-joy"></i> Buồn cười</li>
+										<li class="pointer" onclick="Wo_AddFeeling('tired', 'Mệt mỏi', 'tired-face');"><i class="twa-lg twa twa-tired-face"></i> Mệt mỏi</li>
+										<li class="pointer" onclick="Wo_AddFeeling('lovely', 'Đáng yêu', 'heart');"><i class="twa-lg twa twa-heart"></i> Đáng yêu</li>
+										<li class="pointer" onclick="Wo_AddFeeling('blessed', 'May mắn', 'innocent');"><i class="twa-lg twa twa-innocent"></i> May mắn</li>
+										<li class="pointer" onclick="Wo_AddFeeling('shocked', 'Sốc', 'scream');"><i class="twa-lg twa twa-scream"></i> Sốc</li>
+										<li class="pointer" onclick="Wo_AddFeeling('sleepy', 'Buồn ngủ', 'sleeping');"><i class="twa-lg twa twa-sleeping"></i> Buồn ngủ</li>
+										<li class="pointer" onclick="Wo_AddFeeling('pretty', 'Đẹp đẽ', 'relaxed');"><i class="twa-lg twa twa-relaxed"></i> Đẹp đẽ</li>
+										<li class="pointer" onclick="Wo_AddFeeling('bored', 'Chán nản', 'unamused');"><i class="twa-lg twa twa-unamused"></i> Chán nản</li>
+									</ul>
+								</div>
+							</div>
+							<!--Add Stickers-->
+							<div id="gif-form">
+								<div class="w100" id="publisher-box-stickers">
+									<input type="text" class="form-control" style="border: none;" placeholder="Tìm kiếm GIFs" onkeyup="Wo_GetPostStickers(this.value)">
+									<div class="ball-pulse pull-right" style="margin: -33px 10px 0px 0px;"><div></div><div></div><div></div></div>
+									<div id="publisher-box-stickers-cont"></div>
+								</div>
+							</div>
+
+							<div id="results"></div>
+
+							<!--Progress Bar-->
+							<div class="publisher-hidden-option">
+								<div id="progress">
+									<span id="percent" class="pull-right">0%</span>
+									<div class="progress">
+										<div id="bar" class="progress-bar active"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+
+							<!--Publisher Box Footer-->
+							<div class="sun_pub_mid_foot">
+								<!--Uploaded Image-->
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn btn-file img">
+										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh"> Kèm ảnh					<input type="file" id="publisher-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
+									</span>
+								</div>
+								<!--Create Poll-->
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn btn-file poll-form pol">
+										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-poll.svg" alt="Tạo thăm dò"> Tạo thăm dò
+									</span>
+								</div>
+								<!--Uploaded Video-->
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn btn-file vid">
+										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-vid.svg" alt="Kèm video"> Kèm video						<input type="file" id="publisher-video" name="postVideo" accept="video/*">
+									</span>
+								</div>
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn mor">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> <span>Thêm</span>
+									</span>
+								</div>
+							</div>
+
+
+							<!--Publisher Box Footer-->
+							<div class="publisher-box-footer">
+								<div class="sun_pub_more">
+									<!--Add GIFs-->
+									<div class="sun_pub_more_items gif-form">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file btngif gif" style="padding: 0px;">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-gif.svg" alt="GIF"></span> GIF
+											</span>
+										</div>
+									</div>
+									<!--Record Audio-->
+									<div class="sun_pub_more_items" id="recordPostAudioWrapper">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file rec">
+												<span id="recordPostAudio" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
+											</span>
+											<span id="postRecordingTime" class="hidden">00:00</span>
+										</div>
+									</div>
+									<!--Add Feeling-->
+									<div class="sun_pub_more_items emo-form">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file fel">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/1f600.png" alt="Cảm xúc"></span>
+												Cảm xúc
+											</span>
+										</div>
+									</div>
+									<!--Uploaded File-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file fil">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-file.svg" alt="Kèm File"></span> Kèm File						<input type="file" id="publisher-file" name="postFile">
+											</span>
+										</div>
+									</div>
+									<!--Create Product-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<a href="#" data-toggle="modal" data-target="#create-product-modal" class="btn btn-file sel">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-product.svg" alt="Bán hàng"></span> Bán hàng
+											</a>
+										</div>
+									</div>
+									<!--Add Location-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file map-form loc">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-map.svg" alt="Địa điểm"></span> Địa điểm
+											</span>
+										</div>
+									</div>
+									<!--Uploaded Music-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file aud">
+												<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#3f51b5" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"></path></svg></span> Nhạc						<input type="file" id="publisher-music" name="postMusic" accept="audio/*">
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="pub-footer-bottom">
+									<div class="pull-right">
+										<button type="button" onclick="Wo_GetPRecordLink($('#postRecord'))" id="publisher-button" class="btn btn-main">
+											<span>Chia sẻ</span>
+										</button>
+									</div>
+
+									<div class="pull-right"><div class="ball-pulse"><div></div><div></div><div></div></div></div>
+
+									<div id="status"></div>
+
+									<div class="pull-left">
+										<div class="poster-left-select">
+											<div class="publisher-hidden-option inputsm">
+												<div class="sun_pub_privacy">
+													<div class="sun_pub_privacy_dropdown">
+														<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</p>
+														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg>
+
+													</div>
+													<ul class="sun_pub_privacy_menu">
+														<li>
+															<label>
+																<input type="radio" class="option-input radio" name="postPrivacy" id="3" value="3">
+																<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"></path></svg> Chỉ Mình Tôi</span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="radio" class="option-input radio" name="postPrivacy" id="0" value="0" checked="">
+																<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="radio" class="option-input radio" name="postPrivacy" id="1" value="1">
+																<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"></path></svg> Bạn của tôi</span>
+															</label>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="pull-left charsLeft-post"><span id="charsLeft">5000</span></div>
+
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" name="hash_id" value="83c1b24c6399b8284b114fb23fa4a965446d27fc">
+						<input type="hidden" name="postRecord" value="" id="postRecord">
+						<input type="hidden" name="postSticker" value="" id="postSticker" onchange="alert(this.value)">
+					</form>
+					<div id="hidden_inputbox"></div>
+					<div class="modal fade sun_modal" id="create-product-modal" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+									<h4 class="modal-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg> Bán sản phẩm mới</h4>
+								</div>
+								<div class="modal-body">
+									<div class="wo_settings_page">
+										<form class="create-album-form form-horizontal" method="post">
+											<div class="app-general-alert setting-update-alert"></div>
+											<div class="clear"></div>
+
+											<!-- <ul class="sun_cp_cats list-unstyled">
+																				<li>
+														<label title="Other">
+															<input type="radio" class="option-input radio" name="category" id="1" value="1">
+															<span class="sun_cp_c-1"><span></span> Other</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Ô tô & xe cộ">
+															<input type="radio" class="option-input radio" name="category" id="2" value="2">
+															<span class="sun_cp_c-2"><span></span> Ô tô & xe cộ</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Sản phẩm trẻ em">
+															<input type="radio" class="option-input radio" name="category" id="3" value="3">
+															<span class="sun_cp_c-3"><span></span> Sản phẩm trẻ em</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Sản phẩm & dịch vụ làm đẹp">
+															<input type="radio" class="option-input radio" name="category" id="4" value="4">
+															<span class="sun_cp_c-4"><span></span> Sản phẩm & dịch vụ làm đẹp</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Máy tính & phụ kiện">
+															<input type="radio" class="option-input radio" name="category" id="5" value="5">
+															<span class="sun_cp_c-5"><span></span> Máy tính & phụ kiện</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Điện tử gia dụng">
+															<input type="radio" class="option-input radio" name="category" id="6" value="6">
+															<span class="sun_cp_c-6"><span></span> Điện tử gia dụng</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Dịch vụ hẹn hò">
+															<input type="radio" class="option-input radio" name="category" id="7" value="7">
+															<span class="sun_cp_c-7"><span></span> Dịch vụ hẹn hò</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Dịch vụ tài chính">
+															<input type="radio" class="option-input radio" name="category" id="8" value="8">
+															<span class="sun_cp_c-8"><span></span> Dịch vụ tài chính</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Quà tặng & Dịp lễ">
+															<input type="radio" class="option-input radio" name="category" id="9" value="9">
+															<span class="sun_cp_c-9"><span></span> Quà tặng & Dịp lễ</span>
+														</label>
+													</li>
+																				<li>
+														<label title="Nhà & Vườn">
+															<input type="radio" class="option-input radio" name="category" id="10" value="10">
+															<span class="sun_cp_c-10"><span></span> Nhà & Vườn</span>
+														</label>
+													</li>
+																		</ul> -->
+
+											<div class="setting-panel row">
+												<!-- Text input-->
+												<div class="col-lg-6">
+													<div class="sun_input">
+														<input id="name" name="name" type="text" class="form-control input-md" placeholder="Tiêu đề" value="">
+														<label for="name">Tiêu đề</label>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="sun_input">
+														<input id="location" name="location" type="text" class="form-control input-md" placeholder="Địa điểm" value="" autocomplete="off">
+														<label for="location">Địa điểm</label>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="sun_input">
+														<select class="form-control" name="category" id="category">
+
+															<option value="2">Ô tô &amp; xe cộ</option>
+
+															<option value="3">Sản phẩm trẻ em</option>
+
+															<option value="4">Sản phẩm &amp; dịch vụ làm đẹp</option>
+
+															<option value="5">Máy tính &amp; phụ kiện</option>
+
+															<option value="6">Điện tử gia dụng</option>
+
+															<option value="7">Dịch vụ hẹn hò</option>
+
+															<option value="8">Dịch vụ tài chính</option>
+
+															<option value="9">Quà tặng &amp; Dịp lễ</option>
+
+															<option value="10">Nhà &amp; Vườn</option>
+															<option value="1">Other</option>
+
+														</select>
+														<label for="category">Danh mục</label>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="sun_input">
+														<select name="currency" id="currency" class="form-control">
+															<option value="0">VNĐ (đ)</option>
+															<option value="1">USD ($)</option>
+															<option value="2">EUR (€)</option>
+															<option value="3">BIZ (b)</option>
+														</select>
+														<label for="currency">Tiền tệ</label>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="sun_input">
+														<input id="price" name="price" type="text" class="form-control input-md" placeholder="Giá" value="">
+														<label for="price">Giá</label>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="sun_input">
+														<select class="form-control" name="type" id="type">
+															<option value="0">Mới</option>
+															<option value="1">Đã sử dụng</option>
+														</select>
+														<label for="type">Loại</label>
+													</div>
+												</div>
+												<div class="col-lg-12">
+													<div class="sun_input">
+														<textarea class="form-control" name="description" rows="3" id="description" placeholder="Mô tả"></textarea>
+														<label for="description">Mô tả</label>
+														<span class="help-block">Mô tả chi tiết sản phẩm của bạn.</span>
+													</div>
+												</div>
+												<div class="form-group col-lg-12">
+													<label class="col-md-12" for="photos" style="display: block;">Ảnh</label>
+													<div class="upload-product-image pull-left" onclick="document.getElementById('product-photos').click(); return false">
+														<div class="upload-image-content">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+														</div>
+													</div>
+													<div class="sun_scroll pull-left">
+														<div id="productimage-holder"></div>
+													</div>
+													<div class="input-group hidden">
+														<span class="btn btn-default btn-file">
+															<i class="fa fa-camera"></i><input type="file" id="product-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
+														</span>
+													</div>
+												</div>
+											</div>
+
+											<div class="publisher-hidden-option">
+												<div id="progress" class="create-product-progress">
+													<span id="percent" class="create-product-percent pull-right">0%</span>
+													<div class="progress">
+														<div id="bar" class="progress-bar active create-product-bar"></div>
+													</div>
+													<div class="clear"></div>
+												</div>
+											</div>
+											<input type="hidden" name="id" class="form-control input-md" value="">
+											<input type="hidden" name="hash_id" value="83c1b24c6399b8284b114fb23fa4a965446d27fc">
+											<input type="hidden" name="lat-product" id="lat-product" class="form-control input-md" value="">
+											<input type="hidden" name="lng-product" id="lng-product" class="form-control input-md" value="">
+											<div class="form-group last-sett-btn modal-footer">
+												<div class="ball-pulse"><div></div><div></div><div></div></div>
+												<button type="submit" class="btn btn-main setting-panel-mdbtn">Công Bố</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						$(document).ready(function () {
+							$("#product-photos").on('change', function () {
+								//Get count of selected files
+								var product_countFiles = $(this)[0].files.length;
+								var product_imgPath = $(this)[0].value;
+								var extn = product_imgPath.substring(product_imgPath.lastIndexOf('.') + 1).toLowerCase();
+								var product_image_holder = $("#productimage-holder");
+								product_image_holder.empty();
+								if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+									if (typeof (FileReader) != "undefined") {
+										//loop for each file selected for uploaded.
+										for (var i = 0; i < product_countFiles; i++) {
+											var product_reader = new FileReader();
+											product_reader.onload = function (e) {
+												$("<img />", {
+													"src": e.target.result,
+													"class": "thumb-image"
+												}).appendTo(product_image_holder);
+											}
+											product_image_holder.show();
+											product_reader.readAsDataURL($(this)[0].files[i]);
+										}
+									} else {
+										product_image_holder.html("<p>This browser does not support FileReader.</p>");
+									}
+								}
+							});
+						});
+
+						$(function () {
+							if (navigator.geolocation) {
+								var location = navigator.geolocation.getCurrentPosition(function (position) {
+									$("#lng-product").val(position.coords.longitude);
+									$("#lat-product").val(position.coords.latitude);
+								});
+							}
+							var create_bar = $('.create-product-bar');
+							var create_percent = $('.create-product-percent');
+							var status = $('#status');
+							$('form.create-album-form').ajaxForm({
+								url: Wo_Ajax_Requests_File() + '?f=products&s=create',
+								beforeSend: function () {
+									var percentVal = '0%';
+									create_bar.width(percentVal);
+									create_percent.html(percentVal);
+
+
+									$('.wo_settings_page').find('.last-sett-btn .ball-pulse').fadeIn(100);
+								},
+								uploadProgress: function (event, position, total, percentComplete) {
+									var percentVal = percentComplete + '%';
+									create_bar.width(percentVal);
+									$('.create-product-progress').slideDown(200);
+									create_percent.html(percentVal);
+								},
+								success: function (data) {
+									if (data.status == 200) {
+										window.location.href = data.href;
+									} else {
+										var errors = data.errors.join("<br>");
+										$('.app-general-alert').html('<div class="alert alert-danger">' + errors + '</div>');
+										$('.alert-danger').fadeIn(300);
+									}
+									$('.wo_settings_page').find('.last-sett-btn .ball-pulse').fadeOut(100);
+								}
+							});
+						});
+						var create_pac_input = document.getElementById('location');
+						(function pacSelectFirst(input) {
+							// store the original event binding function
+							var _addEventListenerProduct = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+							function addEventListenerWrapper(type, listener) {
+								// Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+								// and then trigger the original listener.
+								if (type == "keydown") {
+									var orig_listener_product = listener;
+									listener = function (event) {
+										var suggestion_selected_product = $(".pac-item-selected").length > 0;
+										if (event.which == 13 && !suggestion_selected_product) {
+											var simulated_downarrow_product = $.Event("keydown", {
+												keyCode: 40,
+												which: 40
+											});
+											orig_listener_product.apply(input, [simulated_downarrow_product]);
+										}
+										orig_listener_product.apply(input, [event]);
+									};
+								}
+								// add the modified listener
+								_addEventListenerProduct.apply(input, [type, listener]);
+							}
+							if (input.addEventListener)
+								input.addEventListener = addEventListenerWrapper;
+							else if (input.attachEvent)
+								input.attachEvent = addEventListenerWrapper;
+						})(create_pac_input);
+
+						$(function () {
+							var autocompleteproduct = new google.maps.places.Autocomplete(create_pac_input);
+						});
+					</script>
+					<script type="text/javascript">
+$(document).ready(function(){
+	$(".sun_pub_privacy_dropdown").click(function(){
+		$(".sun_pub_privacy").toggleClass("showMenu");
+		$(".sun_pub_privacy_menu > li").click(function(){
+			$(".sun_pub_privacy_dropdown > p").html($(this).find('span').html());
+			$(".sun_pub_privacy").removeClass("showMenu");
+		});
+	});
+});
+
+jQuery(document).click(function(event){
+    if (!(jQuery(event.target).closest(".sun_pub_privacy").length)) {
+        jQuery('.sun_pub_privacy').removeClass('showMenu');
+    }
+});
+
+var deleted_images = [];
+function DeleteImageById(name,id) {
+	deleted_images.push(name);
+	$('#image_to_'+id).remove();
+}
+
+$(document).ready(function() {
+	$("#publisher-photos").on('change', function() {
+	deleted_images = [];
+	//Get count of selected files
+	var countFiles = $(this)[0].files.length;
+	var imgPath = $(this)[0].value;
+	var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	var image_holder = $("#image-holder");
+	image_holder.empty();
+	if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+		if (typeof(FileReader) != "undefined") {
+		//loop for each file selected for uploaded.
+		for (var i = 0; i < countFiles; i++)
+		{
+			var reader = new FileReader();
+			var ii = 0;
+			reader.onload = function(e) {
+				name = "'"+$("#publisher-photos")[0].files[ii].name+"'";
+				 image_holder.append('<span class="thumb-image thumb-image-delete" id="image_to_'+ii+'"><span onclick="DeleteImageById('+name+','+ii+')" class="pointer thumb-image-delete-btn"><i class="fa fa-remove"></i></span><img src="'+e.target.result+'" class="thumb-image"></span>')
+				 ii = ii +1;
+				// $("<img />", {
+    //                 "src": e.target.result,
+    //                 "class": "thumb-image"
+    //               }).appendTo(image_holder);
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[i]);
+              }
+            } else {
+              image_holder.html("<p>This browser does not support FileReader.</p>");
+            }
+         }
+	});
+});
+
+var fetch_url = 1;
+$(function () {
+   var allowed = "jpg,png,jpeg,gif,pptx,docx,pdf,doc,mp3,mp4,flv,wav,txt,mov,avi,wav,mpeg";
+    $('.postText').triggeredAutocomplete({
+     hidden: '#hidden_inputbox',
+     source: Wo_Ajax_Requests_File() + "?f=mention",
+     trigger: "@@"
+  });
+    $('.postText').limit("5000", '#charsLeft');
+    $('.emo-form').click(function () {
+    $('#emo-form').slideToggle(200);
+    Wo_RestFeelings();
+  });
+
+  $('.gif-form').click(function () {
+    $('#gif-form').slideToggle(200);
+  });
+
+  $('.map-form').click(function () {
+    $('#map-form').slideToggle(200);
+	$('#map-form input').focus();
+  });
+  $('.poll-form').click(function () {
+    $('#poll-form').slideToggle(200);
+     $('.answers').find('input').each(function (index_id) {
+       $(this).val('');
+    });
+  });
+  $("#publisher-file").change(function () {
+    var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+    $("#file-form input").val(filename);
+    $("#file-form").slideDown(200);
+    if (Wo_IsFileAllowedToUpload(filename, allowed) == false) {
+      $("#file_not_supported").modal('show');
+      Wo_Delay(function(){
+        $("#file_not_supported").modal('hide');
+      },3000);
+      $("#publisher-file").val('');
+      $("#file-form input").val('');
+      $("#file-form").slideUp(200);
+      return false;
+    }
+  });
+
+  $("#publisher-photos").change(function () {
+    var numFiles = this.files.length;
+    $("#photo-form input").val(numFiles + ' photo(s) selected');
+    $("#photo-form").slideDown(200);
+  });
+
+  $("#publisher-video").change(function () {
+    var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+    $("#video-form input[type='text']").val(filename);
+    $("#video-form").slideDown(200);
+    if (Wo_IsFileAllowedToUpload(filename, allowed) == false) {
+      $("#file_not_supported").modal('show');
+      Wo_Delay(function(){
+        $("#file_not_supported").modal('hide');
+      },3000);
+      $("#publisher-video").val('');
+      $("#video-form input[type='text']").val('');
+      $("#video-form").slideUp(200);
+      return false;
+    }
+  });
+
+  $("#publisher-music").change(function () {
+    var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+    $("#music-form input").val(filename);
+    $("#music-form").slideDown(200);
+    if (Wo_IsFileAllowedToUpload(filename, allowed) == false) {
+      $("#file_not_supported").modal('show');
+      Wo_Delay(function(){
+        $("#file_not_supported").modal('hide');
+      },3000);
+      $("#publisher-music").val('');
+      $("#music-form input").val('');
+      $("#music-form").slideUp(200);
+      return false;
+    }
+  });
+
+  $(document).on("click",".read-ads-description",function(event) {
+    var self = $(this);
+    self.toggleClass('unsetheight');
+  });
+
+  $(document).on('click', '.rads-clicks', function(event) {
+    var self  = $(this);
+    var ad_id = self.attr('id');
+    var url   = self.find('a').attr('href');
+    window.open(url, '_blank');
+    if (ad_id) {
+      $.ajax({
+        url: Wo_Ajax_Requests_File() ,
+        type: 'GET',
+        dataType: 'json',
+        data: {f: 'ads',s:'rads-c',ad_id:ad_id},
+      })
+      .done(function(data) {/*pass*/})
+      .fail(function() {/*pass*/});
+    }
+    event.preventDefault();
+  });
+
+  $(document).on('click', '.rvad-clicks', function(event) {
+    var self  = $(this);
+    self.off("click").removeClass('rvad-clicks');
+    var ad_id = self.parent().attr('id');
+    var url   = self.find('a').attr('href');
+    if (ad_id) {
+      $.ajax({
+        url: Wo_Ajax_Requests_File() ,
+        type: 'GET',
+        dataType: 'json',
+        data: {f: 'ads',s:'rads-c',ad_id:ad_id},
+      })
+      .done(function(data) {/*pass*/})
+      .fail(function() {/*pass*/});
+    }
+    event.preventDefault();
+  });
+
+  $(document).on('click', '.rvad-views', function(event) {
+    var self  = $(this);
+    self.off("click").removeClass('rvad-views');
+    var ad_id = self.parent().attr('id');
+    var url   = self.find('a').attr('href');
+    if (ad_id) {
+      $.ajax({
+        url: Wo_Ajax_Requests_File() ,
+        type: 'GET',
+        dataType: 'json',
+        data: {f: 'ads',s:'rads-v',ad_id:ad_id},
+      })
+      .done(function(data) {/*pass*/})
+      .fail(function() {/*pass*/});
+    }
+    event.preventDefault();
+  });
+
+
+
+
+  var thumb_drop_block = $(".thumb-renderer");
+
+  if (typeof(window.FileReader) == 'undefined') {
+    thumb_drop_block.find('.preview').text('Drag drop is not supported in your browser!');
+  }
+
+  else{
+    thumb_drop_block[0].ondragover = function() {
+        thumb_drop_block.addClass('hover');
+        return false;
+    };
+
+    thumb_drop_block[0].ondragleave = function() {
+        thumb_drop_block.removeClass('hover');
+        return false;
+    };
+
+    thumb_drop_block[0].ondrop = function(event) {
+        event.preventDefault();
+        thumb_drop_block.removeClass('hover');
+        var file = event.dataTransfer.files;
+        $("#custom-video-thumb").prop('files', file);
+    };
+  }
+
+  $("#custom-video-thumb").change(function(event) {
+    $("#post_vthumb_droparea").find('.preview').hide(5, function() {
+      $("#post_vthumb_droparea").find('.image').html($("<img>",{
+        src:window.URL.createObjectURL(event.target.files[0])
+      })).show(5);
+    });;
+  });
+
+  $(".video-custom-thumb").click(function(event) {
+    $(this).find('i').toggleClass('rotate-90d');
+
+    $('.video-poster-image').slideToggle(100,function () {
+      var display_stat = $(this).css('display');
+
+      if (display_stat == 'none') {
+        $(".video-poster-image").find('.preview').show(10);
+        $(".video-poster-image").find('.image').empty().hide(10);
+        $("#custom-video-thumb").val('');
+      }
+
+    });
+  });
+
+  $(document).on('click', '.rads-views', function(event) {
+    var self  = $(this);
+    var ad_id = self.attr('id');
+    var url   = self.find('a').attr('href');
+    window.open(url, '_blank');
+    if (ad_id) {
+      $.ajax({
+        url: Wo_Ajax_Requests_File() ,
+        type: 'GET',
+        dataType: 'json',
+        data: {f: 'ads',s:'rads-v',ad_id:ad_id},
+      })
+      .done(/* pass */)
+      .fail(/* pass */)
+    }
+    event.preventDefault();
+  });
+
+  var bar = $('#bar');
+  var percent = $('#percent');
+  var status = $('#status');
+  var publisher_button = $('#publisher-button');
+
+  $('form.post').ajaxForm({
+    url: Wo_Ajax_Requests_File() + '?f=posts&s=insert_new_post',
+    beforeSend: function () {
+      var percentVal = '0%';
+      bar.width(percentVal);
+      percent.html(percentVal);
+      publisher_button.attr('disabled', true);
+      publisher_button.css('color', '#333');
+	  $('#publisher-box-focus .pub-footer-bottom').find('.ball-pulse').fadeIn(100);
+    },
+    uploadProgress: function (event, position, total, percentComplete) {
+      var percentVal = percentComplete + '%';
+      bar.width(percentVal);
+      $('#progress').slideDown(200);
+      percent.html(percentVal);
+    },beforeSubmit: function (a,b,c) {
+    	for (var i = 0 ;i < a.length ; i++) {
+    		if (a[i].name == 'postPhotos[]') {
+    			for (var b = 0 ;b < deleted_images.length ; b++) {
+    				if (a[i].value.name == deleted_images[b]) {
+    					a[i] = {name:'',value:''};
+    				}
+    			}
+    		}
+    	}
+    	deleted_images = [];
+
+    },
+    success: function (data) {
+      $('#progress').slideUp(200);
+      publisher_button.attr('disabled', false);
+      publisher_button.css('color', '#fff');
+      percent.removeClass('white');
+      $('.postText').css('height', 'auto');
+      $("#postRecord").val('');
+      $("#postSticker").val('');
+      if(data.status == 200) {
+      	$('#user_post_count').text(data.post_count);
+
+        if(data.html.length > 0) {
+          $('#posts, #posts_hashtag').find('.posts-container').remove();
+        }
+        $('#posts, #posts_hashtag').prepend(data.html);
+        $('#video-form, #emo-form, #music-form, #map-form, #file-form, #photo-form, #album-form, .feeling-type, #poll-form, #gif-form').slideUp(200);
+        $(".video-poster-image").hide(10, function() {
+          $(this).find('.preview').show(10);
+          $(this).find('.image').empty().hide(10);
+          $(".video-custom-thumb").find('i').removeClass('rotate-90d');
+        });
+		$("body").removeClass('pub-focus');
+        Wo_RemoveFetchedUrl();
+		Wo_HidePosInfo();
+        $('form.post').clearForm();
+        $('.feelings-value').html('');
+        $('#postSticker').html('');
+        $('select').prop('selectedIndex', 1);
+                $('#charsLeft').text("5000");
+                        if (data.invalid_file == 1) {
+          $("#invalid_file").modal('show');
+          Wo_Delay(function(){
+            $("#invalid_file").modal('hide');
+          },3000);
+        }
+        else if(data.invalid_file == 2){
+          $("#file_not_supported").modal('show');
+          Wo_Delay(function(){
+            $("#file_not_supported").modal('hide');
+          },3000);
+        }
+        else if(data.invalid_file == 3){
+          $("#adult_image_file").modal('show');
+          Wo_Delay(function(){
+            $("#adult_image_file").modal('hide');
+          },3000);
+        }
+      }
+      else if (data.status == 400) {
+        if (data.invalid_file == 1) {
+          $("#invalid_file").modal('show');
+          Wo_Delay(function(){
+            $("#invalid_file").modal('hide');
+          },3000);
+        }
+        else if(data.invalid_file == 2){
+          $("#file_not_supported").modal('show');
+          Wo_Delay(function(){
+            $("#file_not_supported").modal('hide');
+          },3000);
+        }
+        else if(data.invalid_file == 3){
+          $("#adult_image_file").modal('show');
+          Wo_Delay(function(){
+            $("#adult_image_file").modal('hide');
+          },3000);
+        }
+        else{
+         // alert('Foramt is not supported, please try again later');
+        }
+      }
+      fetch_url = 1;
+      $('#publisher-box-focus .pub-footer-bottom').find('.ball-pulse').fadeOut(100);
+    }
+  });
+
+    var pac_input = document.getElementById('searchTextField');
+  (function pacSelectFirst(input) {
+    // store the original event binding function
+    var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+    function addEventListenerWrapper(type, listener) {
+      // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+      // and then trigger the original listener.
+      if(type == "keydown") {
+        var orig_listener = listener;
+        listener = function (event) {
+          var suggestion_selected = $(".pac-item-selected").length > 0;
+          if(event.which == 13 && !suggestion_selected) {
+            var simulated_downarrow = $.Event("keydown", {
+              keyCode: 40,
+              which: 40
+            });
+            orig_listener.apply(input, [simulated_downarrow]);
+          }
+          orig_listener.apply(input, [event]);
+        };
+      }
+      // add the modified listener
+      _addEventListener.apply(input, [type, listener]);
+    }
+    if(input.addEventListener)
+      input.addEventListener = addEventListenerWrapper;
+    else if(input.attachEvent)
+      input.attachEvent = addEventListenerWrapper;
+  })(pac_input);
+
+  $(function () {
+     var autocomplete = new google.maps.places.Autocomplete(pac_input);
+  });
+
+  var getUrl  = $('.form-control.postText'); //url to extract from text field
+  var sent = 0;
+  $('.form-control.postText').bind("paste keyup input propertychange", function(e) {
+    // if ($(this).val() == '') {
+    //     fetch_url = 1;
+    //  }
+    if (($(".extracted_url").length > 0)){
+      return false;
+    }
+
+    else if (/(https?:\/\/(?:.*)\.(?:png|jpg|gif|jpeg))/ig.test(getUrl.val())) {
+      /* pass */
+    }
+
+    else{
+
+      var match_url = /(https?:\/\/[^\s]+)/g;
+      if (match_url.test(getUrl.val()) && sent == 0 && fetch_url == 1) {
+
+      	  sent = 1;
+
+          $("#results").hide();
+          $("#loading_indicator").show();
+          var extracted_url = getUrl.val().match(match_url)[0];
+
+          $.post(Wo_Ajax_Requests_File() + '?f=posts&s=fetch_url',{'url': extracted_url}, function(data){
+            extracted_images = data.images;
+            total_images     = parseInt(data.images.length-1);
+            img_arr_pos      = total_images;
+            if(extracted_images != ''){
+              inc_image   = '<div class="extracted_thumb" id="extracted_thumb"><img src="'+data.images[img_arr_pos]+'"></div>';
+              input_image = data.images[img_arr_pos];
+            }
+
+            else {
+              inc_image   = '';
+              input_image = '';
+            }
+
+            var img_content = '';
+            if (total_images > 1) {
+              img_content = '<div class="thumb_select"><div class="thumb_sel"><span class="prev_thumb" id="thumb_next"><i class="fa fa-arrow-circle-right"></i></span><span class="next_thumb" id="thumb_prev"><i class="fa fa-arrow-circle-left"></i></span> </div><span class="small_text" id="total_imgs">'+img_arr_pos+' of '+total_images+'</span></div></div></div>';
+            }
+
+            var content = '<div class="extracted_url"><span class="remove-fetched-url" onclick="Wo_RemoveFetchedUrl();"><i class="fa fa-remove"></i></span>'+ inc_image +'<div class="extracted_content"><input class="form-control url-input" type="text" name="url_title" value="'+data.title+'" dir="auto"><br><textarea onkeyup="textAreaAdjust(this, 70)" class="form-control url-input-textarea url-input" name="url_content" placeholder="Mô tả" dir="auto">' + data.content + '</textarea><input type="hidden" id="url_image" name="url_image" value="'+ input_image +'"><input type="hidden" id="url_link" name="url_link" value="'+data.url+'"><div class="clear"></div>' + img_content;
+
+            $("#results").html(content);
+            $("#results").fadeIn();
+            $("#loading_indicator").hide();
+            sent = 0;
+
+          },'json');
+      }
+    }
+  });
+
+
+
+  $("body").on("click","#thumb_prev", function(e){
+    if(img_arr_pos>0)
+    {
+      img_arr_pos--;
+
+      $("#extracted_thumb").html('<img src="'+extracted_images[img_arr_pos]+'">');
+
+      $("#url_image").attr('value', extracted_images[img_arr_pos]);
+
+      $("#total_imgs").html((img_arr_pos) +' of '+ total_images);
+    }
+  });
+
+  $("body").on("click","#thumb_next", function(e){
+    if(img_arr_pos<total_images)
+    {
+      img_arr_pos++;
+
+      $("#extracted_thumb").html('<img src="'+extracted_images[img_arr_pos]+'">');
+
+      $("#url_image").attr('value', extracted_images[img_arr_pos]);
+
+      $("#total_imgs").html((img_arr_pos) +' of '+ total_images);
+    }
+  });
+
+});
+
+
+
+function Wo_RemoveFetchedUrl() {
+  fetch_url = 0;
+  var content = $('form.publisher-box').find('.extracted_url');
+  content.slideUp(function () {
+    $(this).remove();
+    if ($('.form-control.postText').val() != '') {
+    	$('.form-control.postText').focus();
+    }
+
+
+  });
+}
+
+function Wo_OpenAlbum() {
+  $('#album-form').slideToggle(100);
+  $('#album-form input').focus();
+}
+function Wo_ShowFeelings() {
+  if ($('.feelings-type-to').is(':empty')) {
+    $('.feeling-types').slideToggle(200);
+  }
+}
+var pac_input2 = document.getElementById('feelings-text');
+function Wo_ShowFeelingType(type, text, placeholder, icon) {
+  $('.feeling-types').slideUp(200, function () {
+    $('.feelings-type-to').html(text);
+    $('#feelings-text').attr('placeholder', decodeHtml(placeholder)).focus();
+    $('#feeling-type').val(type);
+    if (type != 'feelings') {
+      $('#feelings-text').attr('readonly', false);
+    }
+        if (type == 'traveling') {
+      var autocomplete = new google.maps.places.Autocomplete(pac_input2);
+    } else {
+      google.maps.event.clearInstanceListeners(pac_input2);
+    }
+        $('.' + type).slideToggle(200);
+  });
+}
+function Wo_RestFeelings() {
+  $('.feelings-type-to, .feelings-value').empty();
+  $('#feelings-text').val('');
+  $('#feelings-text').attr('readonly', true);
+  $('#feelings-text').attr('placeholder', decodeHtml("Bạn đang làm gì ?"));
+  $('.feeling-type, .feelings-type').slideUp(200);
+    google.maps.event.clearInstanceListeners(pac_input2);
+    Wo_ShowFeelings();
+}
+
+function Wo_AddFeeling(type, text, icon) {
+  $('#feelings-text').val(type);
+  $('.feelings-value').html('<span><i class="twa-lg twa twa-' + icon + '"></i> ' + text + '</span>')
+  Wo_ShowFeelingType('feelings', 'Feeling', 'What are you feeling ?', 'smile-o');
+}
+function smokeTheAt(str) {
+  var n = str.search("@@");
+  if(n != "-1"){
+    alert('sd');
+  }
+}
+
+function Wo_AddAnswer() {
+  answer_id = 0;
+  $('.answers').find('input').each(function (index_id) {
+     answer_id = Number(index_id) + 1;
+  });
+  var last_answer_id = (Number(answer_id) + 1);
+  if (last_answer_id < 9) {
+     $('.answers').append('<input name="answer[]" type="text" class="form-control" placeholder="Đáp án ' + last_answer_id + '">');
+     if (last_answer_id == 8) {
+      $('#add_answer').hide();
+     }
+     $('.answers').find('input:last').focus();
+  } else {
+     $('#add_answer').hide();
+  }
+
+}
+
+function Wo_HidePosInfo() {
+  $(".postText").attr('opened', '0');
+  $(".postText").css('height', '112px');
+  $("body").removeClass('pub-focus');
+  $(".publisher-box-footer").slideUp(100);
+  $(".add-emoticons").removeClass('show_emo');
+  fetch_url = 1;
+}
+function Wo_ShowPosInfo() {
+  $(".postText").attr('opened', '1');
+  $(".postText").css('height', '112px').focus();
+  $("body").addClass('pub-focus');
+  $(".publisher-box-footer").slideDown(100);
+  $(".add-emoticons").addClass('show_emo');
+}
+$(document).on('focus', '#publisher-box-focus',function(){
+	$("body").addClass('pub-focus');
+	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+	    $(".publisher-box-footer").slideDown(100);
+		$(".add-emoticons").addClass('show_emo');
+  		$(".postText").attr('opened', '1');
+	}
+});
+$('#focus-overlay').on('click',function (){
+	Wo_HidePosInfo();
+});
+function Wo_ResetAnswers() {
+  $('.answers').find('input').each(function (index_id) {
+     $(this).val('');
+  });
+  $('#poll-form').slideUp(200);
+}
+function Wo_PostSticker(self){
+  if (!self) {
+    return false;
+  }
+  $('#postSticker').val($(self).attr('data-gif'));
+  Wo_Delay(function(){
+     Wo_GetPRecordLink();
+  },500)
+}
+function Wo_GetPostStickers(keyword){
+  if (!keyword) {
+    //return false;
+  }
+  $('#publisher-box-stickers').find('.ball-pulse').fadeIn(100);
+  Wo_Delay(function(){
+    $.ajax({
+      url: 'https://api.giphy.com/v1/gifs/search?',
+      type: 'GET',
+      dataType: 'json',
+      data: {q:keyword,api_key:'420d477a542b4287b2bf91ac134ae041', limit: 20},
+    })
+    .done(function(data) {
+      if (data.meta.status == 200 && data.data.length > 0) {
+        $('#publisher-box-stickers-cont').empty();
+        var appended = false;
+        for (var i = 0; i < data.data.length; i++) {
+            appended = true;
+            if (appended == true) {
+              appended = false;
+              $('#publisher-box-stickers-cont').append($('<img alt="gif" src="'+data.data[i].images.fixed_height_small.url+'" data-gif="' + data.data[i].images.fixed_height.url + '" onclick="Wo_PostSticker(this)" autoplay loop>'));
+              appended = true;
+            }
+        }
+        var images = 0;
+        Wo_ElementLoad($('img[alt=gif]'), function(){
+          images++;
+        });
+        if (data.data.length == images || images >= 5) {
+          $('#publisher-box-stickers').find('.ball-pulse').fadeOut(100);
+        }
+      }
+      else{
+        $('#publisher-box-stickers-cont').html('<p class="no_gifs_found"><i class="fa fa-frown-o"></i> Không tìm thấy kết quả</p>');
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    })
+  },100);
+}
+					</script>			<div id="scroll_filter_click"></div>
+					<ul class="list-group filterby" id="filterby-post">
+						<li class="list-group-item hidden" contenteditable="false">Filter by</li>
+						<li class="list-group-item avtive filter-by-li filter_negative_clr" onclick="Wo_FilterPostBy('all');" dir="auto">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4,2H14V4H4V14H2V4C2,2.89 2.89,2 4,2M8,6H18V8H8V18H6V8C6,6.89 6.89,6 8,6M12,10H20C21.11,10 22,10.89 22,12V20C22,21.11 21.11,22 20,22H12C10.89,22 10,21.11 10,20V12C10,10.89 10.89,10 12,10M14,12V20L20,16L14,12Z"></path></svg>
+						</li>
+						<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('text');" dir="auto" style="color: grey;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.8,20C17.4,21.2 16.3,22 15,22H5C3.3,22 2,20.7 2,19V18H5L14.2,18C14.6,19.2 15.7,20 17,20H17.8M19,2C20.7,2 22,3.3 22,5V6H20V5C20,4.4 19.6,4 19,4C18.4,4 18,4.4 18,5V18H17C16.4,18 16,17.6 16,17V16H5V5C5,3.3 6.3,2 8,2H19M8,6V8H15V6H8M8,10V12H14V10H8Z"></path></svg>
+						</li>
+						<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('photos');" dir="auto" style="color: #53BCE9;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4,5H7L9,3H15L17,5H20A2,2 0 0,1 22,7V19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19V7A2,2 0 0,1 4,5M13.09,9.45L11.05,12.18L12.6,14.25L11.73,14.91L9.27,11.64L6,16H18L13.09,9.45Z"></path></svg>
+						</li>
+						<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('music');" dir="auto" style="color: #3F51B5;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"></path></svg>
+						</li>
+						<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('video');" dir="auto" style="color: #4caf50;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,2A7,7 0 0,1 19,9A7,7 0 0,1 12,16A7,7 0 0,1 5,9A7,7 0 0,1 12,2M12,4A5,5 0 0,0 7,9A5,5 0 0,0 12,14A5,5 0 0,0 17,9A5,5 0 0,0 12,4M12,6A3,3 0 0,1 15,9A3,3 0 0,1 12,12A3,3 0 0,1 9,9A3,3 0 0,1 12,6M6,22A2,2 0 0,1 4,20C4,19.62 4.1,19.27 4.29,18.97L6.11,15.81C7.69,17.17 9.75,18 12,18C14.25,18 16.31,17.17 17.89,15.81L19.71,18.97C19.9,19.27 20,19.62 20,20A2,2 0 0,1 18,22H6Z"></path></svg>
+						</li>
+						<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('files');" dir="auto" style="color: #7383BF;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z"></path></svg>
+						</li>
+						<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('maps');" dir="auto" style="color: #EBBA16;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"></path></svg>
+						</li>
+					</ul>				<div class="posts_load">
+						<div id="posts" data-story-user="1961">
+							<div class="pinned-post-container">
+							</div>
+							<div class="posts-container list-group">
+								<div class="no-posts">
+									<h5 class="search-filter-center-text empty_state">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>
+										Onl Hero chưa đăng bài nào
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="load-more-filter">
+						<span class="filter-by-more hidden" data-filter-by="all"></span>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="sun_user_actions">
+						<span class="sun_user_actions_item" title="Sửa">
+							<a href="https://biztime.com.vn/setting/0dc53e223/general-setting" data-ajax="?link1=setting&amp;user=0dc53e223&amp;page=general-setting"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"></path></svg></a>
+						</span>
+					</div>
+
+					<ul class="list-group sun_side_widget">
+						<li class="list-group-item text-muted search-for-posts-container hidden" contenteditable="false"><i class="fa fa-search progress-icon fa-fw" data-icon="search"></i></li>
+						<li class="form-group inner-addon" style="margin-bottom: 0px;padding: 5px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search glyphicon" color="gray" style="padding: 0;margin: 11px 7px 12px 8px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+							<input type="text" class="form-control search-for-posts" onkeyup="Wo_SearchForPosts(this.value);" placeholder="Tìm bài đăng" style="padding-left: 37px;padding-right: 37px;">
+						</li>
+					</ul>
+					<ul class="list-group sun_side_widget" id="sidebar-followers-list-container">
+						<li class="list-group-item text-muted hidden" contenteditable="false">Bạn bè</li>
+						<h3 class="sun_side_widget_title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#009da0" d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z"></path></svg>
+							<a href="https://biztime.com.vn/0dc53e223/followers" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=followers">Bạn bè</a>
+							<span>1</span>
+						</h3>
+						<li>
+							<div class="sidebar-followers-users-container sun_prof_foll_ing">
+								<div class="sidebar-user-data">
+									<div class="sidebar-listed-user-avatar">
+										<a class="avatarc" href="https://biztime.com.vn/xinchao" data-ajax="?link1=timeline&amp;u=xinchao">
+											<img src="https://biztime.com.vn/upload/photos/2018/03/TmBdnCebRgrnsaMQj7KL_08_9e1219b7732f811690304e81b113bda8_avatar.jpeg?cache=0">
+										</a>
+										<a href="https://biztime.com.vn/xinchao" data-ajax="?link1=timeline&amp;u=xinchao">
+											<div class="sidebar-listed-user-name">Xin Chào</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li><div class="clear"></div></li>
+					</ul>
+					<ul class="list-group sun_side_widget" id="sidebar-pages-list-container">
+						<li class="list-group-item text-muted hidden" contenteditable="false">More info</li>
+						<h3 class="sun_side_widget_title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#f79f58" d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z"></path></svg>
+							<a href="https://biztime.com.vn/0dc53e223/likes" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=likes">Thích</a>
+							<span>0</span>
+						</h3>
+						<li>
+							<div class="sidebar-likes-container sun_prof_foll_ing">
+							</div>
+						</li>
+						<li><div class="clear"></div></li>
+					</ul><ul class="list-group sun_side_widget" id="sidebar-pages-list-container">
+						<li class="list-group-item text-muted hidden" contenteditable="false">More info</li>
+						<h3 class="sun_side_widget_title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#03A9F4" d="M12,6A3,3 0 0,0 9,9A3,3 0 0,0 12,12A3,3 0 0,0 15,9A3,3 0 0,0 12,6M6,8.17A2.5,2.5 0 0,0 3.5,10.67A2.5,2.5 0 0,0 6,13.17C6.88,13.17 7.65,12.71 8.09,12.03C7.42,11.18 7,10.15 7,9C7,8.8 7,8.6 7.04,8.4C6.72,8.25 6.37,8.17 6,8.17M18,8.17C17.63,8.17 17.28,8.25 16.96,8.4C17,8.6 17,8.8 17,9C17,10.15 16.58,11.18 15.91,12.03C16.35,12.71 17.12,13.17 18,13.17A2.5,2.5 0 0,0 20.5,10.67A2.5,2.5 0 0,0 18,8.17M12,14C10,14 6,15 6,17V19H18V17C18,15 14,14 12,14M4.67,14.97C3,15.26 1,16.04 1,17.33V19H4V17C4,16.22 4.29,15.53 4.67,14.97M19.33,14.97C19.71,15.53 20,16.22 20,17V19H23V17.33C23,16.04 21,15.26 19.33,14.97Z"></path></svg>
+							<a href="https://biztime.com.vn/0dc53e223/groups" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=groups">Chapter</a>
+							<span>0</span>
+						</h3>
+						<li>
+							<div class="sidebar-groups-container sun_prof_foll_ing">
+							</div>
+						</li>
+						<li><div class="clear"></div></li>
+					</ul>						<div class="page-margin">
+						<div class="footer-wrapper sidebar">
+							<div class="pull-right">
+								<div class="lang_selct dropup pull-right">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<svg fill="#7a7a7a" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="feather feather-translate" style="margin-top: -3px;width: 15px;height: 15px;"><path d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"></path></svg>
+										Ngôn ngữ
+									</a>
+									<ul class="dropdown-menu sun_lang_select_menu" style="bottom: 100%;">
+										<li class="language_select"><a href="?lang=english" rel="nofollow" class="English">English</a></li>
+										<li class="language_select"><a href="?lang=arabic" rel="nofollow" class="Arabic">Arabic</a></li>
+										<li class="language_select"><a href="?lang=dutch" rel="nofollow" class="Dutch">Dutch</a></li>
+										<li class="language_select"><a href="?lang=french" rel="nofollow" class="French">French</a></li>
+										<li class="language_select"><a href="?lang=german" rel="nofollow" class="German">German</a></li>
+										<li class="language_select"><a href="?lang=italian" rel="nofollow" class="Italian">Italian</a></li>
+										<li class="language_select"><a href="?lang=portuguese" rel="nofollow" class="Portuguese">Portuguese</a></li>
+										<li class="language_select"><a href="?lang=russian" rel="nofollow" class="Russian">Russian</a></li>
+										<li class="language_select"><a href="?lang=spanish" rel="nofollow" class="Spanish">Spanish</a></li>
+										<li class="language_select"><a href="?lang=turkish" rel="nofollow" class="Turkish">Turkish</a></li>
+										<li class="language_select"><a href="?lang=vietnamese" rel="nofollow" class="Vietnamese">Vietnamese</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="footer-powered">
+								<p>
+									© 2019 Mạng Xã Hội Việt Nam
+								</p>
+							</div>
+							<ul class="list-inline pull-left">
+								<li><a data-ajax="?link1=terms&amp;type=about-us" href="https://biztime.com.vn/terms/about-us">Giới thiệu</a></li>
+								<li><a href="https://biztime.com.vn/blogs">Bản Tin</a></li>
+								<li><a data-ajax="?link1=contact-us" href="https://biztime.com.vn/contact-us">Liên hệ</a></li>
+								<li>
+									<div class="dropdown dropup sun_foot_drop_menu">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+											Thêm <span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu dropdown-menu-right" role="menu" style="width: auto; min-width: 100px; font-size: 11px; bottom: 100%;">
+											<li><a data-ajax="?link1=terms&amp;type=privacy-policy" href="https://biztime.com.vn/terms/privacy-policy">Bảo mật</a></li>
+											<li><a data-ajax="?link1=terms&amp;type=terms" href="https://biztime.com.vn/terms/terms">Điều khoản</a></li>
+											<li><a href="https://biztime.com.vn/site-pages/faq">FAQ</a></li>
+											<li><a href="https://biztime.com.vn/site-pages/biz">Biz</a></li>
+											<li><a href="https://biztime.com.vn/site-pages/app">Android &amp; iOS</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div id="ProfileImageModal-1961" class="modal fade image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog profile-picture">
+				<div class="modal-content">
+					<div class="modal-body">
+						<img src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0" id="updateImage-1961" class="img-responsive">
+					</div>
+				</div>
+			</div>
+		</div><div id="ProfileCoverImageModal" class="modal fade image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<img src="https://biztime.com.vn/upload/photos/d-cover.jpg" class="img-responsive">
+					</div>
+				</div>
+			</div>
+		</div><!-- JS Timline functions -->
+		<div class="modal fade" id="send_gift" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						<h4 class="modal-title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+							Send a gift
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div id="gifts-list" class="wo_send_gift">
+							<div class="text-center gift-data" data-gift-id="2">
+								<label>
+									<input type="radio" onclick="$('#send-gift-button').attr('data-gift-id',$(this).val());$('#send-gift-button').attr('data-gift-img','upload/photos/2019/02/PttVPXc4JNadudltu4NW_14_ac5511c1e9e9cfeff242fb1a2544d078_image.gif');$('#send-gift-button').attr('disabled',false);" name="gift" value="2">
+									<img src="https://biztime.com.vn/upload/photos/2019/02/PttVPXc4JNadudltu4NW_14_ac5511c1e9e9cfeff242fb1a2544d078_image.gif" alt="biz gift">
+								</label>
+							</div>
+							<div class="text-center gift-data" data-gift-id="1">
+								<label>
+									<input type="radio" onclick="$('#send-gift-button').attr('data-gift-id',$(this).val());$('#send-gift-button').attr('data-gift-img','upload/photos/2019/01/leh78Ctrt31SRm6C9jxh_28_7e776abec32522ea46af29bb6db87531_image.gif');$('#send-gift-button').attr('disabled',false);" name="gift" value="1">
+									<img src="https://biztime.com.vn/upload/photos/2019/01/leh78Ctrt31SRm6C9jxh_28_7e776abec32522ea46af29bb6db87531_image.gif" alt="WeChat-Tuzki-Alarm-Sticker gift">
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="ball-pulse"><div></div><div></div><div></div></div>
+						<button type="button" class="btn  btn-main" id="send-gift-button" data-gift-id="" data-gift-img="" onclick="Wo_SendGiftToUser(1961,1961,this)" disabled="">Gởi</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="report_profile" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						<h4 class="modal-title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12" y2="17"></line></svg>
+							Báo người xấu
+						</h4>
+					</div>
+					<div class="modal-body">
+						<textarea class="form-control" placeholder="Type text" dir="auto" rows="4" id="report-user-text-1961"></textarea>
+					</div>
+					<div class="modal-footer">
+						<div class="ball-pulse"><div></div><div></div><div></div></div>
+						<button type="button" class="btn  btn-main" id="report-user-button" onclick="Wo_ReportProfile(1961,true)">Gởi</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="add_to_family" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						<h4 class="modal-title">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+							Thành viên gia đình
+						</h4>
+					</div>
+					<div class="add_to_family_alert"></div>
+					<div class="modal-body">
+						<div class="col-md-3">
+							<div class="family_mbr_avatar">
+								<img src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0" alt="Onl Hero Picture" class="responsive-img">
+							</div>
+						</div>
+						<div class="col-md-9">
+							<h4 class="family_mbr_name">Onl Hero</h4>
+							<div class="user-lastseen">
+								<span class="online-text"> Online </span>
+							</div>
+							<div class="add_as_cont">
+								<div class="col-md">
+									<label class="main">
+										<small>Add as*</small>
+									</label>
+								</div>
+								<div class="col-md-">
+									<select class="form-control" name="family_list" id="family_list" title="Add as.">
+										<option value="1">
+											Mother
+										</option>
+										<option value="2">
+											Father
+										</option>
+										<option value="3">
+											Daughter
+										</option>
+										<option value="4">
+											Son
+										</option>
+										<option value="5">
+											Sister
+										</option>
+										<option value="6">
+											Brother
+										</option>
+										<option value="7">
+											Auntie
+										</option>
+										<option value="8">
+											Uncle
+										</option>
+										<option value="10">
+											Niece
+										</option>
+										<option value="11">
+											Nephew
+										</option>
+										<option value="12">
+											Anh chị em họ (Nữ)
+										</option>
+										<option value="13">
+											Anh chị em họ (Nam)
+										</option>
+										<option value="14">
+											Grandmother
+										</option>
+										<option value="15">
+											Grandfather
+										</option>
+										<option value="16">
+											Granddaughter
+										</option>
+										<option value="17">
+											Grandson
+										</option>
+										<option value="18">
+											Stepsister
+										</option>
+										<option value="19">
+											Stepbrother
+										</option>
+										<option value="20">
+											Stepmother
+										</option>
+										<option value="21">
+											Stepfather
+										</option>
+										<option value="22">
+											Stepdaughter
+										</option>
+										<option value="23">
+											Sister-in-law
+										</option>
+										<option value="24">
+											Brother-in-law
+										</option>
+										<option value="25">
+											Mother-in-law
+										</option>
+										<option value="26">
+											Father-in-law
+										</option>
+										<option value="27">
+											Daughter-in-law
+										</option>
+										<option value="28">
+											Son-in-law
+										</option>
+										<option value="29">
+											Sibling (gender neutral)
+										</option>
+										<option value="30">
+											Parent (gender neutral)
+										</option>
+										<option value="31">
+											Child (gender neutral)
+										</option>
+										<option value="32">
+											Sibling of Parent (gender neutral)
+										</option>
+										<option value="33">
+											Child of Sibling (gender neutral)
+										</option>
+										<option value="34">
+											Cousin (gender neutral)
+										</option>
+										<option value="35">
+											Grandparent (gender neutral)
+										</option>
+										<option value="36">
+											Grandchild (gender neutral)
+										</option>
+										<option value="37">
+											Step-sibling (gender neutral)
+										</option>
+										<option value="38">
+											Step-parent (gender neutral)
+										</option>
+										<option value="39">
+											Stepchild (gender neutral)
+										</option>
+										<option value="40">
+											Sibling-in-law (gender neutral)
+										</option>
+										<option value="41">
+											Parent-in-law (gender neutral)
+										</option>
+										<option value="42">
+											Child-in-law (gender neutral)
+										</option>
+									</select>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="modal-footer">
+						<div class="ball-pulse"><div></div><div></div><div></div></div>
+						<button type="button" class="btn btn-main" id="add_to_family_button" onclick="Wo_AddFamilyMember();">Lưu lại</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="delete_family_mbr_modal" role="dialog" data-slide="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						<h4 class="modal-title">Important!</h4>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure that you want to remove this member from your family?</p>
+					</div>
+					<div class="modal-footer">
+						<div class="ball-pulse"><div></div><div></div><div></div></div>
+						<button id="delete_family_member_button" type="button" class="btn btn-main" onclick="Wo_DeleteFamilyMember($('#delete_family_mbr_modal').attr('data-family-member-id'));">Xoá</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade in" id="poke_modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<p style="text-align: center;padding: 30px 20px;font-family: Hind,Arial;font-size: 16px;">
+						<i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+						Bạn đã thả thính 0dc53e223
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade in" id="accept_family_mbr_modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<p style="text-align: center;padding: 30px 20px;font-family: Hind,Arial;font-size: 16px;">
+						<i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+						Thành viên mới đã thêm vào danh sách gia đình của bạn!
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="cropImage" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						<h4 class="modal-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg> Điều chỉnh ảnh đại diện</h4>
+					</div>
+					<div class="modal-body">
+						<div id="image-to-crop" class="wo_crop_img_pic">
+							<img src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar_full.jpg" alt="avatar" data-image="upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar_full.jpg">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="ball-pulse"><div></div><div></div><div></div></div>
+						<button type="button" class="btn btn-main" onclick="CropImage();">Lưu lại</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			.post-youtube iframe {
+				height: 362px !important;
+			}
+		</style>
+		<script>
+			$(function () {
+				var url = window.location.pathname,
+					urlRegExp = new RegExp(url.replace(/\/$/, '') + "$"); // create regexp to match current url pathname and remove trailing slash if present as it could collide with the link in navigation in case trailing slash wasn't present there
+				// now grab every link from the navigation
+				$('.sun_user_nav a').each(function () {
+					// and test its normalized href against the url pathname regexp
+					if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+						$(this).addClass('active');
+					}
+				});
+			});
+
+			function Wo_open_send_gift() {
+				$('#send_gift').modal('show');
+			}
+
+			function Wo_SendGiftToUser(from, to) {
+				var gift_id = $('#send-gift-button').attr('data-gift-id');
+				var gift_img = $('#send-gift-button').attr('data-gift-img');
+
+				if (!from || !to || !gift_id) {
+					return false;
+				}
+
+				$('#send-gift-button').attr('disabled', '');
+				$('#send_gift').find('.ball-pulse').fadeIn(100);
+
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'send_gift', from: from, to: to, gift_id: gift_id, gift_img: gift_img },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$('#send-gift-button').html('Đã gởi Gift thành công');
+							$('#send_gift').find('.ball-pulse').fadeOut(100);
+							Wo_Delay(function () {
+								$("#send_gift").modal('hide');
+								$('#send-gift-button').attr('data-gift-id', '').attr('data-gift-img', '').attr('disabled', false).html('Gởi');
+							}, 1500);
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+
+			}
+
+			function Wo_RegisterPoke(received_user_id, send_user_id) {
+				if (!received_user_id || !send_user_id) {
+					return false;
+				}
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'poke', received_user_id: received_user_id, send_user_id: send_user_id },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$("#poke_modal").modal('show');
+							$("#pokebutton").remove();
+							Wo_Delay(function () {
+								$("#poke_modal").modal('hide');
+							}, 1500);
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+
+			function Wo_ActivateFamilyMember(id = false, self = false, member = false) {
+				if (!id || !self || !member) {
+					return false;
+				}
+				Wo_progressIconLoader($(self).find('i'));
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'family', s: 'accept_member', id: id, type: member },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$("#accept_family_mbr_modal").modal('show');
+							$('[data-family-member="' + id + '"]').slideUp(function () {
+								$(this).remove();
+							})
+							Wo_Delay(function () {
+								$("#accept_family_mbr_modal").modal('hide');
+							}, 1500);
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+				Wo_progressIconLoader($(self).find('i'));
+			}
+
+			function Wo_AcceptRelationRequest(id = false, member = false, type = false, self = false) {
+				if (!member || !self || !type || !id) {
+					return false;
+				}
+				Wo_progressIconLoader($(self));
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'family', s: 'accept_relation', id: id, type: type, member: member },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							window.location = data.url;
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+
+			function Wo_DeleteRelationRequest(id = false, user = false, type = false, self = false) {
+				if (!self || !id || !user || !type) {
+					return false;
+				}
+				Wo_progressIconLoader($(self).find('i'));
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'family', s: 'delete_relation', id: id, user: user, type: type },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$("[data-relationship-request='" + id + "']").slideUp(function () {
+								$(this).remove();
+							})
+						}
+					})
+					.fail(function () {
+						console.log("error");
+					})
+				Wo_progressIconLoader($(self).find('i'));
+			}
+
+			function OpenCropModal() {
+				$('#cropImage').modal('show');
+				setTimeout(function () {
+					$('#image-to-crop img').rcrop({
+						minSize: [130, 130],
+						preserveAspectRatio: true,
+						grid: true,
+					});
+				}, 250);
+			}
+			function CropImage() {
+				values = $('#image-to-crop img').rcrop('getValues');
+				$path = $('#image-to-crop img').attr('data-image');
+				if (!$path) {
+					return false;
+					$('#cropImage').modal('hide');
+				}
+				$('#cropImage').find('.ball-pulse').fadeIn(100);
+				$.post(Wo_Ajax_Requests_File() + '?f=crop-avatar', { user_id: 1961, path: $path, x: values.x, y: values.y, height: values.height, width: values.width }, function (data, textStatus, xhr) {
+					if (data.status == 200) {
+						location.reload(false);
+					} else {
+						$('#cropImage').modal('hide');
+					}
+					$('#cropImage').find('.ball-pulse').fadeOut(100);
+				});
+			}
+			function Wo_DeleteFamilyMember(id = false) {
+				if (!id) {
+					return false;
+				}
+				$('#delete_family_mbr_modal').find('.modal-footer .ball-pulse').fadeIn(100);
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: { f: 'family', s: 'delete_member', id: id },
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$('[data-family-member="' + id + '"]').slideUp('slow', function () {
+								$(this).remove();
+							})
+							Wo_Delay(function () {
+								$("#delete_family_mbr_modal").modal('hide');
+							}, 1500);
+						}
+						$('#delete_family_mbr_modal').find('.modal-footer .ball-pulse').fadeOut(100);
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+
+			function Wo_AddFamilyMember() {
+				var member_type = $("#family_list").val();
+				if (!member_type || member_type < 1 || member_type > 43) {
+					return false;
+				}
+				$('#add_to_family').find('.modal-footer .ball-pulse').fadeIn(100);
+				$.ajax({
+					url: Wo_Ajax_Requests_File(),
+					type: 'GET',
+					dataType: 'json',
+					data: {
+						f: 'family',
+						s: 'add_member',
+						member_id: '1961',
+						type: member_type
+					},
+				})
+					.done(function (data) {
+						if (data.status == 200) {
+							$('.add_to_family_alert').html('<div class="alert alert-success">' + data.message + '</div>');
+							Wo_Delay(function () {
+								$("#open_add_to_family_modal").slideUp(function () {
+									$(this).remove();
+									$("#add_to_family").modal('hide');
+								})
+							}, 1500);
+
+						}
+						else {
+							$('.add_to_family_alert').html('<div class="alert alert-success">' + data.message + '</div>');
+						}
+						$('#add_to_family').find('.modal-footer .ball-pulse').fadeOut(100);
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+
+			function Wo_ReportProfile(id = false, report = true) {
+				var report_text = $("#report-user-text-1961").val();
+				if (!id) { return false; }
+				else if (report == true) {
+					if (!report_text) { return false; }
+				}
+				$('#report_profile').find('.modal-footer .ball-pulse').fadeIn(100);
+				$.ajax({
+					url: Wo_Ajax_Requests_File() + '?f=reports&s=report_user',
+					type: 'POST',
+					dataType: 'json',
+					data: { text: report_text, user: id },
+				})
+					.done(function (data) {
+						if (data.status == 200 && data.code == 0) {
+							$('#report_status').replaceWith('\
+						<span class="sun_user_actions_item" id="report_status" onclick="$(\'#report_profile\').modal(\'show\');" title="Báo người xấu">\
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" ></path></svg>\
+						</span>');
+							$('#report_status_mobi').replaceWith('\
+						<span class="sun_user_actions_item" id="report_status_mobi" onclick="$(\'#report_profile\').modal(\'show\');" title="Báo người xấu">\
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" ></path></svg>  Báo người xấu\
+						</span>');
+						}
+
+						else if (data.status == 200 && data.code == 1) {
+							$("#report-user-text-1961").val('');
+							$("#report_profile").modal('hide');
+							$('#report_status').replaceWith('\
+						<span class="sun_user_actions_item" id="report_status" onclick="Wo_ReportProfile(1961,false);" title="Huỷ báo cáo">\
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" ></path></svg>\
+						</span>');
+							$('#report_status_mobi').replaceWith('\
+						<span class="sun_user_actions_item" id="report_status_mobi" onclick="Wo_ReportProfile(1961,false);" title="Huỷ báo cáo">\
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" ></path></svg>  Huỷ báo cáo\
+						</span>');
+						}
+
+						$('#report_profile').find('.modal-footer .ball-pulse').fadeOut(100);
+					})
+					.fail(function () {
+						console.log("error");
+					})
+			}
+
+			function loadposts(user_id) {
+				$.get(Wo_Ajax_Requests_File() + '?f=load_profile_posts', { user_id: user_id }, function (data) {
+					$('.posts_load').html(data);
+				});
+			}
+
+			var user_id = $('.profile').attr('data-id');
+			$(function () {
+				user_id = $('.profile').attr('data-id');
+				if ($(window).width() > 600) {
+					$(".user-avatar").hover(function () {
+						$('.profile-avatar-changer').fadeIn(100);
+					}, function () {
+						$('.profile-avatar-changer').fadeOut(100);
+					});
+				}
+				if ($(window).width() > 600) {
+					$(".user-cover").hover(function () {
+						$('.profile-cover-changer').fadeIn(100);
+					}, function () {
+						$('.profile-cover-changer').fadeOut(100);
+					});
+				}
+
+				$('form.profile-avatar-changer').ajaxForm({
+					url: Wo_Ajax_Requests_File() + '?f=update_user_avatar_picture',
+
+					beforeSend: function () {
+						$('.user-avatar-uploading-container, .user-avatar-uploading-progress').fadeIn(200);
+					},
+					success: function (data) {
+						if (data.status == 200) {
+							Wo_GetNewPosts();
+							$('[id^=updateImage-1961]').attr('data-target', '#ProfileImageModal-Stopped');
+							$('[id^=updateImage-1961]').attr('onclick', 'Wo_OpenProfilePicture("' + data.img_or + '");');
+							$('[id^=updateImage-1961]').attr("src", data.img);
+							$('#cropImage').modal('show');
+							$('#image-to-crop img').attr('src', data.avatar_full);
+							$('#image-to-crop img').attr('data-image', data.avatar_full_or);
+							$('#image-to-crop img').on("load", function () {
+								setTimeout(function () {
+									$('#image-to-crop img').rcrop({
+										minSize: [100, 100],
+										preserveAspectRatio: true,
+										grid: true
+									});
+								}, 1000);
+							}).each(function () {
+								if (this.complete) $(this).load();
+							});
+							if ($("ul[data-profile-completion]").length == 1) {
+								if ($('#add-profile-avatar').length == 1) {
+									// window.location.reload();
+								}
+							}
+						}
+
+						$('.user-avatar-uploading-container,.user-avatar-uploading-progress').fadeOut(200);
+					}
+				});
+
+				$('form.cover-position-form').ajaxForm({
+					url: Wo_Ajax_Requests_File() + '?f=re_cover',
+					dataType: 'json',
+					beforeSend: function () {
+						$('.user-reposition-dragable-container').hide();
+						$('.user-repositioning-icons-container1').show();
+						$('.user-repositioning-icons-container').html('<div class="pace-activity-parent"><div class="pace-activity"></div></div>').fadeIn('fast');
+					},
+					success: function (data) {
+						if (data.status == 200) {
+							$('.user-cover-reposition-w img').attr('src', data.url + '?time=' + Math.random()).on("load", function () {
+								$('.when-edit').hide();
+								$('.when-notedit').show();
+								$('.user-repositioning-icons-container1').fadeOut('fast');
+								$('.user-repositioning-icons-container').fadeOut('fast').html('');
+								$('.user-cover-reposition-w').show();
+								$('.user-reposition-container').hide().find('img').css('top', 0);
+								$('.cover-resize-buttons').hide();
+								$('.default-buttons').show();
+								$('input.cover-position').val(0);
+								$('.user-reposition-container img').draggable('destroy').css('cursor', 'default');
+								window.location.reload();
+							});
+						}
+					}
+				});
+				$('.profile-cover-changer').ajaxForm({
+					url: Wo_Ajax_Requests_File() + '?f=update_user_cover_picture',
+
+					beforeSend: function () {
+						$('.user-cover-uploading-container,.user-cover-uploading-progress').fadeIn(200);
+					},
+					success: function (data) {
+						if (data.status == 200) {
+							Wo_GetNewPosts();
+							$('[id^=cover-image]').attr('data-target', '#ProfileCoverImageModal-Stopped');
+							$('[id^=cover-image]').attr('onclick', 'Wo_OpenProfileCover("' + data.cover_or + '");');
+							$('[id^=cover-image]').attr("src", data.img);
+							$('#full-image').attr("src", data.cover_full);
+							$('#full-input-image').val(data.cover_full);
+							$('#cover-input-image').val(data.cover_or);
+							Wo_StartRepositioner();
+						}
+						$('.user-cover-uploading-container,.user-cover-uploading-progress').fadeOut(200);
+					}
+				});
+			});
+
+			function Wo_GetFollowing(user_id) {
+				Wo_progressIconLoader($('#sidebar-following-list-container').find('span'));
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'get_following_users',
+					user_id: user_id
+				}, function (data) {
+					if (data.status == 200) {
+						$('.sidebar-following-users-container').html(data.html);
+					}
+					Wo_progressIconLoader($('#sidebar-following-list-container').find('span'));
+				});
+			}
+
+			function Wo_GetFollowers(user_id) {
+				Wo_progressIconLoader($('#sidebar-followers-list-container').find('span'));
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'get_followers_users',
+					user_id: user_id
+				}, function (data) {
+					if (data.status == 200) {
+						$('.sidebar-followers-users-container').html(data.html);
+					}
+					Wo_progressIconLoader($('#sidebar-followers-list-container').find('span'));
+				});
+			}
+
+			function Wo_GetLikes(user_id) {
+				Wo_progressIconLoader($('#sidebar-pages-list-container').find('span'));
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'pages',
+					s: 'get_likes',
+					user_id: user_id
+				}, function (data) {
+					if (data.status == 200) {
+						$('.sidebar-likes-container').html(data.html);
+					}
+					Wo_progressIconLoader($('#sidebar-pages-list-container').find('span'));
+				});
+			}
+
+			function Wo_GetMoreFollowing(user_id) {
+				Wo_progressIconLoader($('.load-more').find('button'));
+				after_last_id = $('.user-data:last').attr('data-user-id');
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'get_more_following',
+					user_id: user_id,
+					after_last_id: after_last_id
+				}, function (data) {
+					if (data.status == 200) {
+						if (data.html.length == 0) {
+							$('.load-more').find('button').text("No more users to show");
+						} else {
+							$('#following-list').append(data.html);
+						}
+					}
+					Wo_progressIconLoader($('.load-more').find('button'));
+				});
+			}
+
+			function Wo_GetMoreUserLikes(user_id) {
+				Wo_progressIconLoader($('.load-more').find('button'));
+				after_last_id = $('.user-data:last').attr('data-page-id');
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'pages',
+					s: 'get_more_likes',
+					user_id: user_id,
+					after_last_id: after_last_id
+				}, function (data) {
+					if (data.status == 200) {
+						if (data.html.length == 0) {
+							$('.load-more').find('button').text("Không còn trang nào nữa");
+						} else {
+							$('#likes-list').append(data.html);
+						}
+					}
+					Wo_progressIconLoader($('.load-more').find('button'));
+				});
+			}
+
+			function Wo_GetMoreVideos(user_id) {
+				Wo_progressIconLoader($('.load-more').find('button'));
+				after_last_id = $('.video-data:last').attr('data-video-id');
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'get_more_videos',
+					user_id: user_id,
+					after_last_id: after_last_id
+				}, function (data) {
+					if (data.status == 200) {
+						if (data.html.length == 0) {
+							$('.load-more').find('button').text("Đã xem hết video");
+						} else {
+							$('#videos-list').append(data.html);
+						}
+					}
+					Wo_progressIconLoader($('.load-more').find('button'));
+				});
+			}
+
+			function Wo_GetMorePhotos(user_id) {
+				Wo_progressIconLoader($('.load-more').find('button'));
+				after_last_id = $('.sun_photo_load_more .photo-data:last').attr('data-photo-id');
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'get_more_photos',
+					user_id: user_id,
+					after_last_id: after_last_id
+				}, function (data) {
+					if (data.status == 200) {
+						if (data.html.length == 0) {
+							$('.load-more').find('button').text("Đã xem hết ảnh");
+						} else {
+							$('.sun_photo_load_more #photos-list').append(data.html);
+						}
+					}
+					Wo_progressIconLoader($('.load-more').find('button'));
+				});
+			}
+
+			function Wo_GetMoreFollowers(user_id) {
+				Wo_progressIconLoader($('.load-more').find('button'));
+				after_last_id = $('.user-data:last').attr('data-user-id');
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'get_more_followers',
+					user_id: user_id,
+					after_last_id: after_last_id
+				}, function (data) {
+					if (data.status == 200) {
+						if (data.html.length == 0) {
+							$('.load-more').find('button').text("No more users to show");
+						} else {
+							$('#followers-list').append(data.html);
+						}
+					}
+					Wo_progressIconLoader($('.load-more').find('button'));
+				});
+			}
+
+			function Wo_UpdateProfileAvatar() {
+				$("form.profile-avatar-changer").submit();
+			}
+
+			function Wo_UpdateProfileCover() {
+				$("form.profile-cover-changer").submit();
+			}
+
+			function Wo_SetCookieAlert() {
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'set_admin_alert_cookie'
+				});
+			}
+
+			function Wo_OpenProfileCover(image) {
+				$.post(Wo_Ajax_Requests_File() + '?f=get_user_profile_cover_image_post', {
+					image: image
+				}, function (data) {
+					if (data.status == 200) {
+						Wo_OpenLightBox(data.post_id);
+					} else {
+						$('[id^=cover-image]').attr('data-target', '#ProfileCoverImageModal');
+						$('[id^=cover-image]').attr('data-toggle', 'modal');
+						$('#ProfileCoverImageModal').modal('show');
+					}
+				});
+			}
+
+			function Wo_OpenProfilePicture(image) {
+				$.post(Wo_Ajax_Requests_File() + '?f=get_user_profile_image_post', {
+					image: image
+				}, function (data) {
+					if (data.status == 200) {
+						Wo_OpenLightBox(data.post_id);
+					} else {
+						$('[id^=updateImage-' + user_id + ']').attr('data-target', '#ProfileImageModal-' + user_id);
+						$('[id^=updateImage-' + user_id + ']').attr('data-toggle', 'modal');
+						$('#ProfileImageModal-' + user_id).modal('show');
+					}
+				});
+			}
+			function Wo_GetMutualFriends(user_id) {
+				Wo_progressIconLoader($('#sidebar-mutual-list-container').find('span'));
+				$.get(Wo_Ajax_Requests_File(), {
+					f: 'get_mutual_users',
+					user_id: user_id
+				}, function (data) {
+					if (data.status == 200) {
+						$('.sidebar-mutual-users-container').html(data.html);
+					}
+					Wo_progressIconLoader($('#sidebar-mutual-list-container').find('span'));
+				});
+			}
+
+		</script>
+	</div>
+	<footer>
+		<div class="page-margin">
+			<div class="footer-wrapper long_foooter" style="display: none;">
+				<hr>
+				<div class="footer-powered pull-left">
+					<p>
+						© 2019 Mạng Xã Hội Việt Nam
+					</p>
+				</div>
+				<div class="lang_selct dropup pull-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<svg fill="#7a7a7a" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="feather feather-translate" style="margin-top: -3px;width: 15px;height: 15px;"><path d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"></path></svg>
+						Ngôn ngữ
+					</a>
+					<ul class="dropdown-menu sun_lang_select_menu" style="bottom: 100%;">
+						<li class="language_select"><a href="?lang=english" rel="nofollow" class="English">English<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/united-states.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=arabic" rel="nofollow" class="Arabic">Arabic<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/saudi-arabia.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=dutch" rel="nofollow" class="Dutch">Dutch<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/netherlands.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=french" rel="nofollow" class="French">French<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/france.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=german" rel="nofollow" class="German">German<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/germany.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=italian" rel="nofollow" class="Italian">Italian<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/italy.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=portuguese" rel="nofollow" class="Portuguese">Portuguese<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/portugal.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=russian" rel="nofollow" class="Russian">Russian<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/russia.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=spanish" rel="nofollow" class="Spanish">Spanish<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/spain.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=turkish" rel="nofollow" class="Turkish">Turkish<span class="language_initial"><img src="https://biztime.com.vn/themes/biztime-s/img/flags/turkey.svg"></span> </a></li>
+						<li class="language_select"><a href="?lang=vietnamese" rel="nofollow" class="Vietnamese">Vietnamese</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+				<ul class="list-inline text-center">
+					<li><a href="https://biztime.com.vn">Timeline</a></li>
+					<li><a href="https://biztime.com.vn/terms/about-us">Giới thiệu</a></li>
+					<li><a href="https://biztime.com.vn/contact-us">Liên hệ</a></li>
+					<li><a href="https://biztime.com.vn/terms/privacy-policy">Bảo mật</a></li>
+					<li><a href="https://biztime.com.vn/terms/terms">Điều khoản</a></li>
+					<li><a href="https://biztime.com.vn/blogs">Bản Tin</a></li>
+					<li>
+						<div class="dropdown dropup">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								Thêm <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu" style="width: auto; min-width: 100px; font-size: 11px; bottom: 100%;">
+								<li><a href="https://biztime.com.vn/site-pages/faq">FAQ</a></li>
+								<li><a href="https://biztime.com.vn/site-pages/biz">Biz</a></li>
+								<li><a href="https://biztime.com.vn/site-pages/app">Android &amp; iOS</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<div class="second-footer" style="display: none;">
+	</div>
+	
+</div>

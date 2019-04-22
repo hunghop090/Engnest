@@ -16,15 +16,15 @@ namespace Engnest
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/assets/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/assets/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/assets/Content/bootstrap.css",
-                      "~/assets/Content/site.css"));
+            bundles.Add(new StyleBundle("~/css/css").Include(
+                      "~/assets/css/bootstrap.css",
+                      "~/assets/css/site.css",
+					  "~/assets/css/font-awesome.min.css"
+					  ));
         }
     }
 }

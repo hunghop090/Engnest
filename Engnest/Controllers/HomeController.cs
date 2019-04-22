@@ -13,16 +13,16 @@ using Engnest.Entities.ViewModels;
 
 namespace Engnest.Controllers
 {
-    public class ProfileController : BaseController
+    public class HomeController : BaseController
     {
 		private IUserRepository userRepository;
 
-		public ProfileController()
+		public HomeController()
 		{
 			this.userRepository = new UserRepository(new EngnestContext());
 		}
 
-		public ProfileController(IUserRepository userRepository)
+		public HomeController(IUserRepository userRepository)
 		{
 			this.userRepository = userRepository;
 		}
