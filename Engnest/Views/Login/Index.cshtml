@@ -1,0 +1,166 @@
+﻿@using Engnest.Entities.Common;
+@{
+    Layout = null;
+}
+<head>
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <!-- //Meta-Tags -->
+    <!-- css files -->
+    <link href="~/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //css files -->
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- //google fonts -->
+    <script src="~/assets/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/assets/Scripts/JavaScript.js"></script>
+    <style>
+        .signin_info {
+            display: none;
+        }
+
+        .swal-button-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="signupform">
+        <div class="container">
+            <!-- main content -->
+            <div class="agile_info">
+                <div class="login_form">
+                    <div class="left_grid_info">
+                        <h1>Manage Your Business Account</h1>
+                        <p>Donec dictum nisl nec mi lacinia, sed maximus tellus eleifend. Proin molestie cursus sapien ac eleifend.</p>
+                        <img src="~/assets/images/logoEngnest.jpg" />"
+                    </div>
+                </div>
+                <div class="login_info">
+                    <h2>Login to your Account</h2>
+                    <p>Enter your details to login.</p>
+                    <div id="login">
+                        <label>Email Address</label>
+                        <div class="input-group">
+                            <span class="fa fa-envelope" aria-hidden="true"></span>
+                            <input name="UserName" type="text" placeholder="Enter Your Email" required="">
+                        </div>
+                        <label>Password</label>
+                        <div class="input-group">
+                            <span class="fa fa-lock" aria-hidden="true"></span>
+                            <input name="Password" type="Password" placeholder="Enter Password" required="">
+                        </div>
+                        <div class="login-check">
+                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
+                        </div>
+                        <button onclick="Login()">Login</button>
+                    </div>
+                    @*<form action="" method="post">
+                            <label>Email Address</label>
+                            <div class="input-group">
+                                <span class="fa fa-envelope" aria-hidden="true"></span>
+                                <input type="email" placeholder="Enter Your Email" required="">
+                            </div>
+                            <label>Password</label>
+                            <div class="input-group">
+                                <span class="fa fa-lock" aria-hidden="true"></span>
+                                <input type="Password" placeholder="Enter Password" required="">
+                            </div>
+                            <div class="login-check">
+                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
+                            </div>
+                            <button class="btn btn-danger btn-block" type="submit">Login</button>
+                        </form>*@
+                    <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
+                    <p class="account1">Dont have an account? <a href="#" onclick="DisplaySignin()">Register here</a></p>
+                </div>
+                <div class="signin_info">
+                    <h2>Signin new Account</h2>
+                    <p>Enter your details to login.</p>
+                    <form action="#" method="post">
+                        <label>Email Address</label>
+                        <div class="input-group">
+                            <span class="fa fa-envelope" aria-hidden="true"></span>
+                            <input type="email" placeholder="Enter Your Email" required="">
+                        </div>
+                        <label>Password</label>
+                        <div class="input-group">
+                            <span class="fa fa-lock" aria-hidden="true"></span>
+                            <input type="Password" placeholder="Enter Password" required="">
+                        </div>
+                        <div class="login-check">
+                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
+                        </div>
+                        <button class="btn btn-danger btn-block" type="submit">Login</button>
+                    </form>
+                    <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
+                    <p class="account1">Do have an account? <a href="#" onclick="DisplayLogin()">Login here</a></p>
+                </div>
+            </div>
+            <!-- //main content -->
+        </div>
+    </div>
+    <div class="container-fluid-md notifications">
+        <div class="ajax-notification has-errors">
+            <span class="ajax-notification-message"></span>
+            <a class="close-notification" onclick="EngnestFlash.hide()"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <script>
+        function DisplaySignin() {
+            $(".signin_info").show();
+            $(".login_info").hide();
+            swal("Hello world!");
+        }
+        function DisplayLogin() {
+            $(".signin_info").hide();
+            $(".login_info").show();
+        }
+        function Login() {
+            var username = $("#login input[name=UserName]").val();
+            var password = $("#login input[name=Password]").val();
+            $.ajax({
+                url: "/Login/Login",
+                type: "POST",
+                data: { username: username, password: password },
+                dataType: "json",
+                success: function (result) {
+                    if (result.result == @LoginStatus.SUCCESS)
+                        EngnestFlash.notice("Đăng nhập thành công");
+                    else if (result.result == @LoginStatus.NOT_EXISTS_USER)
+                        EngnestFlash.error("Không tồn tại user!");
+                    else if (result.result == @LoginStatus.BLOCKED)
+                        EngnestFlash.error("Tài khoản bị khóa!");
+                    else if (result.result == @LoginStatus.WRONG_PASSWORD)
+                        EngnestFlash.error("Sai mật khẩu!");
+                },
+                error: function (data) {
+                }
+            });
+        }
+    //$.ajax({
+    //    url: "/Login/Login",
+    //    type: "POST",
+    //    dataType: "json",
+    //    data: { username : username,password:password },
+    //    success: function (response) {
+    //               if(response.success){
+    //                  console.log(response.Name);
+    //                  console.log(response.Phone);
+    //                  console.log(response.Email);
+    //                }
+    //    },
+    //    error: function (response) {
+    //        alert(response);
+    //    },
+    //    complete: function (response) {
+
+    //    },
+    //});
+    //}
+    </script>
+</body>
+</html>

@@ -10,9 +10,10 @@ namespace Engnest.Entities.IRepository
 	public interface  IUserRepository : IDisposable
 	{
 		IEnumerable<User> GetUsers();
-        User GetUserByID(int UserId);
+        User GetUserByID(long UserId);
+        User GetUserByName(string UserName);
         void InsertUser(User User);
-        void DeleteUser(int UserID);
+        void DeleteUser(long UserID);
         void UpdateUser(User User);
         void Save();
 		Byte Login(string UserName,string Password, out User user);

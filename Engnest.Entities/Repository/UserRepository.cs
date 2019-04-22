@@ -24,9 +24,14 @@ namespace Engnest.Entities.Repository
             return context.Users.ToList();
         }
 
-        public User GetUserByID(int id)
+        public User GetUserByID(long id)
         {
             return context.Users.Find(id);
+        }
+
+        public User GetUserByName(string UserName)
+        {
+            return context.Users.Where(x => x.UserName == UserName).FirstOrDefault();
         }
 
         public void InsertUser(User User)
@@ -34,7 +39,7 @@ namespace Engnest.Entities.Repository
             context.Users.Add(User);
         }
 
-        public void DeleteUser(int UserID)
+        public void DeleteUser(long UserID)
         {
             User User = context.Users.Find(UserID);
             context.Users.Remove(User);
@@ -59,7 +64,7 @@ namespace Engnest.Entities.Repository
 				{
 					result = LoginStatus.BLOCKED;
 				}
-				else if(user.Password != Password)
+				else if(user.Password.Trim() != Password)
 				{
 					result = LoginStatus.WRONG_PASSWORD;
 				} else

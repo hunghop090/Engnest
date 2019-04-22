@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Engnest.Entities.Common;
 using Engnest.Entities.Entity;
 using Engnest.Entities.IRepository;
@@ -12,21 +13,25 @@ using Engnest.Entities.ViewModels;
 
 namespace Engnest.Controllers
 {
-    public class LoginController : Controller
+    public class ProfileController : BaseController
     {
 		private IUserRepository userRepository;
 
-		public LoginController()
+		public ProfileController()
 		{
 			this.userRepository = new UserRepository(new EngnestContext());
 		}
 
-		public LoginController(IUserRepository userRepository)
+		public ProfileController(IUserRepository userRepository)
 		{
 			this.userRepository = userRepository;
 		}
         public ActionResult Index()
         {
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<User, ProfileModel>();
+            });
+            var fooDto = Mapper.Map<ProfileModel>(userLogin);
             return View();
         }
 
@@ -40,7 +45,7 @@ namespace Engnest.Controllers
                 var Password = EncryptorMD5.MD5Hash(model.Password);
                 result = userRepository.Login(model.UserName, Password, out user);
                 if (result == LoginStatus.SUCCESS)
-                    Session.Add(Constant.USER_SESSION, user.ID);
+                    Session.Add(Constant.USER_SESSION, user.UserName);
             }
             Response.StatusCode = (int)HttpStatusCode.OK;
             return Json(new { result });
@@ -51,11 +56,7 @@ namespace Engnest.Controllers
 			var Password = EncryptorMD5.MD5Hash(model.Password);
 			var result = userRepository.SignIn(model);
 			if(result == LoginStatus.SUCCESS)
-            {
-                var user = userRepository.GetUserByName(model.UserName);
-                Session.Add(Constant.USER_SESSION, user.ID);
-            }
-				
+				Session.Add(Constant.USER_SESSION,model.UserName);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
