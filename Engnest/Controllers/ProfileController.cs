@@ -28,8 +28,8 @@ namespace Engnest.Controllers
 		}
         public ActionResult Index()
         {
-            var fooDto = Mapper.Map<ProfileModel>(userLogin);
-            return View();
+            var model = Mapper.Map<ProfileModel>(userLogin);
+            return View(model);
         }
     }
 }
