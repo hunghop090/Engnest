@@ -172,6 +172,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\images\image.jpg" />
     <Content Include="assets\images\tick.png" />
+    <Content Include="assets\Scripts\admin.js" />
     <Content Include="assets\Scripts\bootstrap.js" />
     <Content Include="assets\Scripts\bootstrap.min.js" />
     <None Include="assets\Scripts\jquery-3.3.1.intellisense.js" />
