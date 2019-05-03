@@ -31,5 +31,22 @@ namespace Engnest.Controllers
             var fooDto = Mapper.Map<ProfileModel>(userLogin);
             return View();
         }
+
+		[HttpPost]
+        public ActionResult CreatedPost(LoginModel model)
+        {
+            byte result = 0;
+            if (ModelState.IsValid)
+            {
+                User user = new User();
+                var Password = EncryptorMD5.MD5Hash(model.Password);
+                result = userRepository.Login(model.UserName, Password, out user);
+                if (result == LoginStatus.SUCCESS)
+                    Session.Add(Constant.USER_SESSION, user.ID);
+            }
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json(new { result });
+        }
+
     }
 }

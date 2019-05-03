@@ -98,23 +98,12 @@
 					<form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
 						<div class="panel post panel-shadow sun_pub_box">
 							<div id="post-textarea" onclick="Wo_ShowPosInfo();">
-								<img class="post-avatar" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0">
+								<img class="post-avatar" src="@Model.Avatar">
 								<div class="sun_pub_name">
-									<span>Onl Hero</span>
+									<span>@Model.NickName</span>
 								</div>
 								<i class="fa fa-spinner fa-spin" id="loading_indicator"></i>
-								<textarea onkeyup="textAreaAdjust(this, 70)" name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Bạn đang nghĩ gì? #Gắnthẻ.. Đềcập.. Link.." dir="auto" style="height: 112px;" autocomplete="off"></textarea>
-								<!--Add Emojis-->
-								<div class="dropdown add-emoticons">
-									<a href="#" class="dropdown-toggle" type="button" id="dropdownEmo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24" class="feather feather-emoticons"><path d="M12,23 C5.92486775,23 1,18.0751322 1,12 C1,5.92486775 5.92486775,1 12,1 C18.0751322,1 23,5.92486775 23,12 C23,18.0751322 18.0751322,23 12,23 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z M15.2746538,14.2978292 L16.9105622,15.4483958 C15.7945475,17.0351773 13.9775544,18 12,18 C10.0224456,18 8.20545254,17.0351773 7.08943782,15.4483958 L8.72534624,14.2978292 C9.4707028,15.3575983 10.6804996,16 12,16 C13.3195004,16 14.5292972,15.3575983 15.2746538,14.2978292 Z M14,11 L14,9 L16,9 L16,11 L14,11 Z M8,11 L8,9 L10,9 L10,11 L8,11 Z"></path></svg>
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownEmo">
-										<div>
-											<span onclick="Wo_AddEmo(':)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smile"></i></span><span onclick="Wo_AddEmo('(<','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-joy"></i></span><span onclick="Wo_AddEmo('**)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-relaxed"></i></span><span onclick="Wo_AddEmo(':p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue-winking-eye"></i></span><span onclick="Wo_AddEmo(':_p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue"></i></span><span onclick="Wo_AddEmo('B)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunglasses"></i></span><span onclick="Wo_AddEmo(';)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-wink"></i></span><span onclick="Wo_AddEmo(':D','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-grin"></i></span><span onclick="Wo_AddEmo('/_)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smirk"></i></span><span onclick="Wo_AddEmo('0)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-innocent"></i></span><span onclick="Wo_AddEmo(':_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cry"></i></span><span onclick="Wo_AddEmo(':__(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sob"></i></span><span onclick="Wo_AddEmo(':(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-disappointed"></i></span><span onclick="Wo_AddEmo(':*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-kissing-heart"></i></span><span onclick="Wo_AddEmo('<3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart"></i></span><span onclick="Wo_AddEmo('</3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-broken-heart"></i></span><span onclick="Wo_AddEmo('*_*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart-eyes"></i></span><span onclick="Wo_AddEmo('<5','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-star"></i></span><span onclick="Wo_AddEmo(':o','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-open-mouth"></i></span><span onclick="Wo_AddEmo(':0','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream"></i></span><span onclick="Wo_AddEmo('o(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-anguished"></i></span><span onclick="Wo_AddEmo('-_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-unamused"></i></span><span onclick="Wo_AddEmo('x(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-angry"></i></span><span onclick="Wo_AddEmo('X(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rage"></i></span><span onclick="Wo_AddEmo('-_-','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-expressionless"></i></span><span onclick="Wo_AddEmo(':-/','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-confused"></i></span><span onclick="Wo_AddEmo(':|','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-neutral-face"></i></span><span onclick="Wo_AddEmo('!_','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-exclamation"></i></span><span onclick="Wo_AddEmo(':yum:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yum"></i></span><span onclick="Wo_AddEmo(':triumph:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-triumph"></i></span><span onclick="Wo_AddEmo(':imp:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-imp"></i></span><span onclick="Wo_AddEmo(':hear_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hear-no-evil"></i></span><span onclick="Wo_AddEmo(':alien:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-alien"></i></span><span onclick="Wo_AddEmo(':yellow_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yellow-heart"></i></span><span onclick="Wo_AddEmo(':sleeping:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sleeping"></i></span><span onclick="Wo_AddEmo(':mask:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mask"></i></span><span onclick="Wo_AddEmo(':no_mouth:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-no-mouth"></i></span><span onclick="Wo_AddEmo(':weary:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-weary"></i></span><span onclick="Wo_AddEmo(':dizzy_face:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dizzy-face"></i></span><span onclick="Wo_AddEmo(':man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-man"></i></span><span onclick="Wo_AddEmo(':woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-woman"></i></span><span onclick="Wo_AddEmo(':boy:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-boy"></i></span><span onclick="Wo_AddEmo(':girl:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-girl"></i></span><span onclick="Wo_AddEmo(':оlder_man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-man"></i></span><span onclick="Wo_AddEmo(':оlder_woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-woman"></i></span><span onclick="Wo_AddEmo(':cop:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cop"></i></span><span onclick="Wo_AddEmo(':dancers:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dancers"></i></span><span onclick="Wo_AddEmo(':speak_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-speak-no-evil"></i></span><span onclick="Wo_AddEmo(':lips:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-lips"></i></span><span onclick="Wo_AddEmo(':see_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-see-no-evil"></i></span><span onclick="Wo_AddEmo(':dog:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dog"></i></span><span onclick="Wo_AddEmo(':bear:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bear"></i></span><span onclick="Wo_AddEmo(':rose:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rose"></i></span><span onclick="Wo_AddEmo(':gift_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gift-heart"></i></span><span onclick="Wo_AddEmo(':ghost:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ghost"></i></span><span onclick="Wo_AddEmo(':bell:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bell"></i></span><span onclick="Wo_AddEmo(':video_game:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-video-game"></i></span><span onclick="Wo_AddEmo(':soccer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-soccer"></i></span><span onclick="Wo_AddEmo(':books:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-books"></i></span><span onclick="Wo_AddEmo(':moneybag:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-moneybag"></i></span><span onclick="Wo_AddEmo(':mortar_board:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mortar-board"></i></span><span onclick="Wo_AddEmo(':hand:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hand"></i></span><span onclick="Wo_AddEmo(':tiger:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tiger"></i></span><span onclick="Wo_AddEmo(':elephant:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-elephant"></i></span><span onclick="Wo_AddEmo(':scream_cat:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream-cat"></i></span><span onclick="Wo_AddEmo(':monkey:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-monkey"></i></span><span onclick="Wo_AddEmo(':bird:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bird"></i></span><span onclick="Wo_AddEmo(':snowflake:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-snowflake"></i></span><span onclick="Wo_AddEmo(':sunny:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunny"></i></span><span onclick="Wo_AddEmo(':оcean:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ocean"></i></span><span onclick="Wo_AddEmo(':umbrella:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-umbrella"></i></span><span onclick="Wo_AddEmo(':hibiscus:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hibiscus"></i></span><span onclick="Wo_AddEmo(':tulip:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tulip"></i></span><span onclick="Wo_AddEmo(':computer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-computer"></i></span><span onclick="Wo_AddEmo(':bomb:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bomb"></i></span><span onclick="Wo_AddEmo(':gem:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gem"></i></span><span onclick="Wo_AddEmo(':ring:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ring"></i></span>
-										</div>
-									</ul>
-								</div>
+								<textarea onkeyup="textAreaAdjust(this, 70)" name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Bạn đang nghĩ gì?" dir="auto" style="height: 112px;" autocomplete="off"></textarea>
 							</div>
 
 							<!--Uploaded Video-->
@@ -151,35 +140,6 @@
 									<input name="musiccount" type="text" class="form-control bg_read_input" readonly="">
 								</div>
 							</div>
-							<!--Poll Options-->
-							<div id="poll-form">
-								<div class="publisher-hidden-option answers">
-									<input name="answer[]" type="text" class="form-control" placeholder="Đáp án 1">
-									<input name="answer[]" type="text" class="form-control" placeholder="Đáp án 2">
-								</div>
-								<div class="create-poll" onclick="Wo_AddAnswer();" id="add_answer">
-									<div class="create-text">Thêm đáp án</div>
-								</div>
-							</div>
-							<!--Create Album-->
-							<div style="position:relative;">
-								<div id="album-form">
-									<div class="publisher-hidden-option">
-										<input name="album_name" type="text" class="form-control" placeholder="Album name">
-									</div>
-								</div>
-								<div class="publisher-hidden-option" id="photo-form">
-									<div class="inner-addon left-addon">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-										<input name="phtoscount" type="text" class="form-control bg_read_input" readonly="">
-									</div>
-									<div class="create-album pull-right" onclick="Wo_OpenAlbum();">
-										<div class="create-text">Tạo album</div>
-									</div>
-									<div class="clear"></div>
-									<div style="overflow-x: auto;"><div id="image-holder"></div></div>
-								</div>
-							</div>
 							<!--Uploaded File-->
 							<div class="publisher-hidden-option" id="file-form">
 								<div class="inner-addon left-addon">
@@ -190,70 +150,9 @@
 							<!--Set Location-->
 							<div class="publisher-hidden-option" id="map-form">
 								<div class="inner-addon left-addon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 									<input name="postMap" id="searchTextField" type="text" class="form-control" placeholder="Bạn đang ở đâu ?" autocomplete="off">
 								</div>
 							</div>
-							<!--Add Emojis-->
-							<div id="emo-form">
-								<div class="publisher-hidden-option" style="border-top: 1px dashed #ededed;">
-									<div class="feelings-type-to pull-left pointer" onclick="Wo_RestFeelings();"></div>
-									<span class="feelings-value"></span>
-									<input name="feeling" id="feelings-text" type="text" class="form-control bg_read_input" placeholder="Bạn đang làm gì ?" onclick="Wo_ShowFeelings();" autocomplete="no">
-									<input name="feeling_type" type="hidden" id="feeling-type" value="">
-									<div class="clear"></div>
-								</div>
-								<div class="feeling-type feeling-types">
-									<ul>
-										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;feelings&quot;, &quot;Cảm thấy&quot;, &quot;Bạn đang cảm thấy thế nào ?&quot;);">
-											<svg fill="#009da0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="feather feather-user-plus"><path d="M0 0h24v24H0z" fill="none"></path><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path></svg> <span>Cảm thấy</span>
-										</li>
-										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;traveling&quot;, &quot;Du lịch đến&quot; , &quot;Bạn đang đi đâu ?&quot;);">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase" color="#3F51B5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> <span>Du lịch đến</span>
-										</li>
-										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;watching&quot;, &quot;Đang xem&quot;, &quot;Bạn đang xem gì ?&quot;);">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tv" color="#E91E63"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg> <span>Đang xem</span>
-										</li>
-										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;playing&quot;, &quot;Đang chơi&quot;, &quot;Bạn đang chơi gì ?&quot;);">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target" color="#FF9800"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>Đang chơi</span>
-										</li>
-										<li class="pointer" onclick="Wo_ShowFeelingType(&quot;listening&quot;, &quot;Đang nghe&quot;, &quot;Bạn đang nghe gì ?&quot;);">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-headphones" color="#03A9F4"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg> <span>Đang nghe</span>
-										</li>
-									</ul>
-								</div>
-								<div class="feeling-type feelings">
-									<ul>
-										<li class="pointer" onclick="Wo_AddFeeling('happy', 'Hạnh phúc', 'smile');"><i class="twa-lg twa twa-smile"></i> Hạnh phúc</li>
-										<li class="pointer" onclick="Wo_AddFeeling('loved', 'Được yêu', 'heart-eyes');"><i class="twa-lg twa twa-heart-eyes"></i> Được yêu</li>
-										<li class="pointer" onclick="Wo_AddFeeling('sad', 'Buồn', 'disappointed');"><i class="twa-lg twa twa-disappointed"></i> Buồn</li>
-										<li class="pointer" onclick="Wo_AddFeeling('so_sad', 'Rất buồn', 'sob');"><i class="twa-lg twa twa-sob"></i> Rất buồn</li>
-										<li class="pointer" onclick="Wo_AddFeeling('angry', 'Giận', 'angry');"><i class="twa-lg twa twa-angry"></i> Giận</li>
-										<li class="pointer" onclick="Wo_AddFeeling('confused', 'Bối rối', 'confused');"><i class="twa-lg twa twa-confused"></i> Bối rối</li>
-										<li class="pointer" onclick="Wo_AddFeeling('smirk', 'Hot', 'smirk');"><i class="twa-lg twa twa-smirk"></i> Hot</li>
-										<li class="pointer" onclick="Wo_AddFeeling('broke', 'Đổ vỡ', 'broken-heart');"><i class="twa-lg twa twa-broken-heart"></i> Đổ vỡ</li>
-										<li class="pointer" onclick="Wo_AddFeeling('expressionless', 'Vô cảm', 'expressionless');"><i class="twa-lg twa twa-expressionless"></i> Vô cảm</li>
-										<li class="pointer" onclick="Wo_AddFeeling('cool', 'Cool', 'sunglasses');"><i class="twa-lg twa twa-sunglasses"></i> Cool</li>
-										<li class="pointer" onclick="Wo_AddFeeling('funny', 'Buồn cười', 'joy');"><i class="twa-lg twa twa-joy"></i> Buồn cười</li>
-										<li class="pointer" onclick="Wo_AddFeeling('tired', 'Mệt mỏi', 'tired-face');"><i class="twa-lg twa twa-tired-face"></i> Mệt mỏi</li>
-										<li class="pointer" onclick="Wo_AddFeeling('lovely', 'Đáng yêu', 'heart');"><i class="twa-lg twa twa-heart"></i> Đáng yêu</li>
-										<li class="pointer" onclick="Wo_AddFeeling('blessed', 'May mắn', 'innocent');"><i class="twa-lg twa twa-innocent"></i> May mắn</li>
-										<li class="pointer" onclick="Wo_AddFeeling('shocked', 'Sốc', 'scream');"><i class="twa-lg twa twa-scream"></i> Sốc</li>
-										<li class="pointer" onclick="Wo_AddFeeling('sleepy', 'Buồn ngủ', 'sleeping');"><i class="twa-lg twa twa-sleeping"></i> Buồn ngủ</li>
-										<li class="pointer" onclick="Wo_AddFeeling('pretty', 'Đẹp đẽ', 'relaxed');"><i class="twa-lg twa twa-relaxed"></i> Đẹp đẽ</li>
-										<li class="pointer" onclick="Wo_AddFeeling('bored', 'Chán nản', 'unamused');"><i class="twa-lg twa twa-unamused"></i> Chán nản</li>
-									</ul>
-								</div>
-							</div>
-							<!--Add Stickers-->
-							<div id="gif-form">
-								<div class="w100" id="publisher-box-stickers">
-									<input type="text" class="form-control" style="border: none;" placeholder="Tìm kiếm GIFs" onkeyup="Wo_GetPostStickers(this.value)">
-									<div class="ball-pulse pull-right" style="margin: -33px 10px 0px 0px;"><div></div><div></div><div></div></div>
-									<div id="publisher-box-stickers-cont"></div>
-								</div>
-							</div>
-
 							<div id="results"></div>
 
 							<!--Progress Bar-->
@@ -275,12 +174,6 @@
 										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh"> Kèm ảnh					<input type="file" id="publisher-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
 									</span>
 								</div>
-								<!--Create Poll-->
-								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
-									<span class="btn btn-file poll-form pol">
-										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-poll.svg" alt="Tạo thăm dò"> Tạo thăm dò
-									</span>
-								</div>
 								<!--Uploaded Video-->
 								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
 									<span class="btn btn-file vid">
@@ -298,14 +191,6 @@
 							<!--Publisher Box Footer-->
 							<div class="publisher-box-footer">
 								<div class="sun_pub_more">
-									<!--Add GIFs-->
-									<div class="sun_pub_more_items gif-form">
-										<div class="poster-left-buttons">
-											<span class="btn btn-file btngif gif" style="padding: 0px;">
-												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-gif.svg" alt="GIF"></span> GIF
-											</span>
-										</div>
-									</div>
 									<!--Record Audio-->
 									<div class="sun_pub_more_items" id="recordPostAudioWrapper">
 										<div class="poster-left-buttons">
@@ -332,27 +217,11 @@
 											</span>
 										</div>
 									</div>
-									<!--Create Product-->
-									<div class="sun_pub_more_items">
-										<div class="poster-left-buttons">
-											<a href="#" data-toggle="modal" data-target="#create-product-modal" class="btn btn-file sel">
-												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-product.svg" alt="Bán hàng"></span> Bán hàng
-											</a>
-										</div>
-									</div>
 									<!--Add Location-->
 									<div class="sun_pub_more_items">
 										<div class="poster-left-buttons">
 											<span class="btn btn-file map-form loc">
 												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-map.svg" alt="Địa điểm"></span> Địa điểm
-											</span>
-										</div>
-									</div>
-									<!--Uploaded Music-->
-									<div class="sun_pub_more_items">
-										<div class="poster-left-buttons">
-											<span class="btn btn-file aud">
-												<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#3f51b5" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"></path></svg></span> Nhạc						<input type="file" id="publisher-music" name="postMusic" accept="audio/*">
 											</span>
 										</div>
 									</div>
