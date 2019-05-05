@@ -95,10 +95,14 @@
     <Compile Include="Entity\Group.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="Entity\Post.cs" />
+    <Compile Include="Entity\SystermCode.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="IRepository\IPostRepository.cs" />
     <Compile Include="IRepository\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\PostRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="ViewModels\PostModel.cs" />
     <Compile Include="ViewModels\ProfileModel.cs" />
     <Compile Include="ViewModels\LoginModel.cs" />
   </ItemGroup>

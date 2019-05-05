@@ -88,10 +88,12 @@ namespace Engnest.Entities.Repository
 				try {
 				var user = new User();
 				user.UserName = model.UserName;
-				user.FirstName = model.FirstName;
+                user.NickName = model.UserName;
+                user.FirstName = model.FirstName;
 				user.LastName = model.LastName;
 				user.Email = model.Email;
 				user.Password = model.Password;
+                user.CreatedTime = DateTime.Now;
 				context.Users.Add(user);
 				}
 				catch(Exception ex)

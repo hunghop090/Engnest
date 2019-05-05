@@ -48,15 +48,22 @@ namespace Engnest.Controllers
 
         public ActionResult SignIn(SignInModel model)
         {
-			var Password = EncryptorMD5.MD5Hash(model.Password);
+            model.Password = EncryptorMD5.MD5Hash(model.Password);
 			var result = userRepository.SignIn(model);
 			if(result == LoginStatus.SUCCESS)
             {
+                userRepository.Save();
                 var user = userRepository.GetUserByName(model.UserName);
                 Session.Add(Constant.USER_SESSION, user.ID);
             }
 				
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SignOut()
+        {
+            Session.Remove(Constant.USER_SESSION);
+            return RedirectToAction("Index");
         }
     }
 }

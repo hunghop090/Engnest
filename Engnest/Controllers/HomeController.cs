@@ -15,38 +15,44 @@ namespace Engnest.Controllers
 {
     public class HomeController : BaseController
     {
-		private IUserRepository userRepository;
+        private IUserRepository userRepository;
+        private IPostRepository postRepository;
 
-		public HomeController()
-		{
-			this.userRepository = new UserRepository(new EngnestContext());
-		}
+        public HomeController()
+        {
+            this.userRepository = new UserRepository(new EngnestContext());
+            this.postRepository = new PostRepository(new EngnestContext());
+        }
 
-		public HomeController(IUserRepository userRepository)
-		{
-			this.userRepository = userRepository;
-		}
+        public HomeController(IUserRepository userRepository, IPostRepository postRepository)
+        {
+            this.userRepository = userRepository;
+            this.postRepository = postRepository;
+        }
         public ActionResult Index()
         {
             var fooDto = Mapper.Map<ProfileModel>(userLogin);
             return View();
         }
 
-		[HttpPost]
-        public ActionResult CreatedPost(LoginModel model)
+        [HttpPost]
+        public ActionResult CreatedPost(PostModel model)
         {
-            byte result = 0;
             if (ModelState.IsValid)
             {
-                User user = new User();
-                var Password = EncryptorMD5.MD5Hash(model.Password);
-                result = userRepository.Login(model.UserName, Password, out user);
-                if (result == LoginStatus.SUCCESS)
-                    Session.Add(Constant.USER_SESSION, user.ID);
+                try
+                {
+                    Post post = new Post();
+                    post = Mapper.Map<Post>(model);
+                    postRepository.InsertPost(post);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { result = Constant.ERROR });
+                }
             }
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { result });
+            return Json(new { result = Constant.SUCCESS });
         }
-
     }
 }

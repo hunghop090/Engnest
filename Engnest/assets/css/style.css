@@ -152,18 +152,18 @@ input[type="Password"] {
     text-transform: uppercase;
     cursor: pointer;
 }
-.login_info h2 {
-  display: inline-block;
+.login_info h2, .signin_info h2 {
+    display: inline-block;
     font-size: 26px;
     margin-bottom: 10px;
     color: #333;
-    letter-spacing: 2px;	
+    letter-spacing: 2px;
     text-transform: capitalize;
 }
-.login_info h4 {
+.login_info h4, .signin_info h4 {
     display: inline-block;
     font-size: 15px;
-	padding: 8px 0px;
+    padding: 8px 0px;
     color: #444;
     text-transform: capitalize;
 }
@@ -178,26 +178,16 @@ a.btn.btn-block.btn-social.btn-facebook {
 	font-family: 'Raleway', sans-serif;
 }
 
-.login_info {
+.login_info, .signin_info {
     flex-basis: 50%;
-	-webkit-flex-basis: 50%;
+    -webkit-flex-basis: 50%;
     box-sizing: border-box;
-	padding: 3em 4em;
+    padding: 3em 4em;
     /* -webkit-box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
     box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2); */
 }
 
-
-.login-check {
-    position: relative;
-}
-.login_info .login-check label{
-    text-transform: capitalize;
-    font-size: 13px;
-    letter-spacing: 1px;
-    color: #000;
-}
 .checkbox i {
     position: absolute;
     top: 0px;
@@ -258,7 +248,7 @@ input[type="checkbox" i] {
     flex-basis: 50%;
 	-webkit-flex-basis: 50%;
 }
-.login_info p {
+.login_info p, .signin_info p{
     padding-bottom: 30px;
 }
 p.account,p.account1 {
@@ -275,7 +265,7 @@ p.account a,p.account1 a {
 p.account a:hover,p.account1 a:hover {
     text-decoration: none;
 }
-.login_info label {
+.login_info label, .signin_info label {
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -342,16 +332,16 @@ h5 {
 	.container {
 		width: 80%;
 	}
-	.login_info h2 {
-		font-size: 24px;
-		letter-spacing: 1px;
-	}
+    .login_info h2, .signin_info h2 {
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
 	.left_grid_info h1 {
 		font-size: 35px;
 	}
-	.login_info {
-		padding: 3em 3em;
-	}
+    .login_info, .signin_info {
+        padding: 3em 3em;
+    }
 }
 @media screen and (max-width: 1024px){
 	.signupform {
@@ -366,9 +356,9 @@ h5 {
 	}
 }
 @media screen and (max-width: 991px){
-	.login_info h2 {
-		font-size: 24px;
-	}
+    .login_info h2, .signin_info h2 {
+        font-size: 24px;
+    }
 	h1 {
 		font-size: 40px;
 		letter-spacing: 2px;
@@ -382,9 +372,9 @@ h5 {
 	.left_grid_info h4 {
 		font-size: 1em;
 	}
-	.login_info {
-		padding: 3em 2.5em;
-	}
+    .login_info, .signin_info {
+        padding: 3em 2.5em;
+    }
 }
 @media screen and (max-width: 800px){
 	.container {
@@ -397,17 +387,17 @@ h5 {
 		font-size: 16px;
 		padding: 13px 0px;
 	}
-	.login_info h2 {
-		font-size: 23px;
-	}
+    .login_info h2, .signin_info h2 {
+        font-size: 23px;
+    }
 }
 @media screen and (max-width: 768px){
 	.container {
 		width: 95%;
 	}
-	.login_info h2 {
-		letter-spacing: 1px;
-	}
+    .login_info h2, .signin_info h2 {
+        letter-spacing: 1px;
+    }
 	.left_grid_info h1 {
 		font-size: 30px;
 		letter-spacing: 1px;
@@ -420,18 +410,18 @@ h5 {
 	.left_grid_info h3 {
 		font-size: 1.7em;
 	}
-	.login_info h2 {
-		font-size: 22px;
-	}
-	.login_info {
-		padding: 3em 2em;
-	}
+    .login_info h2, .signin_info h2 {
+        font-size: 22px;
+    }
+    .login_info, .signin_info {
+        padding: 3em 2em;
+    }
 	.footer p {
 		font-size: 14px;
 	}
-	.login_info h4 {
-		font-size: 14px;
-	}
+    .login_info h4, .signin_info h4{
+        font-size: 14px;
+    }
 	.footer p {
 		margin-top: 0em;
 		margin-bottom: 2em;
@@ -439,10 +429,10 @@ h5 {
 }
 
 @media screen and (max-width: 684px){
-	.login_info h2 {
-		font-size: 20px;
-		letter-spacing: 0px;
-	}
+    .login_info h2, .signin_info h2 {
+        font-size: 20px;
+        letter-spacing: 0px;
+    }
 	.left_grid_info h1 {
 		font-size: 26px;
 		letter-spacing: 1px;
@@ -474,9 +464,9 @@ h5 {
 	h1 {
 		font-size: 34px;
 	}
-	.login_info {
-		padding: 3em 1em;
-	}
+    .login_info, .signin_info {
+        padding: 3em 1em;
+    }
 	.footer {
 		margin: 0 1em;
 	}
@@ -485,9 +475,9 @@ h5 {
 	}
 }
 @media screen and (max-width: 414px){
-	.login_info {
-		padding: 2em;
-	}
+    .login_info, .signin_info {
+        padding: 2em;
+    }
 	h1 {
 		font-size: 32px;
 		letter-spacing: 1px;
@@ -501,24 +491,24 @@ h5 {
 	.left_grid_info {
 		padding-top: 1em;
 	}
-	.login_info p {
-		font-size: 14px;
-	}
+    .login_info p, .signin_info p {
+        font-size: 14px;
+    }
 }
 @media screen and (max-width: 384px){
 	.left_grid_info h4 {
 		font-size: .9em;
 	}
-	.login_info {
-		padding: 2em 1em;
-	}
+    .login_info, .signin_info {
+        padding: 2em 1em;
+    }
 	.left_grid_info h1 {
 		font-size: 21px;
 		letter-spacing: 0px;
 	}
-	.login_info h2 {
-		font-size: 18px;
-	}
+    .login_info h2, .signin_info h2 {
+        font-size: 18px;
+    }
 }
 @media screen and (max-width: 375px){
 	.left_grid_info h3 {
@@ -530,10 +520,10 @@ h5 {
 		font-size: 25px;
 		letter-spacing: 1px;
 	}
-	.login_info h2 {
-		font-size: 18px;
-		letter-spacing: 0px;
-	}
+    .login_info h2, .signin_info h2 {
+        font-size: 18px;
+        letter-spacing: 0px;
+    }
 	.btn-danger {
 		padding: 13px 12px;
 		font-size: 13px;

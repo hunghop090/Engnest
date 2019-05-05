@@ -8,7 +8,9 @@ namespace Engnest.Entities.Common
 	public class Constant
 	{
 		public const string USER_SESSION = "USER_SESSION";
-	}
+        public const Byte SUCCESS = 0;
+        public const Byte ERROR = 2;
+    }
 	public class LoginStatus
 	{
 		public const Byte SUCCESS = 0;

@@ -6,6 +6,7 @@ namespace Engnest.Entities.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Post")]
     public partial class Post
     {
         public long ID { get; set; }
@@ -20,7 +21,7 @@ namespace Engnest.Entities.Entity
 
         public string Content { get; set; }
 
-        public DateTime? CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
 
         public DateTime? UpdateTime { get; set; }
 

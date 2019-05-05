@@ -18,7 +18,7 @@ namespace Engnest.Entities.Entity
 
         public long? TargetUser { get; set; }
 
-        public DateTime? CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
 
         [StringLength(500)]
         public string Audios { get; set; }

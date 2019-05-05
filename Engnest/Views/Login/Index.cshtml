@@ -43,58 +43,41 @@
                     <h2>Login to your Account</h2>
                     <p>Enter your details to login.</p>
                     <div id="login">
-                        <label>Email Address</label>
+                        <label>User Name</label>
                         <div class="input-group">
                             <span class="fa fa-envelope" aria-hidden="true"></span>
-                            <input name="UserName" type="text" placeholder="Enter Your Email" required="">
+                            <input name="UserName" type="text" placeholder="Enter Your User Name" required="">
                         </div>
                         <label>Password</label>
                         <div class="input-group">
                             <span class="fa fa-lock" aria-hidden="true"></span>
                             <input name="Password" type="Password" placeholder="Enter Password" required="">
                         </div>
-                        <div class="login-check">
-                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
-                        </div>
-                        <button onclick="Login()">Login</button>
+                        <button class="btn btn-danger btn-block" onclick="Login()">Login</button>
                     </div>
-                    @*<form action="" method="post">
-                            <label>Email Address</label>
-                            <div class="input-group">
-                                <span class="fa fa-envelope" aria-hidden="true"></span>
-                                <input type="email" placeholder="Enter Your Email" required="">
-                            </div>
-                            <label>Password</label>
-                            <div class="input-group">
-                                <span class="fa fa-lock" aria-hidden="true"></span>
-                                <input type="Password" placeholder="Enter Password" required="">
-                            </div>
-                            <div class="login-check">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
-                            </div>
-                            <button class="btn btn-danger btn-block" type="submit">Login</button>
-                        </form>*@
                     <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
                     <p class="account1">Dont have an account? <a href="#" onclick="DisplaySignin()">Register here</a></p>
                 </div>
                 <div class="signin_info">
                     <h2>Signin new Account</h2>
                     <p>Enter your details to login.</p>
-                    <form action="#" method="post">
+                    <form id="signin" action="#" method="post">
+                        <label>User Name</label>
+                        <div class="input-group">
+                            <span class="fa fa-user" aria-hidden="true"></span>
+                            <input name="UserName" type="text" placeholder="Enter Your User Name" required="">
+                        </div>
                         <label>Email Address</label>
                         <div class="input-group">
                             <span class="fa fa-envelope" aria-hidden="true"></span>
-                            <input type="email" placeholder="Enter Your Email" required="">
+                            <input name="Email" type="email" placeholder="Enter Your Email Address" required="">
                         </div>
                         <label>Password</label>
                         <div class="input-group">
                             <span class="fa fa-lock" aria-hidden="true"></span>
-                            <input type="Password" placeholder="Enter Password" required="">
+                            <input type="Password" name="Password" placeholder="Enter Password" required="">
                         </div>
-                        <div class="login-check">
-                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
-                        </div>
-                        <button class="btn btn-danger btn-block" type="submit">Login</button>
+                        <button class="btn btn-danger btn-block" onclick="SignIn()">Signin</button>
                     </form>
                     <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
                     <p class="account1">Do have an account? <a href="#" onclick="DisplayLogin()">Login here</a></p>
@@ -113,7 +96,6 @@
         function DisplaySignin() {
             $(".signin_info").show();
             $(".login_info").hide();
-            swal("Hello world!");
         }
         function DisplayLogin() {
             $(".signin_info").hide();
@@ -143,26 +125,28 @@
                 }
             });
         }
-    //$.ajax({
-    //    url: "/Login/Login",
-    //    type: "POST",
-    //    dataType: "json",
-    //    data: { username : username,password:password },
-    //    success: function (response) {
-    //               if(response.success){
-    //                  console.log(response.Name);
-    //                  console.log(response.Phone);
-    //                  console.log(response.Email);
-    //                }
-    //    },
-    //    error: function (response) {
-    //        alert(response);
-    //    },
-    //    complete: function (response) {
-
-    //    },
-    //});
-    //}
+        function SignIn() {
+            var username = $("#signin input[name=UserName]").val();
+            var password = $("#signin input[name=Password]").val();
+            var email = $("#signin input[name=Email]").val();
+            $.ajax({
+                url: "/Login/SignIn",
+                type: "POST",
+                data: { username: username, password: password ,email: email},
+                dataType: "json",
+                success: function (result) {
+					if (result.result == @LoginStatus.SUCCESS) {
+						EngnestFlash.notice("Đăng ký thành công");
+						location.href = "Profile";
+                    } if (result.result == @SignInStatus.EXISTS_USER) {
+                        EngnestFlash.error("Email đã tồn tại!");
+                    }
+                    else 
+                        EngnestFlash.error("Đăng ký thất bại!");
+                },
+                error: function (data) {
+                }
+            });
+        }
     </script>
 </body>
-</html>

@@ -20,7 +20,7 @@ namespace Engnest.Entities.Entity
 
         public byte? TargetType { get; set; }
 
-        public DateTime? CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
 
         public byte? Status { get; set; }
 

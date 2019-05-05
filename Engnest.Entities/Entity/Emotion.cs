@@ -21,6 +21,6 @@ namespace Engnest.Entities.Entity
         [StringLength(10)]
         public string TargetType { get; set; }
 
-        public DateTime? CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
     }
 }

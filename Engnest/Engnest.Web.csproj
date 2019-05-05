@@ -167,10 +167,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\css\font-awesome.min.css" />
     <Content Include="assets\css\style.css" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\images\image.jpg" />
+    <Content Include="assets\images\logoEngnest.jpg" />
     <Content Include="assets\images\tick.png" />
     <Content Include="assets\Scripts\admin.js" />
     <Content Include="assets\Scripts\bootstrap.js" />
@@ -193,15 +192,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="assets\css\site.css" />
-    <Content Include="assets\fonts\fontawesome-webfont.eot" />
-    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
-    <Content Include="assets\fonts\fontawesome-webfont.woff" />
-    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
-    <Content Include="assets\fonts\FontAwesome.otf" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="assets\Scripts\jquery-3.3.1.min.map" />
     <Content Include="assets\Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Web.config" />
@@ -218,9 +208,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\Engnest - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\bootstrap.min.css.map" />

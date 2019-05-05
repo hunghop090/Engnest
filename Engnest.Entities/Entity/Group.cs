@@ -26,6 +26,6 @@ namespace Engnest.Entities.Entity
         [StringLength(500)]
         public string InfoId { get; set; }
 
-        public DateTime? CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
     }
 }

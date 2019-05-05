@@ -4,6 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@ViewBag.Title - My ASP.NET Application</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	@Styles.Render("~/css/css")
 
 </head>
@@ -115,79 +116,77 @@
 								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="mobi_menu_hd"><path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
 							</a>
-							<ul class="dropdown-menu ani-acc-menu" role="menu">
-								<li>
-									<a class="menu_firs_link" id="update-username" href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223"><b>Onl Hero</b></a>
-									<a class="menu_sec_link" href="https://biztime.com.vn/setting/my_points" data-ajax="?link1=setting&amp;page=my_points">
-										<p>Biz: 0</p>
-									</a>
-								</li>
+                            <ul class="dropdown-menu ani-acc-menu" role="menu">
+                                <li>
+                                    <a class="menu_firs_link" id="update-username" href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223"><b>Onl Hero</b></a>
+                                    <a class="menu_sec_link" href="https://biztime.com.vn/setting/my_points" data-ajax="?link1=setting&amp;page=my_points">
+                                        <p>Biz: 0</p>
+                                    </a>
+                                </li>
 
-								<li><hr></li>
-								<li>
-									<a href="https://biztime.com.vn/go-pro" data-ajax="?link1=go-pro"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Nâng cấp thành Pro</a>
-								</li>
+                                <li><hr></li>
+                                <li>
+                                    <a href="https://biztime.com.vn/go-pro" data-ajax="?link1=go-pro"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Nâng cấp thành Pro</a>
+                                </li>
 
-								<li><hr></li>
+                                <li><hr></li>
 
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/pages" data-ajax="?link1=pages"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f79f58" d="M5,21 L5,1 L7,1 L7,2 L21.1247446,2 L18.1259893,7.99991055 L21.126034,14 L7,14 L7,21 L8,21 L8,23 L4,23 L4,21 L5,21 Z M7,12 L17.889966,12 L15.8900107,8.00008945 L17.8892554,4 L7,4 L7,12 Z"></path></svg> Trang</a>
-								</li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/pages" data-ajax="?link1=pages"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f79f58" d="M5,21 L5,1 L7,1 L7,2 L21.1247446,2 L18.1259893,7.99991055 L21.126034,14 L7,14 L7,21 L8,21 L8,23 L4,23 L4,21 L5,21 Z M7,12 L17.889966,12 L15.8900107,8.00008945 L17.8892554,4 L7,4 L7,12 Z"></path></svg> Trang</a>
+                                </li>
 
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/my-products" data-ajax="?link1=my-products"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#6a7f9a" d="M17.118034,7 L20,7 C21.1045695,7 22,7.8954305 22,9 L22,11 C22,11.8400191 21.4821261,12.5590822 20.7482321,12.8553354 C20.7516471,12.9031122 20.7533839,12.9513533 20.7533839,13 C20.7533839,13.1459247 20.7374136,13.2914111 20.7057581,13.4338609 L19.1502025,20.4338609 C18.9468525,21.348936 18.1352257,22 17.1978284,22 L6.80217161,22 C5.86477431,22 5.05314751,21.348936 4.84979749,20.4338609 L3.29424193,13.4338609 C3.25094564,13.2390276 3.23766963,13.0445179 3.25133987,12.8551625 C2.51767261,12.5588026 2,11.8398557 2,11 L2,9 C2,7.8954305 2.8954305,7 4,7 L6.88196601,7 L9.10557281,2.5527864 C9.35256206,2.05880791 9.9532351,1.85858356 10.4472136,2.10557281 C10.9411921,2.35256206 11.1414164,2.9532351 10.8944272,3.4472136 L9.11803399,7 L14.881966,7 L13.1055728,3.4472136 C12.8585836,2.9532351 13.0588079,2.35256206 13.5527864,2.10557281 C14.0467649,1.85858356 14.6474379,2.05880791 14.8944272,2.5527864 L17.118034,7 Z M18.0002188,9 C17.9999331,9.36654113 17.7973775,9.71934526 17.4472136,9.89442719 C16.9532351,10.1414164 16.3525621,9.94119209 16.1055728,9.4472136 L15.881966,9 L8.11803399,9 L7.89442719,9.4472136 C7.64743794,9.94119209 7.0467649,10.1414164 6.5527864,9.89442719 C6.20262255,9.71934526 6.00006692,9.36654113 5.99978125,9 L4,9 L4,11 L20,11 L20,9 L18.0002188,9 Z M5.24661605,13 L6.80217161,20 L17.1978284,20 L18.7533839,13 L5.24661605,13 Z"></path></svg> Sản Phẩm</a>
-								</li>
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/products"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 30 30"><path fill="#7d8250" d="M23 14c-.7 0-1.4-.2-2-.6-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.4-1.3.6-2 .6s-1.4-.2-2-.5c-.6.3-1.3.5-2 .5v11c0 1.1.9 2 2 2h12V17h6v10h2c1.1 0 2-.9 2-2V14c-.7 0-1.4-.2-2-.5-.6.3-1.3.5-2 .5zm-10 9H7v-6h6v6zM26 6V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v1l-3 4c0 1.1.9 2 2 2s2-.9 2-2l2-4h3l-1 4c0 1.1.9 2 2 2s2-.9 2-2V6h4v4c0 1.1.9 2 2 2s2-.9 2-2l-1-4h3l2 4c0 1.1.9 2 2 2s2-.9 2-2l-3-4z"></path></svg> Mua Bán</a>
-								</li>
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/blogs" data-ajax="?link1=blogs"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f35d4d" d="M19,21 L5,21 C3.34314575,21 2,19.6568542 2,18 L2,3 L16,3 L18,3 L18,8 L22,8 L22,9 L22,18 C22,19.6568542 20.6568542,21 19,21 Z M16.1707057,19 C16.0601542,18.6872211 16,18.3506354 16,18 L16,5 L4,5 L4,18 C4,18.5522847 4.44771525,19 5,19 L16.1707057,19 Z M18,10 L18,18 C18,18.5522847 18.4477153,19 19,19 C19.5522847,19 20,18.5522847 20,18 L20,10 L18,10 Z M10,7 L10,11 L6,11 L6,7 L10,7 Z M14,8 L14,10 L11,10 L11,8 L14,8 Z M14,12 L14,14 L6,14 L6,12 L14,12 Z M14,15 L14,17 L6,17 L6,15 L14,15 Z"></path></svg> Bản Tin</a>
-								</li>
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/movies/"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#8d73cc" d="M23,19 C23,20.1045695 22.1045695,21 21,21 L9,21 C7.8954305,21 7,20.1045695 7,19 L7,5 C7,3.8954305 7.8954305,3 9,3 L21,3 C22.1045695,3 23,3.8954305 23,5 L23,19 Z M6,20 C4.8954305,20 4,19.1045695 4,18 L4,6 C4,4.8954305 4.8954305,4 6,4 L6,20 Z M3,19 C1.8954305,19 1,18.1045695 1,17 L1,7 C1,5.8954305 1.8954305,5 3,5 L3,19 Z M21,19 L21,5 L9,5 L9,19 L21,19 Z M13,9 L17,12 L13,15 L13,9 Z"></path></svg> Movies</a>
-								</li>
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/events/" data-ajax="?link1=events"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f25e4e" d="M20,8 L20,5 L18,5 L18,6 L16,6 L16,5 L8,5 L8,6 L6,6 L6,5 L4,5 L4,8 L20,8 Z M20,10 L4,10 L4,20 L20,20 L20,10 Z M18,3 L20,3 C21.1045695,3 22,3.8954305 22,5 L22,20 C22,21.1045695 21.1045695,22 20,22 L4,22 C2.8954305,22 2,21.1045695 2,20 L2,5 C2,3.8954305 2.8954305,3 4,3 L6,3 L6,2 L8,2 L8,3 L16,3 L16,2 L18,2 L18,3 Z M9,14 L7,14 L7,12 L9,12 L9,14 Z M13,14 L11,14 L11,12 L13,12 L13,14 Z M17,14 L15,14 L15,12 L17,12 L17,14 Z M9,18 L7,18 L7,16 L9,16 L9,18 Z M13,18 L11,18 L11,16 L13,16 L13,18 Z"></path></svg> Sự Kiện</a>
-								</li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/my-products" data-ajax="?link1=my-products"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#6a7f9a" d="M17.118034,7 L20,7 C21.1045695,7 22,7.8954305 22,9 L22,11 C22,11.8400191 21.4821261,12.5590822 20.7482321,12.8553354 C20.7516471,12.9031122 20.7533839,12.9513533 20.7533839,13 C20.7533839,13.1459247 20.7374136,13.2914111 20.7057581,13.4338609 L19.1502025,20.4338609 C18.9468525,21.348936 18.1352257,22 17.1978284,22 L6.80217161,22 C5.86477431,22 5.05314751,21.348936 4.84979749,20.4338609 L3.29424193,13.4338609 C3.25094564,13.2390276 3.23766963,13.0445179 3.25133987,12.8551625 C2.51767261,12.5588026 2,11.8398557 2,11 L2,9 C2,7.8954305 2.8954305,7 4,7 L6.88196601,7 L9.10557281,2.5527864 C9.35256206,2.05880791 9.9532351,1.85858356 10.4472136,2.10557281 C10.9411921,2.35256206 11.1414164,2.9532351 10.8944272,3.4472136 L9.11803399,7 L14.881966,7 L13.1055728,3.4472136 C12.8585836,2.9532351 13.0588079,2.35256206 13.5527864,2.10557281 C14.0467649,1.85858356 14.6474379,2.05880791 14.8944272,2.5527864 L17.118034,7 Z M18.0002188,9 C17.9999331,9.36654113 17.7973775,9.71934526 17.4472136,9.89442719 C16.9532351,10.1414164 16.3525621,9.94119209 16.1055728,9.4472136 L15.881966,9 L8.11803399,9 L7.89442719,9.4472136 C7.64743794,9.94119209 7.0467649,10.1414164 6.5527864,9.89442719 C6.20262255,9.71934526 6.00006692,9.36654113 5.99978125,9 L4,9 L4,11 L20,11 L20,9 L18.0002188,9 Z M5.24661605,13 L6.80217161,20 L17.1978284,20 L18.7533839,13 L5.24661605,13 Z"></path></svg> Sản Phẩm</a>
+                                </li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/products"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 30 30"><path fill="#7d8250" d="M23 14c-.7 0-1.4-.2-2-.6-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.3-1.3.6-2 .6s-1.4-.2-2-.6c-.6.4-1.3.6-2 .6s-1.4-.2-2-.5c-.6.3-1.3.5-2 .5v11c0 1.1.9 2 2 2h12V17h6v10h2c1.1 0 2-.9 2-2V14c-.7 0-1.4-.2-2-.5-.6.3-1.3.5-2 .5zm-10 9H7v-6h6v6zM26 6V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v1l-3 4c0 1.1.9 2 2 2s2-.9 2-2l2-4h3l-1 4c0 1.1.9 2 2 2s2-.9 2-2V6h4v4c0 1.1.9 2 2 2s2-.9 2-2l-1-4h3l2 4c0 1.1.9 2 2 2s2-.9 2-2l-3-4z"></path></svg> Mua Bán</a>
+                                </li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/blogs" data-ajax="?link1=blogs"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f35d4d" d="M19,21 L5,21 C3.34314575,21 2,19.6568542 2,18 L2,3 L16,3 L18,3 L18,8 L22,8 L22,9 L22,18 C22,19.6568542 20.6568542,21 19,21 Z M16.1707057,19 C16.0601542,18.6872211 16,18.3506354 16,18 L16,5 L4,5 L4,18 C4,18.5522847 4.44771525,19 5,19 L16.1707057,19 Z M18,10 L18,18 C18,18.5522847 18.4477153,19 19,19 C19.5522847,19 20,18.5522847 20,18 L20,10 L18,10 Z M10,7 L10,11 L6,11 L6,7 L10,7 Z M14,8 L14,10 L11,10 L11,8 L14,8 Z M14,12 L14,14 L6,14 L6,12 L14,12 Z M14,15 L14,17 L6,17 L6,15 L14,15 Z"></path></svg> Bản Tin</a>
+                                </li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/movies/"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#8d73cc" d="M23,19 C23,20.1045695 22.1045695,21 21,21 L9,21 C7.8954305,21 7,20.1045695 7,19 L7,5 C7,3.8954305 7.8954305,3 9,3 L21,3 C22.1045695,3 23,3.8954305 23,5 L23,19 Z M6,20 C4.8954305,20 4,19.1045695 4,18 L4,6 C4,4.8954305 4.8954305,4 6,4 L6,20 Z M3,19 C1.8954305,19 1,18.1045695 1,17 L1,7 C1,5.8954305 1.8954305,5 3,5 L3,19 Z M21,19 L21,5 L9,5 L9,19 L21,19 Z M13,9 L17,12 L13,15 L13,9 Z"></path></svg> Movies</a>
+                                </li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/events/" data-ajax="?link1=events"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#f25e4e" d="M20,8 L20,5 L18,5 L18,6 L16,6 L16,5 L8,5 L8,6 L6,6 L6,5 L4,5 L4,8 L20,8 Z M20,10 L4,10 L4,20 L20,20 L20,10 Z M18,3 L20,3 C21.1045695,3 22,3.8954305 22,5 L22,20 C22,21.1045695 21.1045695,22 20,22 L4,22 C2.8954305,22 2,21.1045695 2,20 L2,5 C2,3.8954305 2.8954305,3 4,3 L6,3 L6,2 L8,2 L8,3 L16,3 L16,2 L18,2 L18,3 Z M9,14 L7,14 L7,12 L9,12 L9,14 Z M13,14 L11,14 L11,12 L13,12 L13,14 Z M17,14 L15,14 L15,12 L17,12 L17,14 Z M9,18 L7,18 L7,16 L9,16 L9,18 Z M13,18 L11,18 L11,16 L13,16 L13,18 Z"></path></svg> Sự Kiện</a>
+                                </li>
 
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/groups" data-ajax="?link1=groups"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#03A9F4" d="M6.5,22 C4.01471863,22 2,19.9852814 2,17.5 C2,15.0147186 4.01471863,13 6.5,13 C8.98528137,13 11,15.0147186 11,17.5 C11,19.9852814 8.98528137,22 6.5,22 Z M17.5,22 C15.0147186,22 13,19.9852814 13,17.5 C13,15.0147186 15.0147186,13 17.5,13 C19.9852814,13 22,15.0147186 22,17.5 C22,19.9852814 19.9852814,22 17.5,22 Z M6.5,11 C4.01471863,11 2,8.98528137 2,6.5 C2,4.01471863 4.01471863,2 6.5,2 C8.98528137,2 11,4.01471863 11,6.5 C11,8.98528137 8.98528137,11 6.5,11 Z M17.5,11 C15.0147186,11 13,8.98528137 13,6.5 C13,4.01471863 15.0147186,2 17.5,2 C19.9852814,2 22,4.01471863 22,6.5 C22,8.98528137 19.9852814,11 17.5,11 Z M17.5,9 C18.8807119,9 20,7.88071187 20,6.5 C20,5.11928813 18.8807119,4 17.5,4 C16.1192881,4 15,5.11928813 15,6.5 C15,7.88071187 16.1192881,9 17.5,9 Z M6.5,9 C7.88071187,9 9,7.88071187 9,6.5 C9,5.11928813 7.88071187,4 6.5,4 C5.11928813,4 4,5.11928813 4,6.5 C4,7.88071187 5.11928813,9 6.5,9 Z M17.5,20 C18.8807119,20 20,18.8807119 20,17.5 C20,16.1192881 18.8807119,15 17.5,15 C16.1192881,15 15,16.1192881 15,17.5 C15,18.8807119 16.1192881,20 17.5,20 Z M6.5,20 C7.88071187,20 9,18.8807119 9,17.5 C9,16.1192881 7.88071187,15 6.5,15 C5.11928813,15 4,16.1192881 4,17.5 C4,18.8807119 5.11928813,20 6.5,20 Z"></path></svg> Chapter</a>
-								</li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/groups" data-ajax="?link1=groups"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#03A9F4" d="M6.5,22 C4.01471863,22 2,19.9852814 2,17.5 C2,15.0147186 4.01471863,13 6.5,13 C8.98528137,13 11,15.0147186 11,17.5 C11,19.9852814 8.98528137,22 6.5,22 Z M17.5,22 C15.0147186,22 13,19.9852814 13,17.5 C13,15.0147186 15.0147186,13 17.5,13 C19.9852814,13 22,15.0147186 22,17.5 C22,19.9852814 19.9852814,22 17.5,22 Z M6.5,11 C4.01471863,11 2,8.98528137 2,6.5 C2,4.01471863 4.01471863,2 6.5,2 C8.98528137,2 11,4.01471863 11,6.5 C11,8.98528137 8.98528137,11 6.5,11 Z M17.5,11 C15.0147186,11 13,8.98528137 13,6.5 C13,4.01471863 15.0147186,2 17.5,2 C19.9852814,2 22,4.01471863 22,6.5 C22,8.98528137 19.9852814,11 17.5,11 Z M17.5,9 C18.8807119,9 20,7.88071187 20,6.5 C20,5.11928813 18.8807119,4 17.5,4 C16.1192881,4 15,5.11928813 15,6.5 C15,7.88071187 16.1192881,9 17.5,9 Z M6.5,9 C7.88071187,9 9,7.88071187 9,6.5 C9,5.11928813 7.88071187,4 6.5,4 C5.11928813,4 4,5.11928813 4,6.5 C4,7.88071187 5.11928813,9 6.5,9 Z M17.5,20 C18.8807119,20 20,18.8807119 20,17.5 C20,16.1192881 18.8807119,15 17.5,15 C16.1192881,15 15,16.1192881 15,17.5 C15,18.8807119 16.1192881,20 17.5,20 Z M6.5,20 C7.88071187,20 9,18.8807119 9,17.5 C9,16.1192881 7.88071187,15 6.5,15 C5.11928813,15 4,16.1192881 4,17.5 C4,18.8807119 5.11928813,20 6.5,20 Z"></path></svg> Chapter</a>
+                                </li>
 
 
 
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/albums" data-ajax="?link1=albums"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#8bc34a" d="M4,15.5857864 L8,11.5857864 L11.5,15.0857864 L18,8.58578644 L20,10.5857864 L20,4 L4,4 L4,15.5857864 Z M4,18.4142136 L4,20 L13.5857864,20 L8,14.4142136 L4,18.4142136 Z M16.4142136,20 L20,20 L20,13.4142136 L18,11.4142136 L12.9142136,16.5 L16.4142136,20 Z M4,2 L20,2 C21.1045695,2 22,2.8954305 22,4 L22,20 C22,21.1045695 21.1045695,22 20,22 L4,22 C2.8954305,22 2,21.1045695 2,20 L2,4 C2,2.8954305 2.8954305,2 4,2 Z M11,5 C12.6568542,5 14,6.34314575 14,8 C14,9.65685425 12.6568542,11 11,11 C9.34314575,11 8,9.65685425 8,8 C8,6.34314575 9.34314575,5 11,5 Z M11,7 C10.4477153,7 10,7.44771525 10,8 C10,8.55228475 10.4477153,9 11,9 C11.5522847,9 12,8.55228475 12,8 C12,7.44771525 11.5522847,7 11,7 Z"></path></svg> Album</a>
-								</li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/albums" data-ajax="?link1=albums"><svg xmlns="http://www.w3.org/2000/svg" class="mobi_hd_ico" width="24" height="24" viewBox="0 0 24 24"><path fill="#8bc34a" d="M4,15.5857864 L8,11.5857864 L11.5,15.0857864 L18,8.58578644 L20,10.5857864 L20,4 L4,4 L4,15.5857864 Z M4,18.4142136 L4,20 L13.5857864,20 L8,14.4142136 L4,18.4142136 Z M16.4142136,20 L20,20 L20,13.4142136 L18,11.4142136 L12.9142136,16.5 L16.4142136,20 Z M4,2 L20,2 C21.1045695,2 22,2.8954305 22,4 L22,20 C22,21.1045695 21.1045695,22 20,22 L4,22 C2.8954305,22 2,21.1045695 2,20 L2,4 C2,2.8954305 2.8954305,2 4,2 Z M11,5 C12.6568542,5 14,6.34314575 14,8 C14,9.65685425 12.6568542,11 11,11 C9.34314575,11 8,9.65685425 8,8 C8,6.34314575 9.34314575,5 11,5 Z M11,7 C10.4477153,7 10,7.44771525 10,8 C10,8.55228475 10.4477153,9 11,9 C11.5522847,9 12,8.55228475 12,8 C12,7.44771525 11.5522847,7 11,7 Z"></path></svg> Album</a>
+                                </li>
 
-								<li><hr></li>
-								<li class="dropdown-hidden-link">
-									<a href="https://biztime.com.vn/setting/profile-setting" data-ajax="?link1=setting&amp;page=profile-setting">Sửa</a>
-								</li>
-								<li class="dropdown-hidden-link">
-									<a href="https://biztime.com.vn/setting/general-setting" data-ajax="?link1=setting&amp;page=general-setting">Cài đặt tài khoản</a>
-								</li>
-								<li class="dropdown-search-link">
-									<a href="https://biztime.com.vn/setting" data-ajax="?link1=setting">Thiết Lập</a>
-								</li>
-								<li><hr></li>
-								<li>
-									<a href="https://biztime.com.vn/logout">Đăng Xuất</a>
-								</li>
-								<li><hr></li>
-								<li class="dropdown-search-link">
-									<a href="javascript:void(0);" data-toggle="modal" data-target="#keyboard_shortcuts_box" id="keyboard_shortcut">
-										Phím tắt					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-command"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
-									</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" id="night_mode_toggle" data-mode="night">
-										<span id="night-mode-text">Chế độ ban đêm</span>
-										<svg class="feather feather-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-									</a>
-								</li>
-								<span class="headtoppoint"></span>
-							</ul>
+                                <li><hr></li>
+                                <li class="dropdown-hidden-link">
+                                    <a href="https://biztime.com.vn/setting/profile-setting" data-ajax="?link1=setting&amp;page=profile-setting">Sửa</a>
+                                </li>
+                                <li class="dropdown-hidden-link">
+                                    <a href="https://biztime.com.vn/setting/general-setting" data-ajax="?link1=setting&amp;page=general-setting">Cài đặt tài khoản</a>
+                                </li>
+                                <li class="dropdown-search-link">
+                                    <a href="https://biztime.com.vn/setting" data-ajax="?link1=setting">Thiết Lập</a>
+                                </li>
+                                <li><hr></li>
+                                <li>@Html.ActionLink("Đăng xuất", "SignOut", "Login")</li>
+                                <li><hr></li>
+                                <li class="dropdown-search-link">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#keyboard_shortcuts_box" id="keyboard_shortcut">
+                                        Phím tắt					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-command"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="night_mode_toggle" data-mode="night">
+                                        <span id="night-mode-text">Chế độ ban đêm</span>
+                                        <svg class="feather feather-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                                    </a>
+                                </li>
+                                <span class="headtoppoint"></span>
+                            </ul>
 						</li>
 					</ul>
 				</div>

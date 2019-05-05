@@ -13,8 +13,6 @@ namespace Engnest.Entities.ViewModels
 
 		[Required(ErrorMessage ="Enter your password")]
 		public string Password { get; set; }
-
-		public bool RememberMe { get; set; }
 	}
 
 	public class SignInModel
@@ -33,7 +31,5 @@ namespace Engnest.Entities.ViewModels
 
 		[Required(ErrorMessage ="Enter your last name")]
 		public string LastName { get; set; }
-
-		public bool RememberMe { get; set; }
 	}
 }
