@@ -19,6 +19,8 @@ namespace Engnest.Entities.Entity
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<SystermCode> SystermCodes { get; set; }
         public virtual DbSet<User> Users { get; set; }
+		public virtual DbSet<GroupMember> GroupMembers { get; set; }
+		public virtual DbSet<Relationship> Relationships { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

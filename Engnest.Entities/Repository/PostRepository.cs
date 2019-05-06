@@ -24,6 +24,25 @@ namespace Engnest.Entities.Repository
             return context.Posts.ToList();
         }
 
+		 public List<Post> LoadPostsHome(string date,long UserId)
+        {
+			DateTime createDate = DateTime.Now;
+			if(!string.IsNullOrEmpty(date))
+				createDate = DateTime.Parse(date);
+			var result = (from c in context.Posts
+				join p1 in context.Relationships on UserId equals p1.UserReceiveID  into ps1
+				from p1 in ps1.DefaultIfEmpty()
+				join p2 in context.Relationships on UserId equals p2.UserSentID  into ps2
+				from p2 in ps2.DefaultIfEmpty()
+				join p3 in context.GroupMembers on UserId equals p3.UserID  into ps3
+				from p3 in ps3.DefaultIfEmpty()
+				where c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID ||  c.TargetId == p3.GroupID
+				&& c.CreatedTime < createDate
+				orderby c.CreatedTime
+				select c).Take(10).ToList();
+            return result;
+        }
+
         public Post GetPostByID(long id)
         {
             return context.Posts.Find(id);

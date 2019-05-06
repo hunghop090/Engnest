@@ -307,6 +307,9 @@
     </div>
 </div>
 <script>
+	$(document).ready(function () {
+		LoadMorePost();
+	});
 	function PushPost() {
 		var postText = $("#publisher-box-focus textarea[name=postText]").val();
             $.ajax({
@@ -316,6 +319,8 @@
                 dataType: "json",
                 success: function (result) {
 					if (result.result == @Constant.SUCCESS) {
+						Wo_HidePosInfo();
+						debugger
 						EngnestFlash.notice("Created Post success");
 					}
                     else
@@ -326,4 +331,24 @@
                 }
             });
 	}
+	
+	function LoadMorePost(date) {
+	debugger
+            $.ajax({
+                url: "/Home/LoadMorePost",
+                type: "GET",
+                data: { date: date },
+                dataType: "json",
+                success: function (result) {
+					if (result.result == @Constant.SUCCESS) {
+						debugger;
+						var a=result;
+					}
+					else {
+					}
+                },
+                error: function (data) {
+                }
+            });
+		}
 </script>

@@ -93,9 +93,11 @@
     <Compile Include="Entity\Emotion.cs" />
     <Compile Include="Entity\Engnest.cs" />
     <Compile Include="Entity\Group.cs" />
+    <Compile Include="Entity\Relationship.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="Entity\Post.cs" />
     <Compile Include="Entity\SystermCode.cs" />
+    <Compile Include="Entity\GroupMember.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="IRepository\IPostRepository.cs" />
     <Compile Include="IRepository\IUserRepository.cs" />
