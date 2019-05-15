@@ -604,3 +604,12 @@ h5 {
 .page-minimize .ajax-notification {
     left: 0;
 }
+
+.post-heading .image {
+	margin-left: 34px;
+}
+
+#wo_post_stat_button .stat-item.active-like {
+	color: #1da1f2
+}
+

@@ -10,7 +10,7 @@ namespace Engnest.Entities.IRepository
 	public interface  IPostRepository : IDisposable
 	{
         List<Post> GetPosts();
-		List<Post> LoadPostsHome(string date,long UserId);
+		List<PostViewModel> LoadPostsHome(string date,long UserId);
         Post GetPostByID(long PostId);
         List<Post> GetPostByTargetId(long TargetId);
         void InsertPost(Post Post);

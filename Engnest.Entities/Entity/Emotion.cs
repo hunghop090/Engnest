@@ -22,5 +22,7 @@ namespace Engnest.Entities.Entity
         public string TargetType { get; set; }
 
         public DateTime CreatedTime { get; set; }
+
+		public byte Status { get; set; }
     }
 }

@@ -17,22 +17,27 @@ namespace Engnest.Controllers
 	{
 		private IUserRepository userRepository;
 		private IPostRepository postRepository;
+		private IEmotionRepository emotionRepository;
 
 		public HomeController()
 		{
 			this.userRepository = new UserRepository(new EngnestContext());
 			this.postRepository = new PostRepository(new EngnestContext());
+			this.emotionRepository = new EmotionRepository(new EngnestContext());
 		}
 
-		public HomeController(IUserRepository userRepository, IPostRepository postRepository)
+		public HomeController(IUserRepository userRepository, IPostRepository postRepository, IEmotionRepository emotionRepository)
 		{
 			this.userRepository = userRepository;
 			this.postRepository = postRepository;
+			this.emotionRepository = emotionRepository;
 		}
 		public ActionResult Index()
 		{
-			var fooDto = Mapper.Map<ProfileModel>(userLogin);
-			return View();
+			HomeModel model = new HomeModel();
+			model.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
+
+			return View(model);
 		}
 		public ActionResult LoadMorePost(string date)
 		{
@@ -40,14 +45,14 @@ namespace Engnest.Controllers
 			{
 				var id = userLogin.ID;
 				var data = postRepository.LoadPostsHome(date, userLogin.ID);
-				return Json(new { result = Constant.SUCCESS, data = data },JsonRequestBehavior.AllowGet);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
 			{
-				return Json(new { result = Constant.ERROR, message = ex.Message },JsonRequestBehavior.AllowGet);
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
 			}
 
-			
+
 		}
 
 		[HttpPost]
@@ -68,6 +73,45 @@ namespace Engnest.Controllers
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
 			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult LikeAction(long PostId)
+		{
+			byte status = 0;
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					var oldEmotion = emotionRepository.GetEmotionByTargetId(PostId);
+					if (oldEmotion.Count != 0)
+					{
+						if(oldEmotion.FirstOrDefault().Status == 0)
+							oldEmotion.FirstOrDefault().Status = 1;
+						else
+							oldEmotion.FirstOrDefault().Status = 0;
+						status = oldEmotion.FirstOrDefault().Status;
+						emotionRepository.UpdateEmotion(oldEmotion.First());
+					}
+					else
+					{
+						Emotion emotion = new Emotion();
+						emotion.TargetId = PostId;
+						emotion.TargetType = "post";
+						emotion.UserId = userLogin.ID;
+						emotion.CreatedTime = DateTime.Now;
+						emotion.Status = 1;
+						emotionRepository.InsertEmotion(emotion);
+						status = 1;
+					}
+				}
+				catch (Exception ex)
+				{
+					return Json(new { result = Constant.ERROR });
+				}
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS, status});
 		}
 	}
 }

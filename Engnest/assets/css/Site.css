@@ -2436,7 +2436,7 @@ input[readonly] {
 	font-weight: 700
 }
 
-.active-like {
+#wo_post_stat_button .stat-item.active-like {
 	color: #1da1f2
 }
 
@@ -23455,4 +23455,8 @@ i.fa-search {
 
 .page-minimize .ajax-notification {
 	left: 0;
+}
+
+.post-heading .image {
+	margin-left: 34px;
 }

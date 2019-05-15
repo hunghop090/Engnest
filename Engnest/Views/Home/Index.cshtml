@@ -1,327 +1,378 @@
 ﻿@using Engnest.Entities.Common;
+@model Engnest.Entities.ViewModels.HomeModel
+@{
+	var href = HttpContext.Current.Request.Url.Host;
+}
+
 <div class="content-container container" style="transform: none;">
-    <div class="ad-placement-header-footer">
-    </div>
-    <div id="contnet" style="transform: none;">
-        <div class="page-margin" style="transform: none;">
-            <div class="row" style="transform: none;">
-                <div class="col-md-2 leftcol" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 525px;">
+	<div class="ad-placement-header-footer">
+	</div>
+	<div id="contnet" style="transform: none;">
+		<div class="page-margin" style="transform: none;">
+			<div class="row" style="transform: none;">
+				<div class="col-md-2 leftcol" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 525px;">
 
 
-                    <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 0px; position: fixed; transform: translateY(65px); left: 99px; top: 0px; width: 156.719px;">
-                        <div class="left-sidebar">
-                            <ul>
-                                <li>
-                                    <a href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223">
-                                        <img alt="Onl Hero Profile Picture" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0"> Onl Hero
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://biztime.com.vn" data-ajax="?index.php?link1=home">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg> News Feed
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-7 profile-lists middlecol">
+					<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 0px; position: fixed; transform: translateY(65px); left: 99px; top: 0px; width: 156.719px;">
+						<div class="left-sidebar">
+							<ul>
+								<li>
+									<a href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223">
+										<img alt="Onl Hero Profile Picture" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0"> Onl Hero
+									</a>
+								</li>
+								<li>
+									<a href="https://biztime.com.vn" data-ajax="?index.php?link1=home">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg> News Feed
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-7 profile-lists middlecol">
 
-                    <form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
-                        <div class="panel post panel-shadow sun_pub_box">
-                            <div id="post-textarea" onclick="Wo_ShowPosInfo();">
-                                <img class="post-avatar" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0">
-                                <div class="sun_pub_name">
-                                    <span>Onl Hero</span>
-                                </div>
-                                <i class="fa fa-spinner fa-spin" id="loading_indicator"></i>
-                                <textarea name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Bạn đang nghĩ gì? #Gắnthẻ.. Đềcập.. Link.." dir="auto" style="height: 112px;" autocomplete="off"></textarea>
-                                <!--Add Emojis-->
-                                <div class="dropdown add-emoticons">
-                                    <a href="#" class="dropdown-toggle" type="button" id="dropdownEmo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24" class="feather feather-emoticons"><path d="M12,23 C5.92486775,23 1,18.0751322 1,12 C1,5.92486775 5.92486775,1 12,1 C18.0751322,1 23,5.92486775 23,12 C23,18.0751322 18.0751322,23 12,23 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z M15.2746538,14.2978292 L16.9105622,15.4483958 C15.7945475,17.0351773 13.9775544,18 12,18 C10.0224456,18 8.20545254,17.0351773 7.08943782,15.4483958 L8.72534624,14.2978292 C9.4707028,15.3575983 10.6804996,16 12,16 C13.3195004,16 14.5292972,15.3575983 15.2746538,14.2978292 Z M14,11 L14,9 L16,9 L16,11 L14,11 Z M8,11 L8,9 L10,9 L10,11 L8,11 Z"></path></svg>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownEmo">
-                                        <div>
-                                            <span onclick="Wo_AddEmo(':)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smile"></i></span><span onclick="Wo_AddEmo('(<','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-joy"></i></span><span onclick="Wo_AddEmo('**)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-relaxed"></i></span><span onclick="Wo_AddEmo(':p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue-winking-eye"></i></span><span onclick="Wo_AddEmo(':_p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue"></i></span><span onclick="Wo_AddEmo('B)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunglasses"></i></span><span onclick="Wo_AddEmo(';)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-wink"></i></span><span onclick="Wo_AddEmo(':D','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-grin"></i></span><span onclick="Wo_AddEmo('/_)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smirk"></i></span><span onclick="Wo_AddEmo('0)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-innocent"></i></span><span onclick="Wo_AddEmo(':_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cry"></i></span><span onclick="Wo_AddEmo(':__(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sob"></i></span><span onclick="Wo_AddEmo(':(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-disappointed"></i></span><span onclick="Wo_AddEmo(':*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-kissing-heart"></i></span><span onclick="Wo_AddEmo('<3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart"></i></span><span onclick="Wo_AddEmo('</3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-broken-heart"></i></span><span onclick="Wo_AddEmo('*_*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart-eyes"></i></span><span onclick="Wo_AddEmo('<5','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-star"></i></span><span onclick="Wo_AddEmo(':o','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-open-mouth"></i></span><span onclick="Wo_AddEmo(':0','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream"></i></span><span onclick="Wo_AddEmo('o(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-anguished"></i></span><span onclick="Wo_AddEmo('-_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-unamused"></i></span><span onclick="Wo_AddEmo('x(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-angry"></i></span><span onclick="Wo_AddEmo('X(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rage"></i></span><span onclick="Wo_AddEmo('-_-','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-expressionless"></i></span><span onclick="Wo_AddEmo(':-/','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-confused"></i></span><span onclick="Wo_AddEmo(':|','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-neutral-face"></i></span><span onclick="Wo_AddEmo('!_','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-exclamation"></i></span><span onclick="Wo_AddEmo(':yum:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yum"></i></span><span onclick="Wo_AddEmo(':triumph:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-triumph"></i></span><span onclick="Wo_AddEmo(':imp:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-imp"></i></span><span onclick="Wo_AddEmo(':hear_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hear-no-evil"></i></span><span onclick="Wo_AddEmo(':alien:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-alien"></i></span><span onclick="Wo_AddEmo(':yellow_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yellow-heart"></i></span><span onclick="Wo_AddEmo(':sleeping:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sleeping"></i></span><span onclick="Wo_AddEmo(':mask:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mask"></i></span><span onclick="Wo_AddEmo(':no_mouth:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-no-mouth"></i></span><span onclick="Wo_AddEmo(':weary:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-weary"></i></span><span onclick="Wo_AddEmo(':dizzy_face:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dizzy-face"></i></span><span onclick="Wo_AddEmo(':man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-man"></i></span><span onclick="Wo_AddEmo(':woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-woman"></i></span><span onclick="Wo_AddEmo(':boy:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-boy"></i></span><span onclick="Wo_AddEmo(':girl:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-girl"></i></span><span onclick="Wo_AddEmo(':оlder_man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-man"></i></span><span onclick="Wo_AddEmo(':оlder_woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-woman"></i></span><span onclick="Wo_AddEmo(':cop:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cop"></i></span><span onclick="Wo_AddEmo(':dancers:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dancers"></i></span><span onclick="Wo_AddEmo(':speak_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-speak-no-evil"></i></span><span onclick="Wo_AddEmo(':lips:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-lips"></i></span><span onclick="Wo_AddEmo(':see_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-see-no-evil"></i></span><span onclick="Wo_AddEmo(':dog:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dog"></i></span><span onclick="Wo_AddEmo(':bear:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bear"></i></span><span onclick="Wo_AddEmo(':rose:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rose"></i></span><span onclick="Wo_AddEmo(':gift_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gift-heart"></i></span><span onclick="Wo_AddEmo(':ghost:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ghost"></i></span><span onclick="Wo_AddEmo(':bell:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bell"></i></span><span onclick="Wo_AddEmo(':video_game:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-video-game"></i></span><span onclick="Wo_AddEmo(':soccer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-soccer"></i></span><span onclick="Wo_AddEmo(':books:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-books"></i></span><span onclick="Wo_AddEmo(':moneybag:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-moneybag"></i></span><span onclick="Wo_AddEmo(':mortar_board:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mortar-board"></i></span><span onclick="Wo_AddEmo(':hand:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hand"></i></span><span onclick="Wo_AddEmo(':tiger:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tiger"></i></span><span onclick="Wo_AddEmo(':elephant:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-elephant"></i></span><span onclick="Wo_AddEmo(':scream_cat:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream-cat"></i></span><span onclick="Wo_AddEmo(':monkey:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-monkey"></i></span><span onclick="Wo_AddEmo(':bird:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bird"></i></span><span onclick="Wo_AddEmo(':snowflake:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-snowflake"></i></span><span onclick="Wo_AddEmo(':sunny:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunny"></i></span><span onclick="Wo_AddEmo(':оcean:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ocean"></i></span><span onclick="Wo_AddEmo(':umbrella:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-umbrella"></i></span><span onclick="Wo_AddEmo(':hibiscus:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hibiscus"></i></span><span onclick="Wo_AddEmo(':tulip:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tulip"></i></span><span onclick="Wo_AddEmo(':computer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-computer"></i></span><span onclick="Wo_AddEmo(':bomb:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bomb"></i></span><span onclick="Wo_AddEmo(':gem:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gem"></i></span><span onclick="Wo_AddEmo(':ring:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ring"></i></span>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!--Publisher Box Footer-->
-                            <div class="sun_pub_mid_foot">
-                                <!--Uploaded Image-->
-                                <div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
-                                    <span class="btn btn-file img">
-                                        <img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh"> Kèm ảnh					<input type="file" id="publisher-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
-                                    </span>
-                                </div>
-                                <!--Create Poll-->
-                                <div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
-                                    <span class="btn btn-file poll-form pol">
-                                        <img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-poll.svg" alt="Tạo thăm dò"> Tạo thăm dò
-                                    </span>
-                                </div>
-                                <!--Uploaded Video-->
-                                <div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
-                                    <span class="btn btn-file vid">
-                                        <img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-vid.svg" alt="Kèm video"> Kèm video						<input type="file" id="publisher-video" name="postVideo" accept="video/*">
-                                    </span>
-                                </div>
-                                <div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
-                                    <span class="btn mor">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> <span>Thêm</span>
-                                    </span>
-                                </div>
-                            </div>
-
-
-                            <!--Publisher Box Footer-->
-                            <div class="publisher-box-footer">
-                                <div class="sun_pub_more">
-                                    <!--Add GIFs-->
-                                    <div class="sun_pub_more_items gif-form">
-                                        <div class="poster-left-buttons">
-                                            <span class="btn btn-file btngif gif" style="padding: 0px;">
-                                                <span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-gif.svg" alt="GIF"></span> GIF
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!--Record Audio-->
-                                    <div class="sun_pub_more_items" id="recordPostAudioWrapper">
-                                        <div class="poster-left-buttons">
-                                            <span class="btn btn-file rec">
-                                                <span id="recordPostAudio" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
-                                            </span>
-                                            <span id="postRecordingTime" class="hidden">00:00</span>
-                                        </div>
-                                    </div>
-                                    <!--Add Feeling-->
-                                    <div class="sun_pub_more_items emo-form">
-                                        <div class="poster-left-buttons">
-                                            <span class="btn btn-file fel">
-                                                <span><img src="https://biztime.com.vn/themes/biztime-s/img/1f600.png" alt="Cảm xúc"></span>
-                                                Cảm xúc
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!--Uploaded File-->
-                                    <div class="sun_pub_more_items">
-                                        <div class="poster-left-buttons">
-                                            <span class="btn btn-file fil">
-                                                <span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-file.svg" alt="Kèm File"></span> Kèm File						<input type="file" id="publisher-file" name="postFile">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!--Create Product-->
-                                    <div class="sun_pub_more_items">
-                                        <div class="poster-left-buttons">
-                                            <a href="#" data-toggle="modal" data-target="#create-product-modal" class="btn btn-file sel">
-                                                <span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-product.svg" alt="Bán hàng"></span> Bán hàng
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!--Add Location-->
-                                    <div class="sun_pub_more_items">
-                                        <div class="poster-left-buttons">
-                                            <span class="btn btn-file map-form loc">
-                                                <span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-map.svg" alt="Địa điểm"></span> Địa điểm
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!--Uploaded Music-->
-                                    <div class="sun_pub_more_items">
-                                        <div class="poster-left-buttons">
-                                            <span class="btn btn-file aud">
-                                                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#3f51b5" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"></path></svg></span> Nhạc						<input type="file" id="publisher-music" name="postMusic" accept="audio/*">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pub-footer-bottom">
-                                    <div class="pull-right">
-                                        <button type="button" onclick="PushPost()" id="publisher-button" class="btn btn-main">
-                                            <span>Chia sẻ</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="pull-right"><div class="ball-pulse"><div></div><div></div><div></div></div></div>
-
-                                    <div id="status"></div>
-
-                                    <div class="pull-left">
-                                        <div class="poster-left-select">
-                                            <div class="publisher-hidden-option inputsm">
-                                                <div class="sun_pub_privacy">
-                                                    <div class="sun_pub_privacy_dropdown">
-                                                        <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</p>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg>
-
-                                                    </div>
-                                                    <ul class="sun_pub_privacy_menu">
-                                                        <li>
-                                                            <label>
-                                                                <input type="radio" class="option-input radio" name="postPrivacy" id="3" value="3">
-                                                                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"></path></svg> Chỉ Mình Tôi</span>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input type="radio" class="option-input radio" name="postPrivacy" id="0" value="0" checked="">
-                                                                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</span>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input type="radio" class="option-input radio" name="postPrivacy" id="1" value="1">
-                                                                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"></path></svg> Bạn của tôi</span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="pull-left charsLeft-post"><span id="charsLeft">5000</span></div>
-
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="hash_id" value="83c1b24c6399b8284b114fb23fa4a965446d27fc">
-                        <input type="hidden" name="postRecord" value="" id="postRecord">
-                        <input type="hidden" name="postSticker" value="" id="postSticker" onchange="alert(this.value)">
-                    </form>
-                    <div class="wo_my_pages">
-                        <div>
-                            <h5 class="search-filter-center-text empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-flag"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg> Chưa có trang nào</h5>				<div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-conatnier col-md-3 rightcol sidebar_fixed no-padding-left" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-
-                    <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
-                        <div class="sidebar">
-                            <!-- Trending -->
-                            <ul class="list-group trending">
-                                <li class="sidebar-title-back" contenteditable="false">Trending !</li>
-                                <li class="list-group-item sun_htag" dir="auto">
-                                    <a href="https://biztime.com.vn/hashtag/biztime" data-ajax="?link1=hashtag&amp;hash=biztime">
-                                        <span class="htag_top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"></path></svg> #biztime</span>
-                                        <span class="htag_bottom">11 bài đăng</span>
-                                    </a>
-                                </li>
-                                <div class="clear"></div>
-                            </ul>
-
-                            <!-- Pro Users -->
-                            <ul class="list-group">
-                                <li class="text-muted sidebar-title-back" contenteditable="false">Thành viên nổi bật</li>
-                                <ul class="list-inline wo_pro_users">
-                                    <li>
-                                        <a class="user" href="https://biztime.com.vn/hanbabe" data-ajax="?link1=timeline&amp;u=hanbabe">
-                                            <img alt="Hân Hân" src="https://biztime.com.vn/upload/photos/2018/12/XjboVszbVjtsJQRYOAAV_02_eaad95e001832de5138cb2ed1bda2d87_avatar.jpg?cache=0">
-                                            <span title="Hân Hân">Hân Hân</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </ul>
-
-                            <!-- Promoted Page -->
-                            <!-- Birthday -->
-                            <!-- People You May Know -->
-                            <ul class="list-group" id="sidebar-user-list-container">
-                                <li class="text-muted sidebar-title-back" contenteditable="false">
-                                    Những người bạn có thể biết	<span onclick="Wo_ReloadSideBarUsers();" class="pull-right refresh"><i class="fa fa-repeat progress-icon" data-icon="repeat"></i></span>
-                                </li>
-                                <li>
-                                    <div class="sidebar-users-may-know-container">
-                                        <div class="wo_sidebar_users">
-                                            <div class="avatar pull-left">
-                                                <a href="https://biztime.com.vn/PhuongTan" data-ajax="?link1=timeline&amp;u=PhuongTan"><img src="https://biztime.com.vn/upload/photos/d-avatar.jpg?cache=0" alt="Phương Tân"></a>
-                                            </div>
-                                            <div class="info_prt">
-                                                <span class="user-popover" data-id="654" data-type="user">
-                                                    <a href="https://biztime.com.vn/PhuongTan" data-ajax="?link1=timeline&amp;u=PhuongTan" class="wo_user_link_name">
-                                                        <span class="user-name" title="Phương Tân">Phương Tân</span>
-                                                    </a>
-                                                </span>
-                                                <div class="user-follow-button">
-                                                    <span id="Follow-654">
-                                                        <button type="button" onclick="Wo_RegisterFollow(654)" class="btn btn-default btn-sm wo_follow_btn" id="wo_useract_btn">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-                                                            <span class="button-text"> Thêm bạn bè</span>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </li>
-                            </ul>
-                            <ul class="list-group">
-                                <li class="list-group-item sidebar-title-back" contenteditable="false">Mời Bạn Bè</li>
-                                <li>
-                                    <form action="#" method="post" class="invite-user-form">
-                                        <div class="invite-user-form-alert"></div>
-                                        <div class="invite-user-combine">
-                                            <input type="text" name="email" placeholder="E-mail" class="form-control">
-                                            <button class="btn btn-main btn-sm" title="Gởi Lời Mời">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                                            </button>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </form>
-                                </li>
-                            </ul>
-                            <!-- Pages You May Like -->
-                            <!-- Sidebar Ad -->
+					<form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
+						<div class="panel post panel-shadow sun_pub_box">
+							<div id="post-textarea" onclick="Wo_ShowPosInfo();">
+								<img class="post-avatar" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0">
+								<div class="sun_pub_name">
+									<span>Onl Hero</span>
+								</div>
+								<i class="fa fa-spinner fa-spin" id="loading_indicator"></i>
+								<textarea name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Bạn đang nghĩ gì? #Gắnthẻ.. Đềcập.. Link.." dir="auto" style="height: 112px;" autocomplete="off"></textarea>
+								<!--Add Emojis-->
+								<div class="dropdown add-emoticons">
+									<a href="#" class="dropdown-toggle" type="button" id="dropdownEmo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24" class="feather feather-emoticons"><path d="M12,23 C5.92486775,23 1,18.0751322 1,12 C1,5.92486775 5.92486775,1 12,1 C18.0751322,1 23,5.92486775 23,12 C23,18.0751322 18.0751322,23 12,23 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z M15.2746538,14.2978292 L16.9105622,15.4483958 C15.7945475,17.0351773 13.9775544,18 12,18 C10.0224456,18 8.20545254,17.0351773 7.08943782,15.4483958 L8.72534624,14.2978292 C9.4707028,15.3575983 10.6804996,16 12,16 C13.3195004,16 14.5292972,15.3575983 15.2746538,14.2978292 Z M14,11 L14,9 L16,9 L16,11 L14,11 Z M8,11 L8,9 L10,9 L10,11 L8,11 Z"></path></svg>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownEmo">
+										<div>
+											<span onclick="Wo_AddEmo(':)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smile"></i></span><span onclick="Wo_AddEmo('(<','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-joy"></i></span><span onclick="Wo_AddEmo('**)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-relaxed"></i></span><span onclick="Wo_AddEmo(':p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue-winking-eye"></i></span><span onclick="Wo_AddEmo(':_p','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-stuck-out-tongue"></i></span><span onclick="Wo_AddEmo('B)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunglasses"></i></span><span onclick="Wo_AddEmo(';)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-wink"></i></span><span onclick="Wo_AddEmo(':D','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-grin"></i></span><span onclick="Wo_AddEmo('/_)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-smirk"></i></span><span onclick="Wo_AddEmo('0)','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-innocent"></i></span><span onclick="Wo_AddEmo(':_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cry"></i></span><span onclick="Wo_AddEmo(':__(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sob"></i></span><span onclick="Wo_AddEmo(':(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-disappointed"></i></span><span onclick="Wo_AddEmo(':*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-kissing-heart"></i></span><span onclick="Wo_AddEmo('<3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart"></i></span><span onclick="Wo_AddEmo('</3','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-broken-heart"></i></span><span onclick="Wo_AddEmo('*_*','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-heart-eyes"></i></span><span onclick="Wo_AddEmo('<5','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-star"></i></span><span onclick="Wo_AddEmo(':o','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-open-mouth"></i></span><span onclick="Wo_AddEmo(':0','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream"></i></span><span onclick="Wo_AddEmo('o(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-anguished"></i></span><span onclick="Wo_AddEmo('-_(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-unamused"></i></span><span onclick="Wo_AddEmo('x(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-angry"></i></span><span onclick="Wo_AddEmo('X(','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rage"></i></span><span onclick="Wo_AddEmo('-_-','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-expressionless"></i></span><span onclick="Wo_AddEmo(':-/','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-confused"></i></span><span onclick="Wo_AddEmo(':|','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-neutral-face"></i></span><span onclick="Wo_AddEmo('!_','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-exclamation"></i></span><span onclick="Wo_AddEmo(':yum:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yum"></i></span><span onclick="Wo_AddEmo(':triumph:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-triumph"></i></span><span onclick="Wo_AddEmo(':imp:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-imp"></i></span><span onclick="Wo_AddEmo(':hear_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hear-no-evil"></i></span><span onclick="Wo_AddEmo(':alien:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-alien"></i></span><span onclick="Wo_AddEmo(':yellow_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-yellow-heart"></i></span><span onclick="Wo_AddEmo(':sleeping:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sleeping"></i></span><span onclick="Wo_AddEmo(':mask:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mask"></i></span><span onclick="Wo_AddEmo(':no_mouth:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-no-mouth"></i></span><span onclick="Wo_AddEmo(':weary:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-weary"></i></span><span onclick="Wo_AddEmo(':dizzy_face:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dizzy-face"></i></span><span onclick="Wo_AddEmo(':man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-man"></i></span><span onclick="Wo_AddEmo(':woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-woman"></i></span><span onclick="Wo_AddEmo(':boy:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-boy"></i></span><span onclick="Wo_AddEmo(':girl:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-girl"></i></span><span onclick="Wo_AddEmo(':оlder_man:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-man"></i></span><span onclick="Wo_AddEmo(':оlder_woman:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-older-woman"></i></span><span onclick="Wo_AddEmo(':cop:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-cop"></i></span><span onclick="Wo_AddEmo(':dancers:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dancers"></i></span><span onclick="Wo_AddEmo(':speak_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-speak-no-evil"></i></span><span onclick="Wo_AddEmo(':lips:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-lips"></i></span><span onclick="Wo_AddEmo(':see_no_evil:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-see-no-evil"></i></span><span onclick="Wo_AddEmo(':dog:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-dog"></i></span><span onclick="Wo_AddEmo(':bear:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bear"></i></span><span onclick="Wo_AddEmo(':rose:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-rose"></i></span><span onclick="Wo_AddEmo(':gift_heart:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gift-heart"></i></span><span onclick="Wo_AddEmo(':ghost:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ghost"></i></span><span onclick="Wo_AddEmo(':bell:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bell"></i></span><span onclick="Wo_AddEmo(':video_game:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-video-game"></i></span><span onclick="Wo_AddEmo(':soccer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-soccer"></i></span><span onclick="Wo_AddEmo(':books:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-books"></i></span><span onclick="Wo_AddEmo(':moneybag:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-moneybag"></i></span><span onclick="Wo_AddEmo(':mortar_board:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-mortar-board"></i></span><span onclick="Wo_AddEmo(':hand:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hand"></i></span><span onclick="Wo_AddEmo(':tiger:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tiger"></i></span><span onclick="Wo_AddEmo(':elephant:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-elephant"></i></span><span onclick="Wo_AddEmo(':scream_cat:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-scream-cat"></i></span><span onclick="Wo_AddEmo(':monkey:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-monkey"></i></span><span onclick="Wo_AddEmo(':bird:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bird"></i></span><span onclick="Wo_AddEmo(':snowflake:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-snowflake"></i></span><span onclick="Wo_AddEmo(':sunny:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-sunny"></i></span><span onclick="Wo_AddEmo(':оcean:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ocean"></i></span><span onclick="Wo_AddEmo(':umbrella:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-umbrella"></i></span><span onclick="Wo_AddEmo(':hibiscus:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-hibiscus"></i></span><span onclick="Wo_AddEmo(':tulip:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-tulip"></i></span><span onclick="Wo_AddEmo(':computer:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-computer"></i></span><span onclick="Wo_AddEmo(':bomb:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-bomb"></i></span><span onclick="Wo_AddEmo(':gem:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-gem"></i></span><span onclick="Wo_AddEmo(':ring:','#post-textarea textarea'), Wo_ShowPosInfo();"><i class="pointer twa-lg twa twa-ring"></i></span>
+										</div>
+									</ul>
+								</div>
+							</div>
+							<!--Publisher Box Footer-->
+							<div class="sun_pub_mid_foot">
+								<!--Uploaded Image-->
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn btn-file img">
+										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh"> Kèm ảnh					<input type="file" id="publisher-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
+									</span>
+								</div>
+								<!--Create Poll-->
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn btn-file poll-form pol">
+										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-poll.svg" alt="Tạo thăm dò"> Tạo thăm dò
+									</span>
+								</div>
+								<!--Uploaded Video-->
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn btn-file vid">
+										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-vid.svg" alt="Kèm video"> Kèm video						<input type="file" id="publisher-video" name="postVideo" accept="video/*">
+									</span>
+								</div>
+								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
+									<span class="btn mor">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> <span>Thêm</span>
+									</span>
+								</div>
+							</div>
 
 
-                            <div class="page-margin">
-                                <div class="footer-wrapper sidebar">
-                                    <div class="footer-powered">
-                                        <p>
-                                            © 2019 Mạng Xã Hội Việt Nam
-                                        </p>
-                                    </div>
-                                    <ul class="list-inline pull-left">
-                                        <li>@Html.ActionLink("Timeline", "", "Home")</li>
-                                        <li>@Html.ActionLink("Giới thiệu", "about_us", "Home")</li>
-                                        <li>@Html.ActionLink("Liên hệ", "contact-us", "Home")</li>
-                                        <li>@Html.ActionLink("Bảo mật", "privacy-policy", "Home")</li>
-                                        <li>@Html.ActionLink("Điều khoản", "terms", "Home")</li>
-                                        <li>@Html.ActionLink("FAQ", "faq", "Home")</li>
-                                    </ul>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+							<!--Publisher Box Footer-->
+							<div class="publisher-box-footer">
+								<div class="sun_pub_more">
+									<!--Add GIFs-->
+									<div class="sun_pub_more_items gif-form">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file btngif gif" style="padding: 0px;">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-gif.svg" alt="GIF"></span> GIF
+											</span>
+										</div>
+									</div>
+									<!--Record Audio-->
+									<div class="sun_pub_more_items" id="recordPostAudioWrapper">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file rec">
+												<span id="recordPostAudio" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
+											</span>
+											<span id="postRecordingTime" class="hidden">00:00</span>
+										</div>
+									</div>
+									<!--Add Feeling-->
+									<div class="sun_pub_more_items emo-form">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file fel">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/1f600.png" alt="Cảm xúc"></span>
+												Cảm xúc
+											</span>
+										</div>
+									</div>
+									<!--Uploaded File-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file fil">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-file.svg" alt="Kèm File"></span> Kèm File						<input type="file" id="publisher-file" name="postFile">
+											</span>
+										</div>
+									</div>
+									<!--Create Product-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<a href="#" data-toggle="modal" data-target="#create-product-modal" class="btn btn-file sel">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-product.svg" alt="Bán hàng"></span> Bán hàng
+											</a>
+										</div>
+									</div>
+									<!--Add Location-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file map-form loc">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-map.svg" alt="Địa điểm"></span> Địa điểm
+											</span>
+										</div>
+									</div>
+									<!--Uploaded Music-->
+									<div class="sun_pub_more_items">
+										<div class="poster-left-buttons">
+											<span class="btn btn-file aud">
+												<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#3f51b5" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"></path></svg></span> Nhạc						<input type="file" id="publisher-music" name="postMusic" accept="audio/*">
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="pub-footer-bottom">
+									<div class="pull-right">
+										<button type="button" onclick="PushPost()" id="publisher-button" class="btn btn-main">
+											<span>Chia sẻ</span>
+										</button>
+									</div>
+
+									<div class="pull-right"><div class="ball-pulse"><div></div><div></div><div></div></div></div>
+
+									<div id="status"></div>
+
+									<div class="pull-left">
+										<div class="poster-left-select">
+											<div class="publisher-hidden-option inputsm">
+												<div class="sun_pub_privacy">
+													<div class="sun_pub_privacy_dropdown">
+														<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</p>
+														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg>
+
+													</div>
+													<ul class="sun_pub_privacy_menu">
+														<li>
+															<label>
+																<input type="radio" class="option-input radio" name="postPrivacy" id="3" value="3">
+																<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"></path></svg> Chỉ Mình Tôi</span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="radio" class="option-input radio" name="postPrivacy" id="0" value="0" checked="">
+																<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="radio" class="option-input radio" name="postPrivacy" id="1" value="1">
+																<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"></path></svg> Bạn của tôi</span>
+															</label>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="pull-left charsLeft-post"><span id="charsLeft">5000</span></div>
+
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" name="hash_id" value="83c1b24c6399b8284b114fb23fa4a965446d27fc">
+						<input type="hidden" name="postRecord" value="" id="postRecord">
+						<input type="hidden" name="postSticker" value="" id="postSticker" onchange="alert(this.value)">
+					</form>
+					<div id="empty_post" class="wo_my_pages">
+						<div>
+							<h5 class="search-filter-center-text empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-flag"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg> Chưa có trang nào</h5>				<div class="clear"></div>
+						</div>
+					</div>
+					<div id="posts"></div>
+					<div class="load-more pointer" style="display:none;">
+						<div class="white-loading list-group">
+							<div class="no-more-posts-to-show">No more posts</div>
+						</div>
+					</div>
+				</div>
+				<div class="sidebar-conatnier col-md-3 rightcol sidebar_fixed no-padding-left" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+
+					<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+						<div class="sidebar">
+							<!-- Trending -->
+							<ul class="list-group trending">
+								<li class="sidebar-title-back" contenteditable="false">Trending !</li>
+								<li class="list-group-item sun_htag" dir="auto">
+									<a href="https://biztime.com.vn/hashtag/biztime" data-ajax="?link1=hashtag&amp;hash=biztime">
+										<span class="htag_top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"></path></svg> #biztime</span>
+										<span class="htag_bottom">11 bài đăng</span>
+									</a>
+								</li>
+								<div class="clear"></div>
+							</ul>
+
+							<!-- Pro Users -->
+							<ul class="list-group">
+								<li class="text-muted sidebar-title-back" contenteditable="false">Thành viên nổi bật</li>
+								<ul class="list-inline wo_pro_users">
+									<li>
+										<a class="user" href="https://biztime.com.vn/hanbabe" data-ajax="?link1=timeline&amp;u=hanbabe">
+											<img alt="Hân Hân" src="https://biztime.com.vn/upload/photos/2018/12/XjboVszbVjtsJQRYOAAV_02_eaad95e001832de5138cb2ed1bda2d87_avatar.jpg?cache=0">
+											<span title="Hân Hân">Hân Hân</span>
+										</a>
+									</li>
+								</ul>
+							</ul>
+
+							<!-- Promoted Page -->
+							<!-- Birthday -->
+							<!-- People You May Know -->
+							<ul class="list-group" id="sidebar-user-list-container">
+								<li class="text-muted sidebar-title-back" contenteditable="false">
+									Những người bạn có thể biết	<span onclick="Wo_ReloadSideBarUsers();" class="pull-right refresh"><i class="fa fa-repeat progress-icon" data-icon="repeat"></i></span>
+								</li>
+								<li>
+									<div class="sidebar-users-may-know-container">
+										<div class="wo_sidebar_users">
+											<div class="avatar pull-left">
+												<a href="https://biztime.com.vn/PhuongTan" data-ajax="?link1=timeline&amp;u=PhuongTan"><img src="https://biztime.com.vn/upload/photos/d-avatar.jpg?cache=0" alt="Phương Tân"></a>
+											</div>
+											<div class="info_prt">
+												<span class="user-popover" data-id="654" data-type="user">
+													<a href="https://biztime.com.vn/PhuongTan" data-ajax="?link1=timeline&amp;u=PhuongTan" class="wo_user_link_name">
+														<span class="user-name" title="Phương Tân">Phương Tân</span>
+													</a>
+												</span>
+												<div class="user-follow-button">
+													<span id="Follow-654">
+														<button type="button" onclick="Wo_RegisterFollow(654)" class="btn btn-default btn-sm wo_follow_btn" id="wo_useract_btn">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+															<span class="button-text"> Thêm bạn bè</span>
+														</button>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="clear"></div>
+								</li>
+							</ul>
+							<ul class="list-group">
+								<li class="list-group-item sidebar-title-back" contenteditable="false">Mời Bạn Bè</li>
+								<li>
+									<form action="#" method="post" class="invite-user-form">
+										<div class="invite-user-form-alert"></div>
+										<div class="invite-user-combine">
+											<input type="text" name="email" placeholder="E-mail" class="form-control">
+											<button class="btn btn-main btn-sm" title="Gởi Lời Mời">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+											</button>
+										</div>
+										<div class="clear"></div>
+									</form>
+								</li>
+							</ul>
+							<!-- Pages You May Like -->
+							<!-- Sidebar Ad -->
+
+
+							<div class="page-margin">
+								<div class="footer-wrapper sidebar">
+									<div class="footer-powered">
+										<p>
+											© 2019 Mạng Xã Hội Việt Nam
+										</p>
+									</div>
+									<ul class="list-inline pull-left">
+										<li>@Html.ActionLink("Timeline", "", "Home")</li>
+										<li>@Html.ActionLink("Giới thiệu", "about_us", "Home")</li>
+										<li>@Html.ActionLink("Liên hệ", "contact-us", "Home")</li>
+										<li>@Html.ActionLink("Bảo mật", "privacy-policy", "Home")</li>
+										<li>@Html.ActionLink("Điều khoản", "terms", "Home")</li>
+										<li>@Html.ActionLink("FAQ", "faq", "Home")</li>
+									</ul>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<script id="my-template" type="x-tmpl-mustache">
+	<div class="post-container sun_post">
+		<div class="post" id="post-4481" data-post-id="4481" data-post-type="">
+			<div class="panel panel-white panel-shadow">
+				<div class="post-heading">
+					<div class="pull-left image">
+						<a href="{{UserId}}"><img src="{{Avatar}}" id="updateImage-4" class="avatar" alt="{{NickName}} profile picture"></a>
+					</div>
+					<div class="meta"><div class="title h5"><span class="user-popover" data-type="user" data-id="4"><a href="{{UserId}}" ><b>{{NickName}}</b></a></span><small class="small-text"></small></div><h6> <span class="time">&nbsp;&nbsp;<a style="color:#9197a3" class="ajax-time" href="Post/{{Id}}" title="2 months ago" target="_blank">{{CreatedTime}}</a></span></h6></div>
+				</div>
+				<div class="post-description" id="post-description-4481">
+					<p dir="auto" data-readmore="" aria-expanded="false" id="rmjs-1">
+						<span data-translate-text="4481">
+							{{Content}}
+						</span>
+					</p>
+					<div id="fullsizeimg" style="position: relative;">
+						<div class="clear">
+						</div>
+					</div>
+					<div class="stats post-actions pull-left" id="active_react">
+						<div class="like-stat stat-item post-like-status">
+							<span class="like-emo post-reactions-icons-4481">
+								<span class="how_reacted like-btn-love" id="_post4481" onclick="Wo_OpenPostReactedUsers(4481,'love','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/love-sm.png" alt="Love"></div></span><span class="how_reacted like-btn-like" id="_post4481" onclick="Wo_OpenPostReactedUsers(4481,'like','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/like-sm.png" alt="Like"></div></span><span class="how_reacted like-btn-wow" id="_post4481" onclick="Wo_OpenPostReactedUsers(4481,'wow','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/wow-sm.png" alt="WoW"></div></span><span class="how_reacted like-btn-haha" id="_post4481" onclick="Wo_OpenPostReactedUsers(4481,'haha','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/haha-sm.png" alt="HaHa"></div></span><span class="how_reacted like-btn-angry" id="_post4481" onclick="Wo_OpenPostReactedUsers(4481,'angry','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/angry-sm.png" alt="Angry"></div></span><span id="CountEmotions_{{Id}}" class="how_many_reacts">{{CountEmotions}}</span>
+							</span>
+						</div>
+					</div> <div class="clear"></div> <div class="stats pull-left" id="wo_post_stat_button"><div id="LikeAction_{{Id}}" onclick="LikeAction('{{Id}}')" class="wo-reaction wo-reaction-post stat-item unselectable" data-id="4481"><span class="like-btn like-btn-post unselectable" data-id="4481"><span class="status-reaction-4481 unselectable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-up"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> <span class="t_likes4481"></span> Like</span></span><ul class="reactions-box reactions-box-container-4481" data-id="4481" style=" right: auto; "><li class="reaction reaction-like animated_2" data-reaction="Like" data-reaction-lang="Like" data-post-id="4481" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/like.gif" alt="Like"></li><li class="reaction reaction-love animated_4" data-reaction="Love" data-reaction-lang="Love" data-post-id="4481" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/love.gif" alt="Love"></li><li class="reaction reaction-haha animated_6" data-reaction="HaHa" data-reaction-lang="HaHa" data-post-id="4481" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/haha.gif" alt="HaHa"></li><li class="reaction reaction-wow animated_8" data-reaction="Wow" data-reaction-lang="WoW" data-post-id="4481" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/wow.gif" alt="WoW"></li><li class="reaction reaction-sad animated_10" data-reaction="Sad" data-reaction-lang="Sad" data-post-id="4481" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/sad.gif" alt="Sad"></li><li class="reaction reaction-angry animated_12" data-reaction="Angry" data-reaction-lang="Angry" data-post-id="4481" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/angry.gif" alt="Angry"></li></ul></div><div class="btn btn-default stat-item" onclick="Wo_ShowComments(4481);" title="Comments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"></path></svg><span class="like-btn-mobile">Comment</span> </div> <div class="btn btn-default stat-item" title="Share" onclick="Wo_SharePostOn(4481,4,'timeline')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z"></path></svg> <span class="like-btn-mobile">Share</span></div></div><div class="clear"></div>
+				</div><div class="post-footer post-likes"></div><div class="clear"></div><div class="post-footer post-wonders"></div><div class="clear"></div> <div class="post-footer post-shared"></div> <div class="clear"></div><div class="post-footer post-reacted"></div><div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</script>
 <script>
+	var dateGetPost = "";
+	var checkLoadPost = false;
 	$(document).ready(function () {
 		LoadMorePost();
+		$(window).scroll(function (event) {
+			if (($(window).scrollTop() + 400) > $("#posts").height() && checkLoadPost == false)
+				LoadMorePost(dateGetPost);
+		});
 	});
 	function PushPost() {
 		var postText = $("#publisher-box-focus textarea[name=postText]").val();
+		var userid = @Model.ProfileModel.ID;
             $.ajax({
                 url: "/Home/CreatedPost",
                 type: "POST",
-				data: {Content: postText },
+				data: {Content: postText,UserId:  userid},
                 dataType: "json",
                 success: function (result) {
 					if (result.result == @Constant.SUCCESS) {
 						Wo_HidePosInfo();
 						debugger
 						EngnestFlash.notice("Created Post success");
+						location.reload();
 					}
                     else
                         EngnestFlash.error("Created Post error!");
@@ -331,24 +382,132 @@
                 }
             });
 	}
-	
-	function LoadMorePost(date) {
-	debugger
+
+	function LikeAction(id) {
+		debugger
             $.ajax({
-                url: "/Home/LoadMorePost",
-                type: "GET",
-                data: { date: date },
+                url: "/Home/LikeAction",
+                type: "POST",
+				data: {PostId: id},
                 dataType: "json",
                 success: function (result) {
 					if (result.result == @Constant.SUCCESS) {
-						debugger;
-						var a=result;
+						if (result.status == "1") {
+							$("#CountEmotions_" + id).html(parseInt($("#CountEmotions_" + id).html()) + 1);
+							$("#LikeAction_" + id).addClass("active-like");
+						} else {
+							$("#CountEmotions_" + id).html(parseInt($("#CountEmotions_" + id).html()) - 1);
+							$("#LikeAction_" + id).removeClass("active-like");
+						}
 					}
-					else {
-					}
+                    else
+                        EngnestFlash.error("Created Post error!");
                 },
                 error: function (data) {
+                    EngnestFlash.error("Created Post error!");
                 }
             });
+	}
+
+	function LoadMorePost(date) {
+		checkLoadPost = true;
+        $.ajax({
+            url: "/Home/LoadMorePost",
+            type: "GET",
+            data: { date: date },
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					if (date == undefined && result.data.length != 0) {
+						$("#empty_post").hide();
+					}
+					if (result.data.length == 0) {
+						checkLoadPost = true;
+						$(".load-more").show();
+						return;
+					}
+					$(".load-more").hide();
+					dateGetPost =parseInt(result.data[result.data.length - 1].CreatedTime.substr(6)) ;
+					let tmpl = $('#my-template').html();
+					Mustache.parse(tmpl);
+					result.data.forEach((item) => {
+						if (item.CreatedTime != null) {
+							item.CreatedTime = time_ago(new Date(parseInt(item.CreatedTime.substr(6))));
+						}
+						let rendered = Mustache.render(tmpl, item);
+						$("#posts").append(rendered);
+						if(item.StatusEmotion == 1)
+							$("#LikeAction_" + item.Id).addClass("active-like");
+					});
+				}
+				else {
+				}
+				checkLoadPost = false;
+            },
+			error: function (data) {
+				checkLoadPost = false;
+            }
+        });
 		}
+	function time_ago(time) {
+
+	switch (typeof time) {
+	case 'number':
+		break;
+	case 'string':
+		time = +new Date(time);
+		break;
+	case 'object':
+		if (time.constructor === Date) time = time.getTime();
+		break;
+	default:
+		time = +new Date();
+	}
+	var time_formats = [
+	[60, 'seconds', 1], // 60
+	[120, '1 minute ago', '1 minute from now'], // 60*2
+	[3600, 'minutes', 60], // 60*60, 60
+	[7200, '1 hour ago', '1 hour from now'], // 60*60*2
+	[86400, 'hours', 3600], // 60*60*24, 60*60
+	[172800, 'Yesterday', 'Tomorrow'], // 60*60*24*2
+	[604800, 'days', 86400], // 60*60*24*7, 60*60*24
+	[1209600, 'Last week', 'Next week'], // 60*60*24*7*4*2
+	[2419200, 'weeks', 604800], // 60*60*24*7*4, 60*60*24*7
+	[4838400, 'Last month', 'Next month'], // 60*60*24*7*4*2
+	[29030400, 'months', 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
+	[58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
+	[2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
+	[5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
+	[58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
+	];
+	var seconds = (+new Date() - time) / 1000,
+	token = 'ago',
+	list_choice = 1;
+
+	if (seconds == 0) {
+	return 'Just now'
+	}
+	if (seconds < 0) {
+	seconds = Math.abs(seconds);
+	token = 'from now';
+	list_choice = 2;
+	}
+	var i = 0,
+	format;
+	while (format = time_formats[i++])
+	if (seconds < format[0]) {
+		if (typeof format[2] == 'string')
+		return format[list_choice];
+		else
+		return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
+	}
+	return time;
+}
+
+	function getdate(d) {
+		var curr_date = d.getDate();
+		var curr_month = d.getMonth() + 1;
+		var curr_year = d.getFullYear();
+		return curr_date + "/" + curr_month + "/" + curr_year;
+	}
 </script>

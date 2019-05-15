@@ -24,11 +24,14 @@ namespace Engnest.Entities.Repository
             return context.Posts.ToList();
         }
 
-		 public List<Post> LoadPostsHome(string date,long UserId)
+		 public List<PostViewModel> LoadPostsHome(string date,long UserId)
         {
 			DateTime createDate = DateTime.Now;
-			if(!string.IsNullOrEmpty(date))
-				createDate = DateTime.Parse(date);
+			if (!string.IsNullOrEmpty(date))
+			{
+				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
+			}
 			var result = (from c in context.Posts
 				join p1 in context.Relationships on UserId equals p1.UserReceiveID  into ps1
 				from p1 in ps1.DefaultIfEmpty()
@@ -36,11 +39,37 @@ namespace Engnest.Entities.Repository
 				from p2 in ps2.DefaultIfEmpty()
 				join p3 in context.GroupMembers on UserId equals p3.UserID  into ps3
 				from p3 in ps3.DefaultIfEmpty()
-				where c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID ||  c.TargetId == p3.GroupID
-				&& c.CreatedTime < createDate
-				orderby c.CreatedTime
-				select c).Take(10).ToList();
-            return result;
+				join p4 in context.Users on c.UserId equals p4.ID  into ps4
+				from p4 in ps4.DefaultIfEmpty()
+				join p5 in context.Emotions on new {t1 = UserId ,t2 = c.ID } equals new {t1 = p5.UserId.Value,t2 = p5.TargetId.Value}  into ps5
+				from p5 in ps5.DefaultIfEmpty()
+				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+				where c.CreatedTime < createDate && (c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID ||  c.TargetId == p3.GroupID)
+				orderby c.CreatedTime descending
+				select new{c,p4,countEmotions,p5 }).Take(10).ToList();
+			var PostView = new List<PostViewModel>();
+			foreach(var item in result)
+			{
+				var Post = new PostViewModel();
+				Post.Id = item.c.ID ;
+				Post.Audios = item.c.Audios ;
+				Post.Content = item.c.Content ;
+				Post.Images = item.c.Images ;
+				Post.Tags = item.c.Tags ;
+				Post.TagsUser = item.c.TagsUser ;
+				Post.TargetId = item.c.TargetId ;
+				Post.TargetType = item.c.TargetType ;
+				Post.Type = item.c.Type ;
+				Post.CreatedTime = item.c.CreatedTime;
+				Post.UpdateTime = item.c.UpdateTime ;
+				Post.UserId = item.c.UserId ;
+				Post.Avatar = item.p4?.Avatar ;
+				Post.NickName = item.p4?.NickName ;
+				Post.CountEmotions = item.countEmotions ;
+				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;
+				PostView.Add(Post);
+			}
+            return PostView;
         }
 
         public Post GetPostByID(long id)
@@ -64,11 +93,13 @@ namespace Engnest.Entities.Repository
         {
             Post Post = context.Posts.Find(PostID);
             context.Posts.Remove(Post);
+			Save();
         }
 
         public void UpdatePost(Post Post)
         {
             context.Entry(Post).State = EntityState.Modified;
+			Save();
         }
 
         public void Save()
