@@ -1,4 +1,5 @@
-﻿using Engnest.Entities.Common;
+﻿using AutoMapper;
+using Engnest.Entities.Common;
 using Engnest.Entities.Entity;
 using Engnest.Entities.IRepository;
 using Engnest.Entities.ViewModels;
@@ -44,9 +45,10 @@ namespace Engnest.Entities.Repository
 				join p5 in context.Emotions on new {t1 = UserId ,t2 = c.ID } equals new {t1 = p5.UserId.Value,t2 = p5.TargetId.Value}  into ps5
 				from p5 in ps5.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+				let countComments = (from C in context.Comments where C.TargetId == c.ID select C).Count()
 				where c.CreatedTime < createDate && (c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID ||  c.TargetId == p3.GroupID)
 				orderby c.CreatedTime descending
-				select new{c,p4,countEmotions,p5 }).Take(10).ToList();
+				select new{c,p4,countEmotions,p5,countComments }).Take(10).ToList();
 			var PostView = new List<PostViewModel>();
 			foreach(var item in result)
 			{
@@ -66,6 +68,7 @@ namespace Engnest.Entities.Repository
 				Post.Avatar = item.p4?.Avatar ;
 				Post.NickName = item.p4?.NickName ;
 				Post.CountEmotions = item.countEmotions ;
+				Post.CountComments = item.countComments;
 				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;
 				PostView.Add(Post);
 			}

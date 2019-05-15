@@ -8,7 +8,13 @@ namespace Engnest.Entities.ViewModels
 {
 	public class PostViewModel
 	{
+		public PostViewModel()
+		{
+			ListComments = new List<CommentViewModel>();
+		}
+
 		public long? Id { get; set; }
+
 		public long? UserId { get; set; }
 
 		public byte? Type { get; set; }
@@ -36,6 +42,10 @@ namespace Engnest.Entities.ViewModels
 
 		public int CountEmotions { get; set; }
 
+		public int CountComments { get; set; }
+
 		public byte StatusEmotion { get; set; }
+
+		public List<CommentViewModel> ListComments { get; set; }
 	}
 }
