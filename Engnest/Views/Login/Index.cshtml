@@ -107,7 +107,7 @@
                 success: function (result) {
 					if (result.result == @LoginStatus.SUCCESS) {
 						EngnestFlash.notice("Đăng nhập thành công");
-						location.href = "Profile";
+						location.href = "Home/Index";
 					}
                     else if (result.result == @LoginStatus.NOT_EXISTS_USER)
                         EngnestFlash.error("Không tồn tại user!");
@@ -132,7 +132,7 @@
                 success: function (result) {
 					if (result.result == @LoginStatus.SUCCESS) {
 						EngnestFlash.notice("Đăng ký thành công");
-						location.href = "Profile";
+						location.href = "Home/Index";
                     } if (result.result == @SignInStatus.EXISTS_USER) {
                         EngnestFlash.error("Email đã tồn tại!");
                     }
