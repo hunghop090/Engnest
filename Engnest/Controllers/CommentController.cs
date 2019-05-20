@@ -29,12 +29,12 @@ namespace Engnest.Controllers
 			this.userRepository = userRepository;
 			this.commentRepository = commentRepository;
 		}
-		public ActionResult LoadCommentsPost(string PostIds)
+		public ActionResult LoadCommentsPost(string PostIds,string date,int quantity)
 		{
 			try
 			{
 				var id = userLogin.ID;
-				var data = commentRepository.LoadCommentsPost(PostIds);
+				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity);
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)

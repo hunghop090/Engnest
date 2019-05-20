@@ -25,19 +25,41 @@ namespace Engnest.Entities.Repository
             return context.Comments.ToList();
         }
 
-		 public List<CommentViewModel> LoadCommentsPost(string PostIds)
+		 public List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity)
         {
+			DateTime createDate = DateTime.Now;
+			if (!string.IsNullOrEmpty(date))
+			{
+				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
+			}
 			var CommentView = new List<CommentViewModel>();
 			if(String.IsNullOrEmpty(PostIds))
 				return CommentView;
 			List<string> LPostsId = PostIds.Split(',').ToList();
-			var result = (from c in context.Comments
+			for(var i = 0; i < LPostsId.Count; i++)
+			{
+				var PostId = Int64.Parse(LPostsId[i]);
+				var result = (from c in context.Comments
 				join p4 in context.Users on c.UserId equals p4.ID  into ps4
 				from p4 in ps4.DefaultIfEmpty()
-				where LPostsId.Contains(c.TargetId.ToString())
+				where PostId == c.TargetId &&  c.CreatedTime < createDate
 				orderby c.CreatedTime descending
-				select new{c,p4}).Take(10).ToList();
-			CommentView = Mapper.Map<List<CommentViewModel>>(result);
+				select new CommentViewModel{
+					Id = c.ID,
+					Audios = c.Audios,
+					TargetId = c.TargetId,
+					CreatedTime = c.CreatedTime,
+					Images = c.Images,
+					Tags = c.Tags,
+					TagsUser = c.TagsUser,
+					Content = c.Content,
+					UserId = c.UserId,
+					Avatar = p4.Avatar,
+					NickName = p4.NickName
+					}).Take(quantity).ToList();
+				CommentView = CommentView.Union(result).ToList();
+			}
             return CommentView;
         }
 

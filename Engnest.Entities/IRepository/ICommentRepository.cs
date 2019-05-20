@@ -10,7 +10,7 @@ namespace Engnest.Entities.IRepository
 	public interface  ICommentRepository : IDisposable
 	{
         List<Comment> GetComments();
-		List<CommentViewModel> LoadCommentsPost(string PostIds);
+		List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity);
         Comment GetCommentByID(long CommentId);
         List<Comment> GetCommentByTargetId(long TargetId);
         void InsertComment(Comment Comment);

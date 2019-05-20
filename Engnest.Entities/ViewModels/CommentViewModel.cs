@@ -31,5 +31,9 @@ namespace Engnest.Entities.ViewModels
         public string TagsUser { get; set; }
 
 		public long UserId { get; set; }
+
+		public string NickName { get; set; }
+
+		public string Avatar { get; set; }
 	}
 }
