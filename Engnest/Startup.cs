@@ -1,10 +1,8 @@
-﻿using Microsoft.Owin;
-using Owin;
-
-[assembly: OwinStartup(typeof(SignalRChat.Startup))]
-namespace SignalRChat
+﻿using Owin;
+using Microsoft.Owin;
+[assembly: OwinStartup(typeof(Engnest.Startup))]
+namespace Engnest
 {
-
     public class Startup
     {
         public void Configuration(IAppBuilder app)
