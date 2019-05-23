@@ -33,7 +33,11 @@ namespace Engnest.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
-            byte result = 0;
+			byte result = 0;
+			string message = "";
+			try
+			{
+
             if (ModelState.IsValid)
             {
                 User user = new User();
@@ -42,8 +46,13 @@ namespace Engnest.Controllers
                 if (result == LoginStatus.SUCCESS)
                     Session.Add(Constant.USER_SESSION, user.ID);
             }
+			}
+			catch(Exception ex)
+			{
+				message = ex.Message;
+			}
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { result });
+            return Json(new { result,message });
         }
 
         public ActionResult SignIn(SignInModel model)
