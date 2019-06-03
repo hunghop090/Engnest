@@ -13,8 +13,8 @@ using Engnest.Entities.ViewModels;
 
 namespace Engnest.Controllers
 {
-    public class ProfileController : BaseController
-    {
+	public class ProfileController : BaseController
+	{
 		private IUserRepository userRepository;
 
 		public ProfileController()
@@ -26,10 +26,26 @@ namespace Engnest.Controllers
 		{
 			this.userRepository = userRepository;
 		}
-        public ActionResult Index()
-        {
-            var model = Mapper.Map<ProfileModel>(userLogin);
-            return View(model);
-        }
-    }
+		public ActionResult Index()
+		{
+			var model = Mapper.Map<ProfileModel>(userLogin);
+			return View(model);
+		}
+
+		public ActionResult LoadFriend()
+		{
+			try
+			{
+				var id = userLogin.ID;
+				var data = userRepository.GetFriend(id);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
+
+
+		}
+	}
 }

@@ -1,7 +1,9 @@
-﻿using Engnest.Entities.Common;
+﻿using AutoMapper;
+using Engnest.Entities.Common;
 using Engnest.Entities.Entity;
 using Engnest.Entities.IRepository;
 using Engnest.Entities.Repository;
+using Engnest.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +45,7 @@ namespace Engnest.Controllers
 				userLogin = userRepository.GetUserByID((long)session);
 				HubUser.UserId = userLogin.ID;
 			}
+			ViewBag.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
 			base.OnActionExecuting(filterContext);
 		}
 	}

@@ -36,7 +36,6 @@ namespace Engnest.Controllers
 		{
 			HomeModel model = new HomeModel();
 			model.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
-
 			return View(model);
 		}
 		public ActionResult LoadMorePost(string date)

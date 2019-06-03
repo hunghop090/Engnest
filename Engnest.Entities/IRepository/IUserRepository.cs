@@ -11,6 +11,7 @@ namespace Engnest.Entities.IRepository
 	{
 		IEnumerable<User> GetUsers();
         User GetUserByID(long UserId);
+		List<FriendModel> GetFriend(long UserId);
         User GetUserByName(string UserName);
         void InsertUser(User User);
         void DeleteUser(long UserID);

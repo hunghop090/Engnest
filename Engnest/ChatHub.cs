@@ -34,6 +34,7 @@ namespace Engnest
 			if(who != string.Empty || message != string.Empty)
 			{
 				var User = ConnectedUsers.Where(x=>x.UserName == who).FirstOrDefault();
+				if (User != null)
 				Clients.Client(User.ConnectionId).addChatMessage(message);
 			}
         }

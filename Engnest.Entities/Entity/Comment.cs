@@ -15,7 +15,7 @@ namespace Engnest.Entities.Entity
         public string Content { get; set; }
 
         public byte? Type { get; set; }
-
+		[Required]
         public long TargetId { get; set; }
 
         public byte? TargetType { get; set; }
