@@ -47,6 +47,7 @@ namespace Engnest.Entities.Repository
 				Message.Seen = item.c.Seen ;
 				Message.TargetUser = item.c.TargetUser ;
 				Message.UserId = item.c.UserID ;
+				Message.CreatedTime = item.c.CreatedTime;
 				Message.AvataTarget = item.p2?.Avatar ;
 				Message.AvataUser = item.p1?.Avatar;
 				Message.NickNameTarget = item.p2?.NickName ;

@@ -44,7 +44,7 @@ namespace Engnest
 			if(who != string.Empty)
 			{
 				UserDetail User = ConnectedUsers.Where(x=>x.UserName == who).FirstOrDefault();
-				if(User == null || User.ConnectionId == Context.ConnectionId)
+				if(User == null || User.ConnectionId != Context.ConnectionId)
 				{
 					ConnectedUsers.Remove(User);
 					ConnectedUsers.Add(new UserDetail{ConnectionId = Context.ConnectionId,UserName = who});
