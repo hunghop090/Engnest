@@ -61,18 +61,6 @@
 										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh"> Kèm ảnh					<input type="file" id="publisher-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
 									</span>
 								</div>
-								<!--Create Poll-->
-								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
-									<span class="btn btn-file poll-form pol">
-										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-poll.svg" alt="Tạo thăm dò"> Tạo thăm dò
-									</span>
-								</div>
-								<!--Uploaded Video-->
-								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
-									<span class="btn btn-file vid">
-										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-vid.svg" alt="Kèm video"> Kèm video						<input type="file" id="publisher-video" name="postVideo" accept="video/*">
-									</span>
-								</div>
 								<div class="poster-left-buttons" onclick="Wo_ShowPosInfo();">
 									<span class="btn mor">
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> <span>Thêm</span>
@@ -84,14 +72,6 @@
 							<!--Publisher Box Footer-->
 							<div class="publisher-box-footer">
 								<div class="sun_pub_more">
-									<!--Add GIFs-->
-									<div class="sun_pub_more_items gif-form">
-										<div class="poster-left-buttons">
-											<span class="btn btn-file btngif gif" style="padding: 0px;">
-												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-gif.svg" alt="GIF"></span> GIF
-											</span>
-										</div>
-									</div>
 									<!--Record Audio-->
 									<div class="sun_pub_more_items" id="recordPostAudioWrapper">
 										<div class="poster-left-buttons">
@@ -118,30 +98,15 @@
 											</span>
 										</div>
 									</div>
-									<!--Create Product-->
-									<div class="sun_pub_more_items">
-										<div class="poster-left-buttons">
-											<a href="#" data-toggle="modal" data-target="#create-product-modal" class="btn btn-file sel">
-												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-product.svg" alt="Bán hàng"></span> Bán hàng
-											</a>
-										</div>
-									</div>
+	
 									<!--Add Location-->
-									<div class="sun_pub_more_items">
+									@*<div class="sun_pub_more_items">
 										<div class="poster-left-buttons">
 											<span class="btn btn-file map-form loc">
 												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-map.svg" alt="Địa điểm"></span> Địa điểm
 											</span>
 										</div>
-									</div>
-									<!--Uploaded Music-->
-									<div class="sun_pub_more_items">
-										<div class="poster-left-buttons">
-											<span class="btn btn-file aud">
-												<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#3f51b5" d="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z"></path></svg></span> Nhạc						<input type="file" id="publisher-music" name="postMusic" accept="audio/*">
-											</span>
-										</div>
-									</div>
+									</div>*@
 								</div>
 
 								<div class="pub-footer-bottom">
@@ -189,7 +154,7 @@
 										</div>
 									</div>
 
-									<div class="pull-left charsLeft-post"><span id="charsLeft">5000</span></div>
+									@*<div class="pull-left charsLeft-post"><span id="charsLeft">5000</span></div>*@
 
 									<div class="clear"></div>
 								</div>
@@ -347,7 +312,7 @@
 			<span class="comment-options">
 				<div class="wo-reaction wo-reaction-comment stat-item" id="comment_reactions" data-id="{{Id}}">
 					<span class="like-btn like-btn-comment" data-id="6972">
-						<span class="comment-status-reaction-6972 unselectable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-up"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> <span class="c_likes6972"></span></span>
+						<span class="comment-status-reaction-6972 unselectable"><i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i> <span class="c_likes6972"></span></span>
 					</span>
 				</div>
 				·
@@ -384,10 +349,11 @@
 					<div class="stats post-actions pull-left" id="active_react">
 						<div class="like-stat stat-item post-like-status">
 							<span class="like-emo post-reactions-icons-{{Id}}">
-								<span class="how_reacted like-btn-love" id="_post{{Id}}" onclick="Wo_OpenPostReactedUsers({{Id}},'love','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/love-sm.png" alt="Love"></div></span><span class="how_reacted like-btn-like" id="_post{{Id}}" onclick="Wo_OpenPostReactedUsers({{Id}},'like','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/like-sm.png" alt="Like"></div></span><span class="how_reacted like-btn-wow" id="_post{{Id}}" onclick="Wo_OpenPostReactedUsers({{Id}},'wow','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/wow-sm.png" alt="WoW"></div></span><span class="how_reacted like-btn-haha" id="_post{{Id}}" onclick="Wo_OpenPostReactedUsers({{Id}},'haha','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/haha-sm.png" alt="HaHa"></div></span><span class="how_reacted like-btn-angry" id="_post{{Id}}" onclick="Wo_OpenPostReactedUsers({{Id}},'angry','post');"><div class="inline_post_count_emoji"><img src="https://biztime.com.vn/themes/biztime-s/reaction/angry-sm.png" alt="Angry"></div></span><span id="CountEmotions_{{Id}}" class="how_many_reacts">{{CountEmotions}}</span>
+								<i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i>
+								<span id="CountEmotions_{{Id}}" class="how_many_reacts">{{CountEmotions}}</span>
 							</span>
 						</div>
-					</div> <div class="clear"></div> <div class="stats pull-left" id="wo_post_stat_button"><div id="LikeAction_{{Id}}" onclick="LikeAction('{{Id}}')" class="wo-reaction wo-reaction-post stat-item unselectable" data-id="{{Id}}"><span class="like-btn like-btn-post unselectable" data-id="{{Id}}"><span class="status-reaction-{{Id}} unselectable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-up"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> <span class="t_likes{{Id}}"></span> Like</span></span><ul class="reactions-box reactions-box-container-{{Id}}" data-id="{{Id}}" style=" right: auto; "><li class="reaction reaction-like animated_2" data-reaction="Like" data-reaction-lang="Like" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/like.gif" alt="Like"></li><li class="reaction reaction-love animated_4" data-reaction="Love" data-reaction-lang="Love" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/love.gif" alt="Love"></li><li class="reaction reaction-haha animated_6" data-reaction="HaHa" data-reaction-lang="HaHa" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/haha.gif" alt="HaHa"></li><li class="reaction reaction-wow animated_8" data-reaction="Wow" data-reaction-lang="WoW" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/wow.gif" alt="WoW"></li><li class="reaction reaction-sad animated_10" data-reaction="Sad" data-reaction-lang="Sad" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/sad.gif" alt="Sad"></li><li class="reaction reaction-angry animated_12" data-reaction="Angry" data-reaction-lang="Angry" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/angry.gif" alt="Angry"></li></ul></div><div class="btn btn-default stat-item" onclick="Wo_ShowComments({{Id}});" title="Comments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"></path></svg><span class="like-btn-mobile">Comment</span> </div> <div class="btn btn-default stat-item" title="Share" onclick="Wo_SharePostOn({{Id}},4,'timeline')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z"></path></svg> <span class="like-btn-mobile">Share</span></div></div><div class="clear"></div>
+					</div> <div class="clear"></div> <div class="stats pull-left" id="wo_post_stat_button"><div id="LikeAction_{{Id}}" onclick="LikeAction('{{Id}}')" class="wo-reaction wo-reaction-post stat-item unselectable" data-id="{{Id}}"><span class="like-btn like-btn-post unselectable" data-id="{{Id}}"><span class="status-reaction-{{Id}} unselectable"><i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i> <span class="t_likes{{Id}}"></span> Like</span></span><ul class="reactions-box reactions-box-container-{{Id}}" data-id="{{Id}}" style=" right: auto; "><li class="reaction reaction-like animated_2" data-reaction="Like" data-reaction-lang="Like" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/like.gif" alt="Like"></li><li class="reaction reaction-love animated_4" data-reaction="Love" data-reaction-lang="Love" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/love.gif" alt="Love"></li><li class="reaction reaction-haha animated_6" data-reaction="HaHa" data-reaction-lang="HaHa" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/haha.gif" alt="HaHa"></li><li class="reaction reaction-wow animated_8" data-reaction="Wow" data-reaction-lang="WoW" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/wow.gif" alt="WoW"></li><li class="reaction reaction-sad animated_10" data-reaction="Sad" data-reaction-lang="Sad" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/sad.gif" alt="Sad"></li><li class="reaction reaction-angry animated_12" data-reaction="Angry" data-reaction-lang="Angry" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/angry.gif" alt="Angry"></li></ul></div><div class="btn btn-default stat-item" onclick="Wo_ShowComments({{Id}});" title="Comments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"></path></svg><span class="like-btn-mobile">Comment</span> </div> <div class="btn btn-default stat-item" title="Share" onclick="Wo_SharePostOn({{Id}},4,'timeline')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z"></path></svg> <span class="like-btn-mobile">Share</span></div></div><div class="clear"></div>
 				</div>
 				<div class="post-footer post-comments " id="post-comments-3139">
 					<div id="hidden_inputbox_comment"></div>

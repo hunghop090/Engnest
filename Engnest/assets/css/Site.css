@@ -11112,7 +11112,8 @@ svg.feather {
 	line-height: 1;
 	font-weight: normal;
 	color: #999;
-	font-size: 11px;
+	font-size: 15px;
+	padding:2px;
 }
 
 #comment_reacted {
