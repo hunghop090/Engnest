@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amazon.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,12 +14,12 @@ namespace Engnest
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+			
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 			MapperConfig.RegisterMappers();
-
+			ProfileManager.RegisterProfile("AWSProfileName", "AKIAJZMY3NCCEJQXACJA", "dbVrcf7AQ01Nt5qz03oxgNpvpIRhvmrmcXVUAUbg");
         }
     }
 }

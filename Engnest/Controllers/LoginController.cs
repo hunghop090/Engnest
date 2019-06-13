@@ -27,6 +27,7 @@ namespace Engnest.Controllers
 		}
         public ActionResult Index()
         {
+			AmazonS3Uploader.UploadFile();
             return View();
         }
 
