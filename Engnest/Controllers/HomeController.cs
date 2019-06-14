@@ -63,6 +63,14 @@ namespace Engnest.Controllers
 				{
 					Post post = new Post();
 					post = Mapper.Map<Post>(model);
+					if(model.ListImages != null)
+						foreach(var item in model.ListImages)
+						{
+							if(string.IsNullOrEmpty(post.Images))
+								post.Images += AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+							else
+								post.Images += "," + AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+						}
 					postRepository.InsertPost(post);
 				}
 				catch (Exception ex)
@@ -72,6 +80,19 @@ namespace Engnest.Controllers
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
 			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult CreatedAudio(HttpPostedFileBase file)
+		{
+			var url = string.Empty;
+			var respons = AmazonS3Uploader.UploadFileStream(file.InputStream,TypeUpload.AUDIO);
+			if (!string.IsNullOrEmpty(respons))
+			{
+				url = AmazonS3Uploader.GetUrl(respons);
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS,data =  url,key = respons});
 		}
 
 		[HttpPost]

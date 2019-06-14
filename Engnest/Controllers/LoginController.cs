@@ -27,8 +27,6 @@ namespace Engnest.Controllers
 		}
 		public ActionResult Index()
 		{
-			var key = AmazonS3Uploader.UploadFile("C:\\Users\\hungnt\\Desktop\\Nguyen-Thanh-Hung-CV.pdf",TypeUpload.IMAGE);
-			var url = AmazonS3Uploader.GetUrl(key);
 			return View();
 		}
 

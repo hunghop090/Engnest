@@ -27,5 +27,7 @@ namespace Engnest.Entities.ViewModels
         public string Audios { get; set; }
 
         public string TagsUser { get; set; }
+
+		public List<string> ListImages { get; set; }
 	}
 }

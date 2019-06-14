@@ -4228,7 +4228,7 @@ ul#filterby-post {
 	}
 
 .width-2 {
-	width: 50% !important
+	width: 49% !important
 }
 
 .width-3 {
@@ -21166,10 +21166,6 @@ svg {
 		width: 16px;
 		height: 16px;
 	}
-
-.sun_post .post {
-	margin-left: 10px;
-}
 
 	.sun_post .post .post-heading .meta {
 		margin-left: 22px;

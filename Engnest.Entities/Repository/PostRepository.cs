@@ -57,6 +57,28 @@ namespace Engnest.Entities.Repository
 				Post.Audios = item.c.Audios ;
 				Post.Content = item.c.Content ;
 				Post.Images = item.c.Images ;
+				if(!string.IsNullOrEmpty(item.c.Images))
+				{
+					var data = item.c.Images.Split(',');
+					Post.ListImages = new List<string>();
+					foreach(string image in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(image);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListImages.Add(respone);
+					}
+				}
+				if(!string.IsNullOrEmpty(item.c.Audios))
+				{
+					var data = item.c.Audios.Split(',');
+					Post.ListAudios = new List<string>();
+					foreach(string audio in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(audio);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListAudios.Add(respone);
+					}
+				}
 				Post.Tags = item.c.Tags ;
 				Post.TagsUser = item.c.TagsUser ;
 				Post.TargetId = item.c.TargetId ;

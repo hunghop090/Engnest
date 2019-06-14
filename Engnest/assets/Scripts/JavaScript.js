@@ -178,3 +178,10 @@ function getdate(d) {
 	var curr_year = d.getFullYear();
 	return curr_date + "/" + curr_month + "/" + curr_year;
 }
+var Wo_Delay = (function () {
+	var timer = 0;
+	return function (callback, ms) {
+		clearTimeout(timer);
+		timer = setTimeout(callback, ms);
+	};
+})();

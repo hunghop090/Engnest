@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using Amazon.S3;
 using Amazon.S3.Model;
 
@@ -6,7 +8,7 @@ namespace Engnest.Entities.Common
 {
 	public static class AmazonS3Uploader
 	{
-			
+
 		private const string accessKey = "AKIAJZMY3NCCEJQXACJA";
 		private const string secretKey = "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";
 		private const string bucketname = "engnest";
@@ -16,50 +18,68 @@ namespace Engnest.Entities.Common
 				secretKey,
 				Amazon.RegionEndpoint.USEast2
 				);
-		public static string UploadFile(string filePath, string type)
+		public static string UploadFile(string base64String, string type)
 		{
 			string Key = type + "/" + CommonFunction.GetTimestamp(DateTime.Now) + "_" + CommonFunction.RandomNumber(0, 99999999);
 			try
 			{
-				ListBucketsResponse response = client.ListBuckets();
-				foreach (S3Bucket b in response.Buckets)
-				{
-					Console.WriteLine("{0}\t{1}", b.BucketName, b.CreationDate);
-				}
+				var data = Regex.Split(base64String, ";base64,");
+				if (data.Length > 1)
+					data[0] = data[1];
+				byte[] bytes = Convert.FromBase64String(data[0]);
 				PutObjectRequest request = new PutObjectRequest();
 				request.BucketName = bucketname;
-				request.FilePath = filePath;
 				request.Key = Key;
-				request.CannedACL = S3CannedACL.PublicRead;
-				var a = client.PutObject(request);
+				request.CannedACL = S3CannedACL.Private;
+				using (var ms = new MemoryStream(bytes))
+				{
+					request.InputStream = ms;
+					client.PutObject(request);
+				}
 			}
-			catch (AmazonS3Exception amazonS3Exception)
+			catch (Exception ex)
 			{
-				if (amazonS3Exception.ErrorCode != null &&
-					(amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId")
-					||
-					amazonS3Exception.ErrorCode.Equals("InvalidSecurity")))
-				{
-					throw new Exception("Check the provided AWS Credentials.");
-				}
-				else
-				{
-					throw new Exception("Error occurred: " + amazonS3Exception.Message);
-				}
+				return "";
 			}
 
 			return Key;
 		}
+		public static string UploadFileStream(Stream stream, string type)
+		{
+			string Key = type + "/" + CommonFunction.GetTimestamp(DateTime.Now) + "_" + CommonFunction.RandomNumber(0, 99999999);
+			try
+			{
+				PutObjectRequest request = new PutObjectRequest();
+				request.BucketName = bucketname;
+				request.Key = Key;
+				request.CannedACL = S3CannedACL.Private;
+				request.InputStream = stream;
+				client.PutObject(request);
+			}
+			catch (Exception ex)
+			{
+				return "";
+			}
 
+			return Key;
+		}
 		public static string GetUrl(string key)
 		{
-			GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
-			request.BucketName = bucketname;
-			request.Key = key;
-			request.Expires = DateTime.Now.AddHours(1);
-			request.Protocol = Protocol.HTTP;
-			string url = client.GetPreSignedURL(request);
-			return url;
+			try
+			{
+				GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
+				request.BucketName = bucketname;
+				request.Key = key;
+				request.Expires = DateTime.Now.AddHours(1);
+				request.Protocol = Protocol.HTTP;
+				string url = client.GetPreSignedURL(request);
+				return url;
+			}
+			catch (Exception ex)
+			{
+				return "";
+			}
+
 		}
 	}
 }

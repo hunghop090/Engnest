@@ -218,6 +218,8 @@
     <Content Include="assets\css\bootstrap-theme.min.css" />
     <Content Include="assets\css\bootstrap.css" />
     <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\Scripts\record.js" />
+    <Content Include="assets\Scripts\recorder.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="assets\css\site.css" />
