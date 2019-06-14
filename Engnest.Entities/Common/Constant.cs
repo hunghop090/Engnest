@@ -25,4 +25,11 @@ namespace Engnest.Entities.Common
 		public const Byte EXISTS_USER = 1;
 		public const Byte ERROR = 2;
 	}
+
+	public class TypeUpload
+	{
+		public const string IMAGE = "image";
+		public const string VIDEO = "video";
+		public const string AUDIO = "audio";
+	}
 }

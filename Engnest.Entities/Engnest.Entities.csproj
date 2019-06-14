@@ -108,6 +108,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CommonFunction.cs" />
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\EncryptorMD5.cs" />
     <Compile Include="Common\UploadImageService.cs" />

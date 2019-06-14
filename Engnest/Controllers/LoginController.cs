@@ -12,8 +12,8 @@ using Engnest.Entities.ViewModels;
 
 namespace Engnest.Controllers
 {
-    public class LoginController : Controller
-    {
+	public class LoginController : Controller
+	{
 		private IUserRepository userRepository;
 
 		public LoginController()
@@ -25,55 +25,56 @@ namespace Engnest.Controllers
 		{
 			this.userRepository = userRepository;
 		}
-        public ActionResult Index()
-        {
-			AmazonS3Uploader.UploadFile();
-            return View();
-        }
+		public ActionResult Index()
+		{
+			var key = AmazonS3Uploader.UploadFile("C:\\Users\\hungnt\\Desktop\\Nguyen-Thanh-Hung-CV.pdf",TypeUpload.IMAGE);
+			var url = AmazonS3Uploader.GetUrl(key);
+			return View();
+		}
 
-        [HttpPost]
-        public ActionResult Login(LoginModel model)
-        {
+		[HttpPost]
+		public ActionResult Login(LoginModel model)
+		{
 			byte result = 0;
 			string message = "";
 			try
 			{
 
-            if (ModelState.IsValid)
-            {
-                User user = new User();
-                var Password = EncryptorMD5.MD5Hash(model.Password);
-                result = userRepository.Login(model.UserName, Password, out user);
-                if (result == LoginStatus.SUCCESS)
-                    Session.Add(Constant.USER_SESSION, user.ID);
-            }
+				if (ModelState.IsValid)
+				{
+					User user = new User();
+					var Password = EncryptorMD5.MD5Hash(model.Password);
+					result = userRepository.Login(model.UserName, Password, out user);
+					if (result == LoginStatus.SUCCESS)
+						Session.Add(Constant.USER_SESSION, user.ID);
+				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				message = ex.Message;
 			}
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { result,message });
-        }
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result, message });
+		}
 
-        public ActionResult SignIn(SignInModel model)
-        {
-            model.Password = EncryptorMD5.MD5Hash(model.Password);
+		public ActionResult SignIn(SignInModel model)
+		{
+			model.Password = EncryptorMD5.MD5Hash(model.Password);
 			var result = userRepository.SignIn(model);
-			if(result == LoginStatus.SUCCESS)
-            {
-                userRepository.Save();
-                var user = userRepository.GetUserByName(model.UserName);
-                Session.Add(Constant.USER_SESSION, user.ID);
-            }
-				
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+			if (result == LoginStatus.SUCCESS)
+			{
+				userRepository.Save();
+				var user = userRepository.GetUserByName(model.UserName);
+				Session.Add(Constant.USER_SESSION, user.ID);
+			}
 
-        public ActionResult SignOut()
-        {
-            Session.Remove(Constant.USER_SESSION);
-            return RedirectToAction("Index");
-        }
-    }
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult SignOut()
+		{
+			Session.Remove(Constant.USER_SESSION);
+			return RedirectToAction("Index");
+		}
+	}
 }
