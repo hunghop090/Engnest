@@ -15,9 +15,7 @@ namespace Engnest
                         "~/assets/Scripts/jquery.validate*"));
 			  bundles.Add(new ScriptBundle("~/bundles/js").Include(
                         "~/assets/Scripts/admin.js", 
-						"~/assets/Scripts/JavaScript.js",
-						 "~/assets/Scripts/record.js", 
-						  "~/assets/Scripts/recorder.js"));
+						"~/assets/Scripts/JavaScript.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.

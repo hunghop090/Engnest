@@ -19,7 +19,6 @@ namespace Engnest
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 			MapperConfig.RegisterMappers();
-			ProfileManager.RegisterProfile("AWSProfileName", "AKIAJZMY3NCCEJQXACJA", "dbVrcf7AQ01Nt5qz03oxgNpvpIRhvmrmcXVUAUbg");
         }
     }
 }

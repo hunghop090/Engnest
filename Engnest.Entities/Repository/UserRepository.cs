@@ -126,7 +126,7 @@ namespace Engnest.Entities.Repository
 					user.LastName = model.LastName;
 					user.Email = model.Email;
 					user.Password = model.Password;
-					user.CreatedTime = DateTime.Now;
+					user.CreatedTime = DateTime.UtcNow;
 					context.Users.Add(user);
 				}
 				catch (Exception ex)

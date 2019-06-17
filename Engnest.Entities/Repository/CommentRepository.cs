@@ -27,7 +27,7 @@ namespace Engnest.Entities.Repository
 
 		 public List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity)
         {
-			DateTime createDate = DateTime.Now;
+			DateTime createDate = DateTime.UtcNow;
 			if (!string.IsNullOrEmpty(date))
 			{
 				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
@@ -70,7 +70,7 @@ namespace Engnest.Entities.Repository
 
         public List<Comment> GetCommentByTargetId(long id)
         {
-   //         DateTime createDate = DateTime.Now;
+   //         DateTime createDate = DateTime.UtcNow;
 			//if (!string.IsNullOrEmpty(date))
 			//{
 			//	createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
@@ -121,7 +121,7 @@ namespace Engnest.Entities.Repository
 
         public void InsertComment(Comment Comment)
         {
-            Comment.CreatedTime = DateTime.Now;
+            Comment.CreatedTime = DateTime.UtcNow;
             context.Comments.Add(Comment);
             Save();
         }

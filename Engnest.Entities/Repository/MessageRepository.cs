@@ -21,7 +21,7 @@ namespace Engnest.Entities.Repository
         }
 		 public List<MessageViewModel> LoadMessages(string date,long UserId,long TargetId)
         {
-			DateTime createDate = DateTime.Now;
+			DateTime createDate = DateTime.UtcNow;
 			if (!string.IsNullOrEmpty(date))
 			{
 				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
@@ -74,7 +74,7 @@ namespace Engnest.Entities.Repository
 
         public void InsertMessage(Message Message)
         {
-            Message.CreatedTime = DateTime.Now;
+            Message.CreatedTime = DateTime.UtcNow;
             context.Messages.Add(Message);
             Save();
         }

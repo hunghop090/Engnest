@@ -20,7 +20,7 @@ namespace Engnest.Entities.Common
 				);
 		public static string UploadFile(string base64String, string type)
 		{
-			string Key = type + "/" + CommonFunction.GetTimestamp(DateTime.Now) + "_" + CommonFunction.RandomNumber(0, 99999999);
+			string Key = type + "/" + CommonFunction.GetTimestamp(DateTime.UtcNow) + "_" + CommonFunction.RandomNumber(0, 99999999);
 			try
 			{
 				var data = Regex.Split(base64String, ";base64,");
@@ -46,7 +46,7 @@ namespace Engnest.Entities.Common
 		}
 		public static string UploadFileStream(Stream stream, string type)
 		{
-			string Key = type + "/" + CommonFunction.GetTimestamp(DateTime.Now) + "_" + CommonFunction.RandomNumber(0, 99999999);
+			string Key = type + "/" + CommonFunction.GetTimestamp(DateTime.UtcNow) + "_" + CommonFunction.RandomNumber(0, 99999999);
 			try
 			{
 				PutObjectRequest request = new PutObjectRequest();
@@ -70,7 +70,7 @@ namespace Engnest.Entities.Common
 				GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
 				request.BucketName = bucketname;
 				request.Key = key;
-				request.Expires = DateTime.Now.AddHours(1);
+				request.Expires = DateTime.UtcNow.AddHours(1);
 				request.Protocol = Protocol.HTTP;
 				string url = client.GetPreSignedURL(request);
 				return url;

@@ -119,7 +119,7 @@ namespace Engnest.Controllers
 						emotion.TargetId = PostId;
 						emotion.TargetType = "post";
 						emotion.UserId = userLogin.ID;
-						emotion.CreatedTime = DateTime.Now;
+						emotion.CreatedTime = DateTime.UtcNow;
 						emotion.Status = 1;
 						emotionRepository.InsertEmotion(emotion);
 						status = 1;

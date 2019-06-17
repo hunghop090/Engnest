@@ -27,7 +27,7 @@ namespace Engnest.Entities.Repository
 
 		 public List<PostViewModel> LoadPostsHome(string date,long UserId)
         {
-			DateTime createDate = DateTime.Now;
+			DateTime createDate = DateTime.UtcNow;
 			if (!string.IsNullOrEmpty(date))
 			{
 				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
@@ -109,7 +109,7 @@ namespace Engnest.Entities.Repository
 
         public void InsertPost(Post Post)
         {
-            Post.CreatedTime = DateTime.Now;
+            Post.CreatedTime = DateTime.UtcNow;
             context.Posts.Add(Post);
             Save();
         }
