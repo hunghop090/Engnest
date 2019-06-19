@@ -34,7 +34,23 @@ namespace Engnest.Controllers
 			try
 			{
 				var id = userLogin.ID;
-				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity);
+				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
+
+
+		}
+
+		public ActionResult LoadCommentsReply(string PostIds,string date,int quantity)
+		{
+			try
+			{
+				var id = userLogin.ID;
+				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty);
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
@@ -48,11 +64,13 @@ namespace Engnest.Controllers
 		[HttpPost]
 		public ActionResult CreatedComment(Comment model)
 		{
+			var data = new List<CommentViewModel>();
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					commentRepository.InsertComment(model);
+					var DateTime = commentRepository.InsertComment(model);
+					data = commentRepository.LoadCommentsPost(model.TargetId.ToString(), DateTime, 1,model.UserId.ToString());
 				}
 				catch (Exception ex)
 				{
@@ -60,7 +78,7 @@ namespace Engnest.Controllers
 				}
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
-			return Json(new { result = Constant.SUCCESS });
+			return Json(new { result = Constant.SUCCESS,data });
 		}
 	}
 }

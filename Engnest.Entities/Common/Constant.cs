@@ -32,4 +32,9 @@ namespace Engnest.Entities.Common
 		public const string VIDEO = "video";
 		public const string AUDIO = "audio";
 	}
+	public class TypeComment
+	{
+		public const Byte POST = 0;
+		public const Byte COMMENT = 1;
+	}
 }

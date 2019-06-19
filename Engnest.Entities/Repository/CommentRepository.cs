@@ -25,8 +25,11 @@ namespace Engnest.Entities.Repository
             return context.Comments.ToList();
         }
 
-		 public List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity)
+		 public List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity,string createdUser)
         {
+			long UserId = 0;
+			if(!string.IsNullOrEmpty(createdUser))
+				UserId = long.Parse(createdUser);
 			DateTime createDate = DateTime.UtcNow;
 			if (!string.IsNullOrEmpty(date))
 			{
@@ -43,7 +46,9 @@ namespace Engnest.Entities.Repository
 				var result = (from c in context.Comments
 				join p4 in context.Users on c.UserId equals p4.ID  into ps4
 				from p4 in ps4.DefaultIfEmpty()
-				where PostId == c.TargetId &&  c.CreatedTime < createDate
+				join p5 in context.Comments on new {a1 = c.ID,a2 =  TypeComment.COMMENT } equals new {a1 = p5.TargetId,a2 = p5.TargetType.Value} into ps5
+				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+				where PostId == c.TargetId &&  c.CreatedTime < createDate && (UserId == 0 || UserId == c.UserId)
 				orderby c.CreatedTime descending
 				select new CommentViewModel{
 					Id = c.ID,
@@ -56,7 +61,9 @@ namespace Engnest.Entities.Repository
 					Content = c.Content,
 					UserId = c.UserId,
 					Avatar = p4.Avatar,
-					NickName = p4.NickName
+					NickName = p4.NickName,
+					CountReply = ps5.Count(),
+					CountEmotions = countEmotions
 					}).Take(quantity).ToList();
 				CommentView = CommentView.Union(result).ToList();
 			}
@@ -119,11 +126,13 @@ namespace Engnest.Entities.Repository
             return new List<Comment>();
         }
 
-        public void InsertComment(Comment Comment)
+        public string InsertComment(Comment Comment)
         {
             Comment.CreatedTime = DateTime.UtcNow;
             context.Comments.Add(Comment);
             Save();
+			double totalMill = (new TimeSpan(Comment.CreatedTime.Ticks)).TotalMilliseconds;
+			return totalMill.ToString();
         }
 
         public void DeleteComment(long CommentID)

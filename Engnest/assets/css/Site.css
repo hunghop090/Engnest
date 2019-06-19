@@ -462,10 +462,6 @@ iframe, .post-map img {
 	color: #999 !important
 }
 
-.comment-reply {
-	display: none
-}
-
 	.comment-reply .wo_commreply_combo {
 		margin-top: 10px;
 		display: flex
