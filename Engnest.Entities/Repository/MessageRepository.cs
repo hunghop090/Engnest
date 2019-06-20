@@ -51,7 +51,7 @@ namespace Engnest.Entities.Repository
 				Message.AvataTarget = item.p2?.Avatar ;
 				Message.AvataUser = item.p1?.Avatar;
 				Message.NickNameTarget = item.p2?.NickName ;
-				Message.NickNameUser = item.p2?.NickName ;
+				Message.NickNameUser = item.p1?.NickName ;
 				MessageView.Add(Message);
 			}
             return MessageView;

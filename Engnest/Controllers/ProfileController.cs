@@ -26,18 +26,43 @@ namespace Engnest.Controllers
 		{
 			this.userRepository = userRepository;
 		}
-		public ActionResult Index()
+		public ActionResult Index(long? id)
 		{
-			var model = Mapper.Map<ProfileModel>(userLogin);
+			ProfileModel model = new ProfileModel();
+			if(id == null)
+				model = Mapper.Map<ProfileModel>(userLogin);
+			else
+			{
+				model = Mapper.Map<ProfileModel>(userRepository.GetUserByID(id.Value)); 
+			}
+				
 			return View(model);
 		}
 
-		public ActionResult LoadFriend()
+		public ActionResult LoadFriend(long? id)
 		{
 			try
 			{
-				var id = userLogin.ID;
-				var data = userRepository.GetFriend(id);
+				if(id == null)
+					id = userLogin.ID;
+				var data = userRepository.GetFriend(id.Value);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
+
+
+		}
+
+		public ActionResult LoadGroup(long? id)
+		{
+			try
+			{
+				if(id == null)
+					id = userLogin.ID;
+				var data = userRepository.GetFriend(id.Value);
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)

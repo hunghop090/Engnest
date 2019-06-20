@@ -8,6 +8,6 @@ namespace Engnest.Entities.ViewModels
 {
 	public class HomeModel
     {
-        public ProfileModel ProfileModel {get;set;}
+        public ProfileModel Profile {get;set;}
     }
 }

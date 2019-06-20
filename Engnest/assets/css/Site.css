@@ -1261,7 +1261,7 @@ textarea {
 	}
 
 .notifications-dropdown {
-	width: 400px;
+	width: 300px;
 	overflow: auto;
 	max-height: 315px;
 	padding: 0
@@ -2983,7 +2983,8 @@ table.setting-table {
 }
 
 .user-request-list button {
-	padding: 3px
+	padding: 3px;
+	margin-left:5px;
 }
 
 .user-request-list:not(:first-child) {
@@ -8893,7 +8894,7 @@ svg.feather {
 	background-color: #000;
 	margin-top: 0;
 	margin: auto;
-	max-width: 1040px;
+	max-width: 700px;
 }
 
 	.wo_imagecombo_lbox .story-img {
@@ -8902,7 +8903,7 @@ svg.feather {
 		display: flex;
 		flex-direction: column;
 		margin-right: 380px;
-		width: calc(100% - 380px)
+		width: 100%;
 	}
 
 		.wo_imagecombo_lbox .story-img .wo_lbox_topbar {
@@ -23452,4 +23453,28 @@ i.fa-search {
 
 .post-heading .image {
 	margin-left: 34px;
+}
+
+.comment-options .active-like {
+	color: #1da1f2;
+}
+
+.wo_imagecombo_lbox .story-img .sun_light_tool {
+	bottom: 0;
+	width: 100%;
+	top: auto;
+	background: #000;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.sun_img_innr {
+	position: relative;
+	display: table;
+	height: calc(100% - 48px);
+}
+
+.header-fixed1000 .request-list {
+	padding: 10px;
 }

@@ -14,5 +14,7 @@ namespace Engnest.Entities.ViewModels
 
         public string NickName { get; set; }
 
+		public DateTime CreatedTime { get; set; }
+
     }
 }

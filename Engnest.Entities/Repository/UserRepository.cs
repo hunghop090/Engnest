@@ -38,31 +38,54 @@ namespace Engnest.Entities.Repository
 		{
 			var ListFriend = new List<FriendModel>();
 			var result = (from c in context.Relationships
-				join p1 in context.Users on c.UserReceiveID equals p1.ID  into ps1
-				from p1 in ps1.DefaultIfEmpty()
-				join p2 in context.Users on c.UserSentID equals p2.ID  into ps2
-				from p2 in ps2.DefaultIfEmpty()
-				where c.UserReceiveID == UserId || c.UserSentID == UserId
-				orderby c.CreatedTime descending
-				select new{c ,p1,p2}).ToList();
-			foreach(var item in result)
+						  join p1 in context.Users on c.UserReceiveID equals p1.ID into ps1
+						  from p1 in ps1.DefaultIfEmpty()
+						  join p2 in context.Users on c.UserSentID equals p2.ID into ps2
+						  from p2 in ps2.DefaultIfEmpty()
+						  where c.UserReceiveID == UserId || c.UserSentID == UserId
+						  orderby c.CreatedTime descending
+						  select new { c, p1, p2 }).ToList();
+			foreach (var item in result)
 			{
-				var Friend = new FriendModel(); 
-				if(item.p1.ID == UserId)
+				var Friend = new FriendModel();
+				if (item.p1.ID == UserId)
 				{
 					Friend.Avatar = item.p2.Avatar;
 					Friend.NickName = item.p2.NickName;
 					Friend.Id = item.p2.ID;
+					Friend.CreatedTime = item.c.CreatedTime;
 				}
 				else
 				{
 					Friend.Avatar = item.p1.Avatar;
 					Friend.NickName = item.p1.NickName;
 					Friend.Id = item.p1.ID;
+					Friend.CreatedTime = item.c.CreatedTime;
 				}
 				ListFriend.Add(Friend);
 			}
 			return ListFriend;
+		}
+
+		public List<RequestFriendModel> GetRequestFriend(long UserId)
+		{
+			var ListRequestFriend = new List<RequestFriendModel>();
+			var result = (from c in context.Relationships
+						  join p1 in context.Users on c.UserSentID equals p1.ID into ps1
+						  from p1 in ps1.DefaultIfEmpty()
+						  join p2 in context.Groups on c.UserSentID equals p2.ID into ps2
+						  from p2 in ps2.DefaultIfEmpty()
+						  where c.UserReceiveID == UserId && c.Status == StatusRequestFriend.SENDING
+						  orderby c.CreatedTime descending
+						  select new RequestFriendModel
+						  {
+							  TargetId = p1 != null ? p1.ID : p2.ID,
+							  Avatar = p1 != null ? p1.Avatar : p2.Avatar,
+							  NickName = p1 != null ? p1.NickName : p2.GroupName,
+							  Type = p1 != null ? TypeRequestFriend.USER : TypeRequestFriend.GROUP,
+							  Id = c.ID
+						  }).ToList();
+			return result;
 		}
 
 		public void InsertUser(User User)

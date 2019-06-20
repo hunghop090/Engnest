@@ -35,15 +35,24 @@ namespace Engnest.Controllers
 		public ActionResult Index()
 		{
 			HomeModel model = new HomeModel();
-			model.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
+			model.Profile = Mapper.Map<ProfileModel>(userLogin);
 			return View(model);
 		}
-		public ActionResult LoadMorePost(string date)
+		public ActionResult LoadMorePost(string date,long? id)
 		{
 			try
 			{
-				var id = userLogin.ID;
-				var data = postRepository.LoadPostsHome(date, userLogin.ID);
+				List<PostViewModel> data = new List<PostViewModel>();
+				if(id == null)
+				{
+					id = userLogin.ID;
+					data = postRepository.LoadPostsHome(date, id.Value);
+				}
+				else
+				{
+					data = postRepository.LoadPostsProfile(date, id.Value);
+				}
+
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
@@ -52,6 +61,21 @@ namespace Engnest.Controllers
 			}
 
 
+		}
+
+		public ActionResult LoadRequestFriend()
+		{
+			try
+			{
+				var id = userLogin.ID;
+				List<RequestFriendModel> data = new List<RequestFriendModel>();
+				data = userRepository.GetRequestFriend(id);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
 		}
 
 		[HttpPost]

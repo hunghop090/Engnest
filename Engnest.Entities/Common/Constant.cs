@@ -8,9 +8,9 @@ namespace Engnest.Entities.Common
 	public class Constant
 	{
 		public const string USER_SESSION = "USER_SESSION";
-        public const Byte SUCCESS = 0;
-        public const Byte ERROR = 2;
-    }
+		public const Byte SUCCESS = 0;
+		public const Byte ERROR = 2;
+	}
 	public class LoginStatus
 	{
 		public const Byte SUCCESS = 0;
@@ -36,5 +36,23 @@ namespace Engnest.Entities.Common
 	{
 		public const Byte POST = 0;
 		public const Byte COMMENT = 1;
+	}
+	public class TypePost
+	{
+		public const Byte USER = 0;
+		public const Byte GROUP = 1;
+	}
+
+	public class TypeRequestFriend
+	{
+		public const Byte USER = 0;
+		public const Byte GROUP = 1;
+	}
+
+	public class StatusRequestFriend
+	{
+		public const Byte SENDING = 0;
+		public const Byte ACCEPT = 1;
+		public const Byte REJECT = 4;
 	}
 }

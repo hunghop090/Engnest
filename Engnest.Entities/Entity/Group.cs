@@ -18,7 +18,7 @@ namespace Engnest.Entities.Entity
         public long? CreatedUser { get; set; }
 
         [StringLength(500)]
-        public string Avata { get; set; }
+        public string Avatar { get; set; }
 
         [StringLength(500)]
         public string Banner { get; set; }

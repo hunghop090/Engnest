@@ -40,5 +40,7 @@ namespace Engnest.Entities.ViewModels
         public DateTime? UpdateTime { get; set; }
 
         public bool? Flag { get; set; }
+
+		public ProfileModel Profile {get;set;}
     }
 }

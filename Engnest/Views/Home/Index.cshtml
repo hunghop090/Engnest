@@ -1,9 +1,5 @@
 ﻿@using Engnest.Entities.Common;
 @model Engnest.Entities.ViewModels.HomeModel
-@{
-	var href = HttpContext.Current.Request.Url.Host;
-}
-
 <div class="content-container container" style="transform: none;">
 	<div class="ad-placement-header-footer">
 	</div>
@@ -17,12 +13,12 @@
 						<div class="left-sidebar">
 							<ul>
 								<li>
-									<a href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223">
-										<img alt="Onl Hero Profile Picture" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0"> Onl Hero
+									<a href="/profile?id=@Model.Profile.ID" data-ajax="?link1=timeline&amp;u=0dc53e223">
+										<img alt="Onl Hero Profile Picture" src="@Model.Profile.Avatar">@Model.Profile.NickName
 									</a>
 								</li>
 								<li>
-									<a href="https://biztime.com.vn" data-ajax="?index.php?link1=home">
+									<a href="/" data-ajax="?index.php?link1=home">
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg> News Feed
 									</a>
 								</li>
@@ -35,12 +31,12 @@
 					<form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
 						<div class="panel post panel-shadow sun_pub_box">
 							<div id="post-textarea" onclick="Wo_ShowPosInfo();">
-								<img class="post-avatar" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0">
+								<img class="post-avatar" src="@Model.Profile.Avatar">
 								<div class="sun_pub_name">
-									<span>Onl Hero</span>
+									<span>@Model.Profile.NickName</span>
 								</div>
 								<i class="fa fa-spinner fa-spin" id="loading_indicator"></i>
-								<textarea name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Bạn đang nghĩ gì? #Gắnthẻ.. Đềcập.. Link.." dir="auto" style="height: 112px;" autocomplete="off"></textarea>
+								<textarea name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Bạn đang nghĩ gì?" dir="auto" style="height: 112px;" autocomplete="off"></textarea>
 								<!--Add Emojis-->
 							</div>
 							<!--Publisher Box Footer-->
@@ -85,37 +81,11 @@
 											<span id="postRecordingTime" class="hidden">00:00</span>
 										</div>
 									</div>
-									<!--Add Feeling-->
-									<div class="sun_pub_more_items emo-form">
-										<div class="poster-left-buttons">
-											<span class="btn btn-file fel">
-												<span><img src="https://biztime.com.vn/themes/biztime-s/img/1f600.png" alt="Cảm xúc"></span>
-												Cảm xúc
-											</span>
-										</div>
-									</div>
-									<!--Uploaded File-->
-									<div class="sun_pub_more_items">
-										<div class="poster-left-buttons">
-											<span class="btn btn-file fil">
-												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-file.svg" alt="Kèm File"></span> Kèm File						<input type="file" id="publisher-file" name="postFile">
-											</span>
-										</div>
-									</div>
-
-									<!--Add Location-->
-									@*<div class="sun_pub_more_items">
-											<div class="poster-left-buttons">
-												<span class="btn btn-file map-form loc">
-													<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-map.svg" alt="Địa điểm"></span> Địa điểm
-												</span>
-											</div>
-										</div>*@
 								</div>
 
 								<div class="pub-footer-bottom">
 									<div class="pull-right">
-										<button type="button" onclick="PushPost()" id="publisher-button" class="btn btn-main">
+										<button type="button" onclick="PushPost(@Model.Profile.ID,@TypePost.USER)" id="publisher-button" class="btn btn-main">
 											<span>Chia sẻ</span>
 										</button>
 									</div>
@@ -184,83 +154,6 @@
 
 					<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
 						<div class="sidebar">
-							<!-- Trending -->
-							<ul class="list-group trending">
-								<li class="sidebar-title-back" contenteditable="false">Trending !</li>
-								<li class="list-group-item sun_htag" dir="auto">
-									<a href="https://biztime.com.vn/hashtag/biztime" data-ajax="?link1=hashtag&amp;hash=biztime">
-										<span class="htag_top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"></path></svg> #biztime</span>
-										<span class="htag_bottom">11 bài đăng</span>
-									</a>
-								</li>
-								<div class="clear"></div>
-							</ul>
-
-							<!-- Pro Users -->
-							<ul class="list-group">
-								<li class="text-muted sidebar-title-back" contenteditable="false">Thành viên nổi bật</li>
-								<ul class="list-inline wo_pro_users">
-									<li>
-										<a class="user" href="https://biztime.com.vn/hanbabe" data-ajax="?link1=timeline&amp;u=hanbabe">
-											<img alt="Hân Hân" src="https://biztime.com.vn/upload/photos/2018/12/XjboVszbVjtsJQRYOAAV_02_eaad95e001832de5138cb2ed1bda2d87_avatar.jpg?cache=0">
-											<span title="Hân Hân">Hân Hân</span>
-										</a>
-									</li>
-								</ul>
-							</ul>
-
-							<!-- Promoted Page -->
-							<!-- Birthday -->
-							<!-- People You May Know -->
-							<ul class="list-group" id="sidebar-user-list-container">
-								<li class="text-muted sidebar-title-back" contenteditable="false">
-									Những người bạn có thể biết	<span onclick="Wo_ReloadSideBarUsers();" class="pull-right refresh"><i class="fa fa-repeat progress-icon" data-icon="repeat"></i></span>
-								</li>
-								<li>
-									<div class="sidebar-users-may-know-container">
-										<div class="wo_sidebar_users">
-											<div class="avatar pull-left">
-												<a href="https://biztime.com.vn/PhuongTan" data-ajax="?link1=timeline&amp;u=PhuongTan"><img src="https://biztime.com.vn/upload/photos/d-avatar.jpg?cache=0" alt="Phương Tân"></a>
-											</div>
-											<div class="info_prt">
-												<span class="user-popover" data-id="654" data-type="user">
-													<a href="https://biztime.com.vn/PhuongTan" data-ajax="?link1=timeline&amp;u=PhuongTan" class="wo_user_link_name">
-														<span class="user-name" title="Phương Tân">Phương Tân</span>
-													</a>
-												</span>
-												<div class="user-follow-button">
-													<span id="Follow-654">
-														<button type="button" onclick="Wo_RegisterFollow(654)" class="btn btn-default btn-sm wo_follow_btn" id="wo_useract_btn">
-															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-															<span class="button-text"> Thêm bạn bè</span>
-														</button>
-													</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="clear"></div>
-								</li>
-							</ul>
-							<ul class="list-group">
-								<li class="list-group-item sidebar-title-back" contenteditable="false">Mời Bạn Bè</li>
-								<li>
-									<form action="#" method="post" class="invite-user-form">
-										<div class="invite-user-form-alert"></div>
-										<div class="invite-user-combine">
-											<input type="text" name="email" placeholder="E-mail" class="form-control">
-											<button class="btn btn-main btn-sm" title="Gởi Lời Mời">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-											</button>
-										</div>
-										<div class="clear"></div>
-									</form>
-								</li>
-							</ul>
-							<!-- Pages You May Like -->
-							<!-- Sidebar Ad -->
-
-
 							<div class="page-margin">
 								<div class="footer-wrapper sidebar">
 									<div class="footer-powered">
@@ -286,341 +179,17 @@
 		</div>
 	</div>
 </div>
-<script id="reply-comment-template" type="x-tmpl-mustache">
-	<div class="reply reply-container" id="comment_reply_6620" data-reply-id="6620">
-		<a class="pull-left" href="https://biztime.com.vn/0dc53e223" onclick="InjectAPI('{&quot;profile_id&quot; : &quot;1961&quot;, &quot;type&quot;:&quot;user&quot;}', event);">
-			<img class="avatar pull-left" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0" alt="avatar">
-		</a>
-		<div class="comment-body">
-			<div class="pull-right comment-options comment_edele_options">
-				<span class="pointer" onclick="Wo_EditReplyComment(6620);">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon></svg>
-				</span>
-				&nbsp;
-				<span class="pointer" id="deleteComment" onclick="Wo_DeleteReplyComment(6620);">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-				</span>
-			</div>
-			<div class="comment-heading reply-heading">
-				<div class="sun_innr_comm">
-					<span class="user-popover" data-id="1961" data-type="user">
-						<a href="https://biztime.com.vn/0dc53e223" data-ajax="?link1=timeline&amp;u=0dc53e223" onclick="InjectAPI('{&quot;profile_id&quot; : &quot;1961&quot;, &quot;type&quot;:&quot;user&quot;}', event);">
-							<h4 class="user">Onl Hero</h4>
-						</a>
-					</span>
-					<div class="reply-text" data-post-comm-reply-text="6620">ád</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-			<!-- reaction -->
-			<div class="like-stat stat-item" id="comment_reacted">
-				<span class="like-emo replay-reactions-icons-6620">
-				</span>
-			</div>
-
-			<span class="comment-options">
-				<div class="wo-reaction wo-reaction-replay stat-item" data-id="6620" id="comment_reactions">
-					<span class="like-btn like-btn-replay" data-id="6620">
-						<span class="replay-status-reaction-6620"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-up"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> <span class="r_likes-6620"></span></span>
-					</span>
-				</div>
-				· <span class="time ajax-time" title="1560932637">5 minutes ago</span>
-			</span>
-			<div class="hidden" data-post-comm-reply-edit="6620">
-				<textarea class="edit-box form-control" onkeydown="Wo_UpdatCommReply(6620,event,this)">ád</textarea>
-			</div>
-		</div>
-	</div>
-</script>
-<script id="comment-template" type="x-tmpl-mustache">
-	<div class="comment comment-container" id="comment_{{Id}}" data-comment-id="{{Id}}">
-		<a class="pull-left" href="/{{Id}}">
-			<img class="avatar pull-left" src="{{Avatar}}" alt="avatar">
-		</a>
-		<div class="comment-body">
-			<div class="comment-heading">
-				<div class="sun_innr_comm">
-					<span class="user-popover" data-id="5" data-type="user">
-						<a href="/{{Id}}">
-							<h4 class="user">{{NickName}}</h4>
-						</a>
-						<span class="verified-color" title="Verified User"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="feather feather-check-circle"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"></path></svg></span>
-					</span>
-					<div class="comment-text" style="max-height: none;">{{Content}}</div>
-					<div class="comment-image">
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-			<!-- reaction -->
-			<div class="like-stat stat-item post-like-status" id="comment_reacted">
-				<span class="like-emo comment-reactions-icons-{{Id}}">
-				</span>
-			</div>
-
-			<span class="comment-options">
-				<div  id="LikeAction_{{Id}}" onclick="LikeAction('{{Id}}')" class="wo-reaction wo-reaction-comment stat-item" data-id="{{Id}}">
-					<span class="like-btn like-btn-comment" data-id="6972">
-						<span class="comment-status-reaction-6972 unselectable"><i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i> <span id="CountEmotions_{{Id}}" class="how_many_reacts">{{CountEmotions}}</span></span>
-					</span>
-				</div>
-				·
-				<span class="pointer" id="ReplyComment" onclick="OpenReplyBox('{{Id}}','');">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-				</span>
-				<span id="comment-replies">{{CountReply}}</span>
-				·
-				<span class="time ajax-time" title="1547532325">{{CreatedTime}}</span>
-			</span>
-			<div class="comment-replies-{{Id}}" style="display: none;">
-				<div class="comment-replies-text" id="comments-list-{{Id}}">
-
-				</div>
-				<div class="comment-reply">
-					<div class="wo_commreply_combo">
-						<img class="avatar" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0">
-						<textarea class="reply-box form-control textarea" onkeyup="CreatedComment(this, '{{Id}}','@TypeComment.COMMENT')" placeholder="Reply to comment" dir="auto" style="height: 48px;"></textarea>
-					</div>
-					<div id="hidden_inputbox_comment_reply"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</script>
-<script id="my-template" type="x-tmpl-mustache">
-	<div class="post-container sun_post">
-		<div class="post" id="post-{{Id}}" data-post-id="{{Id}}" data-post-type="">
-			<div class="panel panel-white panel-shadow">
-				<div class="post-heading">
-					<div class="pull-left image">
-						<a href="{{UserId}}"><img src="{{Avatar}}" id="updateImage-4" class="avatar" alt="{{NickName}} profile picture"></a>
-					</div>
-					<div class="meta"><div class="title h5"><span class="user-popover" data-type="user" data-id="4"><a href="{{UserId}}"><b>{{NickName}}</b></a></span><small class="small-text"></small></div><h6> <span class="time">&nbsp;&nbsp;<a style="color:#9197a3" class="ajax-time" href="Post/{{Id}}" title="2 months ago" target="_blank">{{CreatedTime}}</a></span></h6></div>
-				</div>
-				<div class="post-description" id="post-description-{{Id}}">
-					<p dir="auto" data-readmore="" aria-expanded="false" id="rmjs-1">
-						<span data-translate-text="{{Id}}">
-							{{Content}}
-						</span>
-					</p>
-					<div class="post-file">
-						{{#ListAudios.length}}
-						<audio controls="" preload="auto" style="width: 100%;">
-							{{#ListAudios}}
-							<source src="{{.}}" type="audio/mpeg">
-							<source src="{{.}}" type="audio/mp3">
-							{{/ListAudios}}
-						</audio>
-						{{/ListAudios.length}}
-
-					</div>
-					<div id="fullsizeimg" style="position: relative;">
-						{{#ListImages}}
-						<img src="{{.}}" alt="image" class="width-2 image-file pointer">
-						{{/ListImages}}
-						<div class="clear">
-						</div>
-					</div>
-					<div class="stats post-actions pull-left" id="active_react">
-						<div class="like-stat stat-item post-like-status">
-							<span class="like-emo post-reactions-icons-{{Id}}">
-								<i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i>
-								<span id="CountEmotions_{{Id}}" class="how_many_reacts">{{CountEmotions}}</span>
-							</span>
-						</div>
-					</div> <div class="clear"></div> 
-					<div class="stats pull-left" id="wo_post_stat_button">
-						<div id="LikeAction_{{Id}}" onclick="LikeAction('{{Id}}')" class="wo-reaction wo-reaction-post stat-item unselectable" data-id="{{Id}}">
-							<span class="like-btn like-btn-post unselectable" data-id="{{Id}}"><span class="status-reaction-{{Id}} unselectable"><i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i> <span class="t_likes{{Id}}"></span> Like</span></span><ul class="reactions-box reactions-box-container-{{Id}}" data-id="{{Id}}" style=" right: auto; "><li class="reaction reaction-like animated_2" data-reaction="Like" data-reaction-lang="Like" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/like.gif" alt="Like"></li><li class="reaction reaction-love animated_4" data-reaction="Love" data-reaction-lang="Love" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/love.gif" alt="Love"></li><li class="reaction reaction-haha animated_6" data-reaction="HaHa" data-reaction-lang="HaHa" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/haha.gif" alt="HaHa"></li><li class="reaction reaction-wow animated_8" data-reaction="Wow" data-reaction-lang="WoW" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/wow.gif" alt="WoW"></li><li class="reaction reaction-sad animated_10" data-reaction="Sad" data-reaction-lang="Sad" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/sad.gif" alt="Sad"></li><li class="reaction reaction-angry animated_12" data-reaction="Angry" data-reaction-lang="Angry" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/angry.gif" alt="Angry"></li></ul></div><div class="btn btn-default stat-item" onclick="Wo_ShowComments({{Id}});" title="Comments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"></path></svg><span class="like-btn-mobile">Comment</span> </div> <div class="btn btn-default stat-item" title="Share" onclick="Wo_SharePostOn({{Id}},4,'timeline')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z"></path></svg> <span class="like-btn-mobile">Share</span>
-						</div>
-					</div>
-					<div class="clear">
-					</div>
-				</div>
-				<div class="post-footer post-comments " id="post-comments-3139">
-					<div id="hidden_inputbox_comment"></div>
-					<div id="comments-list-{{Id}}" class="comments-list">
-
-					</div>
-
-					<div class="post-commet-textarea">
-						<div class="loading_cont">
-							<div class="loading hidden"></div>
-						</div>
-						<div id="wo_comment_combo" class="remove_combo_on_click">
-							<div style="display: flex;">
-								<img class="avatar" src="https://biztime.com.vn/upload/photos/2019/04/thRSBWIi4skY3jCmKQS1_avatar.jpg?cache=0">
-								<textarea class="form-control comment-textarea textarea ui-autocomplete-input" placeholder="Write a comment and press enter" type="text" onkeyup="CreatedComment(this, '{{Id}}','@TypeComment.POST');" dir="auto" autocomplete="off" style="height:36px;"></textarea>
-							</div>
-						</div>
-					</div>
-					<div id="comment-image" class="hidden comment-image-con">
-
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</script>
-<script>
-	var dateGetPost = "";
-	var checkLoadPost = false;
-	$(document).ready(function () {
+@section scripts {
+	<script>
+		var dateGetPost = "";
+		$(document).ready(function () {
 		LoadMorePost();
 		$(window).scroll(function (event) {
-			if (($(window).scrollTop() + 400) > $("#posts").height() && checkLoadPost == false)
+			if (($(window).scrollTop() + 500) > $("#posts").height() && checkLoadPost == false)
 				LoadMorePost(dateGetPost);
 		});
-	});
-	function OpenReplyBox(id, date) {
-		$(".comment-replies-" + id).toggle();
-		LoadReply(id, date);
-	}
-	function LoadReply(id, date) {
-		 $.ajax({
-            url: "/Comment/LoadCommentsReply",
-            type: "GET",
-			 data: { PostIds: id,date,quantity: "20"},
-            dataType: "json",
-            success: function (result) {
-				if (result.result == @Constant.SUCCESS) {
-					var commenttp = $('#comment-template').html();
-					Mustache.parse(commenttp);
-					result.data.forEach((comment) => {
-						if (comment.CreatedTime != null) {
-							comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
-						}
-						var rendercomment = Mustache.render(commenttp, comment);
-						$("#comments-list-" + comment.TargetId).append(rendercomment);
-					});
-					if (date == "")
-						$("#comments-list-" + comment.TargetId).empty();
-				}
-            },
-            error: function (data) {
-            }
-        });
-	}
-	function PushPost() {
-		var postText = $("#publisher-box-focus textarea[name=postText]").val();
-		var images = [];
-		var audios = "";
-		for (var i = 0; i < $("#image-holder img.thumb-image").length; i++) {
-			images.push($("#image-holder img.thumb-image")[i].src);
-		}
-		$("#audio-holder audio").each(function () {
-			console.log($(this).attr("data-url"))
-			if(audios == "")
-				audios += $(this).attr("data-url");
-			else
-				audios += "," + $(this).attr("data-url");
-		})
-		for (var i = 0; i < $("#audio-holder img.thumb-image").length; i++) {
-
-		}
-		var userid = @Model.ProfileModel.ID;
-            $.ajax({
-                url: "/Home/CreatedPost",
-                type: "POST",
-				data: {Content: postText,UserId:  userid,ListImages:images,Audios : audios},
-                dataType: "json",
-                success: function (result) {
-					if (result.result == @Constant.SUCCESS) {
-						Wo_HidePosInfo();
-						EngnestFlash.notice("Created Post success");
-						location.reload();
-					}
-                    else
-                        EngnestFlash.error("Created Post error!");
-                },
-                error: function (data) {
-                    EngnestFlash.error("Created Post error!");
-                }
-            });
-	}
-	function CreatedComment(that,id,type) {
-		var keycode = (event.keyCode ? event.keyCode : event.which);
-		if(keycode == '13'){
-			var commentText = that.value.trim();
-			var userid = @Model.ProfileModel.ID;
-            $.ajax({
-                url: "/Comment/CreatedComment",
-                type: "POST",
-				data: { Content: commentText, UserId: userid, TargetId: id, TargetType:type},
-                dataType: "json",
-                success: function (result) {
-					if (result.result == @Constant.SUCCESS) {
-						var commenttp = $('#comment-template').html();
-						Mustache.parse(commenttp);
-						result.data.forEach((comment) => {
-							if (comment.CreatedTime != null) {
-								comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
-							}
-							var rendercomment = Mustache.render(commenttp, comment);
-							$("#comments-list-" + comment.TargetId).append(rendercomment);
-						});
-					}
-                },
-                error: function (data) {
-                }
-			});
-			that.value = "";
-		}
-	}
-
-	function LikeAction(id) {
-            $.ajax({
-                url: "/Home/LikeAction",
-                type: "POST",
-				data: {PostId: id},
-                dataType: "json",
-                success: function (result) {
-					if (result.result == @Constant.SUCCESS) {
-						if (result.status == "1") {
-							$("#CountEmotions_" + id).html(parseInt($("#CountEmotions_" + id).html()) + 1);
-							$("#LikeAction_" + id).addClass("active-like");
-						} else {
-							$("#CountEmotions_" + id).html(parseInt($("#CountEmotions_" + id).html()) - 1);
-							$("#LikeAction_" + id).removeClass("active-like");
-						}
-					}
-                    else
-                        EngnestFlash.error("Created Post error!");
-                },
-                error: function (data) {
-                    EngnestFlash.error("Created Post error!");
-                }
-            });
-	}
-
-	function LoadMoreComment(ids, date, quantity) {
-        $.ajax({
-            url: "/Comment/LoadCommentsPost",
-            type: "GET",
-			data: {PostIds: ids.toString(),date,quantity},
-            dataType: "json",
-            success: function (result) {
-				if (result.result == @Constant.SUCCESS) {
-					var commenttp = $('#comment-template').html();
-					Mustache.parse(commenttp);
-					result.data.forEach((comment) => {
-						if (comment.CreatedTime != null) {
-							comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
-						}
-						var rendercomment = Mustache.render(commenttp, comment);
-						$("#comments-list-" + comment.TargetId).append(rendercomment);
-					});
-				}
-            },
-            error: function (data) {
-            }
-        });
-	}
-
-	function LoadMorePost(date) {
+		});
+		function LoadMorePost(date) {
 		checkLoadPost = true;
         $.ajax({
             url: "/Home/LoadMorePost",
@@ -637,7 +206,12 @@
 						$(".load-more").show();
 						return;
 					}
+					if (result.data.length < 10) {
+						checkLoadPost = true;
+						$(".load-more").show();
+					}
 					$(".load-more").hide();
+					debugger
 					dateGetPost = parseInt(result.data[result.data.length - 1].CreatedTime.substr(6)) ;
 					let tmpl = $('#my-template').html();
 					var commenttp = $('#comment-template').html();
@@ -673,5 +247,5 @@
             }
         });
 		}
-
-</script>
+	</script>
+	}

@@ -34,7 +34,7 @@ namespace Engnest.Controllers
 			try
 			{
 				var id = userLogin.ID;
-				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty);
+				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty,id);
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Engnest.Controllers
 			try
 			{
 				var id = userLogin.ID;
-				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty);
+				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty,id);
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
@@ -70,7 +70,7 @@ namespace Engnest.Controllers
 				try
 				{
 					var DateTime = commentRepository.InsertComment(model);
-					data = commentRepository.LoadCommentsPost(model.TargetId.ToString(), DateTime, 1,model.UserId.ToString());
+					data = commentRepository.LoadCommentsPost(model.TargetId.ToString(), DateTime, 1,model.UserId.ToString(),userLogin.ID);
 				}
 				catch (Exception ex)
 				{

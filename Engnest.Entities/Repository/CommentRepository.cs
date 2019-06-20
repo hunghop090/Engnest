@@ -25,7 +25,7 @@ namespace Engnest.Entities.Repository
             return context.Comments.ToList();
         }
 
-		 public List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity,string createdUser)
+		 public List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity,string createdUser,long LoginUser)
         {
 			long UserId = 0;
 			if(!string.IsNullOrEmpty(createdUser))
@@ -47,6 +47,8 @@ namespace Engnest.Entities.Repository
 				join p4 in context.Users on c.UserId equals p4.ID  into ps4
 				from p4 in ps4.DefaultIfEmpty()
 				join p5 in context.Comments on new {a1 = c.ID,a2 =  TypeComment.COMMENT } equals new {a1 = p5.TargetId,a2 = p5.TargetType.Value} into ps5
+				join p6 in context.Emotions on new {t1 = LoginUser ,t2 = c.ID } equals new {t1 = p6.UserId.Value,t2 = p6.TargetId.Value}  into ps6
+				from p6 in ps6.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
 				where PostId == c.TargetId &&  c.CreatedTime < createDate && (UserId == 0 || UserId == c.UserId)
 				orderby c.CreatedTime descending
@@ -63,7 +65,8 @@ namespace Engnest.Entities.Repository
 					Avatar = p4.Avatar,
 					NickName = p4.NickName,
 					CountReply = ps5.Count(),
-					CountEmotions = countEmotions
+					CountEmotions = countEmotions,
+					StatusEmotion = p6 == null ? (byte)0: p6.Status
 					}).Take(quantity).ToList();
 				CommentView = CommentView.Union(result).ToList();
 			}
