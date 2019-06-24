@@ -18,19 +18,21 @@ namespace Engnest.Controllers
 		private IUserRepository userRepository;
 		private IPostRepository postRepository;
 		private IEmotionRepository emotionRepository;
-
+		private IGroupRepository groupRepository;
 		public HomeController()
 		{
 			this.userRepository = new UserRepository(new EngnestContext());
 			this.postRepository = new PostRepository(new EngnestContext());
 			this.emotionRepository = new EmotionRepository(new EngnestContext());
+			this.groupRepository = new GroupRepository(new EngnestContext());
 		}
 
-		public HomeController(IUserRepository userRepository, IPostRepository postRepository, IEmotionRepository emotionRepository)
+		public HomeController(IUserRepository userRepository, IPostRepository postRepository, IEmotionRepository emotionRepository, IGroupRepository groupRepository)
 		{
 			this.userRepository = userRepository;
 			this.postRepository = postRepository;
 			this.emotionRepository = emotionRepository;
+			this.groupRepository = groupRepository;
 		}
 		public ActionResult Index()
 		{
@@ -38,7 +40,7 @@ namespace Engnest.Controllers
 			model.Profile = Mapper.Map<ProfileModel>(userLogin);
 			return View(model);
 		}
-		public ActionResult LoadMorePost(string date,long? id)
+		public ActionResult LoadMorePost(string date,long? id,byte? type)
 		{
 			try
 			{
@@ -50,7 +52,10 @@ namespace Engnest.Controllers
 				}
 				else
 				{
-					data = postRepository.LoadPostsProfile(date, id.Value);
+					if(type == TypePost.GROUP)
+						data = postRepository.LoadPostsGroup(date, id.Value);
+					else
+						data = postRepository.LoadPostsProfile(date, id.Value);
 				}
 
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
@@ -104,6 +109,26 @@ namespace Engnest.Controllers
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
 			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult CreatedGroup(string GroupName,long UserID)
+		{
+			Group newgroup = new Group();
+			try
+			{
+				Group group = new Group();
+				group.GroupName = GroupName;
+				group.CreatedUser = UserID;
+				groupRepository.InsertGroup(group);
+				newgroup = groupRepository.GetLastGroups();
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS,data = newgroup.ID });
 		}
 
 		[HttpPost]

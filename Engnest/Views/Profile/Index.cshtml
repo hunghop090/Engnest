@@ -315,6 +315,8 @@
 					$("#count-group").html(result.data.length)
 					for (var i = 0; i < 3; i++) {
 						var item = result.data[i];
+						if (item == undefined)
+							break;
 						var html = '<div class="sidebar-user-data">'+
 									   '<div class="sidebar-listed-user-avatar">'+
 											 '<a class="avatarc" href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
@@ -342,6 +344,8 @@
 					$("#count-friend").html(result.data.length)
 					for (var i = 0; i < 3; i++) {
 						var item = result.data[i];
+						if (item == undefined)
+							break;
 						var html = '<div class="sidebar-user-data">'+
 									   '<div class="sidebar-listed-user-avatar">'+
 											 '<a class="avatarc" href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+

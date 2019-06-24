@@ -23478,3 +23478,10 @@ i.fa-search {
 .header-fixed1000 .request-list {
 	padding: 10px;
 }
+
+.created-group {
+	background: white;
+	max-width: 500px;
+	max-height: 300px;
+	border-radius: 5px;
+}

@@ -9,7 +9,6 @@ namespace Engnest.Entities.Entity
     [Table("Group")]
     public partial class Group
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long ID { get; set; }
 
         [StringLength(200)]

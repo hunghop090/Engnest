@@ -166,6 +166,9 @@
 									<a href="https://biztime.com.vn/setting/profile-setting" data-ajax="?link1=setting&amp;page=profile-setting">Sửa</a>
 								</li>
 								<li class="dropdown-hidden-link">
+									<a onclick="PopupCreatedGroup()">Created Group</a>
+								</li>
+								<li class="dropdown-hidden-link">
 									<a href="https://biztime.com.vn/setting/general-setting" data-ajax="?link1=setting&amp;page=general-setting">Cài đặt tài khoản</a>
 								</li>
 								<li class="dropdown-search-link">
@@ -994,6 +997,28 @@
 	}
 	function CloseChat(targetId) {
 		$(".chat_main_" + targetId).remove();
+	} 
+	function CreatedGroup(that) {
+		var groupname =$("#groupname").value;
+		var userid = @Model.ID;
+		$.ajax({
+			url: "/Home/CreatedGroup",
+			type: "POST",
+			data: {GroupName: groupname,UserID:  userid},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					CloseLightbox();
+					EngnestFlash.notice("Created group success!");
+					location.href = "Group?id=" + result.data;
+				}
+				else {
+					EngnestFlash.notice("Created group unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
 	}
 	function CreatedMessage(that,id) {
 			var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -1053,6 +1078,21 @@
 	function CloseLightbox() {
 	  $('.lightbox-container').remove();
 	  document.body.style.overflow = 'auto';
+	}
+	function PopupCreatedGroup() {
+		var html =	'<div class="lightbox-container">' +
+						'<div class="lightbox-backgrond" onclick="CloseLightbox();"></div>'+
+						'<div class="lightbox-content post wo_imagecombo_lbox created-group" style="max-height: 250px;">' +
+							'<div class="story-img">'+
+								'<div class="sun_img_innr" id="wo_comment_combo">'+
+									'<h2 style="text-align: center;">Group Name</h2>' +
+			'<div style="display: flex;"><textarea id="groupname" class="form-control comment-textarea textarea ui-autocomplete-input" type="text" dir="auto" autocomplete="off" style="height:36px;"></textarea></div>' +
+			'<div style="display: flex;"><button style="margin: 20px calc(25% - 40px);" type="button" class="btn btn-success" onclick="CreatedGroup()" >Create</button><button style="margin: 20px calc(25% - 40px);" type="button" class="btn btn-default" onclick="CloseLightbox()">Cancel</button></div>'+
+								'</div>'+
+							'</div>' +
+						'</div>' +
+					'</div>';
+	  $('#contnet').append(html);
 	}
 	</script>
 

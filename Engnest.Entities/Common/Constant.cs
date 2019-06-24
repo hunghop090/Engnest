@@ -55,4 +55,17 @@ namespace Engnest.Entities.Common
 		public const Byte ACCEPT = 1;
 		public const Byte REJECT = 4;
 	}
+
+	public class StatusMember
+	{
+		public const Byte SENDING = 0;
+		public const Byte ACCEPT = 1;
+		public const Byte REJECT = 2;
+		public const Byte BLOCK = 3;
+	}
+	public class TypeMember
+	{
+		public const Byte MEMBER = 0;
+		public const Byte ADDMIN = 1;
+	}
 }
