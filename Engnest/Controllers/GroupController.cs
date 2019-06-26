@@ -70,8 +70,21 @@ namespace Engnest.Controllers
 			{
 				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
 			}
+		}
 
-
+		public ActionResult LoadListGroup(long? id)
+		{
+			try
+			{
+				if(id == null)
+					id = userLogin.ID;
+				var data = groupRepository.GetListGroup(id.Value);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
 		}
 	}
 }

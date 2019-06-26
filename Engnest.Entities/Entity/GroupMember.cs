@@ -15,7 +15,7 @@ namespace Engnest.Entities.Entity
         public long GroupID { get; set; }
 
          [Required]
-        public long UserID { get; set; }
+        public long UserId { get; set; }
 
         public byte Type { get; set; }
 

@@ -37,7 +37,7 @@ namespace Engnest.Entities.Repository
 		public List<MemberModel> GetMember(long UserId)
 		{
 			var result = (from c in context.GroupMembers
-						  join p1 in context.Users on c.UserID equals p1.ID into ps1
+						  join p1 in context.Users on c.UserId equals p1.ID into ps1
 						  from p1 in ps1.DefaultIfEmpty()
 						  where c.Status == StatusMember.ACCEPT
 						  orderby c.CreatedTime descending
@@ -48,6 +48,27 @@ namespace Engnest.Entities.Repository
 							  NickName = p1.NickName,
 							  Type = c.Type,
 							  Id = p1.ID
+						  }).ToList();
+			return result;
+		}
+
+		public List<GroupModel> GetListGroup(long Id)
+		{
+			var result = (from c in context.GroupMembers
+						  where c.Status == StatusMember.ACCEPT && c.UserId == Id
+						  join p1 in context.Groups on c.GroupID equals p1.ID into ps1
+						  from p1 in ps1.DefaultIfEmpty()
+						  orderby c.CreatedTime descending
+						  select new GroupModel
+						  {
+							  CreatedTime = c.CreatedTime,
+							  Avatar = p1.Avatar,
+							  GroupName = p1.GroupName,
+							  Banner = p1.Banner,
+							  ID = p1.ID,
+							  InfoId = p1.InfoId,
+							  CreatedUser = p1.CreatedUser,
+							  Status = p1.Status
 						  }).ToList();
 			return result;
 		}

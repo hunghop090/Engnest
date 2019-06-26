@@ -5,6 +5,11 @@ using System.Web;
 
 namespace Engnest.Entities.Common
 {
+	public class Status
+	{
+		public const Byte ACTIVE = 1;
+		public const Byte DELETE = 0;
+	}
 	public class Constant
 	{
 		public const string USER_SESSION = "USER_SESSION";

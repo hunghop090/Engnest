@@ -83,6 +83,21 @@ namespace Engnest.Controllers
 			}
 		}
 
+		public ActionResult LoadImage(long? id)
+		{
+			try
+			{
+				if(id == null)
+					id = userLogin.ID;
+				var data = postRepository.GetListImage(id.Value);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
 		[HttpPost]
 		public ActionResult CreatedPost(PostModel model)
 		{

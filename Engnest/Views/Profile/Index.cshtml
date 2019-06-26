@@ -60,13 +60,13 @@
 					<div class="sun_side_widget mini">
 						<h3 class="sun_side_widget_title"><i class="fa fa-picture-o" aria-hidden="true"></i> <a href="https://biztime.com.vn/0dc53e223/photos" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=photos">Ảnh</a></h3>
 						<div id="photos-list" class="user_media_list_section">
-							<h5 class="search-filter-center-text empty_state" style="margin: 80px auto;"><i class="fa fa-camera" aria-hidden="true"></i> Chưa đăng bài nào</h5>
+							<h5 class="search-filter-center-text empty_state" style="margin: 80px auto;"><i class="fa fa-camera" aria-hidden="true"></i> Chưa có bức ảnh nào</h5>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 sun_col-md-6 no-padding-right">
-					<div class="sun_side_widget" style="margin-bottom:0px">
+					<div class="sun_side_widget" style="margin-bottom:0px;display:none">
 						<div class="sun_user_nav">
 							<ul class="list-unstyled mb0">
 								<li>
@@ -300,70 +300,97 @@
 	<script>
 		var dateGetPost = "";
 		$(document).ready(function () {
-		LoadMorePost();
-		$(window).scroll(function (event) {
-			if (($(window).scrollTop() + 500) > $("#posts").height() && checkLoadPost == false)
-				LoadMorePost(dateGetPost);
-		});
-		$.ajax({
-            url: "/Profile/LoadGroup",
-            type: "POST",
-			data: {id:@Model.ID},
-            dataType: "json",
-            success: function (result) {
-				if (result.result == @Constant.SUCCESS) {
-					$("#count-group").html(result.data.length)
-					for (var i = 0; i < 3; i++) {
-						var item = result.data[i];
-						if (item == undefined)
-							break;
-						var html = '<div class="sidebar-user-data">'+
-									   '<div class="sidebar-listed-user-avatar">'+
-											 '<a class="avatarc" href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
-												'<img src="'+item.Avatar+'">'+
-											 '</a>'+
-											 '<a href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
-												'<div class="sidebar-listed-user-name">'+item.NickName+'</div>'+
-											 '</a>'+
-									   '</div>'+
-							'</div>';
-						$(".sidebar-likes-container").append(html);
-					}
-				}
-            },
-            error: function (data) {
-            }
-		});
+			LoadMorePost();
+			$(window).scroll(function (event) {
+				if (($(window).scrollTop() + 500) > $("#posts").height() && checkLoadPost == false)
+					LoadMorePost(dateGetPost);
+			});
 			$.ajax({
-            url: "/Profile/LoadFriend",
-            type: "POST",
-			data: {id:@Model.ID},
-            dataType: "json",
-            success: function (result) {
-				if (result.result == @Constant.SUCCESS) {
-					$("#count-friend").html(result.data.length)
-					for (var i = 0; i < 3; i++) {
-						var item = result.data[i];
-						if (item == undefined)
-							break;
-						var html = '<div class="sidebar-user-data">'+
-									   '<div class="sidebar-listed-user-avatar">'+
-											 '<a class="avatarc" href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
-												'<img src="'+item.Avatar+'">'+
-											 '</a>'+
-											 '<a href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
-												'<div class="sidebar-listed-user-name">'+item.NickName+'</div>'+
-											 '</a>'+
-									   '</div>'+
-							'</div>';
-						$(".sidebar-followers-users-container").append(html);
+				url: "/Profile/LoadGroup",
+				type: "POST",
+				data: {id:@Model.ID},
+				dataType: "json",
+				success: function (result) {
+					if (result.result == @Constant.SUCCESS) {
+						$("#count-group").html(result.data.length)
+						for (var i = 0; i < 3; i++) {
+							var item = result.data[i];
+							if (item == undefined)
+								break;
+							var html = '<div class="sidebar-user-data">'+
+										   '<div class="sidebar-listed-user-avatar">'+
+												 '<a class="avatarc" href="/profile/'+item.ID+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+													'<img src="'+item.Avatar+'">'+
+												 '</a>'+
+												 '<a href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+													'<div class="sidebar-listed-user-name">'+item.GroupName+'</div>'+
+												 '</a>'+
+										   '</div>'+
+								'</div>';
+							$(".sidebar-likes-container").append(html);
+						}
 					}
+				},
+				error: function (data) {
 				}
-            },
-            error: function (data) {
-            }
-        });
+			});
+			$.ajax({
+				url: "/Profile/LoadFriend",
+				type: "POST",
+				data: {id:@Model.ID},
+				dataType: "json",
+				success: function (result) {
+					if (result.result == @Constant.SUCCESS) {
+						$("#count-friend").html(result.data.length)
+						for (var i = 0; i < 3; i++) {
+							var item = result.data[i];
+							if (item == undefined)
+								break;
+							var html = '<div class="sidebar-user-data">'+
+											'<div class="sidebar-listed-user-avatar">'+
+													'<a class="avatarc" href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+													'<img src="'+item.Avatar+'">'+
+													'</a>'+
+													'<a href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+													'<div class="sidebar-listed-user-name">'+item.NickName+'</div>'+
+													'</a>'+
+											'</div>'+
+								'</div>';
+							$(".sidebar-followers-users-container").append(html);
+						}
+					}
+				},
+				error: function (data) {
+				}
+			});
+			$.ajax({
+				url: "/Home/LoadImage",
+				type: "POST",
+				data: {id:@Model.ID},
+				dataType: "json",
+				success: function (result) {
+					if (result.result == @Constant.SUCCESS) {
+						if (result.data.length > 0)
+							$("#photos-list").empty();
+						var index = 0;
+						for (var i = 0; i < result.data.length; i++) {
+							for (var j = 0; j < result.data[i].ListImages.length; j++) {
+								if (index == 6)
+									break;
+								index += 1;
+								var html = '<div class="text-center photo-data" data-photo-id="337380">'+
+                                    		'<a href="javascript:void(0)" onclick="OpenLightBox(\''+result.data[i].ListImages[j]+'\',\'image_'+index+'\')"><img src="'+ result.data[i].ListImages[j] +'" alt="'+ result.data[i].ListImages[j]+'"></a>'+
+										'</div>'; 
+								$("#photos-list").append(html);
+							}
+						}
+					}
+				},
+				error: function (data) {
+				}
+			});
 		});
+
 		function LoadMorePost(date) {
 		checkLoadPost = true;
         $.ajax({
@@ -386,7 +413,6 @@
 						$(".load-more").show();
 					}
 					$(".load-more").hide();
-					debugger
 					dateGetPost = parseInt(result.data[result.data.length - 1].CreatedTime.substr(6)) ;
 					let tmpl = $('#my-template').html();
 					var commenttp = $('#comment-template').html();

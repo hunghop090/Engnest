@@ -38,17 +38,21 @@ namespace Engnest.Entities.Repository
 				from p1 in ps1.DefaultIfEmpty()
 				join p2 in context.Relationships on UserId equals p2.UserSentID  into ps2
 				from p2 in ps2.DefaultIfEmpty()
-				join p3 in context.GroupMembers on UserId equals p3.UserID  into ps3
+				join p3 in context.GroupMembers on UserId equals p3.UserId  into ps3
 				from p3 in ps3.DefaultIfEmpty()
 				join p4 in context.Users on c.UserId equals p4.ID  into ps4
 				from p4 in ps4.DefaultIfEmpty()
 				join p5 in context.Emotions on new {t1 = UserId ,t2 = c.ID } equals new {t1 = p5.UserId.Value,t2 = p5.TargetId.Value}  into ps5
 				from p5 in ps5.DefaultIfEmpty()
+				join p6 in context.Groups on new {t1 = c.TargetType.Value ,t2 = c.TargetId.Value } equals new {t1 = TypePost.GROUP,t2 = p6.ID}  into ps6
+				from p6 in ps6.DefaultIfEmpty()
+				join p7 in context.Users on new {t1 = c.TargetType.Value ,t2 = c.TargetId.Value } equals new {t1 = TypePost.USER,t2 = p7.ID}  into ps7
+				from p7 in ps7.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
 				let countComments = (from C in context.Comments where C.TargetId == c.ID select C).Count()
 				where c.CreatedTime < createDate && (((c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID) && c.TargetType == TypePost.USER) || ( c.TargetId == p3.GroupID && c.TargetType == TypePost.GROUP))
 				orderby c.CreatedTime descending
-				select new{c,p4,countEmotions,p5,countComments }).Take(10).ToList();
+				select new{c,p4,countEmotions,p5,countComments,p6,p7 }).Take(10).ToList();
 			var PostView = new List<PostViewModel>();
 			foreach(var item in result)
 			{
@@ -91,9 +95,12 @@ namespace Engnest.Entities.Repository
 				Post.UserId = item.c.UserId ;
 				Post.Avatar = item.p4?.Avatar ;
 				Post.NickName = item.p4?.NickName ;
+				Post.TargetAvatar = item.p6 == null ? item.p7.Avatar :  item.p6.Avatar ;
+				Post.TargetNickName = item.p6 == null ? item.p7.NickName :  item.p6.GroupName ;
 				Post.CountEmotions = item.countEmotions ;
 				Post.CountComments = item.countComments;
 				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;
+				Post.ShowTarget = Post.UserId != Post.TargetId && item.c.TargetType == TypePost.USER ? "" : "hidden";
 				PostView.Add(Post);
 			}
             return PostView;
@@ -112,11 +119,13 @@ namespace Engnest.Entities.Repository
 				from p4 in ps4.DefaultIfEmpty()
 				join p5 in context.Emotions on new {t1 = UserId ,t2 = c.ID } equals new {t1 = p5.UserId.Value,t2 = p5.TargetId.Value}  into ps5
 				from p5 in ps5.DefaultIfEmpty()
+				join p6 in context.Users on c.TargetId equals p6.ID  into ps6
+				from p6 in ps6.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
 				let countComments = (from C in context.Comments where C.TargetId == c.ID select C).Count()
 				where c.CreatedTime < createDate && (c.TargetId != null && c.TargetId == UserId ) && c.TargetType == TypePost.USER
 				orderby c.CreatedTime descending
-				select new{c,p4,countEmotions,p5,countComments }).Take(10).ToList();
+				select new{c,p4,countEmotions,p5,countComments,p6 }).Take(10).ToList();
 			var PostView = new List<PostViewModel>();
 
 			foreach(var item in result)
@@ -163,6 +172,38 @@ namespace Engnest.Entities.Repository
 				Post.CountEmotions = item.countEmotions ;
 				Post.CountComments = item.countComments;
 				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;
+				Post.TargetAvatar = item.p6?.Avatar;
+				Post.TargetNickName = item.p6?.NickName;
+				Post.ShowTarget = Post.UserId == Post.TargetId ? "hidden" : "";
+				PostView.Add(Post);
+			}
+            return PostView;
+        }
+
+		public List<PostViewModel> GetListImage(long Id)
+        {
+			var result = (from c in context.Posts
+				where (c.TargetId != null && c.TargetId == Id ) && c.TargetType == TypePost.USER && !string.IsNullOrEmpty(c.Images)
+				orderby c.CreatedTime descending
+				select new{c}).Take(6).ToList();
+			var PostView = new List<PostViewModel>();
+
+			foreach(var item in result)
+			{
+				var Post = new PostViewModel();
+				Post.Id = item.c.ID ;
+				Post.Images = item.c.Images ;
+				if(!string.IsNullOrEmpty(item.c.Images))
+				{
+					var data = item.c.Images.Split(',');
+					Post.ListImages = new List<string>();
+					foreach(string image in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(image);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListImages.Add(respone);
+					}
+				}
 				PostView.Add(Post);
 			}
             return PostView;
@@ -232,6 +273,7 @@ namespace Engnest.Entities.Repository
 				Post.CountEmotions = item.countEmotions ;
 				Post.CountComments = item.countComments;
 				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;
+				Post.ShowTarget = "hidden";
 				PostView.Add(Post);
 			}
             return PostView;

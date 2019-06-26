@@ -16,15 +16,17 @@ namespace Engnest.Controllers
 	public class ProfileController : BaseController
 	{
 		private IUserRepository userRepository;
-
+		private IGroupRepository groupRepository;
 		public ProfileController()
 		{
 			this.userRepository = new UserRepository(new EngnestContext());
+			this.groupRepository = new GroupRepository(new EngnestContext());
 		}
 
-		public ProfileController(IUserRepository userRepository)
+		public ProfileController(IUserRepository userRepository,IGroupRepository groupRepository)
 		{
 			this.userRepository = userRepository;
+			this.groupRepository = groupRepository;
 		}
 		public ActionResult Index(long? id)
 		{
@@ -62,7 +64,7 @@ namespace Engnest.Controllers
 			{
 				if(id == null)
 					id = userLogin.ID;
-				var data = userRepository.GetFriend(id.Value);
+				var data = groupRepository.GetListGroup(id.Value);
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)

@@ -602,7 +602,9 @@
 						<div class="pull-left image">
 							<a href="{{UserId}}"><img src="{{Avatar}}" id="updateImage-4" class="avatar" alt="{{NickName}} profile picture"></a>
 						</div>
-						<div class="meta"><div class="title h5"><span class="user-popover" data-type="user" data-id="4"><a href="{{UserId}}"><b>{{NickName}}</b></a></span><small class="small-text"></small></div><h6> <span class="time">&nbsp;&nbsp;<a style="color:#9197a3" class="ajax-time" href="Post/{{Id}}" title="" target="_blank">{{CreatedTime}}</a></span></h6></div>
+						<div class="meta"><div class="title h5" style="display:flex">
+	<span class="user-popover" data-type="user" data-id="4"><a href="{{UserId}}"><b>{{NickName}}</b></a></span><div  class="{{ShowTarget}}"><i class="fa fa-long-arrow-right"></i><span class="user-popover" data-type="user" data-id="4"><a href="{{TargetId}}"><b>{{TargetNickName}}</b></a></span></div><small class="small-text"></small>
+</div><h6> <span class="time">&nbsp;&nbsp;<a style="color:#9197a3" class="ajax-time" href="Post/{{Id}}" title="" target="_blank">{{CreatedTime}}</a></span></h6></div>
 					</div>
 					<div class="post-description" id="post-description-{{Id}}">
 						<p dir="auto" data-readmore="" aria-expanded="false" id="rmjs-1">
@@ -763,7 +765,10 @@
 								comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
 							}
 							var rendercomment = Mustache.render(commenttp, comment);
-							$("#comments-list-" + comment.TargetId).append(rendercomment);
+							if (type == @TypeComment.COMMENT)
+								$("#comments-list-" + comment.TargetId).append(rendercomment);
+							else
+								$("#comments-list-" + comment.TargetId).prepend(rendercomment);
 						});
 					}
                 },
@@ -1067,7 +1072,7 @@
 				'</span>'+
 			'</span>'+
 					'<span class="lbox_topbar_child right">'+
-								'<span onclick="rotate('+id+')">'+
+								'<span onclick="rotate(\''+id+'\')">'+
 					'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.47,21.5C4.2,19.93 1.86,16.76 1.5,13H0C0.5,19.16 5.66,24 11.95,24C12.18,24 12.39,24 12.61,23.97L8.8,20.15L7.47,21.5M12.05,0C11.82,0 11.61,0 11.39,0.04L15.2,3.85L16.53,2.5C19.8,4.07 22.14,7.24 22.5,11H24C23.5,4.84 18.34,0 12.05,0M16,14H18V8C18,6.89 17.1,6 16,6H10V8H16V14M8,16V4H6V6H4V8H6V16A2,2 0 0,0 8,18H16V20H18V18H20V16H8Z"></path></svg>'+
 				'</span>'+
 			'</span>'+

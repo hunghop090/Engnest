@@ -40,6 +40,10 @@ namespace Engnest.Entities.ViewModels
 
 		public string Avatar { get; set; }
 
+		public string TargetNickName { get; set; }
+
+		public string TargetAvatar { get; set; }
+
 		public int CountEmotions { get; set; }
 
 		public int CountComments { get; set; }
@@ -50,5 +54,7 @@ namespace Engnest.Entities.ViewModels
 
 		public List<string> ListImages { get; set; }
 		public List<string> ListAudios { get; set; }
+
+		public string ShowTarget {get;set;}
 	}
 }

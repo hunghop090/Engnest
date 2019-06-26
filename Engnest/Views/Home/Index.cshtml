@@ -183,7 +183,8 @@
 	<script>
 		var dateGetPost = "";
 		$(document).ready(function () {
-		LoadMorePost();
+			LoadMorePost();
+			LoadListGroup();
 		$(window).scroll(function (event) {
 			if (($(window).scrollTop() + 500) > $("#posts").height() && checkLoadPost == false)
 				LoadMorePost(dateGetPost);
@@ -237,6 +238,32 @@
 					  return item['Id'];
 					});
 					LoadMoreComment(ids, "", 3);
+				}
+				else {
+				}
+				checkLoadPost = false;
+            },
+			error: function (data) {
+				checkLoadPost = false;
+            }
+        });
+			}
+	function LoadListGroup() {
+        $.ajax({
+            url: "/Group/LoadListGroup",
+            type: "GET",
+            data: { },
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					result.data.forEach((item) => {
+						var html = '<li>'+
+									'<a href="/Group?id='+item.ID+'" data-ajax="?index.php?link1=home">'+
+										'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg>'+ item.GroupName +
+									'</a>'+
+								'</li>';
+						$(".left-sidebar ul").append(html);
+					});
 				}
 				else {
 				}

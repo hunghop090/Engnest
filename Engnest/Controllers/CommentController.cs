@@ -51,6 +51,7 @@ namespace Engnest.Controllers
 			{
 				var id = userLogin.ID;
 				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty,id);
+				data.Reverse();
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)

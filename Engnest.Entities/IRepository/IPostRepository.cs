@@ -12,7 +12,7 @@ namespace Engnest.Entities.IRepository
         List<Post> GetPosts();
 		List<PostViewModel> LoadPostsHome(string date,long UserId);
 		List<PostViewModel> LoadPostsProfile(string date,long UserId);
-
+		List<PostViewModel> GetListImage(long Id);
 		List<PostViewModel> LoadPostsGroup(string date,long UserId);
         Post GetPostByID(long PostId);
         List<Post> GetPostByTargetId(long TargetId);
