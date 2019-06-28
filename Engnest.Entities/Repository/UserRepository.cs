@@ -26,12 +26,26 @@ namespace Engnest.Entities.Repository
 
 		public User GetUserByID(long id)
 		{
-			return context.Users.Find(id);
+			var result = context.Users.Find(id);
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			if(!string.IsNullOrEmpty(respone))
+				result.Avatar = respone;
+			respone = AmazonS3Uploader.GetUrl(result.BackGround);
+			if(!string.IsNullOrEmpty(respone))
+				result.BackGround = respone;
+			return result;
 		}
 
 		public User GetUserByName(string UserName)
 		{
-			return context.Users.Where(x => x.UserName == UserName).FirstOrDefault();
+			var result = context.Users.Where(x => x.UserName == UserName).FirstOrDefault();
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			if(!string.IsNullOrEmpty(respone))
+				result.Avatar = respone;
+			respone = AmazonS3Uploader.GetUrl(result.BackGround);
+			if(!string.IsNullOrEmpty(respone))
+				result.BackGround = respone;
+			return result;
 		}
 
 		public List<FriendModel> GetFriend(long UserId)
@@ -54,6 +68,9 @@ namespace Engnest.Entities.Repository
 					Friend.NickName = item.p2.NickName;
 					Friend.Id = item.p2.ID;
 					Friend.CreatedTime = item.c.CreatedTime;
+					var respone = AmazonS3Uploader.GetUrl(item.p2.Avatar);
+					if(!string.IsNullOrEmpty(respone))
+						Friend.Avatar = respone;
 				}
 				else
 				{
@@ -61,6 +78,9 @@ namespace Engnest.Entities.Repository
 					Friend.NickName = item.p1.NickName;
 					Friend.Id = item.p1.ID;
 					Friend.CreatedTime = item.c.CreatedTime;
+					var respone = AmazonS3Uploader.GetUrl(item.p1.Avatar);
+					if(!string.IsNullOrEmpty(respone))
+						Friend.Avatar = respone;
 				}
 				ListFriend.Add(Friend);
 			}
@@ -85,12 +105,19 @@ namespace Engnest.Entities.Repository
 							  Type = p1 != null ? TypeRequestFriend.USER : TypeRequestFriend.GROUP,
 							  Id = c.ID
 						  }).ToList();
+			foreach(var item in result)
+			{
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar);
+				if(!string.IsNullOrEmpty(respone))
+					item.Avatar = respone;
+			}
 			return result;
 		}
 
 		public void InsertUser(User User)
 		{
 			context.Users.Add(User);
+			Save();
 		}
 
 		public void DeleteUser(long UserID)
@@ -102,6 +129,7 @@ namespace Engnest.Entities.Repository
 		public void UpdateUser(User User)
 		{
 			context.Entry(User).State = EntityState.Modified;
+			Save();
 		}
 
 		public Byte Login(string UserName, string Password, out User user)
@@ -148,9 +176,12 @@ namespace Engnest.Entities.Repository
 					user.FirstName = model.FirstName;
 					user.LastName = model.LastName;
 					user.Email = model.Email;
+					user.Avatar = "image/default-avatar.jpg";
+					user.BackGround = "image/default-backgroud.jpg";
 					user.Password = model.Password;
 					user.CreatedTime = DateTime.UtcNow;
 					context.Users.Add(user);
+					Save();
 				}
 				catch (Exception ex)
 				{

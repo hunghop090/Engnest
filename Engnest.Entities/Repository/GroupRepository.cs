@@ -26,12 +26,26 @@ namespace Engnest.Entities.Repository
 
 		public Group GetLastGroups()
 		{
-			return context.Groups.OrderByDescending(x=>x.CreatedTime).FirstOrDefault();
+			var result = context.Groups.OrderByDescending(x=>x.CreatedTime).FirstOrDefault();
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			if(!string.IsNullOrEmpty(respone))
+				result.Avatar = respone;
+			respone = AmazonS3Uploader.GetUrl(result.Banner);
+			if(!string.IsNullOrEmpty(respone))
+				result.Banner = respone;
+			return result;
 		}
 
 		public Group GetGroupByID(long id)
 		{
-			return context.Groups.Find(id);
+			var result = context.Groups.Find(id);
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			if(!string.IsNullOrEmpty(respone))
+				result.Avatar = respone;
+			respone = AmazonS3Uploader.GetUrl(result.Banner);
+			if(!string.IsNullOrEmpty(respone))
+				result.Banner = respone;
+			return result;
 		}
 
 		public List<MemberModel> GetMember(long UserId)
@@ -49,6 +63,12 @@ namespace Engnest.Entities.Repository
 							  Type = c.Type,
 							  Id = p1.ID
 						  }).ToList();
+			foreach(var item in result)
+			{
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar);
+				if(!string.IsNullOrEmpty(respone))
+					item.Avatar = respone;
+			}
 			return result;
 		}
 
@@ -70,6 +90,15 @@ namespace Engnest.Entities.Repository
 							  CreatedUser = p1.CreatedUser,
 							  Status = p1.Status
 						  }).ToList();
+			foreach(var item in result)
+			{
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar);
+				if(!string.IsNullOrEmpty(respone))
+					item.Avatar = respone;
+				respone = AmazonS3Uploader.GetUrl(item.Banner);
+				if(!string.IsNullOrEmpty(respone))
+					item.Banner = respone;
+			}
 			return result;
 		}
 

@@ -48,7 +48,7 @@
                 }
             }
             $container.addClass("is-visible");
-            setTimeout(EngnestFlash.hide.bind(this), timeout);
+			setTimeout(EngnestFlash.hide.bind(this), timeout);
         },
         displayparent: function (message, hasError, timeout) {
             var $container = $(".ajax-notification");

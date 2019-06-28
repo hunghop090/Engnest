@@ -244,6 +244,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Engnest - Web Deploy.pubxml" />
     <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\Profile\GeneralSetting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

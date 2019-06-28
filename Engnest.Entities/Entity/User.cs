@@ -44,10 +44,8 @@ namespace Engnest.Entities.Entity
         [StringLength(500)]
         public string Status { get; set; }
 
-        [StringLength(200)]
         public string Avatar { get; set; }
 
-        [StringLength(200)]
         public string BackGround { get; set; }
 
         public byte Type { get; set; }
@@ -60,5 +58,19 @@ namespace Engnest.Entities.Entity
         public DateTime? UpdateTime { get; set; }
 
         public bool? Flag { get; set; }
+
+		public DateTime? Birthday {get;set;}
+
+		public string Country {get;set;}
+
+		public string Gender {get;set;}
+
+		public string Relationship {get;set;}
+
+		public string AboutMe {get;set;}
+
+		public string Lat {get;set;}
+
+		public string Lng {get;set;}
     }
 }

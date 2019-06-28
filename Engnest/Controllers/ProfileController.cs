@@ -41,6 +41,14 @@ namespace Engnest.Controllers
 			return View(model);
 		}
 
+		public ActionResult GeneralSetting()
+		{
+			ProfileModel model = new ProfileModel();
+			var user = userRepository.GetUserByID(userLogin.ID);
+			model = Mapper.Map<ProfileModel>(user);
+			return View(model);
+		}
+
 		public ActionResult LoadFriend(long? id)
 		{
 			try
@@ -71,8 +79,44 @@ namespace Engnest.Controllers
 			{
 				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
 			}
+		}
 
-
+		[HttpPost]
+		public ActionResult Update(ProfileModel model)
+		{
+			try
+			{
+				var OldPassword = EncryptorMD5.MD5Hash(model.OldPassword);
+				var NewPassword = EncryptorMD5.MD5Hash(model.NewPassword);
+				var user = userRepository.GetUserByID(userLogin.ID);
+				if(OldPassword == user.Password.Trim())
+				{
+					user.Email = model.Email;
+					user.Password = NewPassword;
+					user.Phone = model.Phone;
+					user.Birthday = model.Birthday;
+					user.Country = model.Country;
+					user.Gender = model.Gender;
+					user.FirstName = model.FirstName;
+					user.LastName = model.LastName;
+					user.Relationship = model.Relationship;
+					user.AboutMe = model.AboutMe;
+					user.Lat = model.Lat;
+					user.Lng = model.Lng;
+					userRepository.UpdateUser(user);
+					userLogin = userRepository.GetUserByID(userLogin.ID);
+				}
+				else
+				{
+					return Json(new { result = Constant.ERROR,message = "Password incorrect!" });
+				}
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
 		}
 	}
 }

@@ -19,6 +19,7 @@ namespace Engnest.Entities.ViewModels
         public string Email { get; set; }
 
         public string Phone { get; set; }
+
         public string Token { get; set; }
 
         public string NickName { get; set; }
@@ -41,6 +42,25 @@ namespace Engnest.Entities.ViewModels
 
         public bool? Flag { get; set; }
 
+		public DateTime? Birthday {get;set;}
+
+		public string Country {get;set;}
+
+		public string Gender {get;set;}
+
+		public string Relationship {get;set;}
+
+		public string AboutMe {get;set;}
+
+		public string Lat {get;set;}
+
+		public string Lng {get;set;}
+
+		public string OldPassword {get;set;}
+
+		public string NewPassword {get;set;}
+
 		public ProfileModel Profile {get;set;}
+
     }
 }
