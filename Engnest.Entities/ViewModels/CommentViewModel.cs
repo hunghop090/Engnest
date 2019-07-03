@@ -41,5 +41,8 @@ namespace Engnest.Entities.ViewModels
 		public int CountEmotions {get;set;}
 
 		public byte StatusEmotion {get;set;}
+
+		public List<string> ListImages { get; set; }
+		public List<string> ListAudios { get; set; }
 	}
 }

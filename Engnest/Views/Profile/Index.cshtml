@@ -42,6 +42,10 @@
 								<img id="updateImage-1961" class="pointer " alt="@Model.NickName Profile Picture" src="@Model.Avatar">
 								<!--Online/Offline-->
 								<span class="sun_status online " title="Online"></span>
+								<span class="btn-file sun_user_actions_item @ViewBag.ClassUpdate" style="margin-top: -30px;width: 30px;height: 30px;" title="Sửa">
+									<i class="fa fa-pencil" style="font-size: 18px;" aria-hidden="true"></i>
+									<input type="file" onchange="UploadAvatar(this)" data-holder="photo-form-53" data-photos="image-holder-comment-53" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]">
+								</span>
 							</div>
 							<div class="info">
 								<div class="title">
@@ -234,8 +238,9 @@
 
 				<div class="col-md-3">
 					<div class="sun_user_actions">
-						<span class="sun_user_actions_item" title="Sửa">
-							<a href="https://biztime.com.vn/setting/0dc53e223/general-setting" data-ajax="?link1=setting&amp;user=0dc53e223&amp;page=general-setting"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"></path></svg></a>
+						<span class="btn-file sun_user_actions_item @ViewBag.ClassUpdate" title="Sửa">
+							<i class="fa fa-pencil" style="font-size: 18px;" aria-hidden="true"></i>
+							<input type="file" onchange="UploadBackGround(this)" data-holder="photo-form-53" data-photos="image-holder-comment-53" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]">
 						</span>
 					</div>
 

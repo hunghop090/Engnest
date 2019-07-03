@@ -27,10 +27,10 @@ namespace Engnest.Entities.Repository
 		public Group GetLastGroups()
 		{
 			var result = context.Groups.OrderByDescending(x=>x.CreatedTime).FirstOrDefault();
-			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.Avatar = respone;
-			respone = AmazonS3Uploader.GetUrl(result.Banner);
+			respone = AmazonS3Uploader.GetUrl(result.Banner,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.Banner = respone;
 			return result;
@@ -39,10 +39,10 @@ namespace Engnest.Entities.Repository
 		public Group GetGroupByID(long id)
 		{
 			var result = context.Groups.Find(id);
-			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.Avatar = respone;
-			respone = AmazonS3Uploader.GetUrl(result.Banner);
+			respone = AmazonS3Uploader.GetUrl(result.Banner,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.Banner = respone;
 			return result;
@@ -65,7 +65,7 @@ namespace Engnest.Entities.Repository
 						  }).ToList();
 			foreach(var item in result)
 			{
-				var respone = AmazonS3Uploader.GetUrl(item.Avatar);
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar,0);
 				if(!string.IsNullOrEmpty(respone))
 					item.Avatar = respone;
 			}
@@ -92,10 +92,10 @@ namespace Engnest.Entities.Repository
 						  }).ToList();
 			foreach(var item in result)
 			{
-				var respone = AmazonS3Uploader.GetUrl(item.Avatar);
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar,0);
 				if(!string.IsNullOrEmpty(respone))
 					item.Avatar = respone;
-				respone = AmazonS3Uploader.GetUrl(item.Banner);
+				respone = AmazonS3Uploader.GetUrl(item.Banner,0);
 				if(!string.IsNullOrEmpty(respone))
 					item.Banner = respone;
 			}

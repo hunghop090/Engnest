@@ -27,7 +27,6 @@
 					</div>
 				</div>
 				<div class="col-md-7 profile-lists middlecol">
-
 					<form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
 						<div class="panel post panel-shadow sun_pub_box">
 							<div id="post-textarea" onclick="Wo_ShowPosInfo();">
@@ -40,17 +39,17 @@
 								<!--Add Emojis-->
 							</div>
 							<!--Publisher Box Footer-->
-							<div style="position:relative;">
+							<div id="image-holder" style="position:relative;">
 								<div id="album-form">
 									<div class="publisher-hidden-option">
 										<input name="album_name" type="text" class="form-control" placeholder="Album name">
 									</div>
 								</div>
 								<div class="publisher-hidden-option" id="photo-form">
-									<div style="overflow-x: auto;"><div id="image-holder"></div></div>
+									<div style="overflow-x: auto;"><div id="image-holder-post"></div></div>
 								</div>
 								<div class="publisher-hidden-option" id="audio-form">
-									<div style="overflow-x: auto;"><div id="audio-holder"></div></div>
+									<div style="overflow-x: auto;"><div id="audio-holder-post"></div></div>
 								</div>
 							</div>
 
@@ -63,20 +62,18 @@
 										<!--Uploaded Image-->
 										<div class="poster-left-buttons">
 											<span class="btn btn-file img">
-												<span>
-													<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh">
+												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh">
 												</span>
 												Kèm ảnh
-												<input type="file" id="publisher-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
+												<input type="file" class="publisher-photos" data-photos="image-holder-post" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
 											</span>
 										</div>
 
 									</div>
-									<!--Record Audio-->
-									<div class="sun_pub_more_items" id="recordPostAudioWrapper">
+									<div data-audio="audio-holder-post" class="sun_pub_more_items" id="recordPostAudioWrapper">
 										<div class="poster-left-buttons">
 											<span class="btn btn-file rec">
-												<span id="recordPostAudio" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
+												<span id="recordPostAudio" data-audio="audio-holder-post" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
 											</span>
 											<span id="postRecordingTime" class="hidden">00:00</span>
 										</div>

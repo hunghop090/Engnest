@@ -27,22 +27,28 @@ namespace Engnest.Entities.Repository
 		public User GetUserByID(long id)
 		{
 			var result = context.Users.Find(id);
-			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.Avatar = respone;
-			respone = AmazonS3Uploader.GetUrl(result.BackGround);
+			respone = AmazonS3Uploader.GetUrl(result.BackGround,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.BackGround = respone;
+			return result;
+		}
+
+		public User GetUserByIDForUpdate(long id)
+		{
+			var result = context.Users.Find(id);
 			return result;
 		}
 
 		public User GetUserByName(string UserName)
 		{
 			var result = context.Users.Where(x => x.UserName == UserName).FirstOrDefault();
-			var respone = AmazonS3Uploader.GetUrl(result.Avatar);
+			var respone = AmazonS3Uploader.GetUrl(result.Avatar,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.Avatar = respone;
-			respone = AmazonS3Uploader.GetUrl(result.BackGround);
+			respone = AmazonS3Uploader.GetUrl(result.BackGround,0);
 			if(!string.IsNullOrEmpty(respone))
 				result.BackGround = respone;
 			return result;
@@ -68,7 +74,7 @@ namespace Engnest.Entities.Repository
 					Friend.NickName = item.p2.NickName;
 					Friend.Id = item.p2.ID;
 					Friend.CreatedTime = item.c.CreatedTime;
-					var respone = AmazonS3Uploader.GetUrl(item.p2.Avatar);
+					var respone = AmazonS3Uploader.GetUrl(item.p2.Avatar,0);
 					if(!string.IsNullOrEmpty(respone))
 						Friend.Avatar = respone;
 				}
@@ -78,7 +84,7 @@ namespace Engnest.Entities.Repository
 					Friend.NickName = item.p1.NickName;
 					Friend.Id = item.p1.ID;
 					Friend.CreatedTime = item.c.CreatedTime;
-					var respone = AmazonS3Uploader.GetUrl(item.p1.Avatar);
+					var respone = AmazonS3Uploader.GetUrl(item.p1.Avatar,0);
 					if(!string.IsNullOrEmpty(respone))
 						Friend.Avatar = respone;
 				}
@@ -107,7 +113,7 @@ namespace Engnest.Entities.Repository
 						  }).ToList();
 			foreach(var item in result)
 			{
-				var respone = AmazonS3Uploader.GetUrl(item.Avatar);
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar,0);
 				if(!string.IsNullOrEmpty(respone))
 					item.Avatar = respone;
 			}

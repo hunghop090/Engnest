@@ -70,6 +70,34 @@ namespace Engnest.Entities.Repository
 					}).Take(quantity).ToList();
 				CommentView = CommentView.Union(result).ToList();
 			}
+			foreach(var item in CommentView)
+			{
+				var responeImage = AmazonS3Uploader.GetUrl(item.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					item.Avatar = responeImage;
+				if(!string.IsNullOrEmpty(item.Images))
+				{
+					var data = item.Images.Split(',');
+					item.ListImages = new List<string>();
+					foreach(string image in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(image);
+						if(!string.IsNullOrEmpty(respone))
+							item.ListImages.Add(respone);
+					}
+				}
+				if(!string.IsNullOrEmpty(item.Audios))
+				{
+					var data = item.Audios.Split(',');
+					item.ListAudios = new List<string>();
+					foreach(string audio in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(audio);
+						if(!string.IsNullOrEmpty(respone))
+							item.ListAudios.Add(respone);
+					}
+				}
+			}
             return CommentView;
         }
 

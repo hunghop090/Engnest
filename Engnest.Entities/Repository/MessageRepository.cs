@@ -43,13 +43,39 @@ namespace Engnest.Entities.Repository
 				Message.Audios = item.c.Audios ;
 				Message.Content = item.c.Content ;
 				Message.Image = item.c.Image ;
+				if(!string.IsNullOrEmpty(item.c.Image))
+				{
+					var data = item.c.Image.Split(',');
+					Message.ListImages = new List<string>();
+					foreach(string image in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(image);
+						if(!string.IsNullOrEmpty(respone))
+							Message.ListImages.Add(respone);
+					}
+				}
+				if(!string.IsNullOrEmpty(item.c.Audios))
+				{
+					var data = item.c.Audios.Split(',');
+					Message.ListAudios = new List<string>();
+					foreach(string audio in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(audio);
+						if(!string.IsNullOrEmpty(respone))
+							Message.ListAudios.Add(respone);
+					}
+				}
 				Message.Other = item.c.Other ;
 				Message.Seen = item.c.Seen ;
 				Message.TargetUser = item.c.TargetUser ;
 				Message.UserId = item.c.UserID ;
 				Message.CreatedTime = item.c.CreatedTime;
-				Message.AvataTarget = item.p2?.Avatar ;
-				Message.AvataUser = item.p1?.Avatar;
+				var responeImage = AmazonS3Uploader.GetUrl(item.p2?.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Message.AvataTarget = responeImage;
+				responeImage = AmazonS3Uploader.GetUrl(item.p1?.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Message.AvataUser = responeImage;
 				Message.NickNameTarget = item.p2?.NickName ;
 				Message.NickNameUser = item.p1?.NickName ;
 				MessageView.Add(Message);

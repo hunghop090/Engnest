@@ -33,5 +33,8 @@ namespace Engnest.Entities.ViewModels
 		public string NickNameUser { get; set; }
 
 		public string NickNameTarget { get; set; }
+
+		public List<string> ListImages { get; set; }
+		public List<string> ListAudios { get; set; }
 	}
 }

@@ -197,6 +197,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\croppie.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\images\image.jpg" />
     <Content Include="assets\images\logoEngnest.jpg" />
@@ -205,6 +206,7 @@
     <Content Include="assets\Scripts\bootstrap.js" />
     <Content Include="assets\Scripts\bootstrap.min.js" />
     <None Include="assets\Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="assets\Scripts\croppie.min.js" />
     <Content Include="assets\Scripts\JavaScript.js" />
     <Content Include="assets\Scripts\jquery-3.3.1.js" />
     <Content Include="assets\Scripts\jquery-3.3.1.min.js" />

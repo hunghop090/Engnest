@@ -37,7 +37,10 @@ namespace Engnest.Controllers
 			{
 				model = Mapper.Map<ProfileModel>(userRepository.GetUserByID(id.Value)); 
 			}
-				
+			if(model.ID == userLogin.ID)	
+				ViewBag.ClassUpdate = "";
+			else
+				ViewBag.ClassUpdate = "hidden";
 			return View(model);
 		}
 
@@ -88,7 +91,7 @@ namespace Engnest.Controllers
 			{
 				var OldPassword = EncryptorMD5.MD5Hash(model.OldPassword);
 				var NewPassword = EncryptorMD5.MD5Hash(model.NewPassword);
-				var user = userRepository.GetUserByID(userLogin.ID);
+				var user = userRepository.GetUserByIDForUpdate(userLogin.ID);
 				if(OldPassword == user.Password.Trim())
 				{
 					user.Email = model.Email;
@@ -110,6 +113,42 @@ namespace Engnest.Controllers
 				{
 					return Json(new { result = Constant.ERROR,message = "Password incorrect!" });
 				}
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult UploadAvatar(string Avatar)
+		{
+			try
+			{
+				var user = userRepository.GetUserByIDForUpdate(userLogin.ID);
+				user.Avatar = AmazonS3Uploader.UploadFile(Avatar,TypeUpload.IMAGE);
+				userRepository.UpdateUser(user);
+				userLogin = userRepository.GetUserByID(userLogin.ID);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult UploadBackGround(string BackGround)
+		{
+			try
+			{
+				var user = userRepository.GetUserByIDForUpdate(userLogin.ID);
+				user.BackGround = AmazonS3Uploader.UploadFile(BackGround,TypeUpload.IMAGE);
+				userRepository.UpdateUser(user);
+				userLogin = userRepository.GetUserByID(userLogin.ID);
 			}
 			catch (Exception ex)
 			{

@@ -63,14 +63,24 @@ namespace Engnest.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult CreatedComment(Comment model)
+		public ActionResult CreatedComment(CommentViewModel model)
 		{
 			var data = new List<CommentViewModel>();
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					var DateTime = commentRepository.InsertComment(model);
+					Comment comment = new Comment();
+					comment = Mapper.Map<Comment>(model);
+					if(model.ListImages != null)
+						foreach(var item in model.ListImages)
+						{
+							if(string.IsNullOrEmpty(comment.Images))
+								comment.Images += AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+							else
+								comment.Images += "," + AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+						}
+					var DateTime = commentRepository.InsertComment(comment);
 					data = commentRepository.LoadCommentsPost(model.TargetId.ToString(), DateTime, 1,model.UserId.ToString(),userLogin.ID);
 				}
 				catch (Exception ex)

@@ -23974,3 +23974,10 @@ i.fa-search {
 	.wo_settings_page .alert {
 		margin: 20px 0 10px
 	}
+.messages-wrapper .date-message {
+	padding:3px;
+	display:none;
+}
+.messages-wrapper:hover .date-message {
+	display:block;
+}

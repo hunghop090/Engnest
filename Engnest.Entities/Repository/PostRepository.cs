@@ -50,7 +50,7 @@ namespace Engnest.Entities.Repository
 				from p7 in ps7.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
 				let countComments = (from C in context.Comments where C.TargetId == c.ID select C).Count()
-				where c.CreatedTime < createDate && (((c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID) && c.TargetType == TypePost.USER) || ( c.TargetId == p3.GroupID && c.TargetType == TypePost.GROUP))
+				where c.CreatedTime < createDate && (((c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID) && c.TargetType == TypePost.USER) || ( c.TargetId == p3.GroupID && c.TargetType == TypePost.GROUP) || c.TargetId == UserId )
 				orderby c.CreatedTime descending
 				select new{c,p4,countEmotions,p5,countComments,p6,p7 }).Take(10).ToList();
 			var PostView = new List<PostViewModel>();
@@ -93,9 +93,13 @@ namespace Engnest.Entities.Repository
 				Post.CreatedTime = item.c.CreatedTime;
 				Post.UpdateTime = item.c.UpdateTime ;
 				Post.UserId = item.c.UserId ;
-				Post.Avatar = item.p4?.Avatar ;
+				var responeImage = AmazonS3Uploader.GetUrl(item.p4?.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Post.Avatar = responeImage;
+				responeImage = AmazonS3Uploader.GetUrl(item.p6 == null ? item.p7.Avatar :  item.p6.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Post.TargetAvatar = responeImage;
 				Post.NickName = item.p4?.NickName ;
-				Post.TargetAvatar = item.p6 == null ? item.p7.Avatar :  item.p6.Avatar ;
 				Post.TargetNickName = item.p6 == null ? item.p7.NickName :  item.p6.GroupName ;
 				Post.CountEmotions = item.countEmotions ;
 				Post.CountComments = item.countComments;
@@ -167,12 +171,16 @@ namespace Engnest.Entities.Repository
 				Post.CreatedTime = item.c.CreatedTime;
 				Post.UpdateTime = item.c.UpdateTime ;
 				Post.UserId = item.c.UserId ;
-				Post.Avatar = item.p4?.Avatar ;
 				Post.NickName = item.p4?.NickName ;
 				Post.CountEmotions = item.countEmotions ;
 				Post.CountComments = item.countComments;
 				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;
-				Post.TargetAvatar = item.p6?.Avatar;
+				var responeImage = AmazonS3Uploader.GetUrl(item.p4?.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Post.Avatar = responeImage;
+				responeImage = AmazonS3Uploader.GetUrl(item.p6?.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Post.TargetAvatar = responeImage;
 				Post.TargetNickName = item.p6?.NickName;
 				Post.ShowTarget = Post.UserId == Post.TargetId ? "hidden" : "";
 				PostView.Add(Post);
@@ -268,8 +276,10 @@ namespace Engnest.Entities.Repository
 				Post.CreatedTime = item.c.CreatedTime;
 				Post.UpdateTime = item.c.UpdateTime ;
 				Post.UserId = item.c.UserId ;
-				Post.Avatar = item.p4?.Avatar ;
 				Post.NickName = item.p4?.NickName ;
+				var responeImage = AmazonS3Uploader.GetUrl(item.p4?.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Post.Avatar = responeImage;
 				Post.CountEmotions = item.countEmotions ;
 				Post.CountComments = item.countComments;
 				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;

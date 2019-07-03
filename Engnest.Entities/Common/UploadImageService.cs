@@ -63,14 +63,17 @@ namespace Engnest.Entities.Common
 
 			return Key;
 		}
-		public static string GetUrl(string key)
+		public static string GetUrl(string key,int Expires = 1)
 		{
 			try
 			{
 				GetPreSignedUrlRequest request = new GetPreSignedUrlRequest();
 				request.BucketName = bucketname;
 				request.Key = key;
-				request.Expires = DateTime.UtcNow.AddHours(1);
+				if(Expires != 0)
+					request.Expires = DateTime.UtcNow.AddHours(Expires);
+				else 
+					request.Expires = DateTime.UtcNow.AddDays(7);
 				request.Protocol = Protocol.HTTP;
 				string url = client.GetPreSignedURL(request);
 				return url;

@@ -14,6 +14,7 @@ namespace Engnest
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<User, ProfileModel>();
 				cfg.CreateMap<Group, GroupModel>();
+				cfg.CreateMap<Comment, CommentViewModel>();
                 cfg.CreateMap<Post, PostModel>();
                 cfg.CreateMap<PostModel, Post>();
 				cfg.CreateMap<List<CommentViewModel>, List<Comment>>();
