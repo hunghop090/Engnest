@@ -1113,7 +1113,7 @@
 	</script>
 
 	<script type="text/javascript">
-		function UploadAvatar(that) {
+		function UploadAvatar(that,controller,id) {
 			deleted_images = [];
 			//Get count of selected files
 			var countFiles = $(that)[0].files.length;
@@ -1126,9 +1126,9 @@
 						var reader = new FileReader();
 						reader.onload = function (e) {
 							$.ajax({
-								url: "/Profile/UploadAvatar",
+								url: "/"+controller+"/UploadAvatar",
 								type: "POST",
-								data: {Avatar: e.target.result},
+								data: {Avatar: e.target.result,id:id},
 								dataType: "json",
 								success: function (result) {
 									if (result.result == @Constant.SUCCESS) {
@@ -1150,7 +1150,7 @@
 				}
 			}
 	}
-		function UploadBackGround(that) {
+		function UploadBackGround(that,controller,id) {
 			deleted_images = [];
 			//Get count of selected files
 			var countFiles = $(that)[0].files.length;
@@ -1163,9 +1163,9 @@
 						var reader = new FileReader();
 						reader.onload = function (e) {
 							$.ajax({
-								url: "/Profile/UploadBackGround",
+								url: "/"+controller+"/UploadBackGround",
 								type: "POST",
-								data: {BackGround: e.target.result},
+								data: {BackGround: e.target.result,id:id},
 								dataType: "json",
 								success: function (result) {
 									if (result.result == @Constant.SUCCESS) {

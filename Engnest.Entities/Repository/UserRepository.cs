@@ -130,6 +130,7 @@ namespace Engnest.Entities.Repository
 		{
 			User User = context.Users.Find(UserID);
 			context.Users.Remove(User);
+			Save();
 		}
 
 		public void UpdateUser(User User)

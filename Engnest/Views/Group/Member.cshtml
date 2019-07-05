@@ -1,0 +1,227 @@
+﻿@using Engnest.Entities.Common;
+@model Engnest.Entities.ViewModels.GroupModel
+<div class="content-container container-fluid" style="transform: none; margin-top: 25px;">
+	<div class="ad-placement-header-footer">
+	</div>
+	<div id="contnet" style="transform: none;">
+		<style>
+			.post-youtube iframe {
+				overflow: hidden !important;
+				height: 360px !important;
+			}
+
+			.sun_side_widget_title .fa-picture-o, .split-link .fa-picture-o {
+				/*color: green;*/
+				font-size: 20px;
+				margin-right: 10px;
+			}
+
+			.sun_profile_container i.fa-search {
+				left: 10px;
+				position: absolute;
+				top: 12px;
+				font-size: 20px;
+			}
+		</style>
+		<div class="row page-margin profile wo_user_profile" data-page="timeline" data-id="1961">
+			<div class="sun_profile_header_area">
+				<div class="cardheader user-cover">
+					<div class="user-cover-reposition-container">
+						<div class="user-cover-reposition-w">
+							<img id="cover-image" src="@Model.Banner" alt="@Model.GroupName Cover Image" class="pointer">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row sun_profile_container">
+				<div class="col-md-3 sun_col-md-3 no-padding-right">
+					<div class="sun_side_widget">
+						<div class="sun_pic_info text-center">
+							<div class="user-avatar flip ">
+								<img id="updateImage-1961" class="pointer " alt="@Model.GroupName Profile Picture" src="@Model.Avatar">
+								<!--Online/Offline-->
+								<span class="sun_status online " title="Online"></span>
+							</div>
+							<div class="info">
+								<div class="title">
+									<div>@Model.GroupName</div>
+								</div>
+							</div>
+						</div>
+
+						<p class="sun_user_desc">
+						</p>
+
+
+					</div>
+
+					<!-- Profile Percentage System -->
+					<div class="sun_side_widget mini">
+						<h3 class="sun_side_widget_title"><i class="fa fa-picture-o" aria-hidden="true"></i> <a href="https://biztime.com.vn/0dc53e223/photos" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=photos">Ảnh</a></h3>
+						<div id="photos-list" class="user_media_list_section">
+							<h5 class="search-filter-center-text empty_state" style="margin: 80px auto;"><i class="fa fa-camera" aria-hidden="true"></i> Chưa đăng bài nào</h5>
+						</div>
+					</div>
+				</div>
+
+				<div style="width: 73%;" class="col-md-9 sun_col-md-9 no-padding-right">
+
+
+					<div class="content-container container" style="transform: none;margin-top:0px;">
+						<div class="ad-placement-header-footer">
+						</div>
+						<div id="contnet" style="transform: none;">
+							<div class="page-margin" style="transform: none;">
+								<div class="row" style="transform: none;">
+									<div class="profile-lists middlecol">
+										<div class="sidebar-members-container"></div>
+										<div class="load-more pointer" style="display:none;">
+											<div class="white-loading list-group">
+												<div class="no-more-posts-to-show">No more Members</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="load-more-filter">
+						<span class="filter-by-more hidden" data-filter-by="all"></span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+@section scripts {
+	<script>
+		var dateGetMember = "";
+		$(document).ready(function () {
+		LoadMoreMember();
+		$(window).scroll(function (event) {
+			if (($(window).scrollTop() + 500) > $(".sidebar-user-data").height() && checkLoadPost == false)
+				LoadMoreMember(dateGetMember);
+		});
+		});
+		function LoadMoreMember(date,query) {
+		checkLoadPost = true;
+       		$.ajax({
+            url: "/Group/LoadMember",
+            type: "POST",
+			data: {date: date,id:@Model.ID,query:query},
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					if (result.data.length == 0) {
+						checkLoadPost = true;
+						$(".load-more").show();
+						return;
+					}
+					else {
+						dateGetMember = parseInt(result.data[result.data.length - 1].CreatedTime.substr(6)) ;
+					}
+					if (result.data.length < 10) {
+						checkLoadPost = true;
+						$(".load-more").show();
+					}
+					else {
+						checkLoadPost = false;
+					}
+					for (var i = 0; i < result.data.length; i++) {
+						var item = result.data[i];
+						if (item == undefined)
+							break;
+
+						var type = '';
+						var setting = '';
+						if (item.Type == @TypeMember.ADMIN)
+						{
+							type = 'Admin';
+							setting = '<a style="position: absolute;z-index: 10;right: 10px;width: 30px;height: 30px;" href="#" class="dropdown-toggle sixteen-font-size btn-file sun_user_actions_item" data-toggle="dropdown" role="button" aria-expanded="false">' +
+								'<i class="fa fa-pencil" style="font-size: 18px;margin: 7px;" aria-hidden="true"></i>'+
+							'</a>'+
+							'<ul style="cursor: pointer;top:30px;width: 160px;left: calc(100% - 160px);" class="dropdown-menu clearfix notifications-dropdown" role="menu">'+
+								'<li onclick="SetAdmin('+item.Id+','+@TypeMember.MEMBER+')">'+
+									'<h5 class="text-center">Be Member</h5>'+
+								'</li>'+
+								'</ul>';
+						} else {
+							type = 'Member';
+							setting = '<a style="position: absolute;z-index: 10;right: 10px;width: 30px;height: 30px;" href="#" class="dropdown-toggle sixteen-font-size btn-file sun_user_actions_item" data-toggle="dropdown" role="button" aria-expanded="false">' +
+								'<i class="fa fa-pencil" style="font-size: 18px;margin: 7px;" aria-hidden="true"></i>'+
+							'</a>'+
+							'<ul style="cursor: pointer;top:30px;width: 160px;left: calc(100% - 160px);" class="dropdown-menu clearfix notifications-dropdown" role="menu">'+
+								'<li onclick="SetAdmin('+item.Id+','+@TypeMember.ADMIN+')">'+
+									'<h5 class="text-center">Set Admin</h5>'+
+								'</li>'+
+								'<li onclick="KickOut('+item.Id+')">'+
+								'<h5 class="text-center">KickOut</h5>'+
+							'</li>' +
+								'</ul>';
+						}
+						if ('@ViewBag.ClassUpdate' != 'True')
+							setting = '';
+						var html = '<div class="sidebar-user-data">' + setting +
+									   '<div class="sidebar-listed-user-avatar">'+
+											 '<a class="avatarc" href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+												'<img src="'+item.Avatar+'">'+
+											 '</a>'+
+											 '<a href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+												'<div style="display:flex"><div class="member-group">' + item.NickName + '</div>' +
+							'<div class="member-group">' + type +'</div></div>'+
+											 '</a>'+
+									   '</div>'+
+							'</div>';
+						$(".sidebar-members-container").append(html);
+					}
+
+				}
+            },
+			error: function (data) {
+				checkLoadPost = false;
+            }
+        });
+		}
+		function SetAdmin(id,type) {
+		$.ajax({
+			url: "/Group/SetAdmin",
+			type: "POST",
+			data: {UserId: id,id:  @Model.ID,Type:type},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					EngnestFlash.notice("Set admin success!");
+					window.location.reload();
+				}
+				else {
+					EngnestFlash.notice("Set admin unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
+		}
+		function KickOut(id) {
+		$.ajax({
+			url: "/Group/KickOut",
+			type: "POST",
+			data: {UserId: id,id:  @Model.ID},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					EngnestFlash.notice("Kick Out success!");
+					window.location.reload();
+				}
+				else {
+					EngnestFlash.notice("Kick Out unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
+	}
+	</script>
+
+}

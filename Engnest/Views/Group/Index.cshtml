@@ -42,6 +42,13 @@
 								<img id="updateImage-1961" class="pointer " alt="@Model.GroupName Profile Picture" src="@Model.Avatar">
 								<!--Online/Offline-->
 								<span class="sun_status online " title="Online"></span>
+								@if (ViewBag.ClassUpdate)
+								{
+									<span class="btn-file sun_user_actions_item" style="margin-top: -30px;width: 30px;height: 30px;" title="Sửa">
+										<i class="fa fa-pencil" style="font-size: 18px;" aria-hidden="true"></i>
+										<input type="file" onchange="UploadAvatar(this,'Group','@Model.ID')" data-holder="photo-form-53" data-photos="image-holder-comment-53" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]">
+									</span>
+								}
 							</div>
 							<div class="info">
 								<div class="title">
@@ -105,121 +112,123 @@
 							<div class="page-margin" style="transform: none;">
 								<div class="row" style="transform: none;">
 									<div class="profile-lists middlecol">
-
-										<form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
-											<div class="panel post panel-shadow sun_pub_box">
-												<div id="post-textarea" onclick="Wo_ShowPosInfo();">
-													<img class="post-avatar" src="@Model.Profile.Avatar">
-													<div class="sun_pub_name">
-														<span>@Model.Profile.NickName</span>
+										@if (ViewBag.ClassPost)
+										{
+											<form action="#" method="post" class="post publisher-box" id="publisher-box-focus">
+												<div class="panel post panel-shadow sun_pub_box">
+													<div id="post-textarea" onclick="Wo_ShowPosInfo();">
+														<img class="post-avatar" src="@Model.Profile.Avatar">
+														<div class="sun_pub_name">
+															<span>@Model.Profile.NickName</span>
+														</div>
+														<i class="fa fa-spinner fa-spin" id="loading_indicator"></i>
+														<textarea name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Chia sẻ với mọi người!" dir="auto" style="height: 112px;" autocomplete="off"></textarea>
+														<!--Add Emojis-->
 													</div>
-													<i class="fa fa-spinner fa-spin" id="loading_indicator"></i>
-													<textarea name="postText" class="form-control postText ui-autocomplete-input" cols="10" rows="3" placeholder="Chia sẻ với mọi người!" dir="auto" style="height: 112px;" autocomplete="off"></textarea>
-													<!--Add Emojis-->
-												</div>
-												<!--Publisher Box Footer-->
-												<div style="position:relative;">
-													<div id="album-form">
-														<div class="publisher-hidden-option">
-															<input name="album_name" type="text" class="form-control" placeholder="Album name">
+													<!--Publisher Box Footer-->
+													<div id="image-holder" style="position:relative;">
+														<div id="album-form">
+															<div class="publisher-hidden-option">
+																<input name="album_name" type="text" class="form-control" placeholder="Album name">
+															</div>
+														</div>
+														<div class="publisher-hidden-option" id="photo-form">
+															<div style="overflow-x: auto;"><div id="image-holder-post"></div></div>
+														</div>
+														<div class="publisher-hidden-option" id="audio-form">
+															<div style="overflow-x: auto;"><div id="audio-holder-post"></div></div>
 														</div>
 													</div>
-													<div class="publisher-hidden-option" id="photo-form">
-														<div style="overflow-x: auto;"><div id="image-holder"></div></div>
-													</div>
-													<div class="publisher-hidden-option" id="audio-form">
-														<div style="overflow-x: auto;"><div id="audio-holder"></div></div>
-													</div>
-												</div>
 
 
-												<!--Publisher Box Footer-->
-												<div class="publisher-box-footer">
+													<!--Publisher Box Footer-->
+													<div class="publisher-box-footer">
 
-													<div class="sun_pub_more">
-														<div class="sun_pub_more_items">
-															<!--Uploaded Image-->
-															<div class="poster-left-buttons">
-																<span class="btn btn-file img">
-																	<span>
-																		<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh">
+														<div class="sun_pub_more">
+															<div class="sun_pub_more_items">
+																<!--Uploaded Image-->
+																<div class="poster-left-buttons">
+																	<span class="btn btn-file img">
+																		<span>
+																			<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh">
+																		</span>
+																		Kèm ảnh
+																		<input type="file" class="publisher-photos" data-photos="image-holder-post" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
 																	</span>
-																	Kèm ảnh
-																	<input type="file" id="publisher-photos" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
-																</span>
+																</div>
+
 															</div>
-
-														</div>
-														<!--Record Audio-->
-														<div class="sun_pub_more_items" id="recordPostAudioWrapper">
-															<div class="poster-left-buttons">
-																<span class="btn btn-file rec">
-																	<span id="recordPostAudio" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
-																</span>
-																<span id="postRecordingTime" class="hidden">00:00</span>
-															</div>
-														</div>
-													</div>
-
-													<div class="pub-footer-bottom">
-														<div class="pull-right">
-															<button type="button" onclick="PushPost(@Model.ID,@TypePost.GROUP)" id="publisher-button" class="btn btn-main">
-																<span>Chia sẻ</span>
-															</button>
-														</div>
-
-														<div class="pull-right"><div class="ball-pulse"><div></div><div></div><div></div></div></div>
-
-														<div id="status"></div>
-
-														<div class="pull-left">
-															<div class="poster-left-select">
-																<div class="publisher-hidden-option inputsm">
-																	<div class="sun_pub_privacy">
-																		<div class="sun_pub_privacy_dropdown">
-																			<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</p>
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg>
-
-																		</div>
-																		<ul class="sun_pub_privacy_menu">
-																			<li>
-																				<label>
-																					<input type="radio" class="option-input radio" name="postPrivacy" id="3" value="3">
-																					<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"></path></svg> Chỉ Mình Tôi</span>
-																				</label>
-																			</li>
-																			<li>
-																				<label>
-																					<input type="radio" class="option-input radio" name="postPrivacy" id="0" value="0" checked="">
-																					<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</span>
-																				</label>
-																			</li>
-																			<li>
-																				<label>
-																					<input type="radio" class="option-input radio" name="postPrivacy" id="1" value="1">
-																					<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"></path></svg> Bạn của tôi</span>
-																				</label>
-																			</li>
-																		</ul>
-																	</div>
+															<!--Record Audio-->
+															<div data-audio="audio-holder-post" class="sun_pub_more_items" id="recordPostAudioWrapper">
+																<div class="poster-left-buttons">
+																	<span class="btn btn-file rec">
+																		<span id="recordPostAudio" data-audio="audio-holder-post" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
+																	</span>
+																	<span id="postRecordingTime" class="hidden">00:00</span>
 																</div>
 															</div>
 														</div>
 
-														@*<div class="pull-left charsLeft-post"><span id="charsLeft">5000</span></div>*@
+														<div class="pub-footer-bottom">
+															<div class="pull-right">
+																<button type="button" onclick="PushPost(@Model.ID,@TypePost.GROUP)" id="publisher-button" class="btn btn-main">
+																	<span>Chia sẻ</span>
+																</button>
+															</div>
 
-														<div class="clear"></div>
+															<div class="pull-right"><div class="ball-pulse"><div></div><div></div><div></div></div></div>
+
+															<div id="status"></div>
+
+															<div class="pull-left">
+																<div class="poster-left-select">
+																	<div class="publisher-hidden-option inputsm">
+																		<div class="sun_pub_privacy">
+																			<div class="sun_pub_privacy_dropdown">
+																				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</p>
+																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg>
+
+																			</div>
+																			<ul class="sun_pub_privacy_menu">
+																				<li>
+																					<label>
+																						<input type="radio" class="option-input radio" name="postPrivacy" id="3" value="3">
+																						<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"></path></svg> Chỉ Mình Tôi</span>
+																					</label>
+																				</li>
+																				<li>
+																					<label>
+																						<input type="radio" class="option-input radio" name="postPrivacy" id="0" value="0" checked="">
+																						<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Mọi Người</span>
+																					</label>
+																				</li>
+																				<li>
+																					<label>
+																						<input type="radio" class="option-input radio" name="postPrivacy" id="1" value="1">
+																						<span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"></path></svg> Bạn của tôi</span>
+																					</label>
+																				</li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+															@*<div class="pull-left charsLeft-post"><span id="charsLeft">5000</span></div>*@
+
+															<div class="clear"></div>
+														</div>
 													</div>
 												</div>
-											</div>
-											<input type="hidden" name="hash_id" value="83c1b24c6399b8284b114fb23fa4a965446d27fc">
-											<input type="hidden" name="postRecord" value="" id="postRecord">
-											<input type="hidden" name="postSticker" value="" id="postSticker" onchange="alert(this.value)">
-										</form>
+												<input type="hidden" name="hash_id" value="83c1b24c6399b8284b114fb23fa4a965446d27fc">
+												<input type="hidden" name="postRecord" value="" id="postRecord">
+												<input type="hidden" name="postSticker" value="" id="postSticker" onchange="alert(this.value)">
+											</form>
+										}
 										<div id="posts"></div>
 										<div class="load-more pointer" style="display:none;">
 											<div class="white-loading list-group">
-												<div class="no-more-posts-to-show">No more posts</div>
+												<div class="no-more-posts-to-show">No more Members</div>
 											</div>
 										</div>
 									</div>
@@ -233,24 +242,27 @@
 				</div>
 
 				<div class="col-md-3">
-					<div class="sun_user_actions">
-						<span class="sun_user_actions_item" title="Sửa">
-							<a href="https://biztime.com.vn/setting/0dc53e223/general-setting" data-ajax="?link1=setting&amp;user=0dc53e223&amp;page=general-setting"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"></path></svg></a>
-						</span>
-					</div>
-
+					@if (ViewBag.ClassUpdate)
+					{
+						<div class="sun_user_actions">
+							<span class="btn-file sun_user_actions_item" title="Sửa">
+								<i class="fa fa-pencil" style="font-size: 18px;" aria-hidden="true"></i>
+								<input type="file" onchange="UploadBackGround(this,'Group','@Model.ID')" data-holder="photo-form-53" data-photos="image-holder-comment-53" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]">
+							</span>
+						</div>
+					}
 					@*<ul class="list-group sun_side_widget">
-							<li class="list-group-item text-muted search-for-posts-container hidden" contenteditable="false"><i class="fa fa-search progress-icon fa-fw" data-icon="search"></i></li>
-							<li class="form-group inner-addon" style="margin-bottom: 0px;padding: 5px;">
-								<i class="fa fa-search"></i>
-								<input type="text" class="form-control search-for-posts" onkeyup="Wo_SearchForPosts(this.value);" placeholder="Tìm bài đăng" style="padding-left: 37px;padding-right: 37px;">
-							</li>
-						</ul>*@
+			<li class="list-group-item text-muted search-for-posts-container hidden" contenteditable="false"><i class="fa fa-search progress-icon fa-fw" data-icon="search"></i></li>
+			<li class="form-group inner-addon" style="margin-bottom: 0px;padding: 5px;">
+				<i class="fa fa-search"></i>
+				<input type="text" class="form-control search-for-posts" onkeyup="Wo_SearchForPosts(this.value);" placeholder="Tìm bài đăng" style="padding-left: 37px;padding-right: 37px;">
+			</li>
+		</ul>*@
 					<ul class="list-group sun_side_widget" id="sidebar-followers-list-container">
 						<li class="list-group-item text-muted hidden" contenteditable="false">Members</li>
 						<h3 class="sun_side_widget_title">
 							<i class="fa fa-user-plus"></i>
-							<a href="Group/members?id=@Model.ID" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=followers">Members</a>
+							<a href="Group/member?id=@Model.ID" data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=followers">Members</a>
 							<span id="count-member"></span>
 						</h3>
 						<li>
@@ -306,14 +318,14 @@
 						if (item == undefined)
 							break;
 						var type = '';
-						if (item.Type == @TypeMember.ADDMIN)
+						if (item.Type == @TypeMember.ADMIN)
 						{ type = 'Admin'; } else { type = 'Member'; }
 						var html = '<div class="sidebar-user-data">'+
 									   '<div class="sidebar-listed-user-avatar">'+
-											 '<a class="avatarc" href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+											 '<a class="avatarc" href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
 												'<img src="'+item.Avatar+'">'+
 											 '</a>'+
-											 '<a href="/profile/'+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+											 '<a href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
 												'<div class="sidebar-listed-user-name">' + item.NickName + '</div>' +
 							'<div class="sidebar-listed-user-name" style="margin-top: -10px;color: #4d91ea;">' + type +'</div>'+
 											 '</a>'+
@@ -348,8 +360,10 @@
 						checkLoadPost = true;
 						$(".load-more").show();
 					}
+					else {
+						checkLoadPost = false;
+					}
 					$(".load-more").hide();
-					debugger
 					dateGetPost = parseInt(result.data[result.data.length - 1].CreatedTime.substr(6)) ;
 					let tmpl = $('#my-template').html();
 					var commenttp = $('#comment-template').html();
@@ -377,8 +391,8 @@
 					LoadMoreComment(ids, "", 3);
 				}
 				else {
+					checkLoadPost = true;
 				}
-				checkLoadPost = false;
             },
 			error: function (data) {
 				checkLoadPost = false;

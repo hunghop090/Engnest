@@ -71,6 +71,6 @@ namespace Engnest.Entities.Common
 	public class TypeMember
 	{
 		public const Byte MEMBER = 0;
-		public const Byte ADDMIN = 1;
+		public const Byte ADMIN = 1;
 	}
 }

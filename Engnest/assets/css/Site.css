@@ -23981,3 +23981,10 @@ i.fa-search {
 .messages-wrapper:hover .date-message {
 	display:block;
 }
+.sidebar-listed-user-avatar .member-group {
+	width: 50%;
+	text-align: center;
+	background: #4d91ea;
+	color: white;
+	padding: 10px;
+}

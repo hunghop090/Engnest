@@ -48,12 +48,24 @@ namespace Engnest.Entities.Repository
 			return result;
 		}
 
-		public List<MemberModel> GetMember(long UserId)
+		public GroupMember GetGroupMemberByID(long UserId,long GroupId)
+		{
+			var result = context.GroupMembers.Where(x => x.GroupID == GroupId && x.UserId == UserId).FirstOrDefault();
+			return result;
+		}
+
+		public Group GetGroupByIDForUpdate(long id)
+		{
+			var result = context.Groups.Find(id);
+			return result;
+		}
+
+		public MemberModel GetMemberGroupByID(long id,long groupId)
 		{
 			var result = (from c in context.GroupMembers
 						  join p1 in context.Users on c.UserId equals p1.ID into ps1
 						  from p1 in ps1.DefaultIfEmpty()
-						  where c.Status == StatusMember.ACCEPT
+						  where c.Status == StatusMember.ACCEPT && c.GroupID == groupId && c.UserId == id
 						  orderby c.CreatedTime descending
 						  select new MemberModel
 						  {
@@ -62,7 +74,67 @@ namespace Engnest.Entities.Repository
 							  NickName = p1.NickName,
 							  Type = c.Type,
 							  Id = p1.ID
-						  }).ToList();
+						  }).FirstOrDefault();
+			if(!string.IsNullOrEmpty( result?.Avatar))
+			{
+				var respone = AmazonS3Uploader.GetUrl(result.Avatar,0);
+				if(!string.IsNullOrEmpty(respone))
+					result.Avatar = respone;
+			}
+			return result;
+		}
+
+		public List<MemberModel> GetMember(long UserId,string date)
+		{
+			DateTime createDate = DateTime.UtcNow;
+			if (!string.IsNullOrEmpty(date))
+			{
+				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
+			}
+			var result = (from c in context.GroupMembers
+						  join p1 in context.Users on c.UserId equals p1.ID into ps1
+						  from p1 in ps1.DefaultIfEmpty()
+						  where c.CreatedTime < createDate && c.Status == StatusMember.ACCEPT && c.GroupID == UserId
+						  orderby c.CreatedTime descending
+						  select new MemberModel
+						  {
+							  CreatedTime = c.CreatedTime,
+							  Avatar = p1.Avatar,
+							  NickName = p1.NickName,
+							  Type = c.Type,
+							  Id = p1.ID
+						  }).Take(10).ToList();
+			foreach(var item in result)
+			{
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar,0);
+				if(!string.IsNullOrEmpty(respone))
+					item.Avatar = respone;
+			}
+			return result;
+		}
+
+		public List<MemberModel> GetMemberSending(long UserId,string date)
+		{
+			DateTime createDate = DateTime.UtcNow;
+			if (!string.IsNullOrEmpty(date))
+			{
+				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
+			}
+			var result = (from c in context.GroupMembers
+						  join p1 in context.Users on c.UserId equals p1.ID into ps1
+						  from p1 in ps1.DefaultIfEmpty()
+						  where c.CreatedTime < createDate && c.Status == StatusMember.SENDING && c.GroupID == UserId
+						  orderby c.CreatedTime descending
+						  select new MemberModel
+						  {
+							  CreatedTime = c.CreatedTime,
+							  Avatar = p1.Avatar,
+							  NickName = p1.NickName,
+							  Type = c.Type,
+							  Id = p1.ID
+						  }).Take(10).ToList();
 			foreach(var item in result)
 			{
 				var respone = AmazonS3Uploader.GetUrl(item.Avatar,0);
@@ -113,11 +185,33 @@ namespace Engnest.Entities.Repository
 		{
 			Group Group = context.Groups.Find(GroupID);
 			context.Groups.Remove(Group);
+			Save();
 		}
 
 		public void UpdateGroup(Group Group)
 		{
 			context.Entry(Group).State = EntityState.Modified;
+			Save();
+		}
+
+		public void InsertGroupMember(GroupMember GroupMember)
+		{
+			GroupMember.CreatedTime = DateTime.UtcNow;
+			context.GroupMembers.Add(GroupMember);
+			Save();
+		}
+
+		public void DeleteGroupMember(long UserId,long GroupId)
+		{
+			GroupMember GroupMember = context.GroupMembers.Where(x=>x.UserId == UserId  && x.GroupID == GroupId).FirstOrDefault();
+			context.GroupMembers.Remove(GroupMember);
+			Save();
+		}
+
+		public void UpdateGroupMember(GroupMember GroupMember)
+		{
+			context.Entry(GroupMember).State = EntityState.Modified;
+			Save();
 		}
 
 		public void Save()
