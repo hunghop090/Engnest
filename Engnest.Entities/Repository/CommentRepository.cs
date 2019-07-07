@@ -50,7 +50,7 @@ namespace Engnest.Entities.Repository
 				join p6 in context.Emotions on new {t1 = LoginUser ,t2 = c.ID } equals new {t1 = p6.UserId.Value,t2 = p6.TargetId.Value}  into ps6
 				from p6 in ps6.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
-				where PostId == c.TargetId &&  c.CreatedTime < createDate && (UserId == 0 || UserId == c.UserId)
+				where PostId == c.TargetId &&  c.CreatedTime < createDate && (UserId == 0 || UserId == c.UserId) && c.TargetType == TypeComment.POST
 				orderby c.CreatedTime descending
 				select new CommentViewModel{
 					Id = c.ID,

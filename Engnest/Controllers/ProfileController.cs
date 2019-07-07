@@ -31,11 +31,18 @@ namespace Engnest.Controllers
 		public ActionResult Index(long? id)
 		{
 			ProfileModel model = new ProfileModel();
+			ViewBag.IsFriend = StatusRequestFriend.CANCEL;
 			if(id == null)
 				model = Mapper.Map<ProfileModel>(userLogin);
 			else
 			{
 				model = Mapper.Map<ProfileModel>(userRepository.GetUserByID(id.Value)); 
+				var request = userRepository.GetRequestFriendByUser(id.Value,userLogin.ID);
+				if(request != null)
+				{
+					ViewBag.IsFriend = StatusRequestFriend.SENDING;
+				}
+					
 			}
 			if(model.ID == userLogin.ID)	
 				ViewBag.ClassUpdate = "";
@@ -149,6 +156,68 @@ namespace Engnest.Controllers
 				user.BackGround = AmazonS3Uploader.UploadFile(BackGround,TypeUpload.IMAGE);
 				userRepository.UpdateUser(user);
 				userLogin = userRepository.GetUserByID(userLogin.ID);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult AcceptRequest(long id)
+		{
+			try
+			{
+				var request = userRepository.GetRequestFriendByID(id);
+				request.Type = StatusRequestFriend.ACCEPT;
+				userRepository.UpdateRequestFriend(request);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult RejectRequest(long id)
+		{
+			try
+			{
+				var request = userRepository.GetRequestFriendByID(id);
+				request.Type = StatusRequestFriend.REJECT;
+				userRepository.UpdateRequestFriend(request);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult AddFriend(long id,byte type)
+		{
+			try
+			{
+				Relationship request = new Relationship();
+				if(type == StatusRequestFriend.CANCEL)
+				{
+					request = userRepository.GetRequestFriendByUser(id,userLogin.ID);
+					if(request != null && request.ID != 0)
+						userRepository.DeleteRequestFriend(request.ID);
+
+				} else if(type == StatusRequestFriend.SENDING)
+				{
+					request.Type = StatusRequestFriend.SENDING;
+					request.UserReceiveID = id;
+					request.UserSentID = userLogin.ID;
+					userRepository.InsertRequestFriend(request);
+				}
 			}
 			catch (Exception ex)
 			{

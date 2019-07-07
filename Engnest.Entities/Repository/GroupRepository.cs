@@ -114,6 +114,37 @@ namespace Engnest.Entities.Repository
 			return result;
 		}
 
+		public List<MemberModel> LoadRequest(long UserId,string date)
+		{
+			DateTime createDate = DateTime.UtcNow;
+			if (!string.IsNullOrEmpty(date))
+			{
+				createDate = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
+			}
+			var result = (from c in context.GroupMembers
+						  join p1 in context.Users on c.UserId equals p1.ID into ps1
+						  from p1 in ps1.DefaultIfEmpty()
+						  where c.CreatedTime < createDate && c.Status == StatusMember.SENDING && c.GroupID == UserId
+						  orderby c.CreatedTime descending
+						  select new MemberModel
+						  {
+							  CreatedTime = c.CreatedTime,
+							  Avatar = p1.Avatar,
+							  NickName = p1.NickName,
+							  Type = c.Type,
+							  Id = p1.ID
+						  }).Take(10).ToList();
+			foreach(var item in result)
+			{
+				var respone = AmazonS3Uploader.GetUrl(item.Avatar,0);
+				if(!string.IsNullOrEmpty(respone))
+					item.Avatar = respone;
+			}
+			return result;
+		}
+
+
 		public List<MemberModel> GetMemberSending(long UserId,string date)
 		{
 			DateTime createDate = DateTime.UtcNow;

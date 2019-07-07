@@ -37,7 +37,7 @@
 			<div class="row sun_profile_container">
 				<div class="col-md-3 sun_col-md-3 no-padding-right">
 					<div class="sun_side_widget">
-						<div class="sun_pic_info text-center">
+						<div class="sun_pic_info text-center" style="padding-bottom: 10px;">
 							<div class="user-avatar flip ">
 								<img id="updateImage-1961" class="pointer " alt="@Model.NickName Profile Picture" src="@Model.Avatar">
 								<!--Online/Offline-->
@@ -52,6 +52,42 @@
 									<div>@Model.NickName</div>
 								</div>
 							</div>
+							@if (ViewBag.ClassUpdate == "hidden")
+							{
+								<div class="opt_buttons">
+									<span class="user-follow-button">
+										<span id="Follow-@Model.ID">
+											@if (ViewBag.IsFriend == StatusRequestFriend.CANCEL)
+											{
+												<button type="button" onclick="AddFriend('@Model.ID',@StatusRequestFriend.SENDING)" class="btn btn-default btn-sm wo_follow_btn" id="wo_useract_btn">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+													<span class="button-text">Add Friend</span>
+												</button>
+											}
+											else if (ViewBag.IsFriend == StatusRequestFriend.ACCEPT)
+											{
+												<button type="button" onclick="AddFriend('@Model.ID',@StatusRequestFriend.CANCEL)" class="btn btn-active btn-default btn-sm wo_following_btn" id="wo_useract_btn">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+													<span class="button-text">Friends</span>
+												</button>
+											}
+											else if (ViewBag.IsFriend == StatusRequestFriend.SENDING)
+											{
+												<button type="button" readonly class="btn btn-active btn-default btn-sm wo_following_btn" id="wo_useract_btn">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+													<span class="button-text">Request sending</span>
+												</button>
+											}
+										</span>
+									</span>
+									<span class="profile-message-btn">
+										<button type="button" class="btn btn-default btn-sm" onclick="OpenChatTab('@Model.ID');">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+											<span class="button-text"> Message</span>
+										</button>
+									</span>
+								</div>
+							}
 						</div>
 
 						<p class="sun_user_desc">
@@ -453,7 +489,31 @@
             }
         });
 		}
-
+	function AddFriend(id, type) {
+		if (type == @StatusRequestFriend.CANCEL) {
+			var r = confirm("Do you want cancel friend!");
+			if (r != true) {
+				return;
+			} 
+		}
+		$.ajax({
+			url: "/Profile/AddFriend",
+			type: "POST",
+			data: {id: id,type:type},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					EngnestFlash.notice("Request success!");
+					window.location.reload();
+				}
+				else {
+					EngnestFlash.notice("Request unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
+	}
 	</script>
 
 }

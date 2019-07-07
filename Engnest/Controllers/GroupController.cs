@@ -81,6 +81,19 @@ namespace Engnest.Controllers
 			}
 		}
 
+		public ActionResult LoadRequest(long id,string date)
+		{
+			try
+			{
+				var data = groupRepository.LoadRequest(id,date);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
 		public ActionResult LoadMemberSending(long id,string date)
 		{
 			try

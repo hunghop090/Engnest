@@ -36,6 +36,18 @@ namespace Engnest.Entities.Repository
 			return result;
 		}
 
+		public Relationship GetRequestFriendByID(long id)
+		{
+			var result = context.Relationships.Find(id);
+			return result;
+		}
+
+		public Relationship GetRequestFriendByUser(long id,long userid)
+		{
+			var result = context.Relationships.Where(x => (x.UserSentID == id && x.UserReceiveID == userid) || (x.UserSentID == userid && x.UserReceiveID == id)).FirstOrDefault();
+			return result;
+		}
+
 		public User GetUserByIDForUpdate(long id)
 		{
 			var result = context.Users.Find(id);
@@ -62,7 +74,7 @@ namespace Engnest.Entities.Repository
 						  from p1 in ps1.DefaultIfEmpty()
 						  join p2 in context.Users on c.UserSentID equals p2.ID into ps2
 						  from p2 in ps2.DefaultIfEmpty()
-						  where c.UserReceiveID == UserId || c.UserSentID == UserId
+						  where (c.UserReceiveID == UserId || c.UserSentID == UserId) && c.Type == StatusRequestFriend.ACCEPT
 						  orderby c.CreatedTime descending
 						  select new { c, p1, p2 }).ToList();
 			foreach (var item in result)
@@ -101,7 +113,7 @@ namespace Engnest.Entities.Repository
 						  from p1 in ps1.DefaultIfEmpty()
 						  join p2 in context.Groups on c.UserSentID equals p2.ID into ps2
 						  from p2 in ps2.DefaultIfEmpty()
-						  where c.UserReceiveID == UserId && c.Status == StatusRequestFriend.SENDING
+						  where c.UserReceiveID == UserId && c.Type == StatusRequestFriend.SENDING
 						  orderby c.CreatedTime descending
 						  select new RequestFriendModel
 						  {
@@ -122,6 +134,7 @@ namespace Engnest.Entities.Repository
 
 		public void InsertUser(User User)
 		{
+			User.CreatedTime = DateTime.UtcNow;
 			context.Users.Add(User);
 			Save();
 		}
@@ -136,6 +149,27 @@ namespace Engnest.Entities.Repository
 		public void UpdateUser(User User)
 		{
 			context.Entry(User).State = EntityState.Modified;
+			Save();
+		}
+
+		public void InsertRequestFriend(Relationship Relationship)
+		{
+			Relationship.CreatedTime = DateTime.UtcNow;
+			context.Relationships.Add(Relationship);
+			Save();
+		}
+
+		public void DeleteRequestFriend(long id)
+		{
+			Relationship Request = context.Relationships.Find(id);
+			context.Relationships.Remove(Request);
+			Save();
+		}
+
+		public void UpdateRequestFriend(Relationship Relationship)
+		{
+			Relationship.UpdateTime = DateTime.UtcNow;
+			context.Entry(Relationship).State = EntityState.Modified;
 			Save();
 		}
 

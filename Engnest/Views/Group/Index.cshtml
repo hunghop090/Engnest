@@ -271,6 +271,19 @@
 						</li>
 						<li><div class="clear"></div></li>
 					</ul>
+					<ul class="list-group sun_side_widget" id="sidebar-request-list-container">
+						<li class="list-group-item text-muted hidden" contenteditable="false">Request</li>
+						<h3 class="sun_side_widget_title">
+							<i class="fa fa-user-plus"></i>
+							<a data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=followers">Members</a>
+							<span id="count-member"></span>
+						</h3>
+						<li>
+							<div class="sidebar-requests-container sun_prof_foll_ing">
+							</div>
+						</li>
+						<li><div class="clear"></div></li>
+					</ul>
 					<div class="page-margin">
 						<div class="footer-wrapper sidebar">
 							<div class="footer-powered">
@@ -306,6 +319,40 @@
 		});
 
 			$.ajax({
+            url: "/Group/LoadRequest",
+            type: "POST",
+			data: {id:@Model.ID},
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					$("#count-member").html(result.data.length)
+					for (var i = 0; i < 9; i++) {
+						var item = result.data[i];
+						if (item == undefined)
+							break;
+						var type = '';
+						if (item.Type == @TypeMember.ADMIN)
+						{ type = 'Admin'; } else { type = 'Member'; }
+						var html = '<div class="sidebar-user-data">'+
+									   '<div class="sidebar-listed-user-avatar">'+
+											 '<a class="avatarc" href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+												'<img src="'+item.Avatar+'">'+
+											 '</a>'+
+											 '<a href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
+												'<div class="sidebar-listed-user-name">' + item.NickName + '</div>' +
+							'<div class="sidebar-listed-user-name" style="margin-top: -10px;color: #4d91ea;">' + type +'</div>'+
+											 '</a>'+
+									   '</div>'+
+							'</div>';
+						$(".sidebar-members-container").append(html);
+					}
+				}
+            },
+            error: function (data) {
+            }
+
+			});
+			$.ajax({
             url: "/Group/LoadMember",
             type: "POST",
 			data: {id:@Model.ID},
@@ -337,7 +384,8 @@
             },
             error: function (data) {
             }
-        });
+
+			});
 		});
 		function LoadMorePost(date) {
 		checkLoadPost = true;

@@ -22,7 +22,7 @@ namespace Engnest.Entities.Entity
 		public byte Status { get; set; }
 
         public DateTime CreatedTime { get; set; }
-		public DateTime? UpdateTIme { get; set; }
+		public DateTime? UpdateTime { get; set; }
 		public DateTime? AcceptTime { get; set; }
 
     }

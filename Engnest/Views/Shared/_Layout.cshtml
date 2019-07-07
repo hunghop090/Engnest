@@ -559,7 +559,7 @@
 						</div>
 						<div class="meta">
 							<div class="title h5" style="display:flex">
-								<span class="user-popover" data-type="user" data-id="4"><a href="/profile?id={{UserId}}"><b>{{NickName}}</b></a></span><div class="{{ShowTarget}}"><i class="fa fa-long-arrow-right"></i><span class="user-popover" data-type="user" data-id="4"><a href="{{TargetId}}"><b>{{TargetNickName}}</b></a></span></div><small class="small-text"></small>
+								<span class="user-popover" data-type="user" data-id="4"><a href="/profile?id={{UserId}}"><b>{{NickName}}</b></a></span><div class="{{ShowTarget}}"><i class="fa fa-long-arrow-right"></i><span class="user-popover" data-type="user" data-id="4"><a href="/profile?id={{TargetId}}"><b>{{TargetNickName}}</b></a></span></div><small class="small-text"></small>
 							</div><h6> <span class="time">&nbsp;&nbsp;<a style="color:#9197a3" class="ajax-time" title="" target="_blank">{{CreatedTime}}</a></span></h6>
 						</div>
 					</div>
@@ -674,10 +674,62 @@
 	var checkLoadPost = false;
 	$(document).ready(function () {
 		LoadRequestFriend();
+			var chat = $.connection.chatHub;
+			LoadFriend();
+		$(function () {
+
+			// Reference the auto-generated proxy for the hub.
+			// Get the user name and store it to prepend to messages.
+			// Set initial focus to message input box.
+			$('#message').focus();
+			// Start the connection.
+			chat.client.addChatMessage = function (message) {
+				var obj = JSON.parse(message);
+				var html = '<div class="messages-wrapper pull-left messages-text">' +
+					'<div class="message outgoing pull-left">' +
+					'<p class="message-text" dir="auto" style=" color:#fff !important;">' +
+					obj.Content +
+					'</p><div class="clear"></div><div class="message-media"></div></div></div>';
+				if ($(".chat_main_" + obj.UserID).length == 0)
+					OpenChatTab(obj.UserID);
+				$(".chat_main_"+obj.UserID+" .chat-messages").append(html)
+			};
+			$.connection.hub.start().done(function () {
+				chat.server.connected(@Model.ID);
+				$('#sendmessage').click(function () {
+					// Call the Send method on the hub.
+					chat.server.sendChatMessage(@Model.ID, $('#message').val());
+					// Clear text box and reset focus for next comment.
+					$('#message').val('').focus();
+				});
+
+			});
+
+		});
 	});
 	function OpenReplyBox(id, date) {
 		$(".comment-replies-" + id).toggle();
 		LoadReply(id, date);
+	}
+	function LoadFriend() {
+		$.ajax({
+                url: "/Profile/LoadFriend",
+                type: "POST",
+				data: {},
+                dataType: "json",
+                success: function (result) {
+					if (result.result == @Constant.SUCCESS) {
+						var friendtp = $('#friend-template').html();
+						Mustache.parse(friendtp);
+						result.data.forEach((friend) => {
+							var renderfriend = Mustache.render(friendtp, friend);
+							$("#users-chat").append(renderfriend);
+						});
+					}
+                },
+                error: function (data) {
+                }
+        });
 	}
 	function LoadReply(id, date) {
 		 $.ajax({
@@ -853,7 +905,7 @@
 					var html = '<li class="row">'+
 									'<div class="user-request-list user-follow-request-'+ request.Id +'">' +
 										'<div class="user-info">' +
-										'<a href="/'+ request.TargetId +'">' +
+										'<a href="/profile?id='+ request.TargetId +'">' +
 											'<div class="avatar">' +
 												'<img src="'+ request.Avatar +'" alt="'+ request.NickName +' Profile Picture">' +
 											'</div>' +
@@ -863,7 +915,7 @@
 											'<button type="button" id="accept-'+ request.Id +'" onclick="AcceptRequest('+ request.Id +')" class="btn btn-default btn-sm btn-active" title="Accept">' +
 												'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>' +
 											'</button>' +
-											'<button type="button" id="delete-'+ request.Id +'" onclick="DeleteRequest('+ request.Id +')" class="btn btn-default btn-sm" title="Delete">' +
+											'<button type="button" id="delete-'+ request.Id +'" onclick="RejectRequest('+ request.Id +')" class="btn btn-default btn-sm" title="Delete">' +
 												'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
 											'</button>' +
 										'</div>' +
@@ -908,54 +960,7 @@
 	</script>
 
 	<script>
-		var chat = $.connection.chatHub;
-		$.ajax({
-                url: "/Profile/LoadFriend",
-                type: "POST",
-				data: {},
-                dataType: "json",
-                success: function (result) {
-					if (result.result == @Constant.SUCCESS) {
-						var friendtp = $('#friend-template').html();
-						Mustache.parse(friendtp);
-						result.data.forEach((friend) => {
-							var renderfriend = Mustache.render(friendtp, friend);
-							$("#users-chat").append(renderfriend);
-						});
-					}
-                },
-                error: function (data) {
-                }
-        });
-		$(function () {
-			// Reference the auto-generated proxy for the hub.
-			// Get the user name and store it to prepend to messages.
-			// Set initial focus to message input box.
-			$('#message').focus();
-			// Start the connection.
-			chat.client.addChatMessage = function (message) {
-				var obj = JSON.parse(message);
-				var html = '<div class="messages-wrapper pull-left messages-text">' +
-					'<div class="message outgoing pull-left">' +
-					'<p class="message-text" dir="auto" style=" color:#fff !important;">' +
-					obj.Content +
-					'</p><div class="clear"></div><div class="message-media"></div></div></div>';
-				if ($(".chat_main_" + obj.UserID).length == 0)
-					OpenChatTab(obj.UserID);
-				$(".chat_main_"+obj.UserID+" .chat-messages").append(html)
-			};
-			$.connection.hub.start().done(function () {
-				chat.server.connected(@Model.ID);
-				$('#sendmessage').click(function () {
-					// Call the Send method on the hub.
-					chat.server.sendChatMessage(@Model.ID, $('#message').val());
-					// Clear text box and reset focus for next comment.
-					$('#message').val('').focus();
-				});
-
-			});
-
-		});
+	
 		// This optional function html-encodes messages for display in the page.
 		function htmlEncode(value) {
 			var encodedValue = $('<div />').text(value).html();
@@ -963,6 +968,7 @@
 		}
 	</script>
 	<script>
+	
 	function OpenChatTab(targetId) {
 		if ($(".chat_main_" + targetId).length != 0)
 			return;
@@ -1030,6 +1036,46 @@
 				}
 				else {
 					EngnestFlash.notice("Created group unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
+	}
+	function AcceptRequest(id) {
+		$.ajax({
+			url: "/Profile/AcceptRequest",
+			type: "POST",
+			data: {id: id},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					EngnestFlash.notice("Accept request success!");
+					LoadRequestFriend();
+					LoadFriend();
+				}
+				else {
+					EngnestFlash.notice("Accept request unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
+	}
+	function RejectRequest(id) {
+		$.ajax({
+			url: "/Profile/RejectRequest",
+			type: "POST",
+			data: {id: id},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					EngnestFlash.notice("Reject request success!");
+					LoadRequestFriend();
+					LoadFriend();
+				}
+				else {
+					EngnestFlash.notice("Reject request unsuccess!");
 				}
 			},
 			error: function (data) {

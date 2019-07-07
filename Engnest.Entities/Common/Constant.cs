@@ -58,6 +58,7 @@ namespace Engnest.Entities.Common
 	{
 		public const Byte SENDING = 0;
 		public const Byte ACCEPT = 1;
+		public const Byte CANCEL = 2;
 		public const Byte REJECT = 4;
 	}
 

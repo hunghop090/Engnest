@@ -12,6 +12,8 @@ namespace Engnest.Entities.IRepository
 		IEnumerable<Group> GetGroups();
 		Group GetLastGroups();
 		List<MemberModel> GetMember(long UserId,string date);
+
+		List<MemberModel> LoadRequest(long UserId,string date);
 		List<MemberModel> GetMemberSending(long UserId,string date);
 		MemberModel GetMemberGroupByID(long id,long groupId);
 		GroupMember GetGroupMemberByID(long id,long groupId);
