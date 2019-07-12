@@ -35,14 +35,34 @@ namespace Engnest.Controllers
 			{
 				var id = userLogin.ID;
 				var data = MessageRepository.LoadMessages(date, UserId, TargetId);
+				if(data.Count == 0)
+				{
+					var Message = new MessageViewModel();
+					var userTaget = userRepository.GetUserByID(TargetId);
+					Message.AvataTarget = userTaget.Avatar;
+					Message.NickNameTarget = userTaget.NickName ;
+					data.Add(Message);
+				}
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
 			{
 				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
 			}
+		}
 
-
+		public ActionResult LoadMessagesNotifi()
+		{
+			try
+			{
+				var id = userLogin.ID;
+				var data = MessageRepository.LoadMessagesNotifi(userLogin.ID);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
 		}
 
 		[HttpPost]
@@ -58,6 +78,21 @@ namespace Engnest.Controllers
 				{
 					return Json(new { result = Constant.ERROR });
 				}
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult SeenMessage(long TargetId)
+		{
+			try
+			{
+				MessageRepository.UpdateSeen(TargetId,userLogin.ID);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR });
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
 			return Json(new { result = Constant.SUCCESS });

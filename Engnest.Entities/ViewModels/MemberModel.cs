@@ -18,5 +18,7 @@ namespace Engnest.Entities.ViewModels
 
 		public byte Type { get; set; }
 
+		public byte Status { get; set; }
+
     }
 }

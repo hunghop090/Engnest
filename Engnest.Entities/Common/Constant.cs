@@ -68,6 +68,7 @@ namespace Engnest.Entities.Common
 		public const Byte ACCEPT = 1;
 		public const Byte REJECT = 2;
 		public const Byte BLOCK = 3;
+		public const Byte NONMEMBER = 3;
 	}
 	public class TypeMember
 	{

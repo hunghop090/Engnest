@@ -28,7 +28,7 @@
 				<div class="cardheader user-cover">
 					<div class="user-cover-reposition-container">
 						<div class="user-cover-reposition-w">
-							<img id="cover-image" src="@Model.Banner" alt="@Model.GroupName Cover Image" class="pointer">
+							<img   onclick="OpenLightBox('@Model.Banner','cover-image')" id="cover-image" src="@Model.Banner" alt="@Model.GroupName Cover Image" class="pointer">
 						</div>
 					</div>
 				</div>
@@ -37,9 +37,9 @@
 			<div class="row sun_profile_container">
 				<div class="col-md-3 sun_col-md-3 no-padding-right">
 					<div class="sun_side_widget">
-						<div class="sun_pic_info text-center">
+						<div class="sun_pic_info text-center" style="padding-bottom: 10px;">
 							<div class="user-avatar flip ">
-								<img id="updateImage-1961" class="pointer " alt="@Model.GroupName Profile Picture" src="@Model.Avatar">
+								<img id="updateImage-@Model.ID" onclick="OpenLightBox('@Model.Avatar','updateImage-@Model.ID')"  class="pointer " alt="@Model.GroupName Profile Picture" src="@Model.Avatar">
 								<!--Online/Offline-->
 								<span class="sun_status online " title="Online"></span>
 								@if (ViewBag.ClassUpdate)
@@ -55,6 +55,36 @@
 									<div>@Model.GroupName</div>
 								</div>
 							</div>
+							@if (!ViewBag.ClassUpdate)
+							{
+								<div class="opt_buttons">
+									<span class="user-follow-button">
+										<span id="Follow-@Model.ID">
+											@if (ViewBag.IsMember == StatusMember.NONMEMBER)
+											{
+												<button type="button" onclick="JoinGroup('@Model.ID',@StatusMember.SENDING)" class="btn btn-default btn-sm wo_follow_btn" id="wo_useract_btn">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+													<span class="button-text">Join Group</span>
+												</button>
+											}
+											else if (ViewBag.IsMember == StatusMember.ACCEPT)
+											{
+												<button type="button" onclick="JoinGroup('@Model.ID',@StatusMember.NONMEMBER)" class="btn btn-active btn-default btn-sm wo_following_btn" id="wo_useract_btn">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+													<span class="button-text">Member</span>
+												</button>
+											}
+											else if (ViewBag.IsMember == StatusMember.SENDING)
+											{
+												<button type="button" readonly class="btn btn-active btn-default btn-sm wo_following_btn" id="wo_useract_btn">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+													<span class="button-text">Request sending</span>
+												</button>
+											}
+										</span>
+									</span>
+								</div>
+							}
 						</div>
 
 						<p class="sun_user_desc">
@@ -150,9 +180,9 @@
 																<div class="poster-left-buttons">
 																	<span class="btn btn-file img">
 																		<span>
-																			<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh">
+																			<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
 																		</span>
-																		Kèm ảnh
+																		Pictures
 																		<input type="file" class="publisher-photos" data-photos="image-holder-post" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
 																	</span>
 																</div>
@@ -162,7 +192,7 @@
 															<div data-audio="audio-holder-post" class="sun_pub_more_items" id="recordPostAudioWrapper">
 																<div class="poster-left-buttons">
 																	<span class="btn btn-file rec">
-																		<span id="recordPostAudio" data-audio="audio-holder-post" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Ghi âm
+																		<span id="recordPostAudio" data-audio="audio-holder-post" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span> Record
 																	</span>
 																	<span id="postRecordingTime" class="hidden">00:00</span>
 																</div>
@@ -275,8 +305,8 @@
 						<li class="list-group-item text-muted hidden" contenteditable="false">Request</li>
 						<h3 class="sun_side_widget_title">
 							<i class="fa fa-user-plus"></i>
-							<a data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=followers">Members</a>
-							<span id="count-member"></span>
+							<a data-ajax="?link1=timeline&amp;u=0dc53e223&amp;type=followers">Request</a>
+							<span id="count-request-member"></span>
 						</h3>
 						<li>
 							<div class="sidebar-requests-container sun_prof_foll_ing">
@@ -325,14 +355,14 @@
             dataType: "json",
             success: function (result) {
 				if (result.result == @Constant.SUCCESS) {
-					$("#count-member").html(result.data.length)
+					$("#count-request-member").html(result.data.length)
 					for (var i = 0; i < 9; i++) {
 						var item = result.data[i];
 						if (item == undefined)
 							break;
 						var type = '';
-						if (item.Type == @TypeMember.ADMIN)
-						{ type = 'Admin'; } else { type = 'Member'; }
+						if("@ViewBag.ClassUpdate" == "True")
+						{ type = '<div class="accept-btns user-follow-button"><button type="button" id="accept-3" onclick="AcceptRequestGroup('+item.Id+','+@Model.ID+',@StatusMember.ACCEPT)" class="btn btn-default btn-sm btn-active" title="Accept"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg></button><button type="button" id="delete-3" onclick="AcceptRequestGroup('+item.Id+','+@Model.ID+',@StatusMember.REJECT)" class="btn btn-default btn-sm" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>'; } else { type = ''; }
 						var html = '<div class="sidebar-user-data">'+
 									   '<div class="sidebar-listed-user-avatar">'+
 											 '<a class="avatarc" href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
@@ -344,7 +374,7 @@
 											 '</a>'+
 									   '</div>'+
 							'</div>';
-						$(".sidebar-members-container").append(html);
+						$(".sidebar-requests-container").append(html);
 					}
 				}
             },
@@ -447,7 +477,50 @@
             }
         });
 		}
-
+	function JoinGroup(id, type) {
+		if (type == @StatusMember.NONMEMBER) {
+			var r = confirm("Do you want get out Group!");
+			if (r != true) {
+				return;
+			}
+		}
+		$.ajax({
+			url: "/Group/JoinGroup",
+			type: "POST",
+			data: {id: id,type:type},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					EngnestFlash.notice("Request success!");
+					window.location.reload();
+				}
+				else {
+					EngnestFlash.notice("Request unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
+			}
+	function AcceptRequestGroup(id, groupId,type) {
+		$.ajax({
+			url: "/Group/AcceptRequestGroup",
+			type: "POST",
+			data: {id: id,groupId:groupId,type:type},
+			dataType: "json",
+			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					EngnestFlash.notice("Request success!");
+					window.location.reload();
+				}
+				else {
+					EngnestFlash.notice("Request unsuccess!");
+				}
+			},
+			error: function (data) {
+			}
+		});
+	}
 	</script>
 
 }

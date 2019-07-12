@@ -20,12 +20,17 @@
 	<!--SignalR script to update the chat page and send messages.-->
 </head>
 <body>
+	<div id="wait-loading">
+		<img  class="image-wait-loading" width="45" height="45" src="/assets/images/loading.gif" alt="loading">
+		<span class="text-wait-loading">Wait loading Record</span>
+	</div>
 	<header class="header-container">
 		<div class="navbar navbar-default navbar-fixed-top">
 			<nav class="header-fixed1000">
 				<div class="container-fluid">
 					<a class="brand header-brand" href="/">
-						<img width="75" height="30" src="/assets/images/logoEngnest.jpg" alt="Mạng Xã Hội Việt Nam Logo">
+						<img style="margin-top: -8px;" width="45" height="45" src="/assets/images/logoEngnest.png" alt="Mạng Xã Hội Việt Nam Logo">
+						<span style="padding: 10px;color: #e5e6e8;font-weight: 500;font-size: 15px;">Engnest</span>
 					</a>
 					<ul class="nav navbar-nav left_part_header">
 						<li class="head_name_links">
@@ -81,20 +86,19 @@
 							</a>
 							<ul class="dropdown-menu request-list clearfix notifications-dropdown" role="menu" id="requests-list">
 								<li>
-									<h5 class="text-center">Không có lời mời nào</h5>
+									<h5 class="text-center">Don't have any new Request</h5>
 								</li>
 							</ul>
 						</li>
-						<li class="dropdown messages-notification-container" onclick="Wo_OpenMessagesMenu();">
-							<span class="new-update-alert hidden" style="display: none;">
-								0
+						<li class="dropdown messages-notification-container">
+							<span id="alert-message"  class="new-update-alert">
 							</span>
 							<a href="#" class="dropdown-toggle sixteen-font-size" data-toggle="dropdown" role="button" aria-expanded="false">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z"></path></svg>
 							</a>
-							<ul class="dropdown-menu clearfix notifications-dropdown messages-dropdown" role="menu" id="messages-list">
+							<ul class="dropdown-menu request-list clearfix notifications-dropdown messages-dropdown" role="menu" id="messages-list">
 								<li>
-									<h5 class="text-center"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></h5>
+									<h5 class="text-center">Don't have any new Message</h5>
 								</li>
 							</ul>
 						</li>
@@ -280,7 +284,7 @@
 		</div>
 	</script>
 	<script id="chat-template" type="x-tmpl-mustache">
-		<div class="chat_main chat_main_{{Id}}">
+		<div class="chat_main chat_main_{{Id}}" onclick="CheckChatTab({{Id}})" data-seen="{{checkseen}}">
 			<style>
 				.chat-container {
 					z-index: 8;
@@ -402,14 +406,14 @@
 						</span>
 						<div class="reply-text" data-post-comm-reply-text="{{Id}}">{{Content}}</div>
 						{{#ListAudios.length}}
-					<div class="post-file" style="padding: 10px;">
-						{{#ListAudios}}
-						<audio controls="" preload="auto">
-							<source src="{{.}}" type="audio/mpeg">
-							<source src="{{.}}" type="audio/mp3">
-						</audio>
-						{{/ListAudios}}
-					</div>
+						<div class="post-file" style="padding: 10px;">
+							{{#ListAudios}}
+							<audio controls="" preload="auto">
+								<source src="{{.}}" type="audio/mpeg">
+								<source src="{{.}}" type="audio/mp3">
+							</audio>
+							{{/ListAudios}}
+						</div>
 						{{/ListAudios.length}}
 						{{#ListImages}}
 						<div id="fullsizeimg" style="position: relative;padding: 10px;">
@@ -458,14 +462,14 @@
 						</span>
 						<div class="comment-text" style="max-height: none;">{{Content}}</div>
 						{{#ListAudios.length}}
-					<div class="post-file" style="padding: 10px;">
-						{{#ListAudios}}
-						<audio controls="" preload="auto">
-							<source src="{{.}}" type="audio/mpeg">
-							<source src="{{.}}" type="audio/mp3">
-						</audio>
-						{{/ListAudios}}
-					</div>
+						<div class="post-file" style="padding: 10px;">
+							{{#ListAudios}}
+							<audio controls="" preload="auto">
+								<source src="{{.}}" type="audio/mpeg">
+								<source src="{{.}}" type="audio/mp3">
+							</audio>
+							{{/ListAudios}}
+						</div>
 						{{/ListAudios.length}}
 						{{#ListImages}}
 						<div id="fullsizeimg" style="position: relative;padding: 10px;">
@@ -527,9 +531,9 @@
 							<div style="margin:0px" class="poster-left-buttons">
 								<span class="btn btn-file img">
 									<span style="float: left;margin-right: 10px;">
-										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh">
+										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
 									</span>
-									<span>Kèm ảnh</span>
+									<span>Pictures</span>
 									<input type="file" class="publisher-photos" onchange="GetImage(this)" data-holder="photo-form-reply-{{Id}}" data-photos="image-holder-comment-reply-{{Id}}" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
 								</span>
 							</div>
@@ -539,7 +543,7 @@
 						<div style="margin:0px" class="sun_pub_more_items" id="recordPostAudioWrapper">
 							<div style="margin:0px" class="poster-left-buttons">
 								<span class="btn btn-file rec">
-									<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span><span>Ghi âm</span>
+									<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span><span>Record</span>
 								</span>
 								<span id="postRecordingTime" class="hidden">00:00</span>
 							</div>
@@ -570,15 +574,15 @@
 							</span>
 						</p>
 						{{#ListAudios.length}}
-					<div class="post-file">
-						{{#ListAudios}}
-						<audio controls="" preload="auto">
-							<source src="{{.}}" type="audio/mpeg">
-							<source src="{{.}}" type="audio/mp3">
-						</audio>
-						{{/ListAudios}}
+						<div class="post-file">
+							{{#ListAudios}}
+							<audio controls="" preload="auto">
+								<source src="{{.}}" type="audio/mpeg">
+								<source src="{{.}}" type="audio/mp3">
+							</audio>
+							{{/ListAudios}}
 
-					</div>
+						</div>
 						{{/ListAudios.length}}
 
 
@@ -642,9 +646,9 @@
 									<div style="margin:0px" class="poster-left-buttons">
 										<span class="btn btn-file img">
 											<span style="float: left;margin-right: 10px;">
-												<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Kèm ảnh">
+												<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
 											</span>
-											<span>Kèm ảnh</span>
+											<span>Pictures</span>
 											<input type="file" class="publisher-photos" onchange="GetImage(this)" data-holder="photo-form-{{Id}}" data-photos="image-holder-comment-{{Id}}" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
 										</span>
 									</div>
@@ -654,7 +658,7 @@
 								<div style="margin:0px" class="sun_pub_more_items" id="recordPostAudioWrapper">
 									<div style="margin:0px" class="poster-left-buttons">
 										<span class="btn btn-file rec">
-											<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span><span>Ghi âm</span>
+											<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span><span>Record</span>
 										</span>
 										<span id="postRecordingTime" class="hidden">00:00</span>
 									</div>
@@ -672,10 +676,12 @@
 	</script>
 	<script>
 	var checkLoadPost = false;
+	var chat = $.connection.chatHub;
 	$(document).ready(function () {
+		LoadFriend();
 		LoadRequestFriend();
-			var chat = $.connection.chatHub;
-			LoadFriend();
+		LoadMessagesNotifi();
+
 		$(function () {
 
 			// Reference the auto-generated proxy for the hub.
@@ -690,9 +696,15 @@
 					'<p class="message-text" dir="auto" style=" color:#fff !important;">' +
 					obj.Content +
 					'</p><div class="clear"></div><div class="message-media"></div></div></div>';
-				if ($(".chat_main_" + obj.UserID).length == 0)
-					OpenChatTab(obj.UserID);
-				$(".chat_main_"+obj.UserID+" .chat-messages").append(html)
+				if ($(".chat_main_" + obj.UserID).length == 0) {
+					OpenChatTab(obj.UserID,false);
+				}
+				else {
+					$(".chat_main_" + obj.UserID).data("seen", true);
+				}
+					
+				$(".chat_main_" + obj.UserID + " .chat-messages").append(html);
+				LoadMessagesNotifi();
 			};
 			$.connection.hub.start().done(function () {
 				chat.server.connected(@Model.ID);
@@ -731,11 +743,16 @@
                 }
         });
 	}
+	function CheckChatTab(id) {
+		if ($(".chat_main_" + id).data("seen") == true) {
+			SeenMessage(id);
+		}
+	}
 	function LoadReply(id, date) {
 		 $.ajax({
             url: "/Comment/LoadCommentsReply",
             type: "GET",
-			 data: { PostIds: id,date,quantity: "20"},
+			 data: { CommentId: id,date,quantity: "20"},
             dataType: "json",
             success: function (result) {
 				if (result.result == @Constant.SUCCESS) {
@@ -771,6 +788,10 @@
 			else
 				audios += "," + $(this).attr("data-url");
 		})
+		if (audios == "") {
+			EngnestFlash.notice("You must speak what you type!");
+			return;
+		}
 		var userid = @Model.ID;
             $.ajax({
                 url: "/Home/CreatedPost",
@@ -798,7 +819,7 @@
 			var userid = @Model.ID;
 			var images = [];
 			var audios = "";
-			
+
 			for (var i = 0; i < $("#"+$(that).data("holder")+" img.thumb-image").length; i++) {
 				images.push($("#"+$(that).data("holder")+" img.thumb-image")[i].src);
 			}
@@ -809,6 +830,10 @@
 				else
 					audios += "," + $(this).attr("data-url");
 			})
+			if (audios == "" && type == @TypeComment.POST) {
+				EngnestFlash.notice("You must speak what you type!");
+				return;
+			}
 			$("#audio-holder-comment-" + id).empty();
 			$("#" + $(that).data("holder")).empty();
             $.ajax({
@@ -820,16 +845,12 @@
 					if (result.result == @Constant.SUCCESS) {
 						var commenttp = $('#comment-template').html();
 						Mustache.parse(commenttp);
-						result.data.forEach((comment) => {
-							if (comment.CreatedTime != null) {
-								comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
-							}
-							var rendercomment = Mustache.render(commenttp, comment);
-							if (type == @TypeComment.COMMENT)
-								$("#comments-list-" + comment.TargetId).append(rendercomment);
-							else
-								$("#comments-list-" + comment.TargetId).prepend(rendercomment);
-						});
+						comment = result.data;
+						if (comment.CreatedTime != null) {
+							comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
+						}
+						var rendercomment = Mustache.render(commenttp, comment);
+						$("#comments-list-" + comment.TargetId).append(rendercomment);
 					}
                 },
                 error: function (data) {
@@ -929,50 +950,52 @@
         }
     });
 	}
+	function LoadMessagesNotifi() {
+    $.ajax({
+        url: "/Message/LoadMessagesNotifi",
+        type: "GET",
+		data: {},
+        dataType: "json",
+        success: function (result) {
+			if (result.result == @Constant.SUCCESS) {
+				if (result.data.length != 0) {
+					$("#alert-message").html(result.data.length);
 
+				}
+				else {
+					$("#alert-message").html("");
 
-	</script>
-	@RenderSection("scripts", required: false)
-	<script type="text/javascript">
-		function Wo_ShowPosInfo() {
-			$(".postText").attr('opened', '1');
-			$(".postText").css('height', '112px').focus();
-			$("body").addClass('pub-focus');
-			$(".publisher-box-footer").slideDown(100);
-			$(".add-emoticons").addClass('show_emo');
-		}
-		$('#focus-overlay').on('click', function () {
-			Wo_HidePosInfo();
-		});
-
-		function Wo_HidePosInfo() {
-			$(".postText").attr('opened', '0');
-			$(".postText").css('height', '112px');
-			$("body").removeClass('pub-focus');
-			$(".publisher-box-footer").slideUp(100);
-			$(".add-emoticons").removeClass('show_emo');
-			fetch_url = 1;
-		}
-		$('.map-form').click(function () {
-			$('#map-form').slideToggle(200);
-			$('#map-form input').focus();
-		});
-	</script>
-
-	<script>
-	
-		// This optional function html-encodes messages for display in the page.
-		function htmlEncode(value) {
-			var encodedValue = $('<div />').text(value).html();
-			return encodedValue;
-		}
-	</script>
-	<script>
-	
-	function OpenChatTab(targetId) {
+				}
+				$("#messages-list").empty();
+				result.data.forEach((request) => {
+					var html = '<li class="row" onclick="OpenChatTab('+ request.UserId +')">'+
+									'<div class="user-request-list user-follow-request-'+ request.Id +'">' +
+										'<div class="user-info">' +
+										'<a href="/profile?id='+ request.UserId +'">' +
+											'<div class="avatar">' +
+												'<img src="'+ request.AvataTarget +'" alt="'+ request.NickNameTarget +' Profile Picture">' +
+											'</div>' +
+										''+ request.NickNameTarget +'</a>' +
+										'</div>' +
+										'<div class="accept-btns user-follow-button">' +
+											request.Content
+										'</div>' +
+									'</div>' +
+								'</li>';
+					$("#messages-list").append(html)
+				});
+			}
+        },
+        error: function (data) {
+        }
+    });
+	}
+	function OpenChatTab(targetId,checkseen) {
 		if ($(".chat_main_" + targetId).length != 0)
 			return;
-		var userid = @Model.ID;
+			var userid = @Model.ID;
+		if (checkseen == undefined)
+			SeenMessage(targetId);
         $.ajax({
             url: "/Message/LoadMessages",
             type: "POST",
@@ -988,9 +1011,14 @@
 						a.NickNameTarget = result.data[0].NickNameTarget;
 						a.AvataTarget = result.data[0].AvataTarget;
 					}
-					
+					if (checkseen == undefined)
+						a.checkseen = "false";
+					else
+						a.checkseen = "true";
+
 					var rendercomment = Mustache.render(chattp, a);
 					$(".chat-tab").append(rendercomment);
+					if (result.data[0].Id != 0) {
 					result.data.reverse();
 					result.data.forEach((message) => {
 						if (message.CreatedTime != null) {
@@ -1011,7 +1039,24 @@
 								'</p><div class="clear"></div><div class="message-media"></div></div><div class="date-message">'+message.CreatedTime+'</div></div>';
 						$(".chat_main_"+targetId+" .chat-messages").append(html)
 					});
+
+
+					}
 				}
+            },
+            error: function (data) {
+            }
+        });
+	}
+
+	function SeenMessage(targetId) {
+        $.ajax({
+            url: "/Message/SeenMessage",
+            type: "POST",
+			data: {TargetId:  targetId},
+            dataType: "json",
+			success: function (result) {
+				LoadMessagesNotifi();
             },
             error: function (data) {
             }
@@ -1156,6 +1201,42 @@
 					'</div>';
 	  $('#contnet').append(html);
 	}
+
+	</script>
+	@RenderSection("scripts", required: false)
+	<script type="text/javascript">
+		function Wo_ShowPosInfo() {
+			$(".postText").attr('opened', '1');
+			$(".postText").css('height', '112px').focus();
+			$("body").addClass('pub-focus');
+			$(".publisher-box-footer").slideDown(100);
+			$(".add-emoticons").addClass('show_emo');
+		}
+		$('#focus-overlay').on('click', function () {
+			Wo_HidePosInfo();
+		});
+
+		function Wo_HidePosInfo() {
+			$(".postText").attr('opened', '0');
+			$(".postText").css('height', '112px');
+			$("body").removeClass('pub-focus');
+			$(".publisher-box-footer").slideUp(100);
+			$(".add-emoticons").removeClass('show_emo');
+			fetch_url = 1;
+		}
+		$('.map-form').click(function () {
+			$('#map-form').slideToggle(200);
+			$('#map-form input').focus();
+		});
+	</script>
+
+	<script>
+
+		// This optional function html-encodes messages for display in the page.
+		function htmlEncode(value) {
+			var encodedValue = $('<div />').text(value).html();
+			return encodedValue;
+		}
 	</script>
 
 	<script type="text/javascript">
@@ -1446,7 +1527,7 @@
 
 			}
 			catch (e) {
-				console.log('There is no support audio in this browser');
+				EngnestFlash.error('There is no support audio in this browser');
 			}
 			$(document).on('click', "#recordPostAudio", function (event) {
 				audio_context = new AudioContext;
@@ -1463,6 +1544,7 @@
 						Wo_startRecording();
 					}
 					else if (recorder && _SELF.attr('data-record') == 1 && $("[data-record='1']").length == 1) {
+						DisplayWaiting("Wait loading Record");
 						Wo_stopRecording();
 						_SELF.html('<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ff3a55" d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"></path></svg>').attr('data-record', '0');
 						if (recorder && recording_node == "post") {
@@ -1479,6 +1561,7 @@
 										success: function (result) {
 											if (result.result == "0") {
 												$("#audio-holder-post").append("<audio data-url='" + result.key + "' controls='' preload='auto'><source src='" + result.data + "' type='audio/mpeg' ><source src='" + result.data + "' type='audio/mp3'></audio>")
+												HiddenWaiting();
 											}
 										},
 										error: function (data) {
@@ -1513,6 +1596,7 @@
 					}
 
 					else if (recorder && _SELF.attr('data-record') == 1 && $("[data-record='1']").length == 1) {
+						DisplayWaiting("Wait loading Record");
 						Wo_stopRecording();
 						if (recorder && recording_node == "comm") {
 							recorder.exportWAV(function (blob) {
@@ -1528,6 +1612,7 @@
 										success: function (result) {
 											if (result.result == "0") {
 												$("#" + _SELF.data("audio-holder")).append("<audio data-url='" + result.key + "' controls='' preload='auto' ><source src='" + result.data + "' type='audio/mpeg' ><source src='" + result.data + "' type='audio/mp3'></audio>")
+												HiddenWaiting();
 											}
 										},
 										error: function (data) {
@@ -1619,9 +1704,13 @@
 		}
 
 		function Wo_CreateUserMedia() {
-			navigator.getUserMedia({ audio: true }, Wo_startUserMedia, function (e) {
-				console.log('Could not get input or something went wrong: ' + e);
-			});
+			try {
+				navigator.getUserMedia({ audio: true }, Wo_startUserMedia, function (e) {
+					EngnestFlash.error('Could not get input or something went wrong!');
+				});
+			} catch (e) {
+				EngnestFlash.error('Could not get input or something went wrong!');
+			}
 		}
 		function Wo_CleanRecordNodes() {
 			$(".record-comment-audio").each(function (index, el) {
@@ -2296,6 +2385,15 @@
 			angle += 90;
 			$('#wo_zoom_' + id).css({ 'transform': 'rotate(-' + angle + 'deg)' });
 		}
+	</script>
+	<script>
+	function DisplayWaiting(text) {
+		$("#wait-loading").show();
+		$("#wait-loading .text-wait-loading").html(text);
+	}
+	function HiddenWaiting() {
+		$("#wait-loading").hide();
+	}
 	</script>
 </body>
 </html>

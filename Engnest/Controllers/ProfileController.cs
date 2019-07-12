@@ -40,7 +40,7 @@ namespace Engnest.Controllers
 				var request = userRepository.GetRequestFriendByUser(id.Value,userLogin.ID);
 				if(request != null)
 				{
-					ViewBag.IsFriend = StatusRequestFriend.SENDING;
+					ViewBag.IsFriend = request.Status;
 				}
 					
 			}
@@ -171,7 +171,7 @@ namespace Engnest.Controllers
 			try
 			{
 				var request = userRepository.GetRequestFriendByID(id);
-				request.Type = StatusRequestFriend.ACCEPT;
+				request.Status = StatusRequestFriend.ACCEPT;
 				userRepository.UpdateRequestFriend(request);
 			}
 			catch (Exception ex)
@@ -188,7 +188,7 @@ namespace Engnest.Controllers
 			try
 			{
 				var request = userRepository.GetRequestFriendByID(id);
-				request.Type = StatusRequestFriend.REJECT;
+				request.Status = StatusRequestFriend.REJECT;
 				userRepository.UpdateRequestFriend(request);
 			}
 			catch (Exception ex)
@@ -213,7 +213,8 @@ namespace Engnest.Controllers
 
 				} else if(type == StatusRequestFriend.SENDING)
 				{
-					request.Type = StatusRequestFriend.SENDING;
+					request.Type = TypeRequestFriend.USER;
+					request.Status = StatusRequestFriend.SENDING;
 					request.UserReceiveID = id;
 					request.UserSentID = userLogin.ID;
 					userRepository.InsertRequestFriend(request);

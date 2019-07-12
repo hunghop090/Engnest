@@ -74,7 +74,7 @@ namespace Engnest.Entities.Repository
 						  from p1 in ps1.DefaultIfEmpty()
 						  join p2 in context.Users on c.UserSentID equals p2.ID into ps2
 						  from p2 in ps2.DefaultIfEmpty()
-						  where (c.UserReceiveID == UserId || c.UserSentID == UserId) && c.Type == StatusRequestFriend.ACCEPT
+						  where (c.UserReceiveID == UserId || c.UserSentID == UserId) && c.Status == StatusRequestFriend.ACCEPT
 						  orderby c.CreatedTime descending
 						  select new { c, p1, p2 }).ToList();
 			foreach (var item in result)
@@ -113,7 +113,7 @@ namespace Engnest.Entities.Repository
 						  from p1 in ps1.DefaultIfEmpty()
 						  join p2 in context.Groups on c.UserSentID equals p2.ID into ps2
 						  from p2 in ps2.DefaultIfEmpty()
-						  where c.UserReceiveID == UserId && c.Type == StatusRequestFriend.SENDING
+						  where c.UserReceiveID == UserId && c.Status == StatusRequestFriend.SENDING
 						  orderby c.CreatedTime descending
 						  select new RequestFriendModel
 						  {

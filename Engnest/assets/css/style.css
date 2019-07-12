@@ -182,7 +182,7 @@ a.btn.btn-block.btn-social.btn-facebook {
     flex-basis: 50%;
     -webkit-flex-basis: 50%;
     box-sizing: border-box;
-    padding: 3em 4em;
+    padding: 0em 4em;
     /* -webkit-box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
     box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2); */

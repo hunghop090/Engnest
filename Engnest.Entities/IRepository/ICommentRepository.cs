@@ -11,9 +11,13 @@ namespace Engnest.Entities.IRepository
 	{
         List<Comment> GetComments();
 		List<CommentViewModel> LoadCommentsPost(string PostIds,string date,int quantity,string createdUser,long LoginUser);
-        Comment GetCommentByID(long CommentId);
+
+		List<CommentViewModel> LoadCommentsReply(string CommentId,string date,int quantity,string createdUser,long LoginUser);
+        CommentViewModel GetCommentByID(long CommentId,long LoginUser);
+
+		Comment GetCommentByUpdate(long CommentId);
         List<Comment> GetCommentByTargetId(long TargetId);
-        string InsertComment(Comment Comment);
+        long InsertComment(Comment Comment);
         void DeleteComment(long CommentID);
         void UpdateComment(Comment Comment);
         void Save();

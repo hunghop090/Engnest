@@ -35,6 +35,7 @@ namespace Engnest.Controllers
 			{
 				var id = userLogin.ID;
 				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty,id);
+				data.Reverse();
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
@@ -45,12 +46,12 @@ namespace Engnest.Controllers
 
 		}
 
-		public ActionResult LoadCommentsReply(string PostIds,string date,int quantity)
+		public ActionResult LoadCommentsReply(string CommentId,string date,int quantity)
 		{
 			try
 			{
 				var id = userLogin.ID;
-				var data = commentRepository.LoadCommentsPost(PostIds, date, quantity,string.Empty,id);
+				var data = commentRepository.LoadCommentsReply(CommentId, date, quantity,string.Empty,id);
 				data.Reverse();
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
 			}
@@ -65,7 +66,7 @@ namespace Engnest.Controllers
 		[HttpPost]
 		public ActionResult CreatedComment(CommentViewModel model)
 		{
-			var data = new List<CommentViewModel>();
+			var data = new CommentViewModel();
 			if (ModelState.IsValid)
 			{
 				try
@@ -80,8 +81,8 @@ namespace Engnest.Controllers
 							else
 								comment.Images += "," + AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
 						}
-					var DateTime = commentRepository.InsertComment(comment);
-					data = commentRepository.LoadCommentsPost(model.TargetId.ToString(), DateTime, 1,model.UserId.ToString(),userLogin.ID);
+					var idCommnet = commentRepository.InsertComment(comment);
+					data = commentRepository.GetCommentByID(idCommnet,userLogin.ID);
 				}
 				catch (Exception ex)
 				{

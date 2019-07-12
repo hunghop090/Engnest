@@ -38,15 +38,21 @@ namespace Engnest.Controllers
 			{
 				model = Mapper.Map<GroupModel>(groupRepository.GetGroupByID(id.Value)); 
 				model.Profile = Mapper.Map<ProfileModel>(userLogin); 
-				var data = groupRepository.GetMemberGroupByID(userLogin.ID,id.Value);
+				var data = groupRepository.GetGroupMemberByID(userLogin.ID,id.Value);
 				if(data?.Type == TypeMember.ADMIN)
 					ViewBag.ClassUpdate = true;
 				else
 					ViewBag.ClassUpdate = false;
 				if(data != null)
+				{
 					ViewBag.ClassPost = true;
+					ViewBag.IsMember = data.Status;
+				}
 				else
+				{
 					ViewBag.ClassPost = false;
+					ViewBag.IsMember = StatusMember.NONMEMBER;
+				}
 				return View(model);
 			}
 		}
@@ -208,16 +214,28 @@ namespace Engnest.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult JoinGroup(long id)
+		public ActionResult JoinGroup(long id,byte type)
 		{
 			try
 			{
-				GroupMember newMember = new GroupMember();
-				newMember.GroupID = id;
-				newMember.Status = StatusMember.SENDING;
-				newMember.UserId = userLogin.ID;
-				newMember.Type = TypeMember.MEMBER;
-				groupRepository.InsertGroupMember(newMember);
+				GroupMember request = new GroupMember();
+				if(type == StatusMember.NONMEMBER)
+				{
+					request = groupRepository.GetGroupMemberByID(userLogin.ID,id);
+					if(request != null && request.ID != 0)
+						groupRepository.DeleteGroupMember(userLogin.ID,id);
+
+				} else if(type == StatusRequestFriend.SENDING)
+				{
+					var member = groupRepository.GetGroupMemberByID(userLogin.ID,id);
+					if(member != null)
+						groupRepository.DeleteGroupMember(userLogin.ID,id);
+					request.GroupID = id;
+					request.UserId = userLogin.ID;
+					request.Status = StatusMember.SENDING;
+					request.Type = TypeMember.MEMBER;
+					groupRepository.InsertGroupMember(request);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -236,6 +254,35 @@ namespace Engnest.Controllers
 				if(UserGroup != null && UserGroup.Type == TypeMember.ADMIN)
 				{
 					groupRepository.DeleteGroupMember(UserId,id);
+				}
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult AcceptRequestGroup(long id,long groupId,byte type)
+		{
+			try
+			{
+				GroupMember request = new GroupMember();
+				if(type == StatusMember.ACCEPT)
+				{
+					request = groupRepository.GetGroupMemberByID(id,groupId);
+					if(request != null && request.ID != 0)
+					{
+						request.Status = StatusMember.ACCEPT;
+						groupRepository.UpdateGroupMember(request);
+					}
+				} else if(type == StatusRequestFriend.REJECT)
+				{
+					request = groupRepository.GetGroupMemberByID(id,groupId);
+					if(request != null)
+						groupRepository.DeleteGroupMember(id,groupId);
 				}
 			}
 			catch (Exception ex)

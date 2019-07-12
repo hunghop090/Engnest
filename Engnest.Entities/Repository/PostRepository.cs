@@ -34,9 +34,9 @@ namespace Engnest.Entities.Repository
 				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
 			}
 			var result = (from c in context.Posts
-				join p1 in context.Relationships on UserId equals p1.UserReceiveID  into ps1
+				join p1 in context.Relationships on new {t1 = UserId ,t2 = c.TargetId.Value } equals new {t1 = p1.UserSentID ,t2 =  p1.UserReceiveID }  into ps1
 				from p1 in ps1.DefaultIfEmpty()
-				join p2 in context.Relationships on UserId equals p2.UserSentID  into ps2
+				join p2 in context.Relationships on new {t1 = UserId ,t2 = c.TargetId.Value } equals new {t1 = p2.UserReceiveID ,t2 =  p2.UserSentID }  into ps2
 				from p2 in ps2.DefaultIfEmpty()
 				join p3 in context.GroupMembers on UserId equals p3.UserId  into ps3
 				from p3 in ps3.DefaultIfEmpty()
@@ -50,9 +50,9 @@ namespace Engnest.Entities.Repository
 				from p7 in ps7.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
 				let countComments = (from C in context.Comments where C.TargetId == c.ID select C).Count()
-				where c.CreatedTime < createDate && (((c.TargetId == p1.UserSentID || c.TargetId == p2.UserReceiveID) && c.TargetType == TypePost.USER) || ( c.TargetId == p3.GroupID && c.TargetType == TypePost.GROUP) || c.TargetId == UserId )
+				where c.CreatedTime < createDate && ((c.TargetId == p1.UserReceiveID  && c.TargetType == TypePost.USER) ||(c.TargetId == p2.UserSentID && c.TargetType == TypePost.USER) || ( c.TargetId == p3.GroupID && c.TargetType == TypePost.GROUP) || c.TargetId == UserId )
 				orderby c.CreatedTime descending
-				select new{c,p4,countEmotions,p5,countComments,p6,p7 }).Take(10).ToList();
+				select new{c,p1,p2,p3,p4,countEmotions,p5,countComments,p6,p7 }).Take(10).ToList();
 			var PostView = new List<PostViewModel>();
 			foreach(var item in result)
 			{
