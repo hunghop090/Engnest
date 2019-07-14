@@ -22,6 +22,8 @@ namespace Engnest.Entities.Entity
 		public virtual DbSet<GroupMember> GroupMembers { get; set; }
 		public virtual DbSet<Relationship> Relationships { get; set; }
 
+		public virtual DbSet<Notification> Notifications { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Emotion>()

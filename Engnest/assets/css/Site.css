@@ -8136,7 +8136,6 @@ svg.feather {
 	margin-right: -10px;
 	padding: 10px 10px 0;
 	margin-top: -10px;
-	border-top: 1px solid #e6e6e6;
 	transition: all .2s ease
 }
 
@@ -24018,4 +24017,48 @@ i.fa-search {
 	#wait-loading .image-wait-loading {
 		margin: auto calc(50% - 20px);
 		margin-top: 20%;
+	}
+#notifications-list li {
+	width: 100%;
+	padding: 10px;
+	border-bottom: 1px solid #dddfe2;
+}
+#notifications-list {
+	padding: 0px;
+}
+	#notifications-list li .user-follow-button {
+		float:left;
+	}
+	#notifications-list .active {
+		background-color: #edf2fa;
+	}
+.post-commet-textarea .sun_pub_more_items{
+	width:50%;
+	float:left;
+}
+.post-commet-textarea .sun_pub_more {
+	width: 20%;
+	float: right;
+}
+
+.post-commet-textarea .remove_combo_on_click {
+	width: 80%;
+	float: left;
+}
+.post-commet-textarea {
+	border-top: 1px solid #e6e6e6;
+	padding-top:10px;
+}
+.comment-reply-box .comment-reply {
+	float: left;
+	width: 80%;
+}
+.comment-reply-box .sun_pub_more {
+	float: left;
+	width: 20%;
+	margin-top: 10px;
+}
+	.comment-reply-box .sun_pub_more .sun_pub_more_items{
+		width:50%;
+		margin-top:10px;
 	}

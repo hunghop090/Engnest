@@ -110,6 +110,94 @@ namespace Engnest.Entities.Repository
             return PostView;
         }
 
+		public PostViewModel LoadPostById(long? id,long? CommentId,long UserId)
+        {
+			var Post = new PostViewModel();
+			if(id == null && CommentId != null)
+			{
+				var checkLoad = false;
+				var index = 0;
+				while (!checkLoad && index <100)
+				{
+					var comment = context.Comments.Find(CommentId.Value);
+					if(comment.TargetType == TypeComment.COMMENT)
+					{
+						CommentId=comment.TargetId;
+					}
+					else
+					{
+						checkLoad = true;
+						id=comment.TargetId;
+					}
+					index ++;
+				}
+			}
+			if(id != null)
+			{
+				var result = (from c in context.Posts
+					join p4 in context.Users on c.UserId equals p4.ID  into ps4
+					from p4 in ps4.DefaultIfEmpty()
+					join p5 in context.Emotions on new {t1 = UserId ,t2 = c.ID } equals new {t1 = p5.UserId.Value,t2 = p5.TargetId.Value}  into ps5
+					from p5 in ps5.DefaultIfEmpty()
+					join p6 in context.Groups on new {t1 = c.TargetType.Value ,t2 = c.TargetId.Value } equals new {t1 = TypePost.GROUP,t2 = p6.ID}  into ps6
+					from p6 in ps6.DefaultIfEmpty()
+					join p7 in context.Users on new {t1 = c.TargetType.Value ,t2 = c.TargetId.Value } equals new {t1 = TypePost.USER,t2 = p7.ID}  into ps7
+					from p7 in ps7.DefaultIfEmpty()
+					let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+					let countComments = (from C in context.Comments where C.TargetId == c.ID select C).Count()
+					where c.ID ==id.Value
+					select new{c,p4,countEmotions,p5,countComments,p6,p7 }).FirstOrDefault();
+
+				Post.Id = result.c.ID ;
+				Post.Audios = result.c.Audios ;
+				Post.Content = result.c.Content ;
+				Post.Images = result.c.Images ;
+				if(!string.IsNullOrEmpty(result.c.Images))
+				{
+					var data = result.c.Images.Split(',');
+					Post.ListImages = new List<string>();
+					foreach(string image in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(image);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListImages.Add(respone);
+					}
+				}
+				if(!string.IsNullOrEmpty(result.c.Audios))
+				{
+					var data = result.c.Audios.Split(',');
+					Post.ListAudios = new List<string>();
+					foreach(string audio in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(audio);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListAudios.Add(respone);
+					}
+				}
+				Post.Tags = result.c.Tags ;
+				Post.TagsUser = result.c.TagsUser ;
+				Post.TargetId = result.c.TargetId ;
+				Post.TargetType = result.c.TargetType ;
+				Post.Type = result.c.Type ;
+				Post.CreatedTime = result.c.CreatedTime;
+				Post.UpdateTime = result.c.UpdateTime ;
+				Post.UserId = result.c.UserId ;
+				var responeImage = AmazonS3Uploader.GetUrl(result.p4?.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Post.Avatar = responeImage;
+				responeImage = AmazonS3Uploader.GetUrl(result.p6 == null ? result.p7.Avatar :  result.p6.Avatar,0);
+				if(!string.IsNullOrEmpty(responeImage))
+					Post.TargetAvatar = responeImage;
+				Post.NickName = result.p4?.NickName ;
+				Post.TargetNickName = result.p6 == null ? result.p7.NickName :  result.p6.GroupName ;
+				Post.CountEmotions = result.countEmotions ;
+				Post.CountComments = result.countComments;
+				Post.StatusEmotion = result.p5 == null ? (byte)0: result.p5.Status;
+				Post.ShowTarget = Post.UserId != Post.TargetId && result.c.TargetType == TypePost.USER ? "" : "hidden";
+			}
+            return Post;
+        }
+
 		public List<PostViewModel> LoadPostsProfile(string date,long UserId)
         {
 			DateTime createDate = DateTime.UtcNow;

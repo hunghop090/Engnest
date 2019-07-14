@@ -79,7 +79,7 @@
 
 
 					<ul class="nav navbar-nav navbar-right pull-right" id="head_menu_rght">
-						<li class="dropdown requests-container" onclick="Wo_OpenRequestsMenu();">
+						<li class="dropdown requests-container">
 							<span id="alert-request" class="new-update-alert"></span>
 							<a href="#" class="dropdown-toggle unread-update sixteen-font-size" data-toggle="dropdown" role="button" aria-expanded="false">
 								<i class="fa fa-users" aria-hidden="true"></i>
@@ -102,21 +102,15 @@
 								</li>
 							</ul>
 						</li>
-						<li class="dropdown notification-container" onclick="Wo_OpenNotificationsMenu();">
-							<span class="new-update-alert hidden" style="display: none;">
-								0
+						<li class="dropdown notification-container">
+							<span id="alert-notification" class="new-update-alert">
 							</span>
 							<a href="#" class="dropdown-toggle sixteen-font-size" data-toggle="dropdown" role="button" aria-expanded="false">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"></path></svg>
 							</a>
-							<ul class="dropdown-menu clearfix notifications-dropdown" role="menu">
-								<li onclick="Wo_TurnOffSound();" class="turn-off-sound text-left">
-									<span>
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> Tắt âm thanh thông báo
-									</span>
-								</li>
-								<li id="notification-list">
-									<h5 class="text-center"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></h5>
+							<ul class="dropdown-menu request-list clearfix notifications-dropdown messages-dropdown" role="menu" id="notifications-list">
+								<li>
+									<h5 class="text-center">Don't have any new Notification</h5>
 								</li>
 							</ul>
 						</li>
@@ -161,22 +155,6 @@
 		<div class="chat-all-container">
 			<div class="chat-tab"></div>
 			<div class="chat-container full" style="">
-				<div class="online-toggle pointer" onclick="Wo_OpenChatUsersTab();">
-					Chat
-				</div>
-				<div class="chat-status">
-					<span class="pointer" style="margin-right: 5px;" onclick="Wo_CreateGChat(event)">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M13,13C11,13 7,14 7,16V18H19V16C19,14 15,13 13,13M19.62,13.16C20.45,13.88 21,14.82 21,16V18H24V16C24,14.46 21.63,13.5 19.62,13.16M13,11A3,3 0 0,0 16,8A3,3 0 0,0 13,5A3,3 0 0,0 10,8A3,3 0 0,0 13,11M18,11A3,3 0 0,0 21,8A3,3 0 0,0 18,5C17.68,5 17.37,5.05 17.08,5.14C17.65,5.95 18,6.94 18,8C18,9.06 17.65,10.04 17.08,10.85C17.37,10.95 17.68,11 18,11M8,10H5V7H3V10H0V12H3V15H5V12H8V10Z"></path></svg>
-					</span>
-					<div class="dropdown" style="display: inline;">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg>
-						<ul class="dropdown-menu dropdown-menu-right" role="menu" style="min-width: 80px; font-size: 12px;">
-							<li><a href="#" onclick="Wo_UpdateStatus('online',event);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> Online</a></li>
-							<li><a href="#" onclick="Wo_UpdateStatus('offline',event);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg> Offline</a></li>
-						</ul>
-					</div>
-				</div>
-
 				@*<div class="search">
 						<input type="text" class="form-control search-users-chat" placeholder="Tìm một ai đó" onkeyup="Wo_ChatSearchUsers(this.value);">
 					</div>*@
@@ -501,18 +479,41 @@
 					·
 					<span class="time ajax-time" title="">{{CreatedTime}}</span>
 				</span>
-				<div class="comment-replies-{{Id}}" style="display: none;">
+				<div class="comment-replies-{{Id}} comment-reply-box" style="display: none;">
 					<div class="comment-replies-text" id="comments-list-{{Id}}">
 
 					</div>
 					<div class="comment-reply">
 						<div class="wo_commreply_combo">
-							<img class="avatar" src="{{Avatar}}">
-							<textarea data-holder="image-holder-comment-reply-{{Id}}" class="reply-box form-control textarea" onkeyup="CreatedComment(this, '{{Id}}','@TypeComment.COMMENT')" placeholder="Reply to comment" dir="auto" style="height: 48px;"></textarea>
+							<img class="avatar" src="@Model.Avatar">
+							<textarea data-holder="image-holder-comment-reply-{{Id}}" class="reply-box form-control textarea" onkeyup="CreatedComment(this, '{{Id}}','@TypeComment.COMMENT','{{UserId}}')" placeholder="Reply to comment" dir="auto" style="height: 48px;"></textarea>
 						</div>
 						<div id="hidden_inputbox_comment_reply"></div>
 					</div>
-					<div style="position:relative;">
+					<div class="sun_pub_more">
+						<div style="margin:0px" class="sun_pub_more_items">
+							<!--Uploaded Image-->
+							<div style="margin:0px" class="poster-left-buttons">
+								<span class="btn btn-file img">
+									<span style="float: left;margin-right: 10px;">
+										<i class="fa fa-camera" aria-hidden="true" style="font-size: 20px;"></i>
+									</span>
+									<input type="file" class="publisher-photos" onchange="GetImage(this)" data-holder="photo-form-reply-{{Id}}" data-photos="image-holder-comment-reply-{{Id}}" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
+								</span>
+							</div>
+
+						</div>
+						<!--Record Audio-->
+						<div style="margin:0px" class="sun_pub_more_items" id="recordPostAudioWrapper">
+							<div style="margin:0px" class="poster-left-buttons">
+								<span class="btn btn-file rec">
+									<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><i class="fa fa-microphone" aria-hidden="true" style="font-size: 20px;"></i></span>
+								</span>
+								<span id="postRecordingTime" class="hidden">00:00</span>
+							</div>
+						</div>
+					</div>
+					<div>
 						<div id="album-form">
 							<div class="publisher-hidden-option">
 								<input name="album_name" type="text" class="form-control" placeholder="Album name">
@@ -525,30 +526,7 @@
 							<div style="overflow-x: auto;"><div id="audio-holder-comment-{{Id}}"></div></div>
 						</div>
 					</div>
-					<div class="sun_pub_more">
-						<div style="margin:0px" class="sun_pub_more_items">
-							<!--Uploaded Image-->
-							<div style="margin:0px" class="poster-left-buttons">
-								<span class="btn btn-file img">
-									<span style="float: left;margin-right: 10px;">
-										<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
-									</span>
-									<span>Pictures</span>
-									<input type="file" class="publisher-photos" onchange="GetImage(this)" data-holder="photo-form-reply-{{Id}}" data-photos="image-holder-comment-reply-{{Id}}" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
-								</span>
-							</div>
 
-						</div>
-						<!--Record Audio-->
-						<div style="margin:0px" class="sun_pub_more_items" id="recordPostAudioWrapper">
-							<div style="margin:0px" class="poster-left-buttons">
-								<span class="btn btn-file rec">
-									<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span><span>Record</span>
-								</span>
-								<span id="postRecordingTime" class="hidden">00:00</span>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -623,11 +601,34 @@
 							</div>
 							<div id="wo_comment_combo" class="remove_combo_on_click">
 								<div style="display: flex;">
-									<img class="avatar" src="{{Avatar}}">
-									<textarea data-holder="image-holder-comment-{{Id}}" class="form-control comment-textarea textarea ui-autocomplete-input" placeholder="Write a comment and press enter" type="text" onkeyup="CreatedComment(this, '{{Id}}','@TypeComment.POST');" dir="auto" autocomplete="off" style="height:36px;"></textarea>
+									<img class="avatar" src="@Model.Avatar">
+									<textarea data-holder="image-holder-comment-{{Id}}" class="form-control comment-textarea textarea ui-autocomplete-input" placeholder="Write a comment and press enter" type="text" onkeyup="CreatedComment(this, '{{Id}}','@TypeComment.POST','{{UserId}}');" dir="auto" autocomplete="off" style="height:36px;"></textarea>
 								</div>
 							</div>
-							<div style="position:relative;">
+							<div class="sun_pub_more">
+								<div style="margin:0px" class="sun_pub_more_items">
+									<!--Uploaded Image-->
+									<div style="margin:0px" class="poster-left-buttons">
+										<span class="btn btn-file img">
+											<span style="float: left;margin-right: 10px;">
+												<i class="fa fa-camera" aria-hidden="true" style="font-size: 20px;"></i>
+											</span>
+											<input type="file" class="publisher-photos" onchange="GetImage(this)" data-holder="photo-form-{{Id}}" data-photos="image-holder-comment-{{Id}}" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
+										</span>
+									</div>
+
+								</div>
+								<!--Record Audio-->
+								<div style="margin:0px" class="sun_pub_more_items" id="recordPostAudioWrapper">
+									<div style="margin:0px" class="poster-left-buttons">
+										<span class="btn btn-file rec">
+											<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><i class="fa fa-microphone" aria-hidden="true" style="font-size: 20px;"></i></span>
+										</span>
+										<span id="postRecordingTime" class="hidden">00:00</span>
+									</div>
+								</div>
+							</div>
+							<div>
 								<div id="album-form">
 									<div class="publisher-hidden-option">
 										<input name="album_name" type="text" class="form-control" placeholder="Album name">
@@ -638,30 +639,6 @@
 								</div>
 								<div class="publisher-hidden-option" id="audio-form">
 									<div style="overflow-x: auto;"><div id="audio-holder-comment-{{Id}}"></div></div>
-								</div>
-							</div>
-							<div class="sun_pub_more">
-								<div style="margin:0px" class="sun_pub_more_items">
-									<!--Uploaded Image-->
-									<div style="margin:0px" class="poster-left-buttons">
-										<span class="btn btn-file img">
-											<span style="float: left;margin-right: 10px;">
-												<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
-											</span>
-											<span>Pictures</span>
-											<input type="file" class="publisher-photos" onchange="GetImage(this)" data-holder="photo-form-{{Id}}" data-photos="image-holder-comment-{{Id}}" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
-										</span>
-									</div>
-
-								</div>
-								<!--Record Audio-->
-								<div style="margin:0px" class="sun_pub_more_items" id="recordPostAudioWrapper">
-									<div style="margin:0px" class="poster-left-buttons">
-										<span class="btn btn-file rec">
-											<span class="record-comment-audio" style="float: left;margin-right: 10px;" data-audio-holder="audio-holder-comment-{{Id}}" id="record-comment-audio-{{Id}}" data-audio="audio-holder-comment-{{Id}}" data-record="0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></span><span>Record</span>
-										</span>
-										<span id="postRecordingTime" class="hidden">00:00</span>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -676,12 +653,14 @@
 	</script>
 	<script>
 	var checkLoadPost = false;
+	var checkLoadNotification = false;
+	var dateGetNotification = "";
 	var chat = $.connection.chatHub;
 	$(document).ready(function () {
 		LoadFriend();
 		LoadRequestFriend();
 		LoadMessagesNotifi();
-
+		LoadNotifition();
 		$(function () {
 
 			// Reference the auto-generated proxy for the hub.
@@ -702,7 +681,7 @@
 				else {
 					$(".chat_main_" + obj.UserID).data("seen", true);
 				}
-					
+
 				$(".chat_main_" + obj.UserID + " .chat-messages").append(html);
 				LoadMessagesNotifi();
 			};
@@ -737,6 +716,7 @@
 							var renderfriend = Mustache.render(friendtp, friend);
 							$("#users-chat").append(renderfriend);
 						});
+						$(".count-online-users").html(result.data.length);
 					}
                 },
                 error: function (data) {
@@ -812,7 +792,7 @@
                 }
             });
 	}
-	function CreatedComment(that,id,type) {
+	function CreatedComment(that,id,type,user) {
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
 			var commentText = that.value.trim();
@@ -843,6 +823,13 @@
                 dataType: "json",
                 success: function (result) {
 					if (result.result == @Constant.SUCCESS) {
+						var contentNitification = "";
+						if(type == @TypeComment.POST)
+							contentNitification = '@Model.NickName' + ' comment trong post của bạn.<div id="data" data-id="' + id + '" data-type="' + type + '"></div>';
+						else 
+							contentNitification = '@Model.NickName' + ' trả lời comment của bạn.<div id="data" data-id="' + id + '" data-type="' + type + '"></div>';
+						if(@Model.ID != user)
+							CreatedNotification(contentNitification, user, type, id)
 						var commenttp = $('#comment-template').html();
 						Mustache.parse(commenttp);
 						comment = result.data;
@@ -950,6 +937,87 @@
         }
     });
 	}
+	$("#notifications-list").scroll(function (event) {
+		var heightnotifications = 0;
+		for (var i = 0; i < $("#notifications-list li").length; i++) {
+			heightnotifications += $("#notifications-list li")[i].clientHeight;
+		}
+		if (($("#notifications-list").scrollTop() + 370) > heightnotifications && checkLoadNotification == false)
+			LoadNotifition(dateGetNotification);
+	});
+	function LoadNotifition(date) {
+		checkLoadNotification = true;
+    $.ajax({
+        url: "/Notification/LoadNotification",
+        type: "GET",
+		data: {date:date,quantity:10},
+        dataType: "json",
+        success: function (result) {
+			if (result.result == @Constant.SUCCESS) {
+				if (result.data.length == 0) {
+					checkLoadNotification = true;
+					var htmlLoad = '<li class="row  user-notification">'+
+									'<div class="user-request-list ">' +
+										'<div class="accept-btns user-follow-button">' +
+											"Don't have any new Notification"+
+										'</div>' +
+									'</div>' +
+								'</li>';
+					$("#notifications-list").append(htmlLoad)
+					return;
+				}
+
+				if (result.data.length != 0 && date == undefined) {
+					$("#notifications-list").empty();
+				}
+				dateGetNotification = parseInt(result.data[result.data.length - 1].CreatedTime.substr(6)) ;
+				var countnotification = 0;
+				if (date != undefined) {
+					countnotification = $("#alert-notification").html();
+				}
+				result.data.forEach((request) => {
+					var active = "active";
+					if (request.Seen) {
+						active = "un-active";
+					}
+					else {
+						countnotification ++;
+					}
+					var html = '<li class="row '+active +'  user-notification-'+ request.ID +'" onclick="SeenNotification('+ request.ID +')">'+
+									'<div class="user-request-list ">' +
+										'<div class="accept-btns user-follow-button">' +
+											request.Content
+										'</div>' +
+									'</div>' +
+								'</li>';
+					$("#notifications-list").append(html)
+				});
+				if (countnotification == 0) {
+					$("#alert-notification").html("");
+				}
+				else {
+					$("#alert-notification").html(countnotification);
+				}
+				if (result.data.length < 10) {
+					checkLoadNotification = true;
+					var htmlLoad = '<li class="row  user-notification">' +
+						'<div class="user-request-list ">' +
+						'<div class="accept-btns user-follow-button">' +
+						"Don't have any new Notification" +
+						'</div>' +
+						'</div>' +
+						'</li>';
+					$("#notifications-list").append(htmlLoad)
+				}
+				else {
+					checkLoadNotification = false;
+				}
+			}
+        },
+        error: function (data) {
+        }
+    });
+	}
 	function LoadMessagesNotifi() {
     $.ajax({
         url: "/Message/LoadMessagesNotifi",
@@ -960,13 +1028,12 @@
 			if (result.result == @Constant.SUCCESS) {
 				if (result.data.length != 0) {
 					$("#alert-message").html(result.data.length);
-
+					$("#messages-list").empty();
 				}
 				else {
 					$("#alert-message").html("");
-
 				}
-				$("#messages-list").empty();
+
 				result.data.forEach((request) => {
 					var html = '<li class="row" onclick="OpenChatTab('+ request.UserId +')">'+
 									'<div class="user-request-list user-follow-request-'+ request.Id +'">' +
@@ -1062,6 +1129,46 @@
             }
         });
 	}
+
+	function SeenNotification(Id) {
+		var that = event;
+        $.ajax({
+            url: "/Notification/SeenNotification",
+            type: "POST",
+			data: {Id:  Id},
+            dataType: "json",
+			success: function (result) {
+				if (($("#alert-notification").html() - 1) > 0)
+					$("#alert-notification").html($("#alert-notification").html() - 1);
+				else
+					$("#alert-notification").html("");
+				$(".user-notification-" + Id).addClass("un-active");
+				$(".user-notification-" + Id).removeClass("active");
+				if ($(that.target).find("#data").data("id") != "") {
+					if ($(that.target).find("#data").data("type") == '@TypeComment.POST') {
+						location.href = "/Post?id=" + $(that.target).find("#data").data("id");
+					}
+					else {
+						location.href = "/Post?CommentId=" + $(that.target).find("#data").data("id");
+					}
+				}
+            },
+            error: function (data) {
+            }
+        });
+	}
+	function CreatedNotification(content,user,type,id) {
+		$.ajax({
+			url: "/Notification/CreatedNotification",
+			type: "POST",
+			data: {Content: content,UserId:  user,Type:type,TargetId:id},
+			dataType: "json",
+			success: function (result) {
+			},
+			error: function (data) {
+			}
+		});
+	}
 	function CloseChat(targetId) {
 		$(".chat_main_" + targetId).remove();
 	}
@@ -1077,7 +1184,7 @@
 				if (result.result == @Constant.SUCCESS) {
 					CloseLightbox();
 					EngnestFlash.notice("Created group success!");
-					location.href = "Group?id=" + result.data;
+					location.href = "/Group?id=" + result.data;
 				}
 				else {
 					EngnestFlash.notice("Created group unsuccess!");

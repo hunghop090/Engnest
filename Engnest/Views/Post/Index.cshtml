@@ -1,0 +1,141 @@
+﻿@using Engnest.Entities.Common;
+@model Engnest.Entities.ViewModels.PostIndexModel
+<div class="content-container container" style="transform: none;">
+	<div class="ad-placement-header-footer">
+	</div>
+	<div id="contnet" style="transform: none;">
+		<div class="page-margin" style="transform: none;">
+			<div class="row" style="transform: none;">
+				<div class="col-md-2 leftcol" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 525px;">
+
+
+					<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 0px; position: fixed; transform: translateY(65px); left: 99px; top: 0px; width: 156.719px;">
+						<div class="left-sidebar">
+							<ul>
+								<li>
+									<a href="/profile?id=@Model.Profile.ID" data-ajax="?link1=timeline&amp;u=0dc53e223">
+										<img alt="Onl Hero Profile Picture" src="@Model.Profile.Avatar">@Model.Profile.NickName
+									</a>
+								</li>
+								<li>
+									<a href="/" data-ajax="?index.php?link1=home">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg> News Feed
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-7 profile-lists middlecol">
+					<div id="empty_post" class="wo_my_pages">
+						@*<div>
+							<h5 class="search-filter-center-text empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-flag"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg> Chưa có trang nào</h5>				<div class="clear"></div>
+						</div>*@
+					</div>
+					<div id="posts"></div>
+					<div class="load-more pointer" style="display:none;">
+						<div class="white-loading list-group">
+							<div class="no-more-posts-to-show">No more posts</div>
+						</div>
+					</div>
+				</div>
+				<div class="sidebar-conatnier col-md-3 rightcol sidebar_fixed no-padding-left" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+
+					<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+						<div class="sidebar">
+							<div class="page-margin">
+								<div class="footer-wrapper sidebar">
+									<div class="footer-powered">
+										<p>
+											© 2019 Mạng Xã Hội Việt Nam
+										</p>
+									</div>
+									<ul class="list-inline pull-left">
+										<li>@Html.ActionLink("Timeline", "", "Home")</li>
+										<li>@Html.ActionLink("Giới thiệu", "about_us", "Home")</li>
+										<li>@Html.ActionLink("Liên hệ", "contact-us", "Home")</li>
+										<li>@Html.ActionLink("Bảo mật", "privacy-policy", "Home")</li>
+										<li>@Html.ActionLink("Điều khoản", "terms", "Home")</li>
+										<li>@Html.ActionLink("FAQ", "faq", "Home")</li>
+									</ul>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@section scripts {
+	<script>
+		$(document).ready(function () {
+			LoadPost();
+			LoadListGroup();
+		});
+		function LoadPost() {
+        $.ajax({
+            url: "/Post/LoadPost",
+            type: "GET",
+            data: { Id: '@Model.Id',CommentId:'@Model.CommentId' },
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					if (result.data.length != 0) {
+						$("#empty_post").hide();
+					}
+					let tmpl = $('#my-template').html();
+					var commenttp = $('#comment-template').html();
+					Mustache.parse(tmpl);
+					Mustache.parse(commenttp);
+					result.data.forEach((item) => {
+						if (item.CreatedTime != null) {
+							item.CreatedTime = time_ago(new Date(parseInt(item.CreatedTime.substr(6))));
+						}
+						let rendered = Mustache.render(tmpl, item);
+						$("#posts").append(rendered);
+						item.ListComments.forEach((comment) => {
+							if (comment.CreatedTime != null) {
+								comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
+							}
+							var rendercomment = Mustache.render(commenttp, comment);
+							$("#comments-list-" + item.Id).append(rendercomment);
+						});
+						if(item.StatusEmotion == 1)
+							$("#LikeAction_" + item.Id).addClass("active-like");
+					});
+					var ids = result.data.map(function(item) {
+					  return item['Id'];
+					});
+					LoadMoreComment(ids, "", 3);
+				}
+            },
+			error: function (data) {
+            }
+        });
+			}
+	function LoadListGroup() {
+        $.ajax({
+            url: "/Group/LoadListGroup",
+            type: "GET",
+            data: { },
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					result.data.forEach((item) => {
+						var html = '<li>'+
+									'<a href="/Group?id='+item.ID+'" data-ajax="?index.php?link1=home">'+
+										'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg>'+ item.GroupName +
+									'</a>'+
+								'</li>';
+						$(".left-sidebar ul").append(html);
+					});
+				}
+            },
+			error: function (data) {
+            }
+        });
+		}
+	</script>
+	}

@@ -14,6 +14,8 @@ namespace Engnest.Entities.IRepository
 		List<PostViewModel> LoadPostsProfile(string date,long UserId);
 		List<PostViewModel> GetListImage(long Id);
 		List<PostViewModel> LoadPostsGroup(string date,long UserId);
+
+		PostViewModel LoadPostById(long? id,long? CommentId,long UserId);
         Post GetPostByID(long PostId);
         List<Post> GetPostByTargetId(long TargetId);
         void InsertPost(Post Post);
