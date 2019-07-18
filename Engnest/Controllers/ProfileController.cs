@@ -76,6 +76,26 @@ namespace Engnest.Controllers
 
 		}
 
+		public ActionResult SearchFriend(string query)
+		{
+			try
+			{
+				var data = userRepository.SearchFriend(userLogin.ID,query);
+				var dataGroup = groupRepository.SearchGroup(userLogin.ID,query);
+				foreach(var item in dataGroup)
+				{
+					data.Add(item);
+				}
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
+
+
+		}
+
 		public ActionResult LoadGroup(long? id)
 		{
 			try
@@ -96,8 +116,12 @@ namespace Engnest.Controllers
 		{
 			try
 			{
+				var NewPassword = "";
 				var OldPassword = EncryptorMD5.MD5Hash(model.OldPassword);
-				var NewPassword = EncryptorMD5.MD5Hash(model.NewPassword);
+				if(string.IsNullOrEmpty(model.NewPassword))
+					NewPassword = OldPassword;
+				else
+					NewPassword = EncryptorMD5.MD5Hash(model.NewPassword);
 				var user = userRepository.GetUserByIDForUpdate(userLogin.ID);
 				if(OldPassword == user.Password.Trim())
 				{

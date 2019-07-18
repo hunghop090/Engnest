@@ -34,6 +34,8 @@ namespace Engnest.Entities.ViewModels
 
 		public string Audios { get; set; }
 
+		public string Videos { get; set; }
+
 		public string TagsUser { get; set; }
 
 		public string NickName { get; set; }
@@ -54,6 +56,8 @@ namespace Engnest.Entities.ViewModels
 
 		public List<string> ListImages { get; set; }
 		public List<string> ListAudios { get; set; }
+
+		public List<string> ListVideos { get; set; }
 
 		public string ShowTarget {get;set;}
 	}

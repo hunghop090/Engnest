@@ -2770,6 +2770,7 @@ input[readonly] {
 
 .image-file {
 	max-width: 100%;
+	width:100%;
 	margin: 0 auto;
 	text-align: center;
 	border: 1px solid #e3e4e8
@@ -11642,17 +11643,6 @@ svg.feather {
 .navbar-default .navbar-nav.left_part_header > li > a span {
 	margin-left: 4px;
 	margin-top: 0.5px;
-}
-
-.navbar-nav.left_part_header .search-container {
-	top: -45px;
-	float: none;
-	position: absolute;
-	transition: all 0.2s;
-	left: 0;
-	right: 0;
-	z-index: 999;
-	height: 45px;
 }
 
 	.navbar-nav.left_part_header .search-container .dropdown {
@@ -22238,10 +22228,6 @@ svg {
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-.navbar-nav.left_part_header .search-container {
-	background: #4d91ea;
-}
-
 .round-check input[type="checkbox"]:checked + label:before {
 	background: #4d91ea !important;
 }
@@ -22279,7 +22265,7 @@ ul.profile-completion-bar li.completion-bar div.completion-bar-status {
 }
 
 .login:not(.loading) button:hover {
-	background: #2e7be5 !important;
+	background: #4267b2 !important;
 	color: #ffffff;
 }
 
@@ -22304,7 +22290,7 @@ ul.profile-completion-bar li.completion-bar div.completion-bar-status {
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
 	color: #e5e6e8 !important;
-	background-color: #2e7be5 !important;
+	background-color: #4267b2 !important;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover, .nav-names li:hover {
@@ -24062,3 +24048,42 @@ i.fa-search {
 		width:50%;
 		margin-top:10px;
 	}
+.comment-reply-box #ReplyComment, .comment-reply-box #comment-replies {
+	display:none;
+}
+.comment-reply-box .comment-reply-box {
+	display:none;
+}
+.comment-options span:first-child{
+}
+.comment-options .ajax-time {
+	padding-left:5px;
+}
+.post-video video {
+	width:100%;
+}
+#video-holder-post {
+	display:grid;
+}
+.search-container {
+	margin-top:6px;
+}
+.search-container .form-control {
+	height: 29px;
+}
+.search-friend-list {
+	padding: 0px;
+}
+.search-friend-list img {
+	height:30px;
+}
+.search-friend-list span {
+	margin-left:10px;
+}
+.search-friend-list  li {
+	border-bottom: 1px solid #dddfe2;
+}
+.search-friend-list h5 {
+	margin-left: 10px;
+	font-weight: 700;
+}

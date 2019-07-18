@@ -48,6 +48,9 @@
 								<div class="publisher-hidden-option" id="photo-form">
 									<div style="overflow-x: auto;"><div id="image-holder-post"></div></div>
 								</div>
+								<div class="publisher-hidden-option" id="video-form">
+									<div style="overflow-x: auto;"><div id="video-holder-post"></div></div>
+								</div>
 								<div class="publisher-hidden-option" id="audio-form">
 									<div style="overflow-x: auto;"><div id="audio-holder-post"></div></div>
 								</div>
@@ -62,10 +65,24 @@
 										<!--Uploaded Image-->
 										<div class="poster-left-buttons">
 											<span class="btn btn-file img">
-												<span><img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
+												<span>
+													<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
 												</span>
 												Pictures
 												<input type="file" class="publisher-photos" data-photos="image-holder-post" accept="image/x-png, image/gif, image/jpeg" name="postPhotos[]" multiple="multiple">
+											</span>
+										</div>
+
+									</div>
+									<div class="sun_pub_more_items">
+										<!--Uploaded Image-->
+										<div class="poster-left-buttons">
+											<span class="btn btn-file img">
+												<span>
+													<img src="https://biztime.com.vn/themes/biztime-s/img/icons/pub-img.svg" alt="Pictures">
+												</span>
+												Video
+												<input onchange="GetVideo(this)" type="file" id="upload-video" data-photos="image-holder-post" accept="" name="video" multiple="multiple" >
 											</span>
 										</div>
 
@@ -209,7 +226,6 @@
 						$(".load-more").show();
 					}
 					$(".load-more").hide();
-					debugger
 					dateGetPost = parseInt(result.data[result.data.length - 1].CreatedTime.substr(6)) ;
 					let tmpl = $('#my-template').html();
 					var commenttp = $('#comment-template').html();

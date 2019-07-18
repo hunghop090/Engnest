@@ -105,6 +105,29 @@ namespace Engnest.Entities.Repository
 			return ListFriend;
 		}
 
+		public List<FriendModel> SearchFriend(long UserId,string query)
+		{
+			var ListFriend = new List<FriendModel>();
+			var result = (from c in context.Users
+						  where c.NickName.Contains(query) || c.SubName.Contains(query)
+						  orderby c.NickName descending
+						  select new { c }).Take(200).ToList();
+			foreach (var item in result)
+			{
+				var Friend = new FriendModel();
+				Friend.Avatar = item.c.Avatar;
+				Friend.NickName = item.c.NickName;
+				Friend.Id = item.c.ID;
+				Friend.Type = TypeRequestFriend.USER;
+				Friend.CreatedTime = item.c.CreatedTime;
+				var respone = AmazonS3Uploader.GetUrl(item.c.Avatar,0);
+				if(!string.IsNullOrEmpty(respone))
+					Friend.Avatar = respone;
+				ListFriend.Add(Friend);
+			}
+			return ListFriend;
+		}
+
 		public List<RequestFriendModel> GetRequestFriend(long UserId)
 		{
 			var ListRequestFriend = new List<RequestFriendModel>();

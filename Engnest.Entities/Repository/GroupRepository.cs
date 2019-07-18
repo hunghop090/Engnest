@@ -48,6 +48,29 @@ namespace Engnest.Entities.Repository
 			return result;
 		}
 
+		public List<FriendModel> SearchGroup(long UserId,string query)
+		{
+			var ListFriend = new List<FriendModel>();
+			var result = (from c in context.Groups
+						  where c.GroupName.Contains(query)
+						  orderby c.GroupName descending
+						  select new { c }).Take(200).ToList();
+			foreach (var item in result)
+			{
+				var Friend = new FriendModel();
+				Friend.Avatar = item.c.Avatar;
+				Friend.NickName = item.c.GroupName;
+				Friend.Id = item.c.ID;
+				Friend.Type = TypeRequestFriend.GROUP;
+				Friend.CreatedTime = item.c.CreatedTime;
+				var respone = AmazonS3Uploader.GetUrl(item.c.Avatar,0);
+				if(!string.IsNullOrEmpty(respone))
+					Friend.Avatar = respone;
+				ListFriend.Add(Friend);
+			}
+			return ListFriend;
+		}
+
 		public GroupMember GetGroupMemberByID(long UserId,long GroupId)
 		{
 			var result = context.GroupMembers.Where(x => x.GroupID == GroupId && x.UserId == UserId).FirstOrDefault();

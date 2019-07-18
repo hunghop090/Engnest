@@ -16,5 +16,7 @@ namespace Engnest.Entities.ViewModels
 
 		public DateTime CreatedTime { get; set; }
 
+		public byte Type { get; set; }
+
     }
 }

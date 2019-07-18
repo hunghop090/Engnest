@@ -30,6 +30,8 @@ namespace Engnest.Entities.Entity
 
         public string Images { get; set; }
 
+		public string Videos { get; set; }
+
         [StringLength(500)]
         public string Audios { get; set; }
 

@@ -17,6 +17,7 @@ namespace Engnest.Entities.IRepository
 		List<MemberModel> GetMemberSending(long UserId,string date);
 		MemberModel GetMemberGroupByID(long id,long groupId);
 		GroupMember GetGroupMemberByID(long id,long groupId);
+		List<FriendModel> SearchGroup(long UserId,string query);
 		List<GroupModel> GetListGroup(long Id);
         Group GetGroupByID(long GroupId);
 		Group GetGroupByIDForUpdate(long GroupId);

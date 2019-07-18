@@ -115,6 +115,14 @@ namespace Engnest.Controllers
 							else
 								post.Images += "," + AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
 						}
+					if(model.ListVideos != null)
+						foreach(var item in model.ListVideos)
+						{
+							if(string.IsNullOrEmpty(post.Videos))
+								post.Videos += AmazonS3Uploader.UploadFile(item,TypeUpload.VIDEO);
+							else
+								post.Videos += "," + AmazonS3Uploader.UploadFile(item,TypeUpload.VIDEO);
+						}
 					postRepository.InsertPost(post);
 				}
 				catch (Exception ex)

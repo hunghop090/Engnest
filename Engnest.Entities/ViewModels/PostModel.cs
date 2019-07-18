@@ -29,5 +29,7 @@ namespace Engnest.Entities.ViewModels
         public string TagsUser { get; set; }
 
 		public List<string> ListImages { get; set; }
+
+		public List<string> ListVideos { get; set; }
 	}
 }

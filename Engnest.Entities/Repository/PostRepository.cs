@@ -74,6 +74,17 @@ namespace Engnest.Entities.Repository
 							Post.ListImages.Add(respone);
 					}
 				}
+				if(!string.IsNullOrEmpty(item.c.Videos))
+				{
+					var data = item.c.Videos.Split(',');
+					Post.ListVideos = new List<string>();
+					foreach(string video in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(video);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListVideos.Add(respone);
+					}
+				}
 				if(!string.IsNullOrEmpty(item.c.Audios))
 				{
 					var data = item.c.Audios.Split(',');
@@ -163,6 +174,17 @@ namespace Engnest.Entities.Repository
 							Post.ListImages.Add(respone);
 					}
 				}
+				if(!string.IsNullOrEmpty(result.c.Videos))
+				{
+					var data = result.c.Videos.Split(',');
+					Post.ListVideos = new List<string>();
+					foreach(string video in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(video);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListVideos.Add(respone);
+					}
+				}
 				if(!string.IsNullOrEmpty(result.c.Audios))
 				{
 					var data = result.c.Audios.Split(',');
@@ -238,6 +260,17 @@ namespace Engnest.Entities.Repository
 						var respone = AmazonS3Uploader.GetUrl(image);
 						if(!string.IsNullOrEmpty(respone))
 							Post.ListImages.Add(respone);
+					}
+				}
+				if(!string.IsNullOrEmpty(item.c.Videos))
+				{
+					var data = item.c.Videos.Split(',');
+					Post.ListVideos = new List<string>();
+					foreach(string video in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(video);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListVideos.Add(respone);
 					}
 				}
 				if(!string.IsNullOrEmpty(item.c.Audios))
@@ -343,6 +376,17 @@ namespace Engnest.Entities.Repository
 						var respone = AmazonS3Uploader.GetUrl(image);
 						if(!string.IsNullOrEmpty(respone))
 							Post.ListImages.Add(respone);
+					}
+				}
+				if(!string.IsNullOrEmpty(item.c.Videos))
+				{
+					var data = item.c.Videos.Split(',');
+					Post.ListVideos = new List<string>();
+					foreach(string video in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(video);
+						if(!string.IsNullOrEmpty(respone))
+							Post.ListVideos.Add(respone);
 					}
 				}
 				if(!string.IsNullOrEmpty(item.c.Audios))
