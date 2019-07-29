@@ -17,6 +17,8 @@ namespace Engnest.Entities.IRepository
 		List<FriendModel> GetFriend(long UserId);
 
 		List<FriendModel> SearchFriend(long UserId,string query);
+
+		List<FriendModel> GetSuggestFriend(long UserId,string query,bool? location,string category);
 		List<RequestFriendModel> GetRequestFriend(long UserId);
         User GetUserByName(string UserName);
         void InsertUser(User User);

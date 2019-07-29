@@ -5,6 +5,8 @@ using Engnest.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -128,6 +130,69 @@ namespace Engnest.Entities.Repository
 			return ListFriend;
 		}
 
+		public List<FriendModel> GetSuggestFriend(long UserId,string query,bool? location,string category)
+		{
+			var List = new List<string>();
+			if(!string.IsNullOrEmpty(category))
+			{
+				List = category.Split(',').ToList();
+			}
+			var User = (from c in context.Users where c.ID == UserId select c).FirstOrDefault();
+			var ListFriend = new List<FriendModel>();
+
+			var result1 = (from c in context.Users
+						from t2 in context.Relationships.Where(tt2 => (c.ID == tt2.UserReceiveID && UserId == tt2.UserSentID) || (UserId == tt2.UserReceiveID && c.ID == tt2.UserSentID)).DefaultIfEmpty()
+						where (string.IsNullOrEmpty(query) || (c.NickName.Contains(query) || c.SubName.Contains(query)))
+						&& (c.Lat != null && c.Lng != null)
+						&& c.ID != UserId
+						&& (t2.ID == 0 || t2.Status != StatusRequestFriend.ACCEPT || t2.Type != TypeRequestFriend.USER)
+						orderby c.NickName descending
+						select new { c,distance = (c.Lat.Value - User.Lat.Value) * (c.Lat.Value - User.Lat.Value) +  (c.Lng - User.Lng.Value) * (c.Lng.Value - User.Lng.Value)}).OrderBy(x=>x.distance).Take(10000).OrderBy(x => Guid.NewGuid()).Take(50).ToList();
+			foreach (var item in result1)
+			{
+				var Friend = new FriendModel();
+				Friend.Avatar = item.c.Avatar;
+				Friend.NickName = item.c.NickName;
+				Friend.Id = item.c.ID;
+				Friend.Type = TypeRequestFriend.USER;
+				Friend.CreatedTime = item.c.CreatedTime;
+				Friend.Suggest = TypeSuggest.LOCATION;
+				var respone = AmazonS3Uploader.GetUrl(item.c.Avatar,0);
+				if(!string.IsNullOrEmpty(respone))
+					Friend.Avatar = respone;
+				ListFriend.Add(Friend);
+			}
+
+			var result2 = (from c in context.Users
+							from t2 in context.Relationships.Where(tt2 => (c.ID == tt2.UserReceiveID && UserId == tt2.UserSentID) || (UserId == tt2.UserReceiveID && c.ID == tt2.UserSentID)).DefaultIfEmpty()
+						where (string.IsNullOrEmpty(query) || (c.NickName.Contains(query) || c.SubName.Contains(query)))
+						&& c.ID != UserId
+						&& List.Any(x => c.Category.Contains(x))
+						&& (t2.ID == 0 || t2.Status != StatusRequestFriend.ACCEPT || t2.Type != TypeRequestFriend.USER)
+						orderby c.NickName descending
+						select new { c }).OrderBy(x => Guid.NewGuid()).Take(50).ToList();
+			foreach (var item in result2)
+			{
+				var Friend = new FriendModel();
+				Friend.Avatar = item.c.Avatar;
+				Friend.NickName = item.c.NickName;
+				Friend.Id = item.c.ID;
+				Friend.Type = TypeRequestFriend.USER;
+				Friend.CreatedTime = item.c.CreatedTime;
+				Friend.Suggest = TypeSuggest.CATEGORY;
+				var respone = AmazonS3Uploader.GetUrl(item.c.Avatar,0);
+				if(!string.IsNullOrEmpty(respone))
+					Friend.Avatar = respone;
+				var same = ListFriend.Where(x => x.Id == Friend.Id).ToList();
+	
+				if(same.Count == 0)
+					ListFriend.Add(Friend);
+				else
+					ListFriend.Where(x => x.Id == Friend.Id).FirstOrDefault().Suggest = TypeSuggest.BOTH;
+			}
+			ListFriend.OrderBy(a => Guid.NewGuid()).ToList();
+			return ListFriend;
+		}
 		public List<RequestFriendModel> GetRequestFriend(long UserId)
 		{
 			var ListRequestFriend = new List<RequestFriendModel>();
@@ -173,6 +238,8 @@ namespace Engnest.Entities.Repository
 		{
 			context.Entry(User).State = EntityState.Modified;
 			Save();
+			if(User.Lng != null && User.Lat != null)
+			context.Database.ExecuteSqlCommand("update [dbo].[User] set Lng = " + User.Lng +" , Lat = " + User.Lat +"  where ID = " + User.ID +"");
 		}
 
 		public void InsertRequestFriend(Relationship Relationship)
@@ -246,6 +313,7 @@ namespace Engnest.Entities.Repository
 					user.CreatedTime = DateTime.UtcNow;
 					context.Users.Add(user);
 					Save();
+					context.Database.ExecuteSqlCommand("update [dbo].[User] set Lng = " + 105.82386 +" , Lat = " + 21.027444 +"  where ID = " + user.ID +"");
 				}
 				catch (Exception ex)
 				{

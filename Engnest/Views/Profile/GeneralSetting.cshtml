@@ -5,6 +5,14 @@
 		width: 300px;
 		top: 10px !important;
 	}
+		.ui.normal.dropdown{
+			width:100%;
+		}
+		.ui.normal.dropdown .disabled {
+			color: #4267b2 !important;
+			background: #e0e1e2 !important;
+			opacity: 1!important;
+		}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
 <div class="content-container container" style="transform: none;">
@@ -24,7 +32,7 @@
 								</li>
 								<li>
 									<a href="/" data-ajax="?index.php?link1=home">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg> News Feed
+										<img style="margin-top: -8px;" src="/assets/images/logoEngnest.png" alt="Mạng Xã Hội Việt Nam Logo"> News Feed
 									</a>
 								</li>
 							</ul>
@@ -74,6 +82,10 @@
 										<div class="sun_input col-lg-6">
 											<input id="old_password" name="old_password" type="password" placeholder="Password" class="form-control input-md">
 											<label class="plr15" for="old_password">Old password:</label>
+										</div>
+										<div class="sun_input col-lg-6">
+											<input id="your_name" name="your_name" type="text" class="form-control input-md" maxlength="20" value="@Model.NickName" placeholder="Your name">
+											<label class="plr15" for="your_name">Your name</label>
 										</div>
 										<div class="sun_input col-lg-6" style="height: 35px;">
 										</div>
@@ -358,15 +370,6 @@
 
 									<div class="setting-panel row">
 										<div class="sun_input col-lg-6">
-											<input id="first_name" name="first_name" type="text" class="form-control input-md" value="Onl" placeholder="First name">
-											<label class="plr15" for="first_name">First name</label>
-										</div>
-										<!-- Text input-->
-										<div class="sun_input col-lg-6">
-											<input id="last_name" name="last_name" type="text" class="form-control input-md" value="Hero" placeholder="Last name">
-											<label class="plr15" for="last_name">Last name</label>
-										</div>
-										<div class="sun_input col-lg-6">
 											<select id="relationship" name="relationship" class="form-control">
 												<option value="0">None</option>
 												<option value="1">Single</option>
@@ -375,6 +378,107 @@
 												<option value="4">Engaged</option>
 											</select>
 											<label class="plr15" for="relationship">Relationship</label>
+										</div>
+										<div class="sun_input col-lg-6">
+											<select style="width:100%;margin-bottom:10px;" multiple="" id="Hobbyist" name="Hobbyist" class="ui normal dropdown">
+												<option disabled value="">Hobbyist</option>
+												<option disabled value="Sciences">Sciences</option>
+												<option value="Mathematics">Mathematics</option>
+												<option value="Physics">Physics</option>
+												<option value="Chemistry">Chemistry</option>
+												<option value="Biology">Biology</option>
+												<option value="Geography">Geography</option>
+												<option value="Literature">Literature</option>
+												<option value="History">History</option>
+												<option value="Philosophy">Philosophy</option>
+												<option value="Politics">Politics</option>
+												<option disabled value="Entertainments">Entertainments</option>
+												<option value="Movies-Films-Manga">Movies/Films/Manga</option>
+												<option value="TVShows">TV Shows</option>
+												<option value="Drama">Drama</option>
+												<option value="Pets-Petting">Pets/Petting</option>
+												<option disabled value="Technology">Technology</option>
+												<option value="Information-Technology">Information Technology (IT)</option>
+												<option value="Electronics">Electronics</option>
+												<option value="Artificial-Intelligence">Artificial Intelligence (AI)</option>
+												<option value="High-tech">High-tech</option>
+												<option disabled value="Sports">Sports</option>
+												<option value="Football">Football</option>
+												<option value="Volleyball">Volleyball</option>
+												<option value="Basketball">Basketball</option>
+												<option value="Baseball">Baseball</option>
+												<option value="Tennis">Tennis</option>
+												<option value="Badminton">Badminton</option>
+												<option value="Golf">Golf</option>
+												<option value="Athletics">Athletics</option>
+												<option value="Racing">Racing</option>
+												<option value="Gym">Gym</option>
+												<option value="Yoga">Yoga</option>
+												<option value="Meditation">Meditation</option>
+												<option disabled value="Housework">Housework</option>
+												<option value="Food-Cuisine">Food/Cuisine</option>
+												<option value="Handicraft">Handicraft (Handmade)</option>
+												<option value="Pets">Pets</option>
+												<option disabled value="Art">Art</option>
+												<option value="Architecture">Architecture</option>
+												<option value="Music">Music</option>
+												<option value="Sculpture">Sculpture</option>
+												<option value="Painting">Painting</option>
+												<option value="Poetry">Poetry</option>
+												<option value="Singing">Singing</option>
+												<option value="Dancing">Dancing</option>
+												<option value="Photography">Photography</option>
+												<option value="Fashion">Fashion</option>
+												<option value="Magic">Magic</option>
+												<option value="Design">Design</option>
+												<option disabled value="Economics">Economics</option>
+												<option value="Banking">Banking</option>
+												<option value="Stock">Stock</option>
+												<option value="Real-estate">Real estate</option>
+												<option value="Commerce">Commerce</option>
+												<option disabled value="Martial Arts">Martial Arts</option>
+												<option value="MMA">MMA</option>
+												<option value="Chinese Martial Art">Chinese Martial Art</option>
+												<option value="Taekwondo">Taekwondo</option>
+												<option value="Boxing">Boxing</option>
+												<option value="Judo">Judo</option>
+												<option value="Jujutsu">Jujutsu</option>
+												<option value="Muay-Thai">Muay Thai</option>
+												<option value="Brazilian-Jujutsu">Brazilian Jujutsu</option>
+												<option value="Kickboxing">Kickboxing</option>
+												<option value="Aikido">Aikido</option>
+												<option value="Jeet-Kune-Do">Jeet Kune Do</option>
+												<option value="Wing-Chun">Wing Chun</option>
+												<option value="Tai-Chi">Tai Chi</option>
+												<option value="Krav-Maga">Krav Maga</option>
+												<option value="Shaolin-Kungfu">Shaolin Kungfu</option>
+												<option disabled value="Games">Games</option>
+												<option value="Fortnite">Fortnite</option>
+												<option value="PlayerUnknown-Battlegrounds">PlayerUnknown's Battlegrounds (PUBG)</option>
+												<option value="PUBG-Mobile">PUBG Mobile</option>
+												<option value="DOTA2">DOTA2</option>
+												<option value="Counter-Strike">Counter-Strike (CS)</option>
+												<option value="Hitman-2">Hitman 2</option>
+												<option value="Monster-Hunter">Monster Hunter</option>
+												<option value="League-of-Legends">League of Legends (LOL)</option>
+												<option value="Grand-Theft-Auto">Grand Theft Auto (GTA)</option>
+												<option value="Warframe">Warframe</option>
+												<option value="AOE">Age of Empires (AOE)</option>
+												<option value="PES">PES</option>
+												<option value="FIFA">FIFA</option>
+												<option value="Clash-of-Clans">Clash of Clans</option>
+												<option value="Overwatch">Overwatch</option>
+												<option value="Call-of-Duty">Call of Duty</option>
+												<option value="Garena-Free-Fire">Garena Free Fire</option>
+												<option value="Age-of-Wulin">Cửu Âm Chân Kinh - Age of Wulin</option>
+												<option value="NKGH">Nhất Kiếm Giang Hồ</option>
+												<option value="TLBB">Thiên Long Bát Bộ</option>
+												<option value="VL1">Võ lâm 1</option>
+												<option value="VL2">Võ lâm 2</option>
+												<option value="VL3">Võ lâm 3</option>
+												<option value="TSKH">Thục Sơn Kỳ Hiệp</option>
+												<option value="LH">Liệt Hỏa</option>
+											</select>
 										</div>
 										<!-- Textarea -->
 										<div class="sun_input col-lg-12">
@@ -426,6 +530,10 @@
 			EngnestFlash.error("Wrong confirm password!");
 			return;
 		}
+		if ($("#your_name").val().length < 4) {
+				EngnestFlash.error("Your name must contain at least 4 character!");
+				return;
+			}
 		$.ajax({
 			url: "/Profile/Update",
 			type: "POST",
@@ -437,17 +545,17 @@
 					Birthday: $("#birthday").val(),
 					Country: $("#country").val(),
 					Gender: $("#gender").val(),
-					FirstName: $("#first_name").val(),
-					LastName: $("#last_name").val(),
+					NickName: $("#your_name").val(),
 					Relationship: $("#relationship").val(),
 					AboutMe: $("#about").val(),
 					Lat: $("#lat_location").val(),
-					Lng: $("#lng_location").val()
+				Lng: $("#lng_location").val(),
+				Category: $("#Hobbyist").val().join(',')
 				},
 			dataType: "json",
 			success: function (result) {
 				if (result.result == @Constant.SUCCESS) {
-					EngnestFlash.notice("Update success");
+					EngnestFlash.notice("Done!");
 				}
 				else
 					EngnestFlash.error(result.message);
@@ -461,6 +569,16 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript">
 	$(function () {
+			var Category = '@Model.Category';
+		$("#Hobbyist option").each((index,item) => {
+			if (Category.includes($(item).val())) {
+				$(item).attr("selected","selected");
+			};
+		});
+			$('.ui.normal.dropdown')
+				.dropdown({
+				  search:true
+			  })
 		$("#country").val("@Model.Country");
 		$("#gender").val("@Model.Gender");
 		$("#relationship").val("@Model.Relationship");
@@ -479,10 +597,10 @@
 		var marker;
 		var lat = 21.027444;
 		if ("@Model.Lat" != "")
-			lat = @Model.Lat;
+			lat = parseFloat("@Model.Lat");
 		var lng = 105.82386;
 		if ("@Model.Lng" != "")
-			lng = @Model.Lng;
+			lng =parseFloat("@Model.Lng");
 		function initMap() {
 			var map = new google.maps.Map(document.getElementById('map'), {
 				zoom: 14,

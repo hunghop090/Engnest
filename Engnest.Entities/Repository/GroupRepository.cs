@@ -214,7 +214,8 @@ namespace Engnest.Entities.Repository
 							  ID = p1.ID,
 							  InfoId = p1.InfoId,
 							  CreatedUser = p1.CreatedUser,
-							  Status = p1.Status
+							  Status = p1.Status,
+							  TypeMember = c.Type
 						  }).ToList();
 			foreach(var item in result)
 			{
@@ -228,11 +229,14 @@ namespace Engnest.Entities.Repository
 			return result;
 		}
 
-		public void InsertGroup(Group Group)
+		public long InsertGroup(Group Group)
 		{
 			Group.CreatedTime = DateTime.UtcNow;
-			context.Groups.Add(Group);
+			Group.Avatar = "image/default-avatar.jpg";
+			Group.Banner = "image/default-backgroud.jpg";
+			var group = context.Groups.Add(Group);
 			Save();
+			return group.ID;
 		}
 
 		public void DeleteGroup(long GroupID)

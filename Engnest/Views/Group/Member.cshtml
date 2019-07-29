@@ -196,10 +196,11 @@
 					window.location.reload();
 				}
 				else {
-					EngnestFlash.notice("Set admin unsuccess!");
+					EngnestFlash.error("Error!");
 				}
 			},
 			error: function (data) {
+				EngnestFlash.error("Error!");
 			}
 		});
 		}
@@ -215,10 +216,11 @@
 					window.location.reload();
 				}
 				else {
-					EngnestFlash.notice("Kick Out unsuccess!");
+					EngnestFlash.error("Error!");
 				}
 			},
 			error: function (data) {
+				EngnestFlash.error("Error!");
 			}
 		});
 	}

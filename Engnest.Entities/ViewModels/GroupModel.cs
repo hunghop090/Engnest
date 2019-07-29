@@ -12,5 +12,7 @@ namespace Engnest.Entities.ViewModels
 	public class GroupModel : Group
     {
 		public ProfileModel Profile {get;set;}
+
+		public byte TypeMember {get;set;}
     }
 }

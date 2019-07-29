@@ -6,6 +6,8 @@
 	<!-- Meta-Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
+	<title>Engnest</title>
+	<link rel="icon" href="/assets/images/logoEngnest.png">
 	<!-- //Meta-Tags -->
 	<!-- css files -->
 	<link href="~/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
@@ -17,6 +19,7 @@
 	<script src="~/assets/Scripts/jquery-3.3.1.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="~/assets/Scripts/JavaScript.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 	<style>
 		.signin_info {
 			display: none;
@@ -25,9 +28,41 @@
 		.swal-button-container {
 			display: none;
 		}
+
+		.error {
+			color: red;
+		}
+		#wait-loading {
+	display:none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 9999;
+	opacity: 0.5;
+	pointer-events: none;
+	background: #333;
+}
+	#wait-loading .text-wait-loading {
+		padding: 10px;
+		color: #e5e6e8;
+		font-weight: 500;
+		font-size: 15px;
+		text-align: center;
+		width: 100%;
+		display: inherit;
+	}
+	#wait-loading .image-wait-loading {
+		margin: auto calc(50% - 20px);
+		margin-top: 20%;
+		width:auto;
+	}
 	</style>
 </head>
-<body>
+<body style="font-family: " Helvetica Neue",Helvetica,Arial,sans-serif;">
+	<div id="wait-loading">
+		<img class="image-wait-loading" width="45" height="45" src="/assets/images/loading.gif" alt="loading">
+		<span class="text-wait-loading">Wait loading ...</span>
+	</div>
 	<div class="signupform">
 		<div class="container">
 			<!-- main content -->
@@ -35,7 +70,7 @@
 				<div class="login_form">
 					<div class="left_grid_info">
 						<h1>
-							Join the nest to master languages
+							Join the nest to master languages!
 						</h1>
 						<p style="line-height: 2.8em;">
 							Communicate <br />
@@ -50,10 +85,13 @@
 					</div>
 				</div>
 				<div class="login_info">
-					<div style="width: 100%;"><img src="/assets/images/logoEngnest.png" style="width: 200px;margin-top: -75px;float: left;font-size: 33px;"><h2 style="font-size: 33px;padding: auto;float: right;">Engnest</h2><div></div>
+					<div style="width: 100%;">
+						<img src="/assets/images/logoEngnest.png" style="width: 200px;margin-top: -75px;float: left;font-size: 33px;"><h2 style="font-size: 33px;padding: auto;float: right;">Engnest</h2><div></div>
 					</div>
-					<h2>Login to your Account</h2>
-					<p>Enter your details to login.</p>
+					<h2>Log in to your Account</h2>
+					<p>
+						Enter your username and password to log in.
+					</p>
 					<div id="login">
 						<label>User Name</label>
 						<div class="input-group">
@@ -65,42 +103,53 @@
 							<span class="fa fa-lock" aria-hidden="true"></span>
 							<input name="Password" type="Password" placeholder="Enter Password" required="">
 						</div>
-						<button class="btn btn-danger btn-block" onclick="Login()">Login</button>
+						<button class="btn btn-danger btn-block" onclick="Login()">Log in</button>
 					</div>
-					<p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
+					<p class="account">By clicking log in, you agree to our <a href="https://engnestasia.s3-ap-southeast-1.amazonaws.com/Termconditions.pdf" target="_blank">Terms & Condition</a></p>
 					<p class="account1">Dont have an account? <a href="#" onclick="DisplaySignin()">Register here</a></p>
 				</div>
-				<div class="signin_info">
+				<div id="signin" class="signin_info">
 					<div style="width: 100%;">
 						<img src="/assets/images/logoEngnest.png" style="width: 200px;margin-top: -75px;float: left;font-size: 33px;"><h2 style="font-size: 33px;padding: auto;float: right;">Engnest</h2><div></div>
 					</div>
-					<h2>Sign In</h2>
-					<form id="signin" action="#" method="post">
-						<label>User Name</label>
-						<div class="input-group">
-							<span class="fa fa-user" aria-hidden="true"></span>
-							<input name="UserName" type="text" placeholder="Enter Your User Name" required="">
-						</div>
-						<label>Email Address</label>
-						<div class="input-group">
-							<span class="fa fa-envelope" aria-hidden="true"></span>
-							<input name="Email" type="email" placeholder="Enter Your Email Address" required="">
-						</div>
-						<label>Password</label>
-						<div class="input-group">
-							<span class="fa fa-lock" aria-hidden="true"></span>
-							<input type="Password" name="Password" placeholder="Enter Password" required="">
-						</div>
-						<button class="btn btn-danger btn-block" onclick="SignIn()">Sign in</button>
-					</form>
-					<p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
+					<h2 style="width: 100%;">Sign Up</h2>
+					<p>
+						Enter your information to sign in.
+					</p>
+					<label>User Name</label>
+					<div class="input-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<input name="UserName" maxlength="20" type="text" placeholder="Enter Your User Name" required="">
+					</div>
+					<label>Email Address</label>
+					<div class="input-group">
+						<span class="fa fa-envelope" aria-hidden="true"></span>
+						<input name="Email" type="email" placeholder="Enter Your Email Address" required="">
+					</div>
+					<label>Password</label>
+					<div class="input-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<input type="Password" name="Password" placeholder="Enter Password" required="">
+					</div>
+					<label>Confirmation Password</label>
+					<div class="input-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<input type="Password" name="RepeatPassword" placeholder="Enter Confirmation Password" required="">
+					</div>
+					<button class="btn btn-danger btn-block" id="SignInButton" onclick="SignIn()">Sign up</button>
+					<p class="account">By clicking sign up, you agree to our <a href="https://engnestasia.s3-ap-southeast-1.amazonaws.com/Termconditions.pdf" target="_blank">Terms & Condition</a></p>
 					<p class="account1">Do have an account? <a href="#" onclick="DisplayLogin()">Login here</a></p>
 				</div>
 			</div>
 			<!-- //main content -->
 		</div>
 	</div>
-
+	<div class="container-fluid-md notifications">
+		<div class="ajax-notification has-errors">
+			<span class="ajax-notification-message"></span>
+			<a class="close-notification" onclick="EngnestFlash.hide()"><i class="fa fa-times"></i></a>
+		</div>
+	</div>
 	<script>
         function DisplaySignin() {
             $(".signin_info").show();
@@ -120,42 +169,67 @@
                 dataType: "json",
                 success: function (result) {
 					if (result.result == @LoginStatus.SUCCESS) {
-						EngnestFlash.notice("Đăng nhập thành công");
+						EngnestFlash.notice("Log in successfully!");
 						location.href = "Home/Index";
 					}
                     else if (result.result == @LoginStatus.NOT_EXISTS_USER)
-                        EngnestFlash.error("Không tồn tại user!");
+                        EngnestFlash.error("This user doesn't exist");
                     else if (result.result == @LoginStatus.BLOCKED)
-                        EngnestFlash.error("Tài khoản bị khóa!");
+                        EngnestFlash.error("This user have blocked!");
                     else if (result.result == @LoginStatus.WRONG_PASSWORD)
-                        EngnestFlash.error("Sai mật khẩu!");
+                        EngnestFlash.error("Wrong password!");
                 },
-                error: function (data) {
+				error: function (data) {
+					 EngnestFlash.error("Error!");
                 }
             });
         }
-        function SignIn() {
-            var username = $("#signin input[name=UserName]").val();
-            var password = $("#signin input[name=Password]").val();
-            var email = $("#signin input[name=Email]").val();
+	function SignIn() {
+
+        var username = $("#signin input[name=UserName]").val();
+		var password = $("#signin input[name=Password]").val();
+		var repassword = $("#signin input[name=RepeatPassword]").val();
+		var email = $("#signin input[name=Email]").val();
+		if (username.length < 4) {
+				EngnestFlash.error("User name must contain at least 4 character!");
+				return;
+		}
+		if (repassword != password) {
+			EngnestFlash.error("Your password and confirmation password do not match!");
+				return;
+		}
+		$("#SignInButton").attr("disabled", true);
+		DisplayWaiting();
             $.ajax({
                 url: "/Login/SignIn",
                 type: "POST",
                 data: { username: username, password: password ,email: email},
                 dataType: "json",
-                success: function (result) {
+				success: function (result) {
+					$("#SignInButton").attr("disabled", false);
+					HiddenWaiting();
 					if (result.result == @LoginStatus.SUCCESS) {
-						EngnestFlash.notice("Đăng ký thành công");
 						location.href = "Home/Index";
-                    } if (result.result == @SignInStatus.EXISTS_USER) {
-                        EngnestFlash.error("Email đã tồn tại!");
+                    }else if (result.result == @SignInStatus.EXISTS_USER) {
+                        EngnestFlash.error("Email exist!");
                     }
                     else
-                        EngnestFlash.error("Đăng ký thất bại!");
+                        EngnestFlash.error("Error!");
                 },
-                error: function (data) {
+				error: function (data) {
+					$("#SignInButton").attr("disabled", false);
+					HiddenWaiting();
+					EngnestFlash.error("Error!");
                 }
             });
-        }
+				}
+	function DisplayWaiting(text) {
+text = "Loading ...";
+$("#wait-loading").show();
+$("#wait-loading .text-wait-loading").html(text);
+}
+function HiddenWaiting() {
+	$("#wait-loading").hide();
+}
 	</script>
 </body>

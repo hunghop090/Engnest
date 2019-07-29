@@ -75,4 +75,11 @@ namespace Engnest.Entities.Common
 		public const Byte MEMBER = 0;
 		public const Byte ADMIN = 1;
 	}
+
+	public class TypeSuggest
+	{
+		public const Byte LOCATION = 0;
+		public const Byte CATEGORY = 1;
+		public const Byte BOTH = 2;
+	}
 }

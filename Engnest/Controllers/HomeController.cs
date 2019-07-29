@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Engnest.App_Start;
 using Engnest.Entities.Common;
 using Engnest.Entities.Entity;
 using Engnest.Entities.IRepository;
@@ -40,6 +42,13 @@ namespace Engnest.Controllers
 			model.Profile = Mapper.Map<ProfileModel>(userLogin);
 			return View(model);
 		}
+
+		public ActionResult About()
+		{
+			AboutModel model = new AboutModel();
+			model.Message = model.GetAccessTokenAsync().Result;
+			return View(model);
+		}
 		public ActionResult LoadMorePost(string date,long? id,byte? type)
 		{
 			try
@@ -55,7 +64,7 @@ namespace Engnest.Controllers
 					if(type == TypePost.GROUP)
 						data = postRepository.LoadPostsGroup(date, id.Value);
 					else
-						data = postRepository.LoadPostsProfile(date, id.Value);
+						data = postRepository.LoadPostsProfile(date, id.Value,userLogin.ID);
 				}
 
 				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
@@ -110,10 +119,22 @@ namespace Engnest.Controllers
 					if(model.ListImages != null)
 						foreach(var item in model.ListImages)
 						{
-							if(string.IsNullOrEmpty(post.Images))
-								post.Images += AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+							if (string.IsNullOrEmpty(post.Images))
+							{
+								//Task<string> task = Task.Run<string>(async () => await UploadImageTifiny.TinifyModulAsync(item,TypeUpload.IMAGE));
+								var result = AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+								if(result == "" )
+									continue;
+								post.Images += result;
+							}
 							else
-								post.Images += "," + AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+							{
+								//Task<string> task = Task.Run<string>(async () => await UploadImageTifiny.TinifyModulAsync(item,TypeUpload.IMAGE));
+								var result = AmazonS3Uploader.UploadFile(item,TypeUpload.IMAGE);
+								if(result == "" )
+									continue;
+								post.Images += "," + result;
+							}
 						}
 					if(model.ListVideos != null)
 						foreach(var item in model.ListVideos)
@@ -135,23 +156,35 @@ namespace Engnest.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult CreatedGroup(string GroupName,long UserID)
+		public ActionResult CreatedGroup(string GroupName,long UserID,string Password)
 		{
+			if(GroupName.Length > 50  || GroupName.Length < 10)
+				return Json(new { result = Constant.ERROR });
+			var groupId =(long)0;
 			Group newgroup = new Group();
 			try
 			{
+				var user = userRepository.GetUserByIDForUpdate(UserID);
+				var OldPassword = EncryptorMD5.MD5Hash(Password);
+				if(	OldPassword != user.Password.Trim())
+					return Json(new { result = Constant.ERROR,message="Password is rwong!" });
 				Group group = new Group();
 				group.GroupName = GroupName;
 				group.CreatedUser = UserID;
-				groupRepository.InsertGroup(group);
-				newgroup = groupRepository.GetLastGroups();
+				groupId = groupRepository.InsertGroup(group);
+				GroupMember Member = new GroupMember();
+				Member.GroupID = groupId;
+				Member.UserId = UserID;
+				Member.Status = StatusMember.ACCEPT;
+				Member.Type = TypeMember.ADMIN;
+				groupRepository.InsertGroupMember(Member);
 			}
 			catch (Exception ex)
 			{
 				return Json(new { result = Constant.ERROR });
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
-			return Json(new { result = Constant.SUCCESS,data = newgroup.ID });
+			return Json(new { result = Constant.SUCCESS,data = groupId });
 		}
 
 		[HttpPost]
@@ -175,7 +208,7 @@ namespace Engnest.Controllers
 			{
 				try
 				{
-					var oldEmotion = emotionRepository.GetEmotionByTargetId(PostId);
+					var oldEmotion = emotionRepository.GetEmotionByTargetId(PostId,userLogin.ID);
 					if (oldEmotion.Count != 0)
 					{
 						if(oldEmotion.FirstOrDefault().Status == 0)

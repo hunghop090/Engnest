@@ -17,17 +17,20 @@ namespace Engnest.Controllers
 	{
 		private IUserRepository userRepository;
 		private IPostRepository postRepository;
+		private IGroupRepository groupRepository;
 
 		public PostController()
 		{
 			this.userRepository = new UserRepository(new EngnestContext());
 			this.postRepository = new PostRepository(new EngnestContext());
+			this.groupRepository = new GroupRepository(new EngnestContext());
 		}
 
-		public PostController(IUserRepository userRepository, IPostRepository postRepository)
+		public PostController(IUserRepository userRepository, IPostRepository postRepository, IGroupRepository groupRepository)
 		{
 			this.userRepository = userRepository;
 			this.postRepository = postRepository;
+			this.groupRepository = groupRepository;
 		}
 		public ActionResult Index(long? id,long? CommentId)
 		{
@@ -56,8 +59,36 @@ namespace Engnest.Controllers
 			{
 				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
 			}
+		}
 
-
+		public ActionResult DeletePost(long? id)
+		{
+			try
+			{
+				var result = postRepository.GetPostByID(id.Value);
+				if(result != null && ((result.TargetId == userLogin.ID && result.TargetType == TypePost.USER) || result.UserId == userLogin.ID ))
+				{
+					postRepository.DeletePost(id.Value);
+					return Json(new { result = Constant.SUCCESS }, JsonRequestBehavior.AllowGet);
+				}
+				else 
+				{
+					if(result.TargetType == TypePost.GROUP)
+					{
+						var data = groupRepository.GetMemberGroupByID(userLogin.ID,result.TargetId.Value);
+						if(data?.Type == TypeMember.ADMIN)
+						{
+							postRepository.DeletePost(id.Value);
+							return Json(new { result = Constant.SUCCESS }, JsonRequestBehavior.AllowGet);
+						}
+					}
+				}
+				return Json(new { result = Constant.ERROR }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
 		}
 	}
 }

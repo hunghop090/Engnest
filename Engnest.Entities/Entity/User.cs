@@ -65,12 +65,14 @@ namespace Engnest.Entities.Entity
 
 		public string Gender {get;set;}
 
+		public string Category {get;set;}
+
 		public string Relationship {get;set;}
 
 		public string AboutMe {get;set;}
 
-		public string Lat {get;set;}
+		public decimal? Lat {get;set;}
 
-		public string Lng {get;set;}
+		public decimal? Lng {get;set;}
     }
 }

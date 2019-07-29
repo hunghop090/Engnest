@@ -38,7 +38,7 @@ namespace Engnest.Entities.Repository
 				from p1 in ps1.DefaultIfEmpty()
 				join p2 in context.Relationships on new {t1 = UserId ,t2 = c.TargetId.Value } equals new {t1 = p2.UserReceiveID ,t2 =  p2.UserSentID }  into ps2
 				from p2 in ps2.DefaultIfEmpty()
-				join p3 in context.GroupMembers on UserId equals p3.UserId  into ps3
+				join p3 in context.GroupMembers on new {t1 = UserId ,t2 = c.TargetId.Value } equals new {t1 = p3.UserId ,t2 =  p3.GroupID }  into ps3
 				from p3 in ps3.DefaultIfEmpty()
 				join p4 in context.Users on c.UserId equals p4.ID  into ps4
 				from p4 in ps4.DefaultIfEmpty()
@@ -50,7 +50,7 @@ namespace Engnest.Entities.Repository
 				from p7 in ps7.DefaultIfEmpty()
 				let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
 				let countComments = (from C in context.Comments where C.TargetId == c.ID select C).Count()
-				where c.CreatedTime < createDate && ((c.TargetId == p1.UserReceiveID  && c.TargetType == TypePost.USER) ||(c.TargetId == p2.UserSentID && c.TargetType == TypePost.USER) || ( c.TargetId == p3.GroupID && c.TargetType == TypePost.GROUP) || c.TargetId == UserId )
+				where c.CreatedTime < createDate && (((c.TargetId == p1.UserReceiveID || c.TargetId == UserId || c.TargetId == p2.UserSentID) && c.TargetType == TypePost.USER) || ( c.TargetId == p3.GroupID && c.TargetType == TypePost.GROUP))
 				orderby c.CreatedTime descending
 				select new{c,p1,p2,p3,p4,countEmotions,p5,countComments,p6,p7 }).Take(10).ToList();
 			var PostView = new List<PostViewModel>();
@@ -115,7 +115,7 @@ namespace Engnest.Entities.Repository
 				Post.CountEmotions = item.countEmotions ;
 				Post.CountComments = item.countComments;
 				Post.StatusEmotion = item.p5 == null ? (byte)0: item.p5.Status;
-				Post.ShowTarget = Post.UserId != Post.TargetId && item.c.TargetType == TypePost.USER ? "" : "hidden";
+				Post.ShowTarget = Post.UserId != Post.TargetId || item.c.TargetType != TypePost.USER ? "" : "hidden";
 				PostView.Add(Post);
 			}
             return PostView;
@@ -220,7 +220,7 @@ namespace Engnest.Entities.Repository
             return Post;
         }
 
-		public List<PostViewModel> LoadPostsProfile(string date,long UserId)
+		public List<PostViewModel> LoadPostsProfile(string date,long UserId,long UserLogin)
         {
 			DateTime createDate = DateTime.UtcNow;
 			if (!string.IsNullOrEmpty(date))
@@ -231,7 +231,7 @@ namespace Engnest.Entities.Repository
 			var result = (from c in context.Posts
 				join p4 in context.Users on c.UserId equals p4.ID  into ps4
 				from p4 in ps4.DefaultIfEmpty()
-				join p5 in context.Emotions on new {t1 = UserId ,t2 = c.ID } equals new {t1 = p5.UserId.Value,t2 = p5.TargetId.Value}  into ps5
+				join p5 in context.Emotions on new {t1 = UserLogin ,t2 = c.ID } equals new {t1 = p5.UserId.Value,t2 = p5.TargetId.Value}  into ps5
 				from p5 in ps5.DefaultIfEmpty()
 				join p6 in context.Users on c.TargetId equals p6.ID  into ps6
 				from p6 in ps6.DefaultIfEmpty()

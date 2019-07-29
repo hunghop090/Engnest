@@ -10,8 +10,6 @@ namespace Engnest.Entities.Entity
     public partial class Comment
     {
         public long ID { get; set; }
-
-        [Required]
         public string Content { get; set; }
 
         public byte? Type { get; set; }

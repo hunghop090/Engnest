@@ -13,13 +13,13 @@
 						<div class="left-sidebar">
 							<ul>
 								<li>
-									<a href="/profile?id=@Model.Profile.ID" data-ajax="?link1=timeline&amp;u=0dc53e223">
+									<a style="font-weight: bold;" href="/profile?id=@Model.Profile.ID" data-ajax="?link1=timeline&amp;u=0dc53e223">
 										<img alt="Onl Hero Profile Picture" src="@Model.Profile.Avatar">@Model.Profile.NickName
 									</a>
 								</li>
 								<li>
-									<a href="/" data-ajax="?index.php?link1=home">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg> News Feed
+									<a style="font-weight: bold;" href="/" data-ajax="?index.php?link1=home">
+										<img style="margin-top: -8px;" src="/assets/images/logoEngnest.png" alt="Mạng Xã Hội Việt Nam Logo">News Feed
 									</a>
 								</li>
 							</ul>
@@ -45,18 +45,9 @@
 						<div class="sidebar">
 							<div class="page-margin">
 								<div class="footer-wrapper sidebar">
-									<div class="footer-powered">
-										<p>
-											© 2019 Mạng Xã Hội Việt Nam
-										</p>
-									</div>
 									<ul class="list-inline pull-left">
-										<li>@Html.ActionLink("Timeline", "", "Home")</li>
-										<li>@Html.ActionLink("Giới thiệu", "about_us", "Home")</li>
-										<li>@Html.ActionLink("Liên hệ", "contact-us", "Home")</li>
-										<li>@Html.ActionLink("Bảo mật", "privacy-policy", "Home")</li>
-										<li>@Html.ActionLink("Điều khoản", "terms", "Home")</li>
-										<li>@Html.ActionLink("FAQ", "faq", "Home")</li>
+										<li><a href="https://engnestasia.s3-ap-southeast-1.amazonaws.com/DataPolicy.pdf" target="_blank">Privacy</a></li>
+										<li><a href="https://engnestasia.s3-ap-southeast-1.amazonaws.com/Termconditions.pdf" target="_blank">Terms & Condition</a></li>
 									</ul>
 									<div class="clear"></div>
 								</div>
@@ -126,7 +117,7 @@
 					result.data.forEach((item) => {
 						var html = '<li>'+
 									'<a href="/Group?id='+item.ID+'" data-ajax="?index.php?link1=home">'+
-										'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30"><path fill="#3D8CFA" d="M26.7 11.3L25 9.9V6c0-.6-.4-1-1-1h-1c-.6 0-1 .4-1 1v1.4l-6.3-5.2c-.2-.1-.4-.2-.7-.2s-.5.1-.7.3l-11 9c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h1v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V13h1c.6 0 1-.4 1-1 0-.3-.1-.5-.3-.7zM22 23h-4v-8h4v8z"></path></svg>'+ item.GroupName +
+										'<i class="fa fa-users" aria-hidden="true" style="padding: 5px 5px 5px 0px;font-size: 15px;"></i>'+ item.GroupName +
 									'</a>'+
 								'</li>';
 						$(".left-sidebar ul").append(html);

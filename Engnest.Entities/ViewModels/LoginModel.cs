@@ -24,12 +24,11 @@ namespace Engnest.Entities.ViewModels
 		public string Password { get; set; }
 
 		[Required(ErrorMessage ="Enter your email")]
+		[EmailAddress(ErrorMessage = "The email format is not valid")]
 		public string Email { get; set; }
 
-		[Required(ErrorMessage ="Enter your first name")]
 		public string FirstName { get; set; }
 
-		[Required(ErrorMessage ="Enter your last name")]
 		public string LastName { get; set; }
 	}
 }

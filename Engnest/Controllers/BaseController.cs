@@ -17,11 +17,7 @@ namespace Engnest.Controllers
 	{
 		// GET: Base
 		public static User userLogin;
-		public class HubUser
-		{
-			public static long UserId { get; set; }
-			public static string HubId { get; set; }
-		};
+
 		private IUserRepository userRepository;
 
 		public BaseController()
@@ -35,17 +31,30 @@ namespace Engnest.Controllers
 		}
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
-			var session = Session[Constant.USER_SESSION];
-			if (session == null)
+			var sessionCookie = Request.Cookies[Constant.USER_SESSION];
+
+			if (sessionCookie == null)
 			{
 				filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "index" }));
 			}
-			else if (userLogin == null || userLogin.ID != (long)session)
+			else
 			{
-				userLogin = userRepository.GetUserByID((long)session);
-				HubUser.UserId = userLogin.ID;
+				try
+				{
+					if (userLogin == null || userLogin.ID != long.Parse(sessionCookie.Value))
+					{
+						userLogin = userRepository.GetUserByID(long.Parse(sessionCookie.Value));
+					}
+					sessionCookie.Expires = DateTime.Now.AddMonths(1);
+					Response.Cookies.Add(sessionCookie);
+					ViewBag.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
+				}
+				catch(Exception ex)
+				{
+					filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "index" }));
+				}
+
 			}
-			ViewBag.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
 			base.OnActionExecuting(filterContext);
 		}
 	}

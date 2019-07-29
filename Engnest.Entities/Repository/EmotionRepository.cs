@@ -29,9 +29,9 @@ namespace Engnest.Entities.Repository
             return context.Emotions.Find(id);
         }
 
-        public List<Emotion> GetEmotionByTargetId(long id)
+        public List<Emotion> GetEmotionByTargetId(long id,long UserId)
         {
-            return context.Emotions.Where(x => x.TargetId == id).ToList();
+            return context.Emotions.Where(x => x.TargetId == id && x.UserId == UserId).ToList();
         }
 
         public void InsertEmotion(Emotion Emotion)

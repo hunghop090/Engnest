@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
 						  contentType: false,
 						  success: function (result) {
 							  if (result.result == "0") {
-								  $("#audio-holder").append("<audio data-url='" + result.key +"' controls='' preload='auto' style='width: 100 %; '><source src='" + result.data + "' type='audio/mpeg' ><source src='" + result.data +"' type='audio/mp3'></audio>")
+								  $("#audio-holder").append("<audio controlsList='nodownload' data-url='" + result.key +"' controls='' preload='auto' style='width: 100 %; '><source src='" + result.data + "' type='audio/mpeg' ><source src='" + result.data +"' type='audio/mp3'></audio>")
 					  }
 				  },
 				  error: function (data) {

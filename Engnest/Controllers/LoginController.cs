@@ -44,7 +44,12 @@ namespace Engnest.Controllers
 					var Password = EncryptorMD5.MD5Hash(model.Password);
 					result = userRepository.Login(model.UserName, Password, out user);
 					if (result == LoginStatus.SUCCESS)
-						Session.Add(Constant.USER_SESSION, user.ID);
+					{
+						var sessionCookie = new HttpCookie(Constant.USER_SESSION);
+						sessionCookie.Expires = DateTime.Now.AddMonths(1);
+						sessionCookie.Value = user.ID.ToString();
+						Response.Cookies.Add(sessionCookie);
+					}
 				}
 			}
 			catch (Exception ex)
@@ -52,26 +57,41 @@ namespace Engnest.Controllers
 				message = ex.Message;
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
-			return Json(new { result, message });
+			return Json(new { result = result });
 		}
-
+		[HttpPost]
 		public ActionResult SignIn(SignInModel model)
 		{
-			model.Password = EncryptorMD5.MD5Hash(model.Password);
-			var result = userRepository.SignIn(model);
-			if (result == LoginStatus.SUCCESS)
+			if (ModelState.IsValid)
 			{
-				userRepository.Save();
-				var user = userRepository.GetUserByName(model.UserName);
-				Session.Add(Constant.USER_SESSION, user.ID);
+				byte result = 0;
+				if (model.UserName.Length > 20 || model.UserName.Length < 4)
+					return Json(new { result = Constant.ERROR, message = "Error!" });
+				model.Password = EncryptorMD5.MD5Hash(model.Password);
+				result = userRepository.SignIn(model);
+				if (result == LoginStatus.SUCCESS)
+				{
+					userRepository.Save();
+					var user = userRepository.GetUserByName(model.UserName);
+					var sessionCookie = new HttpCookie(Constant.USER_SESSION);
+					sessionCookie.Expires = DateTime.Now.AddMonths(1);
+					sessionCookie.Value = user.ID.ToString();
+					Response.Cookies.Add(sessionCookie);
+				}
+				Response.StatusCode = (int)HttpStatusCode.OK;
+				return Json(new { result = Constant.SUCCESS });
 			}
-
-			return Json(result, JsonRequestBehavior.AllowGet);
+			return Json(new { result = Constant.ERROR, message = "Error!" });
 		}
 
 		public ActionResult SignOut()
 		{
-			Session.Remove(Constant.USER_SESSION);
+			if (Request.Cookies[Constant.USER_SESSION] != null)
+			{
+				HttpCookie myCookie = new HttpCookie(Constant.USER_SESSION);
+				myCookie.Expires = DateTime.Now.AddDays(-1);
+				Response.Cookies.Add(myCookie);
+			}
 			return RedirectToAction("Index");
 		}
 	}

@@ -25,11 +25,8 @@ namespace Engnest.Entities.Repository
 			return context.Comments.ToList();
 		}
 
-		public List<CommentViewModel> LoadCommentsPost(string PostIds, string date, int quantity, string createdUser, long LoginUser)
+		public List<CommentViewModel> LoadCommentsPost(string PostIds, string date, int quantity, long LoginUser)
 		{
-			long UserId = 0;
-			if (!string.IsNullOrEmpty(createdUser))
-				UserId = long.Parse(createdUser);
 			DateTime createDate = DateTime.UtcNow;
 			if (!string.IsNullOrEmpty(date))
 			{
@@ -42,15 +39,48 @@ namespace Engnest.Entities.Repository
 			List<string> LPostsId = PostIds.Split(',').ToList();
 			for (var i = 0; i < LPostsId.Count; i++)
 			{
+				var resultMost = new List<CommentViewModel>();
+				var result = new List<CommentViewModel>();
 				var PostId = Int64.Parse(LPostsId[i]);
-				var result = (from c in context.Comments
+				if (string.IsNullOrEmpty(date))
+				{
+					resultMost = (from c in context.Comments
+								  join p4 in context.Users on c.UserId equals p4.ID into ps4
+								  from p4 in ps4.DefaultIfEmpty()
+								  join p5 in context.Comments on new { a1 = c.ID, a2 = TypeComment.COMMENT } equals new { a1 = p5.TargetId, a2 = p5.TargetType.Value } into ps5
+								  join p6 in context.Emotions on new { t1 = LoginUser, t2 = c.ID } equals new { t1 = p6.UserId.Value, t2 = p6.TargetId.Value } into ps6
+								  from p6 in ps6.DefaultIfEmpty()
+								  let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+								  where PostId == c.TargetId && c.CreatedTime < createDate && c.TargetType == TypeComment.POST && countEmotions > 100
+								  orderby countEmotions ascending
+								  select new CommentViewModel
+								  {
+									  Id = c.ID,
+									  Audios = c.Audios,
+									  TargetId = c.TargetId,
+									  CreatedTime = c.CreatedTime,
+									  Images = c.Images,
+									  Tags = c.Tags,
+									  TagsUser = c.TagsUser,
+									  Content = c.Content,
+									  UserId = c.UserId,
+									  Avatar = p4.Avatar,
+									  NickName = p4.NickName,
+									  CountReply = ps5.Count(),
+									  CountEmotions = countEmotions,
+									  StatusEmotion = p6 == null ? (byte)0 : p6.Status
+								  }).Take(quantity + 1).ToList();
+				}
+				if (resultMost.Count == 0)
+				{
+					result = (from c in context.Comments
 							  join p4 in context.Users on c.UserId equals p4.ID into ps4
 							  from p4 in ps4.DefaultIfEmpty()
 							  join p5 in context.Comments on new { a1 = c.ID, a2 = TypeComment.COMMENT } equals new { a1 = p5.TargetId, a2 = p5.TargetType.Value } into ps5
 							  join p6 in context.Emotions on new { t1 = LoginUser, t2 = c.ID } equals new { t1 = p6.UserId.Value, t2 = p6.TargetId.Value } into ps6
 							  from p6 in ps6.DefaultIfEmpty()
 							  let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
-							  where PostId == c.TargetId && c.CreatedTime < createDate && (UserId == 0 || UserId == c.UserId) && c.TargetType == TypeComment.POST
+							  where PostId == c.TargetId && c.CreatedTime < createDate && c.TargetType == TypeComment.POST
 							  orderby c.CreatedTime descending
 							  select new CommentViewModel
 							  {
@@ -68,7 +98,25 @@ namespace Engnest.Entities.Repository
 								  CountReply = ps5.Count(),
 								  CountEmotions = countEmotions,
 								  StatusEmotion = p6 == null ? (byte)0 : p6.Status
-							  }).Take(quantity).ToList();
+							  }).Take(quantity + 1).ToList();
+					if (result.Count > quantity)
+					{
+						result[result.Count - 2].MoreComment = true;
+						result.RemoveAt(result.Count - 1);
+					}
+				}
+				else
+				{
+					if (result.Count > quantity)
+					{
+						result[result.Count - 2].MoreComment = true;
+						result.RemoveAt(result.Count - 1);
+					}
+					else
+					{
+						result[result.Count - 1].MoreComment = true;
+					}
+				}
 				CommentView = CommentView.Union(result).ToList();
 			}
 			foreach (var item in CommentView)
@@ -143,8 +191,14 @@ namespace Engnest.Entities.Repository
 							  CountReply = ps5.Count(),
 							  CountEmotions = countEmotions,
 							  StatusEmotion = p6 == null ? (byte)0 : p6.Status
-						  }).Take(quantity).ToList();
+						  }).Take(quantity + 1).ToList();
+			if (result.Count > quantity)
+			{
+				result[result.Count - 2].MoreComment = true;
+				result.RemoveAt(result.Count - 1);
+			}
 			CommentView = CommentView.Union(result).ToList();
+
 			foreach (var item in CommentView)
 			{
 				var responeImage = AmazonS3Uploader.GetUrl(item.Avatar, 0);

@@ -21,7 +21,7 @@ namespace Engnest.Entities.IRepository
 		List<GroupModel> GetListGroup(long Id);
         Group GetGroupByID(long GroupId);
 		Group GetGroupByIDForUpdate(long GroupId);
-        void InsertGroup(Group Group);
+        long InsertGroup(Group Group);
         void DeleteGroup(long GroupID);
         void UpdateGroup(Group Group);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -149,7 +150,11 @@ namespace Engnest.Controllers
 			try
 			{
 				var group = groupRepository.GetGroupByIDForUpdate(id);
-				group.Avatar = AmazonS3Uploader.UploadFile(Avatar,TypeUpload.IMAGE);
+				//Task<string> task = Task.Run<string>(async () => await UploadImageTifiny.TinifyModulAsync(Avatar,TypeUpload.IMAGE));
+				var result = AmazonS3Uploader.UploadFile(Avatar,TypeUpload.IMAGE);
+				if(result == "" )
+					return Json(new { result = Constant.ERROR,message = "Error!" });
+				group.Avatar = result;
 				groupRepository.UpdateGroup(group);
 			}
 			catch (Exception ex)
@@ -166,7 +171,11 @@ namespace Engnest.Controllers
 			try
 			{
 				var group = groupRepository.GetGroupByIDForUpdate(id);
-				group.Banner = AmazonS3Uploader.UploadFile(BackGround,TypeUpload.IMAGE);
+				//Task<string> task = Task.Run<string>(async () => await UploadImageTifiny.TinifyModulAsync(BackGround,TypeUpload.IMAGE));
+				var result = AmazonS3Uploader.UploadFile(BackGround,TypeUpload.IMAGE);
+				if(result == "" )
+					return Json(new { result = Constant.ERROR,message = "Error!" });
+				group.Banner = result;
 				groupRepository.UpdateGroup(group);
 			}
 			catch (Exception ex)
@@ -255,6 +264,28 @@ namespace Engnest.Controllers
 				{
 					groupRepository.DeleteGroupMember(UserId,id);
 				}
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
+		public ActionResult SaveName(string GroupName ,long Id)
+		{
+			try
+			{
+				if(GroupName.Length > 50  || GroupName.Length < 10)
+					return Json(new { result = Constant.ERROR });
+				var group = groupRepository.GetGroupByIDForUpdate(Id);
+				if(group != null)
+				{
+					group.GroupName = GroupName;
+				}
+				groupRepository.UpdateGroup(group);
 			}
 			catch (Exception ex)
 			{

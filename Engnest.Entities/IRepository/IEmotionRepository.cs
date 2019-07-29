@@ -11,7 +11,7 @@ namespace Engnest.Entities.IRepository
 	{
         List<Emotion> GetEmotions();
         Emotion GetEmotionByID(long EmotionId);
-        List<Emotion> GetEmotionByTargetId(long TargetId);
+        List<Emotion> GetEmotionByTargetId(long TargetId,long UserId);
         void InsertEmotion(Emotion Emotion);
         void DeleteEmotion(long EmotionID);
         void UpdateEmotion(Emotion Emotion);

@@ -52,9 +52,11 @@ namespace Engnest.Entities.ViewModels
 
 		public string AboutMe {get;set;}
 
-		public string Lat {get;set;}
+		public decimal? Lat {get;set;}
 
-		public string Lng {get;set;}
+		public decimal? Lng {get;set;}
+
+		public string Category { get; set; }
 
 		public string OldPassword {get;set;}
 

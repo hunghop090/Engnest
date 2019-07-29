@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -96,6 +97,21 @@ namespace Engnest.Controllers
 
 		}
 
+		public ActionResult GetSuggestFriend(string query,bool? location,string category)
+		{
+			try
+			{
+				var data = userRepository.GetSuggestFriend(userLogin.ID,query,location,category);
+				return Json(new { result = Constant.SUCCESS, data = data }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR, message = ex.Message }, JsonRequestBehavior.AllowGet);
+			}
+
+
+		}
+
 		public ActionResult LoadGroup(long? id)
 		{
 			try
@@ -116,6 +132,8 @@ namespace Engnest.Controllers
 		{
 			try
 			{
+				if(model.NickName.Length > 20 || model.NickName.Length < 4)
+					return Json(new { result = Constant.ERROR,message = "Error!" });
 				var NewPassword = "";
 				var OldPassword = EncryptorMD5.MD5Hash(model.OldPassword);
 				if(string.IsNullOrEmpty(model.NewPassword))
@@ -137,6 +155,8 @@ namespace Engnest.Controllers
 					user.AboutMe = model.AboutMe;
 					user.Lat = model.Lat;
 					user.Lng = model.Lng;
+					user.Category = model.Category;
+					user.NickName = model.NickName;
 					userRepository.UpdateUser(user);
 					userLogin = userRepository.GetUserByID(userLogin.ID);
 				}
@@ -154,12 +174,34 @@ namespace Engnest.Controllers
 		}
 
 		[HttpPost]
+		public ActionResult SaveHobbyist(string data)
+		{
+			try
+			{
+				var user = userRepository.GetUserByIDForUpdate(userLogin.ID);
+				user.Category = data;
+				userRepository.UpdateUser(user);
+				userLogin = userRepository.GetUserByID(userLogin.ID);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { result = Constant.ERROR,message = "Error!" });
+			}
+			Response.StatusCode = (int)HttpStatusCode.OK;
+			return Json(new { result = Constant.SUCCESS });
+		}
+
+		[HttpPost]
 		public ActionResult UploadAvatar(string Avatar)
 		{
 			try
 			{
 				var user = userRepository.GetUserByIDForUpdate(userLogin.ID);
-				user.Avatar = AmazonS3Uploader.UploadFile(Avatar,TypeUpload.IMAGE);
+				var result = AmazonS3Uploader.UploadFile(Avatar,TypeUpload.IMAGE);
+				//Task<string> task = Task.Run<string>(async () => await UploadImageTifiny.TinifyModulAsync(Avatar,TypeUpload.IMAGE));
+				if(result == "" )
+					return Json(new { result = Constant.ERROR,message = "Error!" });
+				user.Avatar = result;
 				userRepository.UpdateUser(user);
 				userLogin = userRepository.GetUserByID(userLogin.ID);
 			}
@@ -177,7 +219,11 @@ namespace Engnest.Controllers
 			try
 			{
 				var user = userRepository.GetUserByIDForUpdate(userLogin.ID);
-				user.BackGround = AmazonS3Uploader.UploadFile(BackGround,TypeUpload.IMAGE);
+				var result = AmazonS3Uploader.UploadFile(BackGround,TypeUpload.IMAGE);
+				//Task<string> task = Task.Run<string>(async () => await UploadImageTifiny.TinifyModulAsync(BackGround,TypeUpload.IMAGE));
+				//if(result == "" )
+				//	return Json(new { result = Constant.ERROR,message = "Error!" });
+				user.BackGround = result;
 				userRepository.UpdateUser(user);
 				userLogin = userRepository.GetUserByID(userLogin.ID);
 			}
