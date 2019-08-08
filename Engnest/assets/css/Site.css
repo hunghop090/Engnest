@@ -308,6 +308,7 @@ iframe, .post-map img {
 		}
 
 		.post .post-footer .comments-list .comment .avatar {
+			object-fit:cover;
 			width: 35px;
 			height: 35px;
 			border-radius: 50%;
@@ -361,6 +362,7 @@ iframe, .post-map img {
 }
 
 	.post .post-heading .avatar {
+		object-fit:cover;
 		width: 44px;
 		height: 44px;
 		display: block;
@@ -688,6 +690,7 @@ a {
 		margin-right: 3px;
 		width: 27px;
 		height: 27px;
+		object-fit: cover;
 		border-radius: 50%;
 		box-shadow: 0 0 1px rgba(255,255,255,.8)
 	}
@@ -1689,6 +1692,7 @@ textarea {
 }
 
 .publisher-box .post-avatar {
+	object-fit:cover;
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
@@ -8152,6 +8156,7 @@ svg.feather {
 	}
 
 	#wo_comment_combo .avatar {
+		object-fit:cover;
 		width: 35px;
 		height: 35px;
 		border-radius: 50%;
@@ -19835,9 +19840,11 @@ svg {
 	}
 
 	.sun_pic_info .user-avatar img {
+		height: 100%;
 		width: 100%;
 		box-shadow: 0 2px 10px rgba(0,0,0,.15);
 		border-radius: 50%;
+		object-fit: cover;
 	}
 
 		.sun_pic_info .user-avatar img.unseen_story {
@@ -21726,6 +21733,7 @@ svg {
 			max-width: 35px;
 			border-radius: 5px;
 			height: 35px;
+			width:35px;
 			object-fit: cover;
 		}
 

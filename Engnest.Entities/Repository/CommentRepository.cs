@@ -150,6 +150,124 @@ namespace Engnest.Entities.Repository
 			return CommentView;
 		}
 
+		public List<CommentViewModel> LoadCommentsPost(string PostIds, string date, int quantity)
+		{
+			DateTime createDate = DateTime.UtcNow;
+			if (!string.IsNullOrEmpty(date))
+			{
+				createDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
+			}
+			var CommentView = new List<CommentViewModel>();
+			if (String.IsNullOrEmpty(PostIds))
+				return CommentView;
+			List<string> LPostsId = PostIds.Split(',').ToList();
+			for (var i = 0; i < LPostsId.Count; i++)
+			{
+				var resultMost = new List<CommentViewModel>();
+				var result = new List<CommentViewModel>();
+				var PostId = Int64.Parse(LPostsId[i]);
+				if (string.IsNullOrEmpty(date))
+				{
+					resultMost = (from c in context.Comments
+								  join p4 in context.Users on c.UserId equals p4.ID into ps4
+								  from p4 in ps4.DefaultIfEmpty()
+								  join p5 in context.Comments on new { a1 = c.ID, a2 = TypeComment.COMMENT } equals new { a1 = p5.TargetId, a2 = p5.TargetType.Value } into ps5
+								  let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+								  where PostId == c.TargetId && c.CreatedTime < createDate && c.TargetType == TypeComment.POST && countEmotions > 100
+								  orderby countEmotions ascending
+								  select new CommentViewModel
+								  {
+									  Id = c.ID,
+									  Audios = c.Audios,
+									  TargetId = c.TargetId,
+									  CreatedTime = c.CreatedTime,
+									  Images = c.Images,
+									  Tags = c.Tags,
+									  TagsUser = c.TagsUser,
+									  Content = c.Content,
+									  UserId = c.UserId,
+									  Avatar = p4.Avatar,
+									  NickName = p4.NickName,
+									  CountReply = ps5.Count(),
+									  CountEmotions = countEmotions
+								  }).Take(quantity + 1).ToList();
+				}
+				if (resultMost.Count == 0)
+				{
+					result = (from c in context.Comments
+							  join p4 in context.Users on c.UserId equals p4.ID into ps4
+							  from p4 in ps4.DefaultIfEmpty()
+							  join p5 in context.Comments on new { a1 = c.ID, a2 = TypeComment.COMMENT } equals new { a1 = p5.TargetId, a2 = p5.TargetType.Value } into ps5
+							  let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+							  where PostId == c.TargetId && c.CreatedTime < createDate && c.TargetType == TypeComment.POST
+							  orderby c.CreatedTime descending
+							  select new CommentViewModel
+							  {
+								  Id = c.ID,
+								  Audios = c.Audios,
+								  TargetId = c.TargetId,
+								  CreatedTime = c.CreatedTime,
+								  Images = c.Images,
+								  Tags = c.Tags,
+								  TagsUser = c.TagsUser,
+								  Content = c.Content,
+								  UserId = c.UserId,
+								  Avatar = p4.Avatar,
+								  NickName = p4.NickName,
+								  CountReply = ps5.Count(),
+								  CountEmotions = countEmotions,
+							  }).Take(quantity + 1).ToList();
+					if (result.Count > quantity)
+					{
+						result[result.Count - 2].MoreComment = true;
+						result.RemoveAt(result.Count - 1);
+					}
+				}
+				else
+				{
+					if (result.Count > quantity)
+					{
+						result[result.Count - 2].MoreComment = true;
+						result.RemoveAt(result.Count - 1);
+					}
+					else
+					{
+						result[result.Count - 1].MoreComment = true;
+					}
+				}
+				CommentView = CommentView.Union(result).ToList();
+			}
+			foreach (var item in CommentView)
+			{
+				var responeImage = AmazonS3Uploader.GetUrl(item.Avatar, 0);
+				if (!string.IsNullOrEmpty(responeImage))
+					item.Avatar = responeImage;
+				if (!string.IsNullOrEmpty(item.Images))
+				{
+					var data = item.Images.Split(',');
+					item.ListImages = new List<string>();
+					foreach (string image in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(image);
+						if (!string.IsNullOrEmpty(respone))
+							item.ListImages.Add(respone);
+					}
+				}
+				if (!string.IsNullOrEmpty(item.Audios))
+				{
+					var data = item.Audios.Split(',');
+					item.ListAudios = new List<string>();
+					foreach (string audio in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(audio);
+						if (!string.IsNullOrEmpty(respone))
+							item.ListAudios.Add(respone);
+					}
+				}
+			}
+			return CommentView;
+		}
 		public List<CommentViewModel> LoadCommentsReply(string CommentId, string date, int quantity, string createdUser, long LoginUser)
 		{
 			long UserId = 0;
@@ -191,6 +309,82 @@ namespace Engnest.Entities.Repository
 							  CountReply = ps5.Count(),
 							  CountEmotions = countEmotions,
 							  StatusEmotion = p6 == null ? (byte)0 : p6.Status
+						  }).Take(quantity + 1).ToList();
+			if (result.Count > quantity)
+			{
+				result[result.Count - 2].MoreComment = true;
+				result.RemoveAt(result.Count - 1);
+			}
+			CommentView = CommentView.Union(result).ToList();
+
+			foreach (var item in CommentView)
+			{
+				var responeImage = AmazonS3Uploader.GetUrl(item.Avatar, 0);
+				if (!string.IsNullOrEmpty(responeImage))
+					item.Avatar = responeImage;
+				if (!string.IsNullOrEmpty(item.Images))
+				{
+					var data = item.Images.Split(',');
+					item.ListImages = new List<string>();
+					foreach (string image in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(image);
+						if (!string.IsNullOrEmpty(respone))
+							item.ListImages.Add(respone);
+					}
+				}
+				if (!string.IsNullOrEmpty(item.Audios))
+				{
+					var data = item.Audios.Split(',');
+					item.ListAudios = new List<string>();
+					foreach (string audio in data)
+					{
+						var respone = AmazonS3Uploader.GetUrl(audio);
+						if (!string.IsNullOrEmpty(respone))
+							item.ListAudios.Add(respone);
+					}
+				}
+			}
+			return CommentView;
+		}
+		public List<CommentViewModel> LoadCommentsReply(string CommentId, string date, int quantity, string createdUser)
+		{
+			long UserId = 0;
+			if (!string.IsNullOrEmpty(createdUser))
+				UserId = long.Parse(createdUser);
+			DateTime createDate = DateTime.UtcNow;
+			if (!string.IsNullOrEmpty(date))
+			{
+				createDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+				createDate = createDate.AddMilliseconds(double.Parse(date)).ToLocalTime();
+			}
+			var CommentView = new List<CommentViewModel>();
+			if (String.IsNullOrEmpty(CommentId))
+				return CommentView;
+
+			var CommentIdI = Int64.Parse(CommentId);
+			var result = (from c in context.Comments
+						  join p4 in context.Users on c.UserId equals p4.ID into ps4
+						  from p4 in ps4.DefaultIfEmpty()
+						  join p5 in context.Comments on new { a1 = c.ID, a2 = TypeComment.COMMENT } equals new { a1 = p5.TargetId, a2 = p5.TargetType.Value } into ps5
+						  let countEmotions = (from E in context.Emotions where E.TargetId == c.ID select E).Count()
+						  where CommentIdI == c.TargetId && c.CreatedTime < createDate && (UserId == 0 || UserId == c.UserId) && c.TargetType == TypeComment.COMMENT
+						  orderby c.CreatedTime descending
+						  select new CommentViewModel
+						  {
+							  Id = c.ID,
+							  Audios = c.Audios,
+							  TargetId = c.TargetId,
+							  CreatedTime = c.CreatedTime,
+							  Images = c.Images,
+							  Tags = c.Tags,
+							  TagsUser = c.TagsUser,
+							  Content = c.Content,
+							  UserId = c.UserId,
+							  Avatar = p4.Avatar,
+							  NickName = p4.NickName,
+							  CountReply = ps5.Count(),
+							  CountEmotions = countEmotions,
 						  }).Take(quantity + 1).ToList();
 			if (result.Count > quantity)
 			{

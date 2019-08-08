@@ -8,17 +8,17 @@ namespace Engnest.Entities.ViewModels
 {
 	public class MemberModel
     {
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         public string Avatar { get; set; }
 
         public string NickName { get; set; }
 
-		public DateTime CreatedTime { get; set; }
+		public DateTime? CreatedTime { get; set; }
 
-		public byte Type { get; set; }
+		public byte? Type { get; set; }
 
-		public byte Status { get; set; }
+		public byte? Status { get; set; }
 
     }
 }

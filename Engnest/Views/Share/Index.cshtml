@@ -1,0 +1,453 @@
+﻿@using Engnest.Entities.Common;
+@model Engnest.Entities.ViewModels.PostIndexModel
+@{
+	Layout = null;
+}
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Engnest</title>
+	<link rel="icon" href="/assets/images/logoEngnest.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+	@Styles.Render("~/css/css")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/js")
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.8.95/css/materialdesignicons.min.css" rel="stylesheet" />
+	<meta property="og:url" content="@Request.Url.AbsoluteUri" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Engnest" />
+	<meta property="og:description" id="contentTitle" content="Your description" />
+	<meta property="og:image" id="imageTitle" content="/assets/images/logoEngnest.png" />
+	<style>
+		body {
+			padding-right: 0px;
+		}
+
+		.information-bottom {
+			font-size: 12px;
+			width: 300px;
+		}
+
+			.information-bottom a {
+				color: #4183c4;
+			}
+	</style>
+</head>
+<body>
+	<div class="information-bottom" style="display:none">
+		<button type="button" style="margin: -15px;" class="close" onclick="HideInformation()"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+		Engnest is still in beta test. Were're now looking for an angel investor to create the best environtment for at least 2 billion people across the world who want to practise English or any other language to be able to use them fluently. If you are interested, please email us at <a href="mailto:khaithaicuc@gmail.com">khaithaicuc@gmail.com</a>, we'd love to collaborate with you!
+		<br />
+		Nếu gặp vấn đề hay khó khăn trong việc sử dụng Engnest.com, hãy feedback hoặc hỏi cộng đồng engnest tại đây <a href="http://bit.ly/2ym1I6B">http://bit.ly/2ym1I6B</a>
+	</div>
+	<div id="wait-loading">
+		<img class="image-wait-loading" width="45" height="45" src="/assets/images/loading.gif" alt="loading">
+		<span class="text-wait-loading">Wait loading Record</span>
+	</div>
+	<header class="header-container">
+		<div class="navbar navbar-default navbar-fixed-top">
+			<nav class="header-fixed1000">
+				<div class="container-fluid">
+					<a class="brand header-brand" href="/">
+						<img style="margin-top: -8px;" width="45" height="45" src="/assets/images/logoEngnest.png" alt="Mạng Xã Hội Việt Nam Logo">
+						<span style="padding: 10px;color: #e5e6e8;font-size: 13px;font-weight: bold;">Engnest</span>
+					</a>
+					<ul class="nav navbar-nav navbar-right pull-right" id="head_menu_rght">
+						<li class="dropdown sun_bd_hd_scrl_menu">
+							<a href="/Login#signup" class="user-menu-combination">
+								Sign Up Now
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div class="loader" style="display: none;"></div>
+
+
+	</header>
+	<div class="content-container container" style="transform: none;">
+		<div class="ad-placement-header-footer">
+		</div>
+		<div id="contnet" style="transform: none;">
+			<div class="page-margin" style="transform: none;">
+				<div class="row" style="transform: none;">
+					<div class="col-md-3 leftcol" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 525px;">
+						<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 0px; position: fixed; transform: translateY(65px); left: 99px; top: 0px; width: 156.719px;">
+							<div class="left-sidebar">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 profile-lists middlecol">
+						<div id="empty_post" class="wo_my_pages">
+						</div>
+						<div id="posts"></div>
+						<div class="load-more pointer" style="display:none;">
+							<div class="white-loading list-group">
+								<div class="no-more-posts-to-show">No more posts</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="comment-template" type="x-tmpl-mustache">
+		<div class="comment comment-container" id="comment_{{Id}}" data-comment-id="{{Id}}">
+			<a class="pull-left" href="/profile?id={{UserId}}">
+				<img class="avatar pull-left" src="{{Avatar}}" alt="avatar">
+			</a>
+			<button {{DeleteComment}} type="button" class="close" style="margin-top: 7px;right: 30px;position: absolute;z-index: 10;" onclick="DeleteComment({{Id}})"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+			<div class="comment-body">
+				<div class="comment-heading">
+					<div class="sun_innr_comm">
+						<span class="user-popover" data-id="5" data-type="user">
+							<a href="/profile?id={{UserId}}">
+								<h4 class="user">{{NickName}}</h4>
+							</a>
+						</span>
+						<span class="comment-text" style="max-height: none;white-space: pre-wrap;">{{Content}}</span>
+						{{#ListAudios.length}}
+						<div class="post-file" style="padding: 10px;">
+							{{#ListAudios}}
+							<audio controlsList="nodownload" controls="" preload="auto">
+								<source src="{{.}}" type="audio/mpeg">
+								<source src="{{.}}" type="audio/mp3">
+							</audio>
+							{{/ListAudios}}
+						</div>
+						{{/ListAudios.length}}
+						{{#ListImages}}
+						<div id="fullsizeimg">
+							<img onclick="OpenLightBox('{{.}}','{{Id}}')" src="{{.}}" alt="image" class="image-file pointer">
+
+							<div class="clear">
+							</div>
+						</div>
+						{{/ListImages}}
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<!-- reaction -->
+				<div class="like-stat stat-item post-like-status" id="comment_reacted">
+					<span class="like-emo comment-reactions-icons-{{Id}}">
+					</span>
+				</div>
+
+				<span class="comment-options">
+					<span id="LikeAction_{{Id}}" onclick="LikeAction('{{Id}}')" data-id="6972">
+						<span class="comment-status-reaction-6972 unselectable"><i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i> <span id="CountEmotions_{{Id}}" class="how_many_reacts">{{CountEmotions}}</span></span>
+					</span>
+					<span class="pointer" id="ReplyComment" onclick="OpenReplyBox('{{Id}}','');">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+					</span>
+					<span id="comment-replies">{{CountReply}}</span>
+					<span class="time ajax-time" title="">{{CreatedTime}}</span>
+				</span>
+
+				<div class="comment-replies-{{Id}} comment-reply-box" style="display: none;">
+					<div id="load-more-reply-comment-{{Id}}" class="row view-more-wrapper load-more-reply-comments page-margin" style="font-size: 10px;margin-left: 50px;margin-bottom:0px"> <span data-date="" onclick="LoadMoreReplyComment({{Id}},'', 10);">View more reply comments</span> </div>
+					<div class="comment-replies-text" id="comments-list-{{Id}}">
+
+					</div>
+					<div>
+						<div id="album-form">
+							<div class="publisher-hidden-option">
+								<input name="album_name" type="text" class="form-control" placeholder="Album name">
+							</div>
+						</div>
+						<div class="publisher-hidden-option" id="photo-form-reply-{{Id}}">
+							<div id="image-holder" style="overflow-x: auto;"><div id="image-holder-comment-reply-{{Id}}"></div></div>
+						</div>
+						<div class="publisher-hidden-option" id="audio-form">
+							<div style="overflow-x: auto;"><div id="audio-holder-comment-{{Id}}"></div></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</script>
+	<script id="my-template" type="x-tmpl-mustache">
+		<div class="post-container sun_post">
+			<div class="post" id="post-{{Id}}" data-post-id="{{Id}}" data-post-type="">
+				<div class="panel panel-white panel-shadow">
+					<div class="post-heading">
+						{{#delete}}
+						<button type="button" class="close" onclick="DeletePost({{Id}})"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+						{{/delete}}
+						<div class="pull-left image">
+							<a href="/profile?id={{UserId}}"><img src="{{Avatar}}" id="updateImage-4" class="avatar" alt="{{NickName}} profile picture"></a>
+						</div>
+						<div class="meta">
+							<div class="title h5" style="display:flex">
+								<span class="user-popover" data-type="user" data-id="4"><a href="/profile?id={{UserId}}"><b class="user">{{NickName}}</b></a></span><div class="{{ShowTarget}}"><i class="fa fa-caret-right" style="padding:0px 5px;font-size: 15px;"></i><span class="user-popover" data-type="user" data-id="4"><a href="/{{^TargetUrl}}profile{{/TargetUrl}}{{#TargetUrl}}{{TargetUrl}}{{/TargetUrl}}?id={{TargetId}}"><b class="user">{{TargetNickName}}</b></a></span></div><small class="small-text"></small>
+							</div><h6> <span class="time">&nbsp;&nbsp;<a style="color:#9197a3" class="ajax-time" title="" target="_blank">{{CreatedTime}}</a></span></h6>
+						</div>
+
+					</div>
+					<div class="post-description" id="post-description-{{Id}}">
+						<div>
+							<span style="white-space: pre-wrap;" data-translate-text="{{Id}}">{{Content}}</span>
+						</div>
+						{{#ListAudios.length}}
+						<div class="post-file" style="padding:10px">
+							{{#ListAudios}}
+							<audio controlsList="nodownload" controls="" preload="auto">
+								<source src="{{.}}" type="audio/mpeg">
+								<source src="{{.}}" type="audio/mp3">
+							</audio>
+							{{/ListAudios}}
+
+						</div>
+						{{/ListAudios.length}}
+						<div id="fullsizeimg" style="position: relative;">
+							{{#ListImages}}
+							<img onclick="OpenLightBox('{{.}}','{{Id}}')" src="{{.}}" alt="image" class="image-file pointer">
+							{{/ListImages}}
+							<div class="clear">
+							</div>
+						</div>
+						{{#ListVideos.length}}
+						<div class="post-video">
+							{{#ListVideos}}
+							<video controls="" preload="auto">
+								<source src="{{.}}" type="video/mp4">
+							</video>
+							{{/ListVideos}}
+
+						</div>
+						{{/ListVideos.length}}
+
+						<div class="stats post-actions pull-left" id="active_react">
+							<div class="like-stat stat-item post-like-status">
+								<span class="like-emo post-reactions-icons-{{Id}}">
+									<i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i>
+									<span id="CountEmotions_{{Id}}" class="how_many_reacts">{{CountEmotions}}</span>
+								</span>
+							</div>
+						</div> <div class="clear"></div>
+						<div class="stats pull-left" id="wo_post_stat_button">
+							<div class="fb-share-button"
+								 data-href="@Request.Url.AbsoluteUri"
+								 data-layout="button_count" data-size="large">
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="post-footer post-comments " id="post-comments-3139">
+						<div id="hidden_inputbox_comment"></div>
+						<div id="load-more-comment-{{Id}}" class="row view-more-wrapper load-more-comments page-margin"> <span data-date="" onclick="LoadMoreComment({{Id}},'', 10);">View more comments</span> </div>
+						<div id="comments-list-{{Id}}" class="comments-list">
+
+						</div>
+						<div id="comment-image" class="hidden comment-image-con">
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</script>
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>
+		$(document).ready(function () {
+			if ($.cookie("information-bottom"))
+				$(".information-bottom").hide();
+			else
+				$(".information-bottom").show();
+			LoadPost();
+			
+		});
+		function LoadPost() {
+        $.ajax({
+            url: "/Share/LoadPost",
+            type: "GET",
+            data: { Id: '@Model.Id' },
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					if (result.data.length != 0) {
+						$("#empty_post").hide();
+					}
+					let tmpl = $('#my-template').html();
+					var commenttp = $('#comment-template').html();
+					Mustache.parse(tmpl);
+					Mustache.parse(commenttp);
+					result.data.forEach((item) => {
+						if (item.CreatedTime != null) {
+							item.CreatedTime = time_ago(new Date(parseInt(item.CreatedTime.substr(6))));
+						}
+						let rendered = Mustache.render(tmpl, item);
+						$("#posts").append(rendered);
+						if(item.Content != null)
+						$('#contentTitle').attr("content", item.Content);
+						if (item.ListImages != null && item.ListImages.length > 0) {
+							$('#imageTitle').attr("content", item.ListImages[0]);
+						}
+						item.ListComments.forEach((comment) => {
+							if (comment.CreatedTime != null) {
+								comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
+							}
+							var rendercomment = Mustache.render(commenttp, comment);
+							$("#comments-list-" + item.Id).append(rendercomment);
+						});
+						if(item.StatusEmotion == 1)
+							$("#LikeAction_" + item.Id).addClass("active-like");
+					});
+					var ids = result.data.map(function(item) {
+					  return item['Id'];
+					});
+					LoadMoreComment(ids, "", 3);
+					(function (d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+				}
+            },
+			error: function (data) {
+            }
+        });
+		}
+		function LoadMoreComment(ids, date, quantity) {
+		if(quantity != 3)
+			date = $("#load-more-comment-" + ids + " span").data("date");
+        $.ajax({
+            url: "/Share/LoadCommentsPost",
+            type: "GET",
+			data: {PostIds: ids.toString(),date,quantity},
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					var commenttp = $('#comment-template').html();
+					Mustache.parse(commenttp);
+					if (!ids.length)
+						$("#load-more-comment-" + ids).hide();
+					for (var i = 0; i < ids.length; i++) {
+						$("#load-more-comment-" + ids[i]).hide();
+					}
+					for (var i = result.data.length - 1; i >= 0; i--) {
+						comment = result.data[i];
+						if ($("#comments-list-" + comment.TargetId + " #comment_" + comment.Id).length != 0)
+							continue;
+						if (comment.MoreComment) {
+							$("#load-more-comment-" + comment.TargetId).show();
+							$("#load-more-comment-" + comment.TargetId + " span").data("date", parseInt(comment.CreatedTime.substr(6)));
+						}
+						if (comment.CreatedTime != null) {
+							comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
+						}
+						comment.DeleteComment = "hidden";
+						var rendercomment = Mustache.render(commenttp, comment);
+						$("#comments-list-" + comment.TargetId).prepend(rendercomment);
+						if(comment.StatusEmotion == 1)
+							$("#LikeAction_" + comment.Id).addClass("active-like");
+					}
+				}
+            },
+            error: function (data) {
+            }
+        });
+		}
+			function OpenReplyBox(id, date) {
+		$(".comment-replies-" + id).toggle();
+		if ($(".comment-replies-" + id + " comment-container").length == 0)
+			LoadReply(id, date);
+		}
+			function LoadMoreReplyComment(id) {
+		var date = $("#load-more-reply-comment-" + id + " span").data("date");
+		LoadReply(id, date);
+	}
+	function LoadReply(id, date) {
+		 $.ajax({
+            url: "/Share/LoadCommentsReply",
+            type: "GET",
+			 data: { CommentId: id,date,quantity: "10"},
+            dataType: "json",
+            success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					$("#load-more-reply-comment-" + id).hide();
+					var commenttp = $('#comment-template').html();
+					Mustache.parse(commenttp);
+					if (date == "")
+						$("#comments-list-" + id).empty();
+					for (var i = result.data.length - 1; i >= 0; i--) {
+						var comment = result.data[i];
+						if (comment.MoreComment) {
+						$("#load-more-reply-comment-" + comment.TargetId).show();
+						$("#load-more-reply-comment-" + comment.TargetId + " span").data("date", parseInt(comment.CreatedTime.substr(6)));
+					}
+					if (comment.CreatedTime != null) {
+						comment.CreatedTime = time_ago(new Date(parseInt(comment.CreatedTime.substr(6))));
+					}
+					comment.DeleteComment = "hidden";
+					var rendercomment = Mustache.render(commenttp, comment);
+					$("#comments-list-" + comment.TargetId).prepend(rendercomment);
+					}
+				}
+            },
+            error: function (data) {
+            }
+        });
+	}
+	</script>
+	<script>
+		function OpenLightBox(image, id) {
+			$('#contnet').append('<div class="lightbox-container"><div class="lightbox-backgrond" onclick="CloseLightbox();"></div><div class="lightbox-content post wo_imagecombo_lbox lightpost-' + id + '" id="post-' + id + '" data-post-id="' + id + '">' +
+				'<div class="story-img">' +
+				'<div class="sun_img_innr">' +
+				'<div id="draggableHelper" style="display: table-cell; vertical-align: middle; position: relative;" class="ui-draggable ui-draggable-handle">' +
+				'<img src="' + image + '" alt="media" class="double_zoom" id="wo_zoom_' + id + '" style="transform: rotate(-360deg);">' +
+				'</div>' +
+				'</div>' +
+				'<div class="wo_lbox_topbar sun_light_tool">' +
+				'<span class="lbox_topbar_child">' +
+				'<span>' +
+				'<a href="' + image + '" target="_blank">Open original</a>' +
+				'</span>' +
+				'</span>' +
+				'<span class="lbox_topbar_child right">' +
+				'<span onclick="rotate(\'' + id + '\')">' +
+				'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.47,21.5C4.2,19.93 1.86,16.76 1.5,13H0C0.5,19.16 5.66,24 11.95,24C12.18,24 12.39,24 12.61,23.97L8.8,20.15L7.47,21.5M12.05,0C11.82,0 11.61,0 11.39,0.04L15.2,3.85L16.53,2.5C19.8,4.07 22.14,7.24 22.5,11H24C23.5,4.84 18.34,0 12.05,0M16,14H18V8C18,6.89 17.1,6 16,6H10V8H16V14M8,16V4H6V6H4V8H6V16A2,2 0 0,0 8,18H16V20H18V18H20V16H8Z"></path></svg>' +
+				'</span>' +
+				'</span>' +
+				'</div>' +
+				'</div>' +
+				'</div></div>');
+		}
+		function CloseLightbox() {
+			$('.lightbox-container').remove();
+			document.body.style.overflow = 'auto';
+		}
+		$(document).keydown(function (e) {
+			if (e.keyCode == 27) {
+				CloseLightbox();
+			}
+		});
+		var angle = 0;
+		function rotate(id) {
+			angle += 90;
+			$('#wo_zoom_' + id).css({ 'transform': 'rotate(-' + angle + 'deg)' });
+		}
+	</script>
+	<script>
+		function HideInformation() {
+			$(".information-bottom").hide();
+			$.cookie("information-bottom", true, { expires: 1 });
+		}
+	</script>
+</body>
+</html>
+

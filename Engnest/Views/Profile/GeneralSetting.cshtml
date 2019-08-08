@@ -380,8 +380,8 @@
 											<label class="plr15" for="relationship">Relationship</label>
 										</div>
 										<div class="sun_input col-lg-6">
-											<select style="width:100%;margin-bottom:10px;" multiple="" id="Hobbyist" name="Hobbyist" class="ui normal dropdown">
-												<option disabled value="">Hobbyist</option>
+											<select style="width:100%;margin-bottom:10px;" multiple="" id="Hobbies" name="Hobbies" class="ui normal dropdown">
+												<option disabled value="">Hobbies</option>
 												<option disabled value="Sciences">Sciences</option>
 												<option value="Mathematics">Mathematics</option>
 												<option value="Physics">Physics</option>
@@ -550,7 +550,7 @@
 					AboutMe: $("#about").val(),
 					Lat: $("#lat_location").val(),
 				Lng: $("#lng_location").val(),
-				Category: $("#Hobbyist").val().join(',')
+				Category: $("#Hobbies").val().join(',')
 				},
 			dataType: "json",
 			success: function (result) {
@@ -570,7 +570,7 @@
 	<script type="text/javascript">
 	$(function () {
 			var Category = '@Model.Category';
-		$("#Hobbyist option").each((index,item) => {
+		$("#Hobbies option").each((index,item) => {
 			if (Category.includes($(item).val())) {
 				$(item).attr("selected","selected");
 			};

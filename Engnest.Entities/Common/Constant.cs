@@ -82,4 +82,10 @@ namespace Engnest.Entities.Common
 		public const Byte CATEGORY = 1;
 		public const Byte BOTH = 2;
 	}
+
+	public class TypeMessage
+	{
+		public const Byte Message = 0;
+		public const Byte Notification = 1;
+	}
 }

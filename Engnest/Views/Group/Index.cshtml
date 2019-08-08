@@ -39,7 +39,7 @@
 					<div class="sun_side_widget">
 						<div class="sun_pic_info text-center" style="padding-bottom: 10px;">
 							<div class="user-avatar flip ">
-								<img id="updateImage-@Model.ID" onclick="OpenLightBox('@Model.Avatar','updateImage-@Model.ID')" class="pointer " alt="@Model.GroupName Profile Picture" src="@Model.Avatar">
+								<img id="updateImage-@Model.ID"  style="border-radius:unset;" onclick="OpenLightBox('@Model.Avatar','updateImage-@Model.ID')" class="pointer " alt="@Model.GroupName Profile Picture" src="@Model.Avatar">
 								<!--Online/Offline-->
 								@*<span class="sun_status online " title="Online"></span>*@
 								@if (ViewBag.ClassUpdate)
@@ -51,7 +51,7 @@
 								}
 							</div>
 							<div class="info">
-								<div class="title">
+								<div class="title" style="max-width: 150px;text-align: center;margin: 0px auto;">
 									<div id="groupname">@Model.GroupName</div>
 									<input hidden id="inputname" class="form-control ui-autocomplete-input" placeholder="Group Name" type="text" maxlength="50" onkeyup="SaveName(this);" dir="auto" autocomplete="off">
 								</div>
@@ -382,8 +382,8 @@
 											 '<a class="avatarc" href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
 												'<img src="'+item.Avatar+'">'+
 											 '</a>'+
-											 '<a href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
-												'<div class="sidebar-listed-user-name">' + item.NickName + '</div>' +
+											 '<a >'+
+												'<div class="sidebar-listed-user-name" href="/profile?id='+item.Id+'" >' + item.NickName + '</div>' +
 							'<div class="sidebar-listed-user-name" style="margin-top: -10px;color: #4d91ea;">' + type +'</div>'+
 											 '</a>'+
 									   '</div>'+
@@ -416,8 +416,8 @@
 											 '<a class="avatarc" href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
 												'<img src="'+item.Avatar+'">'+
 											 '</a>'+
-											 '<a href="/profile?id='+item.Id+'" data-ajax="?link1=timeline&amp;u=heroonl">'+
-												'<div class="sidebar-listed-user-name">' + item.NickName + '</div>' +
+											 '<a>'+
+												'<div class="sidebar-listed-user-name" href="/profile?id='+item.Id+'">' + item.NickName + '</div>' +
 							'<div class="sidebar-listed-user-name" style="margin-top: -10px;color: #4d91ea;">' + type +'</div>'+
 											 '</a>'+
 									   '</div>'+

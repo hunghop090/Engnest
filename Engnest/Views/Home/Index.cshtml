@@ -215,9 +215,9 @@
 						<h3 class="sun_side_widget_title">
 							<i class="fa fa-user-plus"></i>
 							<span style="font-weight: bold;" >Update your list of hobbies to make new friends</span>
-							<a style="background: #4267b2;color: white;float: right;" class="ui label" onclick="SaveHobbyist()">Save</a>
+							<a style="background: #4267b2;color: white;float: right;" class="ui label" onclick="SaveHobbies()">Save</a>
 						</h3>
-						<select style="width:100%;margin-bottom:10px;" multiple="" id="Hobbyist" name="Hobbyist" class="ui normal dropdown">
+						<select style="width:100%;margin-bottom:10px;" multiple="" id="Hobbies" name="Hobbies" class="ui normal dropdown">
 							<option disabled value="">List of hobbies</option>
 							<option disabled value="Sciences">Sciences</option>
 							<option value="Mathematics">Mathematics</option>
@@ -397,7 +397,7 @@
 		var dateGetPost = "";
 	$(document).ready(function () {
 		var Category = '@Model.Profile.Category';
-		$("#Hobbyist option").each((index,item) => {
+		$("#Hobbies option").each((index,item) => {
 			if (Category.includes($(item).val())) {
 				$(item).attr("selected","selected");
 			};
@@ -560,15 +560,15 @@
             }
         });
 		}
-	function SaveHobbyist() {
+	function SaveHobbies() {
         $.ajax({
-            url: "/Profile/SaveHobbyist",
+            url: "/Profile/SaveHobbies",
 			type: "POST",
-			data: { data: $("#Hobbyist").val().join(',') },
+			data: { data: $("#Hobbies").val().join(',') },
             dataType: "json",
             success: function (result) {
 				if (result.result == @Constant.SUCCESS) {
-					EngnestFlash.notice("Save hobbyist success!");
+					EngnestFlash.notice("Done!");
 				}
 				else {
 					EngnestFlash.error("Error!");

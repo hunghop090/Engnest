@@ -470,7 +470,7 @@
 						if (item.CreatedTime != null) {
 							item.CreatedTime = time_ago(new Date(parseInt(item.CreatedTime.substr(6))));
 						}
-						item.delete = true;
+						item.delete = '@ViewBag.ClassUpdate' != 'hidden' ? true : false;
 						let rendered = Mustache.render(tmpl, item);
 						$("#posts").append(rendered);
 						item.ListComments.forEach((comment) => {
@@ -509,7 +509,7 @@
 			if (r != true) {
 				return;
 			} 
-			type = @StatusRequestFriend.CANCEL
+			type = @StatusRequestFriend.CANCEL;
 		}
 		$.ajax({
 			url: "/Profile/AddFriend",

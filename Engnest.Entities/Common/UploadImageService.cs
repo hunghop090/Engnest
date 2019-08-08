@@ -30,6 +30,7 @@ namespace Engnest.Entities.Common
 		{
 			var stringbase64 = "";
 			var typeFile = "";
+			byte[] bytes = new byte[] { };
 			if (type == TypeUpload.IMAGE)
 			{
 				typeFile = ".jpg";
@@ -38,7 +39,17 @@ namespace Engnest.Entities.Common
 					stringbase64 = data64[1];
 				else
 					stringbase64 = data64[0];
+				bytes = Optiame(stringbase64);
 				//base64String = ImageToBase64(ResizeByWidth(stringbase64, width));
+			} else if (type == TypeUpload.VIDEO)
+			{
+				typeFile = ".mp4";
+				var data64 = Regex.Split(base64String, ";base64,");
+				if (data64.Length > 1)
+					stringbase64 = data64[1];
+				else
+					stringbase64 = data64[0];
+				bytes = Convert.FromBase64String(stringbase64);
 			}
 			string Key = type + "/" + CommonFunction.GetTimestamp(DateTime.UtcNow) + "_" + CommonFunction.RandomNumber(0, 99999999) + typeFile;
 			try
@@ -46,7 +57,6 @@ namespace Engnest.Entities.Common
 				//var data = Regex.Split(base64String, ";base64,");
 				//if (data.Length > 1)
 				//	data[0] = data[1];
-				byte[] bytes = Optiame(stringbase64);
 				PutObjectRequest request = new PutObjectRequest();
 				request.BucketName = bucketname;
 				request.Key = Key;

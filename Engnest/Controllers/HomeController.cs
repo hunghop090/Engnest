@@ -62,7 +62,7 @@ namespace Engnest.Controllers
 				else
 				{
 					if(type == TypePost.GROUP)
-						data = postRepository.LoadPostsGroup(date, id.Value);
+						data = postRepository.LoadPostsGroup(date, id.Value, userLogin.ID);
 					else
 						data = postRepository.LoadPostsProfile(date, id.Value,userLogin.ID);
 				}

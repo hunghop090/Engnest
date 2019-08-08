@@ -31,6 +31,8 @@
 	<div class="information-bottom" style="display:none">
 		<button type="button" style="margin: -15px;" class="close" onclick="HideInformation()"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
 		Engnest is still in beta test. Were're now looking for an angel investor to create the best environtment for at least 2 billion people across the world who want to practise English or any other language to be able to use them fluently. If you are interested, please email us at <a href="mailto:khaithaicuc@gmail.com">khaithaicuc@gmail.com</a>, we'd love to collaborate with you!
+		<br />
+		Nếu gặp vấn đề hay khó khăn trong việc sử dụng Engnest.com, hãy feedback hoặc hỏi cộng đồng engnest tại đây <a href="http://bit.ly/2ym1I6B">http://bit.ly/2ym1I6B</a> 
 	</div>
 	<div id="wait-loading">
 		<img class="image-wait-loading" width="45" height="45" src="/assets/images/loading.gif" alt="loading">
@@ -426,7 +428,7 @@
 						</div>
 						<div class="meta">
 							<div class="title h5" style="display:flex">
-								<span class="user-popover" data-type="user" data-id="4"><a href="/profile?id={{UserId}}"><b class="user">{{NickName}}</b></a></span><div class="{{ShowTarget}}"><i class="fa fa-caret-right" style="padding:0px 5px;font-size: 15px;"></i><span class="user-popover" data-type="user" data-id="4"><a href="/profile?id={{TargetId}}"><b class="user">{{TargetNickName}}</b></a></span></div><small class="small-text"></small>
+								<span class="user-popover" data-type="user" data-id="4"><a href="/profile?id={{UserId}}"><b class="user">{{NickName}}</b></a></span><div class="{{ShowTarget}}"><i class="fa fa-caret-right" style="padding:0px 5px;font-size: 15px;"></i><span class="user-popover" data-type="user" data-id="4"><a href="/{{^TargetUrl}}profile{{/TargetUrl}}{{#TargetUrl}}{{TargetUrl}}{{/TargetUrl}}?id={{TargetId}}"><b class="user">{{TargetNickName}}</b></a></span></div><small class="small-text"></small>
 							</div><h6> <span class="time">&nbsp;&nbsp;<a style="color:#9197a3" class="ajax-time" title="" target="_blank">{{CreatedTime}}</a></span></h6>
 						</div>
 
@@ -475,9 +477,9 @@
 						<div class="stats pull-left" id="wo_post_stat_button">
 							<div id="LikeAction_{{Id}}" onclick="LikeAction('{{Id}}')" class="wo-reaction wo-reaction-post stat-item unselectable" data-id="{{Id}}">
 								<span class="like-btn like-btn-post unselectable" data-id="{{Id}}"><span class="status-reaction-{{Id}} unselectable"><i class="fa fa-thumbs-up fa-lg fa-flip-horizontal"></i> <span class="t_likes{{Id}}"></span> Like</span></span><ul class="reactions-box reactions-box-container-{{Id}}" data-id="{{Id}}" style=" right: auto; "><li class="reaction reaction-like animated_2" data-reaction="Like" data-reaction-lang="Like" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/like.gif" alt="Like"></li><li class="reaction reaction-love animated_4" data-reaction="Love" data-reaction-lang="Love" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/love.gif" alt="Love"></li><li class="reaction reaction-haha animated_6" data-reaction="HaHa" data-reaction-lang="HaHa" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/haha.gif" alt="HaHa"></li><li class="reaction reaction-wow animated_8" data-reaction="Wow" data-reaction-lang="WoW" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/wow.gif" alt="WoW"></li><li class="reaction reaction-sad animated_10" data-reaction="Sad" data-reaction-lang="Sad" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/sad.gif" alt="Sad"></li><li class="reaction reaction-angry animated_12" data-reaction="Angry" data-reaction-lang="Angry" data-post-id="{{Id}}" onclick="Wo_RegisterReaction(this);"><img class="" src="https://biztime.com.vn/themes/biztime-s/reaction/angry.gif" alt="Angry"></li></ul>
-							</div><div class="btn btn-default stat-item" title="Comments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"></path></svg><span class="like-btn-mobile">Comment</span> </div> <div class="btn btn-default stat-item" title="Share" onclick="Wo_SharePostOn('{{Id}}',4,'timeline')">
+							</div><div class="btn btn-default stat-item" title="Comments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"></path></svg><span class="like-btn-mobile">Comment</span> </div> <a href="/share?id={{Id}}" target="_blank" class="btn btn-default stat-item" title="Share">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z"></path></svg> <span class="like-btn-mobile">Share</span>
-							</div>
+							</a>
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -573,6 +575,19 @@
 			// Start the connection.
 			chat.client.addChatMessage = function (message) {
 				var obj = JSON.parse(message);
+				if (obj.TypeMessage == @TypeMessage.Notification) {
+					var active = "active";
+					var html = '<li class="row '+ active +'  user-notification-'+ obj.ID +'" onclick="SeenNotification('+ obj.ID +')">'+
+									'<div class="user-request-list ">' +
+										'<div class="accept-btns user-follow-button">' +
+											obj.Content
+										'</div>' +
+									'</div>' +
+								'</li>';
+					$("#notifications-list").append(html)
+					$("#alert-notification").html(Number($("#alert-notification").html()) + 1);
+					return;
+				}
 				var html = '<div class="messages-wrapper pull-left messages-text">' +
 					'<div class="message outgoing pull-left" style="background-color:#e9ebee">' +
 					'<p class="message-text" dir="auto" style=" color:#333;">' +
@@ -1251,6 +1266,16 @@
 			data: {Content: content,UserId:  user,Type:type,TargetId:id},
 			dataType: "json",
 			success: function (result) {
+				if (result.result == @Constant.SUCCESS) {
+					var obj = {};
+					obj.Content = content;
+					obj.UserID = user;
+					obj.Type = type;
+					obj.ID = result.id;
+					obj.TypeMessage = @TypeMessage.Notification;
+					var myJSON = JSON.stringify(obj);
+					chat.server.sendChatMessage(user, myJSON);
+				}
 			},
 			error: function (data) {
 			}

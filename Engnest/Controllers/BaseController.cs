@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace Engnest.Controllers
 {
@@ -31,9 +32,9 @@ namespace Engnest.Controllers
 		}
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
-			var sessionCookie = Request.Cookies[Constant.USER_SESSION];
+			var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
-			if (sessionCookie == null)
+		if (authCookie == null)
 			{
 				filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "index" }));
 			}
@@ -41,13 +42,21 @@ namespace Engnest.Controllers
 			{
 				try
 				{
-					if (userLogin == null || userLogin.ID != long.Parse(sessionCookie.Value))
+					var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+					if (authTicket.Expired)
 					{
-						userLogin = userRepository.GetUserByID(long.Parse(sessionCookie.Value));
+						filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "index" }));
+					} else
+					{
+						if (userLogin == null || userLogin.ID != long.Parse(authTicket.UserData))
+						{
+							userLogin = userRepository.GetUserByID(long.Parse(authTicket.UserData));
+						}
+						var ticket = new FormsAuthenticationTicket(1, authTicket.Name, DateTime.Now, DateTime.Now.AddMonths(1), true, authTicket.UserData);
+						string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+						Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket));
+						ViewBag.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
 					}
-					sessionCookie.Expires = DateTime.Now.AddMonths(1);
-					Response.Cookies.Add(sessionCookie);
-					ViewBag.ProfileModel = Mapper.Map<ProfileModel>(userLogin);
 				}
 				catch(Exception ex)
 				{

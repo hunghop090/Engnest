@@ -44,6 +44,8 @@ namespace Engnest.Entities.ViewModels
 
 		public string TargetNickName { get; set; }
 
+		public string TargetUrl { get; set; }
+
 		public string TargetAvatar { get; set; }
 
 		public int CountEmotions { get; set; }

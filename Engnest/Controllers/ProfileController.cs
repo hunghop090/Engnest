@@ -174,7 +174,7 @@ namespace Engnest.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult SaveHobbyist(string data)
+		public ActionResult SaveHobbies(string data)
 		{
 			try
 			{

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Engnest.Entities.Common;
 using Engnest.Entities.Entity;
 using Engnest.Entities.IRepository;
@@ -45,10 +46,9 @@ namespace Engnest.Controllers
 					result = userRepository.Login(model.UserName, Password, out user);
 					if (result == LoginStatus.SUCCESS)
 					{
-						var sessionCookie = new HttpCookie(Constant.USER_SESSION);
-						sessionCookie.Expires = DateTime.Now.AddMonths(1);
-						sessionCookie.Value = user.ID.ToString();
-						Response.Cookies.Add(sessionCookie);
+						var ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMonths(1), true, user.ID.ToString());
+						string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+						Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket));
 					}
 				}
 			}
@@ -73,10 +73,9 @@ namespace Engnest.Controllers
 				{
 					userRepository.Save();
 					var user = userRepository.GetUserByName(model.UserName);
-					var sessionCookie = new HttpCookie(Constant.USER_SESSION);
-					sessionCookie.Expires = DateTime.Now.AddMonths(1);
-					sessionCookie.Value = user.ID.ToString();
-					Response.Cookies.Add(sessionCookie);
+					var ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMonths(1), true, user.ID.ToString());
+					string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+					Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket));
 				}
 				Response.StatusCode = (int)HttpStatusCode.OK;
 				return Json(new { result = Constant.SUCCESS });
@@ -86,11 +85,13 @@ namespace Engnest.Controllers
 
 		public ActionResult SignOut()
 		{
-			if (Request.Cookies[Constant.USER_SESSION] != null)
+			var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+			if (authCookie != null)
 			{
-				HttpCookie myCookie = new HttpCookie(Constant.USER_SESSION);
-				myCookie.Expires = DateTime.Now.AddDays(-1);
-				Response.Cookies.Add(myCookie);
+				var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+				var ticket = new FormsAuthenticationTicket(1, authTicket.Name, DateTime.Now, DateTime.Now.AddHours(-24), true, authTicket.UserData);
+				string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+				Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket));
 			}
 			return RedirectToAction("Index");
 		}

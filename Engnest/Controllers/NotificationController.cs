@@ -55,6 +55,7 @@ namespace Engnest.Controllers
 			newNotification.UserId = UserId;
 			newNotification.Type = Type;
 			newNotification.TargetId = TargetId;
+			var id = (long)0;
 			try
 			{
 				if(TargetId != null && Type != null)
@@ -62,22 +63,25 @@ namespace Engnest.Controllers
 					var OldNOtification = NotificationRepository.GetNotificationByTarget(Type.Value,TargetId.Value);
 					if(OldNOtification != null)
 					{
-						newNotification.Seen = false;
-						newNotification.CreatedTime = DateTime.UtcNow;
-						NotificationRepository.UpdateNotification(newNotification);
+						OldNOtification.Content = Content;
+						OldNOtification.Seen = false;
+						OldNOtification.UserId = UserId;
+						OldNOtification.CreatedTime = DateTime.UtcNow;
+						NotificationRepository.UpdateNotification(OldNOtification);
+						id = OldNOtification.ID;
 					}
 					else
-						NotificationRepository.InsertNotification(newNotification);
+						id = NotificationRepository.InsertNotification(newNotification);
 				}
 				else
-					NotificationRepository.InsertNotification(newNotification);
+					id = NotificationRepository.InsertNotification(newNotification);
 			}
 			catch (Exception ex)
 			{
 				return Json(new { result = Constant.ERROR });
 			}
 			Response.StatusCode = (int)HttpStatusCode.OK;
-			return Json(new { result = Constant.SUCCESS });
+			return Json(new { result = Constant.SUCCESS,id });
 		}
 
 		[HttpPost]

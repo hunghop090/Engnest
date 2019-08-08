@@ -151,6 +151,11 @@
 		</div>
 	</div>
 	<script>
+	$(document).ready(function () {
+		if ($(location).attr('hash') == "#signup")
+			DisplaySignin()
+
+		});
         function DisplaySignin() {
             $(".signin_info").show();
             $(".login_info").hide();
